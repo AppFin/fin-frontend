@@ -1,0 +1,4 @@
+<div class="app-container" [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode">
+    <span>{{ 'welcome' | translate }}</span>
+    <button (click)="toggleTheme()">toggle theme</button>
+</div>
