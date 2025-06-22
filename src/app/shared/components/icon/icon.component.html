@@ -1,0 +1,26 @@
+<div
+  class="icon-container"
+  [style.width.px]="containerSize"
+  [style.height.px]="containerSize"
+  [style.background-color]="boxColor"
+  [style.border-radius.px]="boxRadius"
+  [style.display]="'inline-flex'"
+  [style.align-items]="'center'"
+  [style.justify-content]="'center'"
+>
+  @if (type() === 'fontAwesome') {
+    <i
+      [class]="fontAwesomeType + ' fa-' + icon()"
+      [style.font-size.px]="iconSize"
+      [style.color]="iconColor"
+    ></i>
+  } @else {
+    <img
+      [src]="imagePath()"
+      [alt]="icon()"
+      [style.width.px]="iconSize"
+      [style.height.px]="iconSize"
+      [style.object-fit]="'contain'"
+    />
+  }
+</div>
