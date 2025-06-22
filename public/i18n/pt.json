@@ -1,0 +1,13 @@
+{
+  "welcome": "Bem-vindo",
+  "theme": {
+    "light": "Tema Claro",
+    "dark": "Tema Escuro",
+    "toggle": "Alternar Tema"
+  },
+  "navigation": {
+    "home": "Início",
+    "about": "Sobre",
+    "contact": "Contato"
+  }
+}

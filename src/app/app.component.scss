@@ -1,0 +1,15 @@
+.app-container.dark-theme  {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+.app-container.light-theme  {
+    background-color: var(--background-light);
+    color: var(--text-light);
+}
+
+.app-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+}
