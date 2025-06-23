@@ -1,4 +1,11 @@
-import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
+import { MatTooltip } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type FontAwesomeType = 'fas' | 'far' | 'fab' | 'fal' | 'fad';
@@ -6,10 +13,10 @@ export type IconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 
 @Component({
   selector: 'fin-icon',
-  imports: [],
+  imports: [MatTooltip, TranslateModule],
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
   public readonly icon = input<string>();
@@ -23,39 +30,37 @@ export class IconComponent {
   public readonly boxColor = input<string>('transparent');
   public readonly boxRadius = input<number>(0);
   public readonly padding = input<number>(4);
-
-  public readonly iconSize = computed(() => {
-    return this.customSize() || this.sizeMap[this.size()]
-  });
-  public readonly containerSize = computed(() => {
-    return this.iconSize() + (this.padding() * 2);
-  });
+  public readonly tooltip = input<string>('');
   public readonly imagePath = computed(() => {
     if (!this.icon() || this.type() === 'fontAwesome') return '';
 
     let folder = this.imageFolder();
     switch (this.type()) {
-      case "bank":
+      case 'bank':
         folder = 'icons/banks/';
         break;
-      case "flag":
+      case 'flag':
         folder = 'icons/flags/';
         break;
     }
 
     let extension = this.imageExtension();
-    if (this.type() !== 'image')
-      extension = '.png';
+    if (this.type() !== 'image') extension = '.png';
 
     return `${folder}${this.icon()}${extension}`;
   });
-
+  public readonly containerSize = computed(() => {
+    return this.iconSize() + this.padding() * 2;
+  });
   private sizeMap: Record<IconSize, number> = {
-    'xs': 12,
-    'sm': 16,
-    'md': 20,
-    'lg': 24,
-    'xl': 32,
-    '2xl': 40
+    xs: 12,
+    sm: 16,
+    md: 20,
+    lg: 24,
+    xl: 32,
+    '2xl': 40,
   };
+  public readonly iconSize = computed(() => {
+    return this.customSize() || this.sizeMap[this.size()];
+  });
 }

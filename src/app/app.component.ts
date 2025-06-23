@@ -1,27 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme.service';
+import { IconComponent } from './shared/components/icon/icon.component';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslateModule]
+  imports: [CommonModule, TranslateModule, IconComponent, MatButton],
 })
 export class AppComponent implements OnInit {
-  
   private readonly translate = inject(TranslateService);
-    private readonly themeService = inject(ThemeService);
-
-  public ngOnInit(): void {
-    this.setLang();
-  }
+  private readonly themeService = inject(ThemeService);
 
   public get isDarkMode(): boolean {
     return this.themeService.isDarkMode;
+  }
+
+  public ngOnInit(): void {
+    this.setLang();
   }
 
   public toggleTheme(): void {

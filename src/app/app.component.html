@@ -1,4 +1,5 @@
-<div class="app-container" [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode">
-    <span>{{ 'welcome' | translate }}</span>
-    <button (click)="toggleTheme()">toggle theme</button>
+<div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="app-container">
+  <span>{{ 'welcome' | translate }}</span>
+  <button (click)="toggleTheme()" mat-button>toggle theme</button>
+  <fin-icon icon="times" iconColor="red" tooltip="welcome"/>
 </div>
