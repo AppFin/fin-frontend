@@ -1,8 +1,22 @@
 .icon-container {
+  align-items: center;
   box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
 }
 
 img {
   max-height: 100%;
   max-width: 100%;
+  object-fit: contain;
+}
+
+i {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+:host {
+  display: block;
 }

@@ -4,16 +4,17 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { MatTooltip } from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgOptimizedImage } from '@angular/common';
 
-export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '10xl';
 export type FontAwesomeType = 'fas' | 'far' | 'fab' | 'fal' | 'fad';
 export type IconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 
 @Component({
   selector: 'fin-icon',
-  imports: [MatTooltip, TranslateModule],
+  imports: [MatTooltipModule, TranslateModule, NgOptimizedImage],
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,7 +29,7 @@ export class IconComponent {
   public readonly customSize = input<number | null>(null);
   public readonly iconColor = input<string>('#000000');
   public readonly boxColor = input<string>('transparent');
-  public readonly boxRadius = input<number>(0);
+  public readonly boxRadius = input<number>(6);
   public readonly padding = input<number>(4);
   public readonly tooltip = input<string>('');
   public readonly imagePath = computed(() => {
@@ -59,6 +60,7 @@ export class IconComponent {
     lg: 24,
     xl: 32,
     '2xl': 40,
+    '10xl': 120,
   };
   public readonly iconSize = computed(() => {
     return this.customSize() || this.sizeMap[this.size()];

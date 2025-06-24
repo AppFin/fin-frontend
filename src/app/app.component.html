@@ -1,5 +1,7 @@
 <div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="app-container">
   <span>{{ 'welcome' | translate }}</span>
   <button (click)="toggleTheme()" mat-button>toggle theme</button>
-  <fin-icon icon="times" iconColor="red" tooltip="welcome"/>
+  <fin-icon icon="fin" size="10xl" type="image"/>
+  <fin-icon boxColor="green" icon="times" tooltip="welcome"/>
+  <fin-icon icon="fin" tooltip="welcome" type="image"/>
 </div>

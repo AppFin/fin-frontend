@@ -1,27 +1,24 @@
 <div
   [matTooltip]="!!tooltip() ? (tooltip() | translate) : undefined"
-  [style.align-items]="'center'"
   [style.background-color]="boxColor()"
   [style.border-radius.px]="boxRadius()"
-  [style.display]="'inline-flex'"
-  [style.height.px]="containerSize()"
-  [style.justify-content]="'center'"
-  [style.width.px]="containerSize()"
+  [style.padding.px]="padding()"
   class="icon-container"
 >
   @if (type() === 'fontAwesome') {
     <i
       [class]="fontAwesomeType() + ' fa-' + icon()"
       [style.font-size.px]="iconSize()"
+      [style.width.px]="iconSize()"
+      [style.height.px]="iconSize()"
       [style.color]="iconColor()"
     ></i>
   } @else {
     <img
-      [src]="imagePath()"
+      [ngSrc]="imagePath()"
       [alt]="icon()"
-      [style.width.px]="iconSize()"
-      [style.height.px]="iconSize()"
-      [style.object-fit]="'contain'"
+      [width]="iconSize()"
+      [height]="iconSize()"
     />
   }
 </div>
