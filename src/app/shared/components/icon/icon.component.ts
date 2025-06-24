@@ -4,9 +4,9 @@ import {
   computed,
   input,
 } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgOptimizedImage } from '@angular/common';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '10xl';
 export type FontAwesomeType = 'fas' | 'far' | 'fab' | 'fal' | 'fad';
@@ -14,7 +14,7 @@ export type IconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 
 @Component({
   selector: 'fin-icon',
-  imports: [MatTooltipModule, TranslateModule, NgOptimizedImage],
+  imports: [CommonModule, MatTooltipModule, TranslateModule, NgOptimizedImage],
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,9 +50,6 @@ export class IconComponent {
 
     return `${folder}${this.icon()}${extension}`;
   });
-  public readonly containerSize = computed(() => {
-    return this.iconSize() + this.padding() * 2;
-  });
   private sizeMap: Record<IconSize, number> = {
     xs: 12,
     sm: 16,
@@ -64,5 +61,8 @@ export class IconComponent {
   };
   public readonly iconSize = computed(() => {
     return this.customSize() || this.sizeMap[this.size()];
+  });
+  public readonly containerSize = computed(() => {
+    return this.iconSize() + this.padding() * 2;
   });
 }

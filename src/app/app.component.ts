@@ -8,15 +8,22 @@ import {
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme.service';
+import { MatButtonModule } from '@angular/material/button';
+import { TextComponent } from './shared/components/text/text.component';
 import { IconComponent } from './shared/components/icon/icon.component';
-import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslateModule, IconComponent, MatButton],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    MatButtonModule,
+    TextComponent,
+    IconComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   private readonly translate = inject(TranslateService);

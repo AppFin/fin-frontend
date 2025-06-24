@@ -1,0 +1,26 @@
+<span
+  [class]="'fin-text fin-text-' + type()"
+  [style.background-color]="backgroundColor()"
+  [style.border-radius]="
+    backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'
+  "
+  [style.color]="textColor()"
+  [style.display]="
+    backgroundColor() && backgroundColor() !== 'transparent'
+      ? 'inline-block'
+      : 'inline'
+  "
+  [style.padding]="
+    backgroundColor() && backgroundColor() !== 'transparent' ? '2px 4px' : '0'
+  "
+>
+  @if (!!text()) {
+    <ng-container>
+      {{ text() | translate }}
+    </ng-container>
+  } @else {
+    <ng-container>
+      <ng-content/>
+    </ng-container>
+  }
+</span>
