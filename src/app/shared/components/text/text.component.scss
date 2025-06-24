@@ -1,8 +1,23 @@
+.link {
+  color: var(--color-secondary);
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
 .fin-text {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
   margin: 0;
   transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.fin-text h1, .fin-text h2, .fin-text p {
+  margin: 0;
 }
 
 .fin-text-label {
@@ -10,7 +25,6 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   line-height: 1.4;
-  text-transform: uppercase;
 }
 
 .fin-text-title {
