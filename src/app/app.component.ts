@@ -10,7 +10,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ThemeService } from './core/services/theme.service';
 import { MatButtonModule } from '@angular/material/button';
 import { TextComponent } from './shared/components/text/text.component';
-import { IconComponent } from './shared/components/icon/icon.component';
+import { FormControl, Validators } from '@angular/forms';
+import { InputComponent } from './shared/components/input/input.component';
 
 @Component({
   selector: 'app-root',
@@ -22,10 +23,13 @@ import { IconComponent } from './shared/components/icon/icon.component';
     TranslateModule,
     MatButtonModule,
     TextComponent,
-    IconComponent,
+    InputComponent,
   ],
 })
 export class AppComponent implements OnInit {
+  public formControl = new FormControl('');
+  public formControlRequired = new FormControl('', Validators.required);
+  public formControlDisabled = new FormControl({ value: '', disabled: true });
   private readonly translate = inject(TranslateService);
   private readonly themeService = inject(ThemeService);
 

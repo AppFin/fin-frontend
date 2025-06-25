@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
@@ -11,6 +11,7 @@ export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
   templateUrl: './text.component.html',
   styleUrl: './text.component.scss',
   imports: [CommonModule, TranslatePipe, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextComponent {
   public readonly type = input<TextType>('paragraph');

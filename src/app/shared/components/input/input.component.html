@@ -1,0 +1,21 @@
+<div class="input-container">
+  <p-floatlabel [class.required]="required()" variant="on">
+    <label [for]="id()">{{ label() | translate }}</label>
+    <input #input
+           [formControl]="formControl"
+           [id]="id()"
+           [readOnly]="readonly()"
+           [type]="type()"
+           autocomplete="off"
+           pInputText
+    />
+  </p-floatlabel>
+  <div class="info-text">
+    @if (!!helpText() && !hasError()) {
+      <fin-text type="info" [text]="helpText()"/>
+    }
+    @if (hasError()) {
+      <fin-text class="error-info" type="info" [text]="errorMessage()"/>
+    }
+  </div>
+</div>

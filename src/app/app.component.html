@@ -3,37 +3,20 @@
   <br/>
   <button (click)="toggleTheme()" mat-button>toggle theme</button>
   <br/>
-  <fin-icon icon="fin" size="10xl" type="image"/>
-  <fin-icon boxColor="green" icon="times" tooltip="welcome"/>
-  <fin-icon icon="fin" tooltip="welcome" type="image"/>
 
-  <fin-text>Nothing</fin-text>
-  <br/>
-  <fin-text type="label">label</fin-text>
-  <br/>
-  <fin-text type="title">title</fin-text>
-  <br/>
-  <fin-text type="subtitle">subtitle</fin-text>
-  <br/>
-  <fin-text type="paragraph">paragraph</fin-text>
-  <br/>
-  <fin-text type="info">info</fin-text>
 
-  <br/>
-  <br/>
-  <br/>
+  <div style="display: flex">
+    <fin-input [formControl]="formControl" label="Normal"/>
+    <fin-input [formControl]="formControl" helpText="Ajuda" label="Normal + help"/>
 
-  <fin-text href="https://youtube.com" target="_blank">Nothing</fin-text>
-  <br/>
-  <fin-text routerLink="https://youtube.com" type="label">label</fin-text>
-  <br/>
-  <fin-text href="https://youtube.com" type="title">title</fin-text>
-  <br/>
-  <fin-text href="https://youtube.com" type="subtitle">subtitle</fin-text>
-  <br/>
-  <fin-text href="https://youtube.com" type="paragraph">paragraph</fin-text>
-  <br/>
-  <fin-text href="https://youtube.com" type="info">info</fin-text>
+    <fin-input [formControl]="formControl" [readonly]="true" label="readonly"/>
+
+    <fin-input [formControl]="formControlRequired" label="required"/>
+    <fin-input [formControl]="formControlRequired" helpText="Ajuda required" label="required + help"/>
+
+    <fin-input [formControl]="formControlDisabled" label="disabled"/>
+  </div>
+
 
 </div>
 
