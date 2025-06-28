@@ -5,27 +5,40 @@
   }
 }
 
+.p-inputtext.ng-invalid.ng-touched,
+.p-inputtext.ng-invalid.ng-dirty {
+  border-color: var(--p-inputtext-invalid-border-color);
+}
+
+.p-floatlabel:has(.ng-invalid.ng-touched) label,
+.p-floatlabel:has(.ng-invalid.ng-dirty) label {
+  color: var(--p-floatlabel-invalid-color)
+}
+
+.sub-text {
+  height: 30px;
+  max-width: 100%;
+  width: 100%;
+
+  .error-sub {
+    color: var(--color-error);
+    display: flex;
+  }
+}
+
+
 .input-container {
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 6px;
-  width: 234px;
 
-  p-floatlabel {
-    width: inherit;
 
-    input {
-      width: inherit;
+  input {
+    width: 284px;
 
-    }
   }
 
-  .info-text {
-    height: 30px;
-    width: inherit;
-
-    .error-info {
-      color: var(--color-error);
-    }
+  .p-inputicon {
+    top: 40%;
   }
 }

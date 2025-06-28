@@ -6,15 +6,9 @@
 
 
   <div style="display: flex">
-    <fin-input [formControl]="formControl" label="Normal"/>
-    <fin-input [formControl]="formControl" helpText="Ajuda" label="Normal + help"/>
-
-    <fin-input [formControl]="formControl" [readonly]="true" label="readonly"/>
-
-    <fin-input [formControl]="formControlRequired" label="required"/>
-    <fin-input [formControl]="formControlRequired" helpText="Ajuda required" label="required + help"/>
-
-    <fin-input [formControl]="formControlDisabled" label="disabled"/>
+    <fin-input [formControl]="formControl" iconPrefix="times" iconPrefixColor="red" iconPrefixTooltip="mágia"
+               iconSuffix="times" iconSuffixColor="blue" iconSuffixTooltip="bla"
+               label="Normal"/>
   </div>
 
 

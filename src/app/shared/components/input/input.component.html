@@ -1,21 +1,62 @@
 <div class="input-container">
-  <p-floatlabel [class.required]="required()" variant="on">
-    <label [for]="id()">{{ label() | translate }}</label>
-    <input #input
-           [formControl]="formControl"
-           [id]="id()"
-           [readOnly]="readonly()"
-           [type]="type()"
-           autocomplete="off"
-           pInputText
-    />
+  <p-floatlabel [class.required]="required()" variant="in">
+    <p-iconfield>
+      @if (iconPrefix()) {
+        <p-inputicon>
+          <fin-icon
+            [icon]="iconPrefix()"
+            [tooltip]="iconPrefixTooltip()"
+            [iconColor]="iconPrefixColor()"
+            [fontAwesomeType]="iconPrefixFontAwesomeType()"
+            [type]="iconPrefixType()"
+            [imageFolder]="iconPrefixImageFolder()"
+            [imageExtension]="iconPrefixImageExtension()"
+
+          />
+        </p-inputicon>
+      }
+      <input #input
+             (blur)="validStatesChange()"
+             [allowNegativeNumbers]="allowNegativeNumbers()"
+             [decimalMarker]="validDecimalMarker()"
+             [formControl]="formControl"
+             [hiddenInput]="hiddenInput()"
+             [id]="id()"
+             [inputTransformFn]="inputTransformFn()"
+             [leadZero]="leadZero()"
+
+             [mask]="mask()"
+             [outputTransformFn]="outputTransformFn()"
+             [readOnly]="readonly()"
+             [shownMaskExpression]="shownMaskExpression()"
+             [thousandSeparator]="validThousandSeparator()"
+             [type]="type()"
+             [validation]="validationMask()"
+             autocomplete="off"
+             pInputText
+      />
+      @if (iconSuffix()) {
+        <p-inputicon>
+          <fin-icon
+            [icon]="iconSuffix()"
+            [tooltip]="iconSuffixTooltip()"
+            [iconColor]="iconSuffixColor()"
+            [fontAwesomeType]="iconSuffixFontAwesomeType()"
+            [type]="iconSuffixType()"
+            [imageFolder]="iconSuffixImageFolder()"
+            [imageExtension]="iconSuffixImageExtension()"
+
+          />
+        </p-inputicon>
+      }
+    </p-iconfield>
+    <label [for]="id()">{{ label() | finTranslate }}</label>
   </p-floatlabel>
-  <div class="info-text">
-    @if (!!helpText() && !hasError()) {
-      <fin-text type="info" [text]="helpText()"/>
-    }
-    @if (hasError()) {
-      <fin-text class="error-info" type="info" [text]="errorMessage()"/>
+  <div class="sub-text">
+    @if (!hasError()) {
+      <fin-text [text]="helpText()" class="info-sub" type="info"/>
+    } @else {
+      <fin-text [text]="errorMessageEffective()" class="error-sub" type="info"/>
     }
   </div>
 </div>

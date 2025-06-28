@@ -1,18 +1,24 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideAppInitializer,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PrimeCustomPreset } from '../styles/prime-custom-present';
 import { providePrimeNG } from 'primeng/config';
 
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import {
+  TranslateFakeLoader,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
 
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './i18n/', '.json');
-}
+import { finAppInitializer } from './core/functions/app-initializer';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,24 +27,23 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideRouter(routes),
     provideAnimationsAsync(),
+    provideEnvironmentNgxMask(),
     providePrimeNG({
       theme: {
         preset: PrimeCustomPreset,
         options: {
           darkModeSelector: '.dark-theme',
-
-        }
-      }
+        },
+      },
     }),
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+          useClass: TranslateFakeLoader,
         },
-        defaultLanguage: 'pt'
       })
-    )
-  ]
+    ),
+    provideAppInitializer(finAppInitializer),
+  ],
 };

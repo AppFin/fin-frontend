@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
+import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 
 export type TextType = 'label' | 'title' | 'subtitle' | 'paragraph' | 'info';
 export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
@@ -10,7 +10,7 @@ export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
   selector: 'fin-text',
   templateUrl: './text.component.html',
   styleUrl: './text.component.scss',
-  imports: [CommonModule, TranslatePipe, RouterLink],
+  imports: [CommonModule, RouterLink, FinTranslatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextComponent {
@@ -24,4 +24,7 @@ export class TextComponent {
   public readonly target = input<LinkTarget>('_self');
   public readonly routerLink = input<string | any[]>();
   public readonly rel = input<string>();
+
+  // Label props
+  public readonly for = input<string>();
 }

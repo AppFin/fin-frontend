@@ -70,6 +70,7 @@
     @case ('label') {
       <label
         class="fin-text fin-text-label"
+        [for]="for()"
         [style.color]="textColor()"
         [style.background-color]="backgroundColor()"
         [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
@@ -84,7 +85,7 @@
 
   <ng-template #textContent>
     @if (!!text()) {
-      {{ text() | translate }}
+      {{ text() | finTranslate }}
 
     } @else {
       <ng-content/>
