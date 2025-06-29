@@ -8,12 +8,12 @@ export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
 
 @Component({
   selector: 'fin-text',
-  templateUrl: './text.component.html',
-  styleUrl: './text.component.scss',
+  templateUrl: './fin-text.component.html',
+  styleUrl: './fin-text.component.scss',
   imports: [CommonModule, RouterLink, FinTranslatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextComponent {
+export class FinTextComponent {
   public readonly type = input<TextType>('paragraph');
   public readonly textColor = input('inherit');
   public readonly backgroundColor = input('transparent');

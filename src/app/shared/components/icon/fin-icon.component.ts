@@ -22,11 +22,11 @@ export type IconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
     NgOptimizedImage,
     FinTranslatePipe,
   ],
-  templateUrl: './icon.component.html',
-  styleUrl: './icon.component.scss',
+  templateUrl: './fin-icon.component.html',
+  styleUrl: './fin-icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IconComponent {
+export class FinIconComponent {
   public readonly icon = input<string>();
   public readonly fontAwesomeType = input<FontAwesomeType>('fas');
   public readonly type = input<IconType>('fontAwesome');
@@ -57,9 +57,6 @@ export class IconComponent {
 
     return `${folder}${this.icon()}${extension}`;
   });
-  public readonly containerSize = computed(() => {
-    return this.iconSize() + this.padding() * 2;
-  });
   private sizeMap: Record<IconSize, number> = {
     xs: 12,
     sm: 16,
@@ -71,5 +68,8 @@ export class IconComponent {
   };
   public readonly iconSize = computed(() => {
     return this.customSize() || this.sizeMap[this.size()];
+  });
+  public readonly containerSize = computed(() => {
+    return this.iconSize() + this.padding() * 2;
   });
 }

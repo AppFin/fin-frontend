@@ -4,9 +4,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme/theme.service';
 import { MatButtonModule } from '@angular/material/button';
-import { TextComponent } from './shared/components/text/text.component';
+import { FinTextComponent } from './shared/components/text/fin-text.component';
 import { FormControl, Validators } from '@angular/forms';
-import { InputComponent } from './shared/components/input/input.component';
+import { FinInputComponent } from './shared/components/input/fin-input.component';
+import { FinIconComponent } from './shared/components/icon/fin-icon.component';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,9 @@ import { InputComponent } from './shared/components/input/input.component';
     CommonModule,
     TranslateModule,
     MatButtonModule,
-    TextComponent,
-    InputComponent,
+    FinTextComponent,
+    FinInputComponent,
+    FinIconComponent,
   ],
 })
 export class AppComponent {

@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextComponent } from './text.component';
+import { FinTextComponent } from './fin-text.component';
 
 describe('TextComponent', () => {
-  let component: TextComponent;
-  let fixture: ComponentFixture<TextComponent>;
+  let component: FinTextComponent;
+  let fixture: ComponentFixture<FinTextComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TextComponent]
-    })
-    .compileComponents();
+      imports: [FinTextComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(TextComponent);
+    fixture = TestBed.createComponent(FinTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

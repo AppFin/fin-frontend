@@ -1,18 +1,22 @@
 <div class="input-container">
   <p-floatlabel [class.required]="required()" variant="in">
     <p-iconfield>
-      @if (iconPrefix()) {
+      @if (iconPrefix() || prefixTemplate()) {
         <p-inputicon>
-          <fin-icon
-            [icon]="iconPrefix()"
-            [tooltip]="iconPrefixTooltip()"
-            [iconColor]="iconPrefixColor()"
-            [fontAwesomeType]="iconPrefixFontAwesomeType()"
-            [type]="iconPrefixType()"
-            [imageFolder]="iconPrefixImageFolder()"
-            [imageExtension]="iconPrefixImageExtension()"
+          @if (prefixTemplate()) {
+            <ng-container *ngTemplateOutlet="prefixTemplate()"/>
+          } @else {
+            <fin-icon
+              [icon]="iconPrefix()"
+              [tooltip]="iconPrefixTooltip()"
+              [iconColor]="iconPrefixColor()"
+              [fontAwesomeType]="iconPrefixFontAwesomeType()"
+              [type]="iconPrefixType()"
+              [imageFolder]="iconPrefixImageFolder()"
+              [imageExtension]="iconPrefixImageExtension()"
 
-          />
+            />
+          }
         </p-inputicon>
       }
       <input #input
@@ -35,18 +39,22 @@
              autocomplete="off"
              pInputText
       />
-      @if (iconSuffix()) {
+      @if (iconSuffix() || suffixTemplate()) {
         <p-inputicon>
-          <fin-icon
-            [icon]="iconSuffix()"
-            [tooltip]="iconSuffixTooltip()"
-            [iconColor]="iconSuffixColor()"
-            [fontAwesomeType]="iconSuffixFontAwesomeType()"
-            [type]="iconSuffixType()"
-            [imageFolder]="iconSuffixImageFolder()"
-            [imageExtension]="iconSuffixImageExtension()"
+          @if (suffixTemplate()) {
+            <ng-container *ngTemplateOutlet="suffixTemplate()"/>
+          } @else {
+            <fin-icon
+              [icon]="iconSuffix()"
+              [tooltip]="iconSuffixTooltip()"
+              [iconColor]="iconSuffixColor()"
+              [fontAwesomeType]="iconSuffixFontAwesomeType()"
+              [type]="iconSuffixType()"
+              [imageFolder]="iconSuffixImageFolder()"
+              [imageExtension]="iconSuffixImageExtension()"
 
-          />
+            />
+          }
         </p-inputicon>
       }
     </p-iconfield>

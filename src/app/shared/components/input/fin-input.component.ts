@@ -9,6 +9,7 @@ import {
   input,
   OnInit,
   signal,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,7 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
-import { TextComponent } from '../text/text.component';
+import { FinTextComponent } from '../text/fin-text.component';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 import { NgxMaskDirective } from 'ngx-mask';
 import { ThousandSeparator } from '../../../core/types/localizations/thousand-separator';
@@ -25,10 +26,10 @@ import { LocalizationService } from '../../../core/services/localization/localiz
 import { DecimalMark } from '../../../core/types/localizations/decimal-mark';
 import { InputIcon } from 'primeng/inputicon';
 import {
+  FinIconComponent,
   FontAwesomeType,
-  IconComponent,
   IconType,
-} from '../icon/icon.component';
+} from '../icon/fin-icon.component';
 import { IconField } from 'primeng/iconfield';
 
 @Component({
@@ -38,18 +39,18 @@ import { IconField } from 'primeng/iconfield';
     ReactiveFormsModule,
     InputTextModule,
     FloatLabelModule,
-    TextComponent,
+    FinTextComponent,
     FinTranslatePipe,
     NgxMaskDirective,
     InputIcon,
-    IconComponent,
+    FinIconComponent,
     IconField,
   ],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.scss',
+  templateUrl: './fin-input.component.html',
+  styleUrl: './fin-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputComponent implements OnInit {
+export class FinInputComponent implements OnInit {
   @Input() public formControl: FormControl<string | null>;
 
   public readonly label = input('');
@@ -90,7 +91,7 @@ export class InputComponent implements OnInit {
   public readonly iconPrefixImageFolder = input<string>('icons/');
   public readonly iconPrefixImageExtension = input<string>('.png');
 
-  // icon prefix
+  // icon suffix
   public readonly iconSuffix = input('');
   public readonly iconSuffixTooltip = input<string>('');
   public readonly iconSuffixColor = input<string>('#000000');
@@ -99,10 +100,10 @@ export class InputComponent implements OnInit {
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');
 
-  // public readonly prefixTemplate =
-  //   input<TemplateRef<FinInputTemplateContext>>();
-  // public readonly suffixTemplate =
-  //   input<TemplateRef<FinInputTemplateContext>>();
+  // templates prefix and suffix
+  public readonly prefixTemplate = input<TemplateRef<any> | null>(null);
+  public readonly suffixTemplate = input<TemplateRef<any> | null>(null);
+
   private readonly localizationService = inject(LocalizationService);
   public readonly validThousandSeparator = computed(
     () =>
