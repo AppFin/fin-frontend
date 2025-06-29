@@ -5,8 +5,9 @@
   <br/>
 
 
-  <div style="display: flex">
-    <fin-input [formControl]="formControl" label="Normal"/>
+  <div style="display: flex; padding: 16px">
+    <fin-button [disabled]="true" text="Disabled"/>
+    <fin-button (onClick)="log()" text="enbled"/>
   </div>
 
 

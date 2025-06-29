@@ -5,9 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ThemeService } from './core/services/theme/theme.service';
 import { MatButtonModule } from '@angular/material/button';
 import { FinTextComponent } from './shared/components/text/fin-text.component';
-import { FormControl, Validators } from '@angular/forms';
-import { FinInputComponent } from './shared/components/input/fin-input.component';
-import { FinIconComponent } from './shared/components/icon/fin-icon.component';
+import { FinButtonComponent } from './shared/components/button/fin-button.component';
 
 @Component({
   selector: 'app-root',
@@ -19,14 +17,10 @@ import { FinIconComponent } from './shared/components/icon/fin-icon.component';
     TranslateModule,
     MatButtonModule,
     FinTextComponent,
-    FinInputComponent,
-    FinIconComponent,
+    FinButtonComponent,
   ],
 })
 export class AppComponent {
-  public formControl = new FormControl('');
-  public formControlRequired = new FormControl('', Validators.required);
-  public formControlDisabled = new FormControl({ value: '', disabled: true });
   private readonly themeService = inject(ThemeService);
 
   public get isDarkMode(): boolean {
@@ -35,5 +29,9 @@ export class AppComponent {
 
   public toggleTheme(): void {
     this.themeService.toggleTheme();
+  }
+
+  public log(): void {
+    console.log('AppComponent log');
   }
 }
