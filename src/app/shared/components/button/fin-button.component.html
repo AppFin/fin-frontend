@@ -1,3 +1,20 @@
-<p-button (onClick)="onClick.emit()" [disabled]="disabled()">
-  {{ text() | finTranslate }}
+<p-button
+        (click)="onClick.emit()"
+        [disabled]="disabled()"
+        [severity]="severity()"
+        [variant]="variant()"
+        [text]="isIconOnly() ? true : undefined"
+        [rounded]="isIconOnly() ? true : undefined"
+        [class.icon-only]="true"
+>
+    @if (icon()) {
+        <fin-icon
+                [icon]="icon()"
+        />
+    }
+
+    @if (effectiveText()) {
+        <span pButtonLabel>{{ effectiveText() | finTranslate }}</span>
+    }
 </p-button>
+

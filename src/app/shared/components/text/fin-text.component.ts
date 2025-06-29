@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 
-export type TextType = 'label' | 'title' | 'subtitle' | 'paragraph' | 'info';
-export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
+export type FinTextType = 'label' | 'title' | 'subtitle' | 'paragraph' | 'info';
+export type FinLinkTarget = '_self' | '_blank' | '_parent' | '_top';
 
 @Component({
   selector: 'fin-text',
@@ -14,14 +14,14 @@ export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FinTextComponent {
-  public readonly type = input<TextType>('paragraph');
+  public readonly type = input<FinTextType>('paragraph');
   public readonly textColor = input('inherit');
   public readonly backgroundColor = input('transparent');
   public readonly text = input('');
 
   // Link Props
   public readonly href = input<string>();
-  public readonly target = input<LinkTarget>('_self');
+  public readonly target = input<FinLinkTarget>('_self');
   public readonly routerLink = input<string | any[]>();
   public readonly rel = input<string>();
 

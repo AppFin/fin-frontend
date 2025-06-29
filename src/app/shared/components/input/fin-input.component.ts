@@ -27,8 +27,8 @@ import { DecimalMark } from '../../../core/types/localizations/decimal-mark';
 import { InputIcon } from 'primeng/inputicon';
 import {
   FinIconComponent,
-  FontAwesomeType,
-  IconType,
+  FinFontAwesomeType,
+  FinIconType,
 } from '../icon/fin-icon.component';
 import { IconField } from 'primeng/iconfield';
 
@@ -86,8 +86,8 @@ export class FinInputComponent implements OnInit {
   public readonly iconPrefix = input('');
   public readonly iconPrefixTooltip = input<string>('');
   public readonly iconPrefixColor = input<string>('#000000');
-  public readonly iconPrefixFontAwesomeType = input<FontAwesomeType>('fas');
-  public readonly iconPrefixType = input<IconType>('fontAwesome');
+  public readonly iconPrefixFontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly iconPrefixType = input<FinIconType>('fontAwesome');
   public readonly iconPrefixImageFolder = input<string>('icons/');
   public readonly iconPrefixImageExtension = input<string>('.png');
 
@@ -95,8 +95,8 @@ export class FinInputComponent implements OnInit {
   public readonly iconSuffix = input('');
   public readonly iconSuffixTooltip = input<string>('');
   public readonly iconSuffixColor = input<string>('#000000');
-  public readonly iconSuffixFontAwesomeType = input<FontAwesomeType>('fas');
-  public readonly iconSuffixType = input<IconType>('fontAwesome');
+  public readonly iconSuffixFontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');
 

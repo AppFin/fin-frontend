@@ -9,9 +9,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 
-export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '10xl';
-export type FontAwesomeType = 'fas' | 'far' | 'fab' | 'fal' | 'fad';
-export type IconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
+export type FinIconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '10xl';
+export type FinFontAwesomeType = 'fas' | 'far' | 'fab' | 'fal' | 'fad';
+export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 
 @Component({
   selector: 'fin-icon',
@@ -28,13 +28,13 @@ export type IconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 })
 export class FinIconComponent {
   public readonly icon = input<string>();
-  public readonly fontAwesomeType = input<FontAwesomeType>('fas');
-  public readonly type = input<IconType>('fontAwesome');
+  public readonly fontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly type = input<FinIconType>('fontAwesome');
   public readonly imageFolder = input<string>('icons/');
   public readonly imageExtension = input<string>('.png');
-  public readonly size = input<IconSize>('md');
+  public readonly size = input<FinIconSize>('md');
   public readonly customSize = input<number | null>(null);
-  public readonly iconColor = input<string>('#000000');
+  public readonly iconColor = input<string|undefined>(undefined);
   public readonly boxColor = input<string>('transparent');
   public readonly boxRadius = input<number>(6);
   public readonly padding = input<number>(4);
@@ -57,7 +57,7 @@ export class FinIconComponent {
 
     return `${folder}${this.icon()}${extension}`;
   });
-  private sizeMap: Record<IconSize, number> = {
+  private sizeMap: Record<FinIconSize, number> = {
     xs: 12,
     sm: 16,
     md: 20,

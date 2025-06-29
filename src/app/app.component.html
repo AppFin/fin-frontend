@@ -1,14 +1,13 @@
 <div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="app-container">
-  <fin-text text="welcome"/>
-  <br/>
-  <button (click)="toggleTheme()" mat-button>toggle theme</button>
-  <br/>
+    <fin-text text="welcome"/>
+    <br/>
+    <button (click)="toggleTheme()" mat-button>toggle theme</button>
+    <br/>
 
 
-  <div style="display: flex; padding: 16px">
-    <fin-button [disabled]="true" text="Disabled"/>
-    <fin-button (onClick)="log()" text="enbled"/>
-  </div>
+    <div style="display: flex; padding: 16px; gap: 8px">
+        <fin-button (onClick)="log()" icon="times" />
+    </div>
 
 
 </div>
