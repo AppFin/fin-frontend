@@ -1,7 +1,39 @@
 fin-button {
-  .icon-only > button {
+  p-button:not(.icon-only) > button {
+    padding: 0.25rem 0.75rem;
+    height: 38px;
+  }
+
+  p-button.icon-only > button {
     width: 40px;
     height: 40px;
+
+    &.p-button-primary fin-icon i {
+      color: var(--p-primary-color)
+    }
+
+    &.p-button-secondary fin-icon i {
+      color: var(--p-secondary-color)
+    }
+
+    &.p-button-success fin-icon i {
+      color: var(--p-success-color)
+    }
+
+    &.p-button-info fin-icon i {
+      color: var(--p-info-color)
+    }
+
+    &.p-button-warn fin-icon i {
+      color: var(--p-warn-color)
+    }
+
+    &.p-button-danger fin-icon i {
+      color: var(--p-danger-color)
+    }
+  }
+
+  .custom-spinner circle {
+    stroke: var(--text-color);;
   }
 }
-

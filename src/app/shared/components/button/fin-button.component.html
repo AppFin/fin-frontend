@@ -5,16 +5,35 @@
         [variant]="variant()"
         [text]="isIconOnly() ? true : undefined"
         [rounded]="isIconOnly() ? true : undefined"
-        [class.icon-only]="true"
+        [class.icon-only]="isIconOnly()"
 >
-    @if (icon()) {
+    @if (!!icon() && !spinner()) {
         <fin-icon
                 [icon]="icon()"
+                [iconColor]="iconColor()"
+                [fontAwesomeType]="iconFontAwesomeType()"
+                [type]="iconType()"
+                [imageFolder]="iconImageFolder()"
+                [imageExtension]="iconImageExtension()"
         />
+    }
+    @if (spinner()) {
+        <mat-spinner class="custom-spinner" [diameter]="20" strokeWidth="3"/>
     }
 
     @if (effectiveText()) {
         <span pButtonLabel>{{ effectiveText() | finTranslate }}</span>
+    }
+
+    @if (!!effectiveText() && !!iconSuffix()) {
+        <fin-icon
+                [icon]="iconSuffix()"
+                [iconColor]="iconSuffixColor()"
+                [fontAwesomeType]="iconSuffixFontAwesomeType()"
+                [type]="iconSuffixType()"
+                [imageFolder]="iconSuffixImageFolder()"
+                [imageExtension]="iconSuffixImageExtension()"
+        />
     }
 </p-button>
 

@@ -85,7 +85,7 @@ export class FinInputComponent implements OnInit {
   // icon prefix
   public readonly iconPrefix = input('');
   public readonly iconPrefixTooltip = input<string>('');
-  public readonly iconPrefixColor = input<string>('#000000');
+  public readonly iconPrefixColor = input<string|null>(null);
   public readonly iconPrefixFontAwesomeType = input<FinFontAwesomeType>('fas');
   public readonly iconPrefixType = input<FinIconType>('fontAwesome');
   public readonly iconPrefixImageFolder = input<string>('icons/');
@@ -94,7 +94,7 @@ export class FinInputComponent implements OnInit {
   // icon suffix
   public readonly iconSuffix = input('');
   public readonly iconSuffixTooltip = input<string>('');
-  public readonly iconSuffixColor = input<string>('#000000');
+  public readonly iconSuffixColor = input<string|null>(null);
   public readonly iconSuffixFontAwesomeType = input<FinFontAwesomeType>('fas');
   public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');

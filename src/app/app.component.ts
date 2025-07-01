@@ -18,6 +18,7 @@ import { FinButtonComponent } from './shared/components/button/fin-button.compon
     MatButtonModule,
     FinTextComponent,
     FinButtonComponent,
+
   ],
 })
 export class AppComponent {

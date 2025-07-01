@@ -6,7 +6,12 @@
 
 
     <div style="display: flex; padding: 16px; gap: 8px">
-        <fin-button (onClick)="log()" icon="times" />
+        <fin-button
+                (onClick)="log()"
+                text="text"
+                [spinner]="true"
+                [disabled]="true"
+        />
     </div>
 
 
