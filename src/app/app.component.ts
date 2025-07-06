@@ -11,6 +11,7 @@ import { ThemeService } from './core/services/theme/theme.service';
 import { MatButtonModule } from '@angular/material/button';
 import { FinTextComponent } from './shared/components/text/fin-text.component';
 import { FinButtonComponent } from './shared/components/button/fin-button.component';
+import { FinSaveButtonComponent } from './shared/components/save-button/fin-save-button.component';
 
 @Component({
   selector: 'app-root',
@@ -23,11 +24,12 @@ import { FinButtonComponent } from './shared/components/button/fin-button.compon
     MatButtonModule,
     FinTextComponent,
     FinButtonComponent,
+    FinSaveButtonComponent,
   ],
 })
 export class AppComponent implements OnInit {
-  public btnSpin = signal(false);
-  public loading: undefined | boolean = undefined;
+  public saving = signal(false);
+  public canSave = signal(false);
 
   private readonly themeService = inject(ThemeService);
 
@@ -45,6 +47,8 @@ export class AppComponent implements OnInit {
 
   public log(): void {
     console.log('AppComponent log');
+    this.saving.set(true);
+    setTimeout(() => this.saving.set(false), 5000);
   }
 
   private removeSplashScreen(): void {

@@ -2,6 +2,9 @@ import { ITranslate } from './i-translate';
 
 export const PtI18n: ITranslate = {
   "fin-core": {
+    actions: {
+      save: 'Salvar',
+    },
     errors: {
       email: "Email inválido",
       maxLength: "Máximo de {{maxLength}} caracteres",

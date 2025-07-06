@@ -2,6 +2,9 @@ import { ITranslate } from './i-translate';
 
 export const EnI18n: ITranslate = {
   'fin-core': {
+    actions: {
+      save: 'Save',
+    },
     errors: {
       email: 'Invalid email',
       maxLength: 'Maximum of {{maxLength}} characters',
