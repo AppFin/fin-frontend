@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -7,8 +8,8 @@ import {
   Input,
   OnInit,
   signal,
+  ViewEncapsulation,
 } from '@angular/core';
-import { FloatLabel } from 'primeng/floatlabel';
 import {
   FormControl,
   FormsModule,
@@ -22,18 +23,27 @@ import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pi
 import { FinSelectComponentOptions } from './fin-select-component-options';
 import { PagedFilteredAndSortedInput } from '../../models/paginations/paged-filtered-and-sorted-input';
 import { FinSelectOption } from './fin-select-option';
+import { IftaLabel } from 'primeng/iftalabel';
+import { FinIconComponent } from '../icon/fin-icon.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FinTextComponent } from '../text/fin-text.component';
 
 @Component({
   selector: 'fin-select',
   imports: [
-    FloatLabel,
     FormsModule,
     Select,
     ReactiveFormsModule,
     FinTranslatePipe,
+    IftaLabel,
+    FinIconComponent,
+    MatProgressSpinnerModule,
+    FinTextComponent,
   ],
   templateUrl: './fin-select.component.html',
   styleUrl: './fin-select.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class FinSelectComponent implements OnInit {
   @Input() public formControl: FormControl<any>;
@@ -41,6 +51,7 @@ export class FinSelectComponent implements OnInit {
   public readonly label = input('');
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
+  public readonly helpText = input<string>('');
   public readonly selectComponentOptions = input<FinSelectComponentOptions>(
     undefined,
     { alias: 'options' }
@@ -53,10 +64,14 @@ export class FinSelectComponent implements OnInit {
   public readonly loading = signal(true);
   public readonly options = signal<FinSelectOption[]>([]);
 
-  public readonly hasError = signal(false);
+  private readonly _hasError = signal(false);
+  public readonly hasError = this._hasError.asReadonly();
 
   private _required = signal(false);
   public required = this._required.asReadonly();
+
+  private _disabled = signal(false);
+  public disabled = this._disabled.asReadonly();
 
   private readonly errorMessage = signal('');
   public readonly errorMessageEffective = computed(() => {
@@ -70,8 +85,14 @@ export class FinSelectComponent implements OnInit {
     this.search();
   }
 
+  public onBlur(): void {
+    this.formControl.markAsTouched();
+    this.validStatesChange();
+  }
+
   public validStatesChange(): void {
     this.setRequired();
+    this.setDisabled();
     this.setError();
   }
 
@@ -88,11 +109,15 @@ export class FinSelectComponent implements OnInit {
     this._required.set(this.formControl.hasValidator(Validators.required));
   }
 
+  private setDisabled(): void {
+    this._disabled.set(this.formControl.disabled);
+  }
+
   private setError(): void {
     const hasError =
       this.formControl.invalid &&
       (this.formControl.touched || this.formControl.dirty);
-    this.hasError.set(hasError);
+    this._hasError.set(hasError);
 
     let errorMessage = '';
 
@@ -114,4 +139,6 @@ export class FinSelectComponent implements OnInit {
     this.options.set(options.items);
     this.loading.set(false);
   }
+
+  protected readonly onblur = onblur;
 }

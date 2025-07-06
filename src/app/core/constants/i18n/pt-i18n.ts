@@ -3,6 +3,7 @@ import { ITranslate } from './i-translate';
 export const PtI18n: ITranslate = {
   "fin-core": {
     actions: {
+      loading: 'Carregando...',
       save: 'Salvar',
     },
     errors: {

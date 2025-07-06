@@ -1,6 +1,7 @@
 export interface ITranslate {
   'fin-core': {
     actions: {
+      loading: string;
       save: string;
     };
     errors: {

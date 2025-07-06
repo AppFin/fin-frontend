@@ -1,6 +1,44 @@
-<div class="input-container">
-    <p-floatlabel [class.required]="required()" variant="in">
-        <p-select [formControl]="formControl" [inputId]="id()" [options]="options()" [loading]="loading()" optionLabel="label" optionValue="value" class="w-full" />
+<div class="select-container">
+    <p-iftalabel
+            [class.required]="required()"
+            [class.disabled]="disabled()"
+    >
+        <p-select
+                (onBlur)="onBlur()"
+                [formControl]="formControl"
+                [inputId]="id()"
+                [options]="options()"
+                [readonly]="loading() ? true : readonly()"
+                [showClear]="!required()"
+                optionDisabled="disabled"
+                optionLabel="label"
+                optionValue="value"
+                class="w-full"
+                [placeholder]="loading() ? ('fin-core.actions.loading' | finTranslate) : ''"
+        >
+
+            <ng-template #clearicon>
+                <fin-icon class="clear-icon" icon="times" />
+            </ng-template>
+
+            <ng-template #dropdownicon>
+                <div class="dropdownicon">
+                    @if (!loading()) {
+                        <fin-icon icon="chevron-down"/>
+                    } @else {
+                        <mat-spinner [diameter]="20" [strokeWidth]="3"/>
+                    }
+                </div>
+            </ng-template>
+        </p-select>
         <label [for]="id()">{{ label() | finTranslate }}</label>
-    </p-floatlabel>
+    </p-iftalabel>
+
+    <div class="sub-text">
+        @if (!hasError()) {
+            <fin-text [text]="helpText()" class="info-sub" type="info"/>
+        } @else {
+            <fin-text [text]="errorMessageEffective()" class="error-sub" type="info"/>
+        }
+    </div>
 </div>

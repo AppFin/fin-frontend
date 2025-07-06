@@ -5,14 +5,18 @@
   }
 }
 
+.disabled input {
+  filter: brightness(0.9);
+}
+
 .p-inputtext.ng-invalid.ng-touched,
 .p-inputtext.ng-invalid.ng-dirty {
   border-color: var(--p-inputtext-invalid-border-color);
 }
 
-.p-floatlabel:has(.ng-invalid.ng-touched) label,
-.p-floatlabel:has(.ng-invalid.ng-dirty) label {
-  color: var(--p-floatlabel-invalid-color)
+.p-iftalabel:has(.ng-invalid.ng-touched) label,
+.p-iftalabel:has(.ng-invalid.ng-dirty) label {
+  color: var(--p-iftalabel-invalid-color)
 }
 
 .sub-text {

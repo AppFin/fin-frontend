@@ -14,9 +14,10 @@ import { FinSelectComponentOptions } from './shared/components/select/fin-select
 import { PagedFilteredAndSortedInput } from './shared/models/paginations/paged-filtered-and-sorted-input';
 import { FinSelectOption } from './shared/components/select/fin-select-option';
 import { PagedOutput } from './shared/models/paginations/paged-output';
-import { of } from 'rxjs';
+import { delay, of } from 'rxjs';
 import { FinSelectComponent } from './shared/components/select/fin-select.component';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
+import { FinInputComponent } from './shared/components/input/fin-input.component';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ import { FormControl } from '@angular/forms';
     MatButtonModule,
     FinTextComponent,
     FinSelectComponent,
+    FinInputComponent,
   ],
 })
 export class AppComponent implements OnInit {
@@ -40,14 +42,35 @@ export class AppComponent implements OnInit {
         totalCount: 1,
         items: [
           {
-            label: 'Kakashi',
-            value: 'sensei',
+            label: 'K323akadasdasdasd asdasd  asdshi',
+            value: 'sense123i',
+          },
+          {
+            label: 'Kakashi333',
+            value: 'sense32i',
+          },
+          {
+            label: 'Kakash333i',
+            value: 'sensei1212',
+          },
+          {
+            label: 'Kakashi123',
+            value: 'sensei12',
+            disabled: true
+          },
+          {
+            label: 'Kakashi132',
+            value: 'sensei2',
           },
         ],
-      } as PagedOutput<FinSelectOption>);
+      } as PagedOutput<FinSelectOption>)
+        .pipe(delay(5000));
     },
   } as FinSelectComponentOptions;
-  public form = new FormControl<string>('');
+  public form = new FormControl<string|null>(null, Validators.required);
+  public form2 = new FormControl<string>('sensei2', Validators.required);
+  public form3 = new FormControl<string>({ value: 'sensei2', disabled: true }, Validators.required);
+  public form4 = new FormControl<string>({ value: 'sensei2', disabled: true }, Validators.required);
 
   public ngOnInit(): void {
     this.removeSplashScreen();

@@ -31,6 +31,7 @@ import {
   FinIconType,
 } from '../icon/fin-icon.component';
 import { IconField } from 'primeng/iconfield';
+import { IftaLabel } from 'primeng/iftalabel';
 
 @Component({
   selector: 'fin-input',
@@ -45,6 +46,7 @@ import { IconField } from 'primeng/iconfield';
     InputIcon,
     FinIconComponent,
     IconField,
+    IftaLabel,
   ],
   templateUrl: './fin-input.component.html',
   styleUrl: './fin-input.component.scss',
@@ -79,13 +81,11 @@ export class FinInputComponent implements OnInit {
   public readonly outputTransformFn = input<
     ((value: string | number | null | undefined) => string) | null
   >(null);
-  @ViewChild('input', { static: true }) inputRef!: ElementRef<HTMLInputElement>;
-  public readonly hasError = signal(false);
 
   // icon prefix
   public readonly iconPrefix = input('');
   public readonly iconPrefixTooltip = input<string>('');
-  public readonly iconPrefixColor = input<string|undefined>(undefined);
+  public readonly iconPrefixColor = input<string | undefined>(undefined);
   public readonly iconPrefixFontAwesomeType = input<FinFontAwesomeType>('fas');
   public readonly iconPrefixType = input<FinIconType>('fontAwesome');
   public readonly iconPrefixImageFolder = input<string>('icons/');
@@ -94,7 +94,7 @@ export class FinInputComponent implements OnInit {
   // icon suffix
   public readonly iconSuffix = input('');
   public readonly iconSuffixTooltip = input<string>('');
-  public readonly iconSuffixColor = input<string|undefined>(undefined);
+  public readonly iconSuffixColor = input<string | undefined>(undefined);
   public readonly iconSuffixFontAwesomeType = input<FinFontAwesomeType>('fas');
   public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');
@@ -103,6 +103,17 @@ export class FinInputComponent implements OnInit {
   // templates prefix and suffix
   public readonly prefixTemplate = input<TemplateRef<any> | null>(null);
   public readonly suffixTemplate = input<TemplateRef<any> | null>(null);
+
+  @ViewChild('input', { static: true }) inputRef!: ElementRef<HTMLInputElement>;
+
+  private readonly _hasError = signal(false);
+  public readonly hasError = this._hasError.asReadonly();
+
+  private _required = signal(false);
+  public required = this._required.asReadonly();
+
+  private _disabled = signal(false);
+  public disabled = this._disabled.asReadonly();
 
   private readonly localizationService = inject(LocalizationService);
   public readonly validThousandSeparator = computed(
@@ -118,9 +129,6 @@ export class FinInputComponent implements OnInit {
     return this.errorMessage() ?? this.customErrorText();
   });
 
-  private _required = signal(false);
-  public required = this._required.asReadonly();
-
   private readonly destroyRef = inject(DestroyRef);
 
   public ngOnInit(): void {
@@ -130,6 +138,7 @@ export class FinInputComponent implements OnInit {
   public validStatesChange(): void {
     this.setRequired();
     this.setError();
+    this.setDisabled();
   }
 
   private startRequiredSub(): void {
@@ -145,11 +154,15 @@ export class FinInputComponent implements OnInit {
     this._required.set(this.formControl.hasValidator(Validators.required));
   }
 
+  private setDisabled(): void {
+    this._disabled.set(this.formControl.disabled);
+  }
+
   private setError(): void {
     const hasError =
       this.formControl.invalid &&
       (this.formControl.touched || this.formControl.dirty);
-    this.hasError.set(hasError);
+    this._hasError.set(hasError);
 
     let errorMessage = '';
 

@@ -1,5 +1,5 @@
 <div class="input-container">
-  <p-floatlabel [class.required]="required()" variant="in">
+  <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
     <p-iconfield>
       @if (iconPrefix() || prefixTemplate()) {
         <p-inputicon>
@@ -59,7 +59,7 @@
       }
     </p-iconfield>
     <label [for]="id()">{{ label() | finTranslate }}</label>
-  </p-floatlabel>
+  </p-iftalabel>
   <div class="sub-text">
     @if (!hasError()) {
       <fin-text [text]="helpText()" class="info-sub" type="info"/>
