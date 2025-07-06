@@ -3,15 +3,20 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnInit, signal,
+  OnInit,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme/theme.service';
 import { MatButtonModule } from '@angular/material/button';
 import { FinTextComponent } from './shared/components/text/fin-text.component';
-import { FinButtonComponent } from './shared/components/button/fin-button.component';
-import { FinSaveButtonComponent } from './shared/components/save-button/fin-save-button.component';
+import { FinSelectComponentOptions } from './shared/components/select/fin-select-component-options';
+import { PagedFilteredAndSortedInput } from './shared/models/paginations/paged-filtered-and-sorted-input';
+import { FinSelectOption } from './shared/components/select/fin-select-option';
+import { PagedOutput } from './shared/models/paginations/paged-output';
+import { of } from 'rxjs';
+import { FinSelectComponent } from './shared/components/select/fin-select.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -23,15 +28,26 @@ import { FinSaveButtonComponent } from './shared/components/save-button/fin-save
     TranslateModule,
     MatButtonModule,
     FinTextComponent,
-    FinButtonComponent,
-    FinSaveButtonComponent,
+    FinSelectComponent,
   ],
 })
 export class AppComponent implements OnInit {
-  public saving = signal(false);
-  public canSave = signal(false);
-
   private readonly themeService = inject(ThemeService);
+
+  public readonly selectOptions = {
+    getOptions: (input: PagedFilteredAndSortedInput) => {
+      return of({
+        totalCount: 1,
+        items: [
+          {
+            label: 'Kakashi',
+            value: 'sensei',
+          },
+        ],
+      } as PagedOutput<FinSelectOption>);
+    },
+  } as FinSelectComponentOptions;
+  public form = new FormControl<string>('');
 
   public ngOnInit(): void {
     this.removeSplashScreen();
@@ -43,12 +59,6 @@ export class AppComponent implements OnInit {
 
   public toggleTheme(): void {
     this.themeService.toggleTheme();
-  }
-
-  public log(): void {
-    console.log('AppComponent log');
-    this.saving.set(true);
-    setTimeout(() => this.saving.set(false), 5000);
   }
 
   private removeSplashScreen(): void {

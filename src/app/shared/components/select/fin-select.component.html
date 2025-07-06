@@ -1,0 +1,6 @@
+<div class="input-container">
+    <p-floatlabel [class.required]="required()" variant="in">
+        <p-select [formControl]="formControl" [inputId]="id()" [options]="options()" [loading]="loading()" optionLabel="label" optionValue="value" class="w-full" />
+        <label [for]="id()">{{ label() | finTranslate }}</label>
+    </p-floatlabel>
+</div>

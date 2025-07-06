@@ -6,17 +6,7 @@
 
 
     <div style="display: flex; padding: 16px; gap: 8px; flex-direction: column">
-        <fin-save-button
-            (onSave)="log()"
-            [canSave]="canSave()"
-            [saving]="saving()"
-        />
-
-        <fin-button
-                (onClick)="canSave.set(!canSave())"
-                text="Salvar"
-                style="width: 300px;"
-        />
+        <fin-select [options]="selectOptions" [formControl]="form" label="Naruto" />
     </div>
 
 
