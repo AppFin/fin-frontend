@@ -64,21 +64,43 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .p-3 { padding: 1rem; }
 .p-4 { padding: 1.5rem; }
 
-/* Animations */
-.fade-in {
-  animation: fadeIn 0.3s ease-in;
+
+// splash screen
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+#splash-logo {
+  width: 150px;
+  height: 150px;
+  animation: zoomSpinLoop 3s ease-in-out infinite;
 }
 
-.slide-in {
-  animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+@keyframes zoomSpinLoop {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.5) rotate(0deg); /* Zoom in */
+  }
+  50% {
+    transform: scale(0.8) rotate(0deg);   /* Back to normal */
+  }
+  75% {
+    transform: scale(1.1) rotate(720deg); /* Spin */
+  }
+  100% {
+    transform: scale(1) rotate(720deg); /* Hold spin position */
+  }
 }

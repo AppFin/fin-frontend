@@ -6,6 +6,10 @@
         [text]="isIconOnly() ? true : undefined"
         [rounded]="isIconOnly() ? true : undefined"
         [class.icon-only]="isIconOnly()"
+        [class.maybe-has-spin]="maybeHasSpin()"
+        [class.has-spin]="spinner()"
+        [class.has-icon-suffix]="!!iconSuffix()"
+        [class.has-icon]="!!icon()"
 >
     @if (!!icon() && !spinner()) {
         <fin-icon
@@ -18,7 +22,7 @@
         />
     }
     @if (spinner()) {
-        <mat-spinner class="custom-spinner" [diameter]="20" strokeWidth="3"/>
+        <mat-spinner class="spinner" [diameter]="isIconOnly() ? 28 : 20" [strokeWidth]="isIconOnly() ? 5 : 3"/>
     }
 
     @if (effectiveText()) {

@@ -45,7 +45,7 @@ export class FinButtonComponent {
   public readonly disabled = input(false);
   public readonly severity = input<FinButtonSeverity>('primary');
   public readonly variant = input<FinButtonVariant>(undefined);
-  public readonly spinner = input(false);
+  public readonly spinner = input<boolean|undefined>(undefined);
 
   // icon
   public readonly icon = input<string>('');
@@ -63,6 +63,7 @@ export class FinButtonComponent {
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');
 
+  public readonly maybeHasSpin = computed(() => this.spinner() !== undefined && this.spinner() !== null);
   public readonly isIconOnly = computed(() => this.icon() && !this.text());
   public readonly effectiveText = computed(() =>
     this.isIconOnly() ? '' : (this.text() ?? 'no text')

@@ -1,39 +1,81 @@
 fin-button {
+  width: fit-content;
+  display: flex;
+
+  p-button:not(.icon-only),
+  p-button:not(.icon-only) > button {
+    width: 100%;
+  }
+
   p-button:not(.icon-only) > button {
     padding: 0.25rem 0.75rem;
     height: 38px;
+
+    span {
+      padding: 0 4px;
+    }
   }
 
+  // Spinner padding combos
+  p-button.maybe-has-spin:not(.icon-only) {
+    &:not(.has-spin) {
+      &:not(.has-icon):not(.has-icon-suffix) > button span {
+        padding: 0 40px;
+      }
+
+      &.has-icon:not(.has-icon-suffix) > button span {
+        padding-left: 4px;
+        padding-right: 40px;
+      }
+
+      &.has-icon-suffix:not(.has-icon) > button span {
+        padding-left: 40px;
+        padding-right: 4px;
+      }
+
+      &.has-icon.has-icon-suffix > button span {
+        padding: 0 4px;
+      }
+    }
+
+    &.has-spin:not(.has-icon-suffix) > button span {
+      padding-left: 4px;
+      padding-right: 40px;
+    }
+  }
+
+  // Icon coloring (non-icon-only)
+  p-button:not(.icon-only) {
+    > button fin-icon i {
+      color: var(--p-button-primary-color);
+    }
+
+    .spinner {
+      padding: 0 4px;
+      width: 28px !important;
+    }
+  }
+
+  .spinner circle {
+    stroke: var(--p-button-primary-color);
+  }
+
+  // Icon-only buttons
   p-button.icon-only > button {
     width: 40px;
     height: 40px;
 
-    &.p-button-primary fin-icon i {
-      color: var(--p-primary-color)
-    }
+    // Core color classes
+    @each $type in primary, secondary, success, info, danger {
+      &.p-button-#{$type} {
+        fin-icon i {
+          color: var(--p-#{$type}-color);
+        }
 
-    &.p-button-secondary fin-icon i {
-      color: var(--p-secondary-color)
+        .spinner circle {
+          stroke: var(--p-#{$type}-color);
+        }
+      }
     }
-
-    &.p-button-success fin-icon i {
-      color: var(--p-success-color)
-    }
-
-    &.p-button-info fin-icon i {
-      color: var(--p-info-color)
-    }
-
-    &.p-button-warn fin-icon i {
-      color: var(--p-warn-color)
-    }
-
-    &.p-button-danger fin-icon i {
-      color: var(--p-danger-color)
-    }
-  }
-
-  .custom-spinner circle {
-    stroke: var(--text-color);;
   }
 }

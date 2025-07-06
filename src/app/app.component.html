@@ -5,12 +5,68 @@
     <br/>
 
 
-    <div style="display: flex; padding: 16px; gap: 8px">
+    <div style="display: flex; padding: 16px; gap: 8px; flex-direction: column">
         <fin-button
-                (onClick)="log()"
-                text="text"
-                [spinner]="true"
-                [disabled]="true"
+                (onClick)="(loading = loading ? undefined : true)"
+                [spinner]="btnSpin()"
+                icon="times"
+                [disabled]="btnSpin()"
+        />
+
+
+        <fin-button
+                (onClick)="(loading = loading ? undefined : true)"
+                [spinner]="btnSpin()"
+                icon="times"
+                [disabled]="btnSpin()"
+                severity="secondary"
+        />
+
+        <fin-button
+                (onClick)="(loading = loading ? undefined : true)"
+                [spinner]="btnSpin()"
+                icon="times"
+                [disabled]="btnSpin()"
+                severity="success"
+        />
+
+        <fin-button
+                (onClick)="(loading = loading ? undefined : true)"
+                [spinner]="btnSpin()"
+                icon="times"
+                [disabled]="btnSpin()"
+                severity="info"
+        />
+
+        <fin-button
+                (onClick)="(loading = loading ? undefined : true)"
+                [spinner]="btnSpin()"
+                icon="times"
+                [disabled]="btnSpin()"
+                severity="warn"
+        />
+
+        <fin-button
+                (onClick)="(loading = loading ? undefined : true)"
+                [spinner]="btnSpin()"
+                icon="times"
+                severity="danger"
+                [disabled]="btnSpin()"
+        />
+
+        <fin-button
+                (onClick)="(loading = loading ? undefined : true)"
+                icon="times"
+                severity="danger"
+                [spinner]="btnSpin()"
+        />
+
+
+        <fin-button
+                (onClick)="btnSpin.set(!btnSpin())"
+                [spinner]="loading"
+                text="Salvar"
+                style="width: 300px;"
         />
     </div>
 

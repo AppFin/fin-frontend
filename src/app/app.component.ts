@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit, signal,
+} from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme/theme.service';
@@ -18,11 +23,17 @@ import { FinButtonComponent } from './shared/components/button/fin-button.compon
     MatButtonModule,
     FinTextComponent,
     FinButtonComponent,
-
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  public btnSpin = signal(false);
+  public loading: undefined | boolean = undefined;
+
   private readonly themeService = inject(ThemeService);
+
+  public ngOnInit(): void {
+    this.removeSplashScreen();
+  }
 
   public get isDarkMode(): boolean {
     return this.themeService.isDarkMode;
@@ -34,5 +45,12 @@ export class AppComponent {
 
   public log(): void {
     console.log('AppComponent log');
+  }
+
+  private removeSplashScreen(): void {
+    const splash = document.getElementById('splash-screen');
+    if (splash) {
+      splash.remove();
+    }
   }
 }
