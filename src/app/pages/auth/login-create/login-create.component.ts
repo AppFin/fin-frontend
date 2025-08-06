@@ -10,5 +10,9 @@ import { ThemeService } from '../../../core/services/theme.service';
   styleUrl: './login-create.component.scss'
 })
 export class LoginCreateComponent {
+  private readonly themeService = inject(ThemeService);
 
+  loginWithGoogle(): void {
+    console.log('Criar conta com Google');
+  }
 }

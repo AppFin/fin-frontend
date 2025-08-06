@@ -35,6 +35,14 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary w-100 mb-3">Criar conta</button>
+
+                        <div class="divider mb-3">
+                            <span>ou</span>
+                        </div>
+                        <button type="button" class="btn btn-google w-100 mb-3" (click)="loginWithGoogle()">
+                            <img src="./google.png" alt="Google" width="20" height="20" class="me-2">Continuar com Google
+                        </button>
+
                         <div class="text-center">
                             <span class="text-muted">Já tem uma conta? </span>
                             <a href="/login" class="text-decoration-none fw-medium">Fazer login</a>

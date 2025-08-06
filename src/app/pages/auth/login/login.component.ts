@@ -10,4 +10,8 @@ import { ThemeService } from '../../../core/services/theme.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  private readonly themeService = inject(ThemeService);
+  loginWithGoogle(): void {
+    console.log('Login com Google');
+  }
 }
