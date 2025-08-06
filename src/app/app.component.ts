@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme.service';
@@ -9,7 +10,7 @@ import { ThemeService } from './core/services/theme.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslateModule]
+  imports: [CommonModule, TranslateModule, RouterOutlet]
 })
 export class AppComponent implements OnInit {
   

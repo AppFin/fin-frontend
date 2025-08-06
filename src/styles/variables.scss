@@ -1,20 +1,22 @@
 :root {
-    --color-primary: #19554d;
-    --color-secondary: #6fffaa;
-    --color-tertiary: #177e89;
+    --color-primary: #f87b07;
+    --color-secondary: #fdc570;
+    --color-tertiary: rgb(46, 38, 26);
     --color-error: #f21b3f;
     --color-warning: #ff9914;
 
-    --color-primary-light: #5ea59c;
-    --color-primary-dark: #0a2b25;
+    --color-primary-light: #fdc570;
+    --color-primary-dark: rgb(46, 38, 26);
 
-    --color-secondary-light: #58b1b8;
-    --color-secondary-dark: #074e59;
+    --color-secondary-light: #fdc570;
+    --color-secondary-dark: #f87b07;
 
-    --background-light: #f5f5f5;
-    --background-dark: #0e0e0e;
-    --text-light: #0e0e0e;
-    --text-dark: #f5f5f5;
+    --background-light: #f8f9fa;
+    --background-dark: #1a1d23;
+    --text-light: #212529;
+    --text-dark: #e9ecef;
+    --text-muted-light: #6c757d;
+    --text-muted-dark: #adb5bd;
 
     --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     --gradient-success: linear-gradient(135deg, var(--color-tertiary) 0%, var(--color-secondary) 100%);
