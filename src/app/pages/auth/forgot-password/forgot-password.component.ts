@@ -13,16 +13,7 @@ export class ForgotPasswordComponent {
   private readonly themeService = inject(ThemeService);
   emailSent = false;
 
-  get isDarkMode(): boolean {
-    return this.themeService.isDarkMode;
-  }
-
-  toggleTheme(): void {
-    this.themeService.toggleTheme();
-  }
-
   sendResetEmail(): void {
-    // Simulate sending email
     this.emailSent = true;
   }
 }
