@@ -1,13 +1,3 @@
-# FinFrontend
-
-
-## Using Bun Package Manager
-
-This project is configured to work with [Bun](https://bun.sh/), a fast JavaScript runtime and package manager. 
-
-### Installation
-
-First, make sure you have Bun installed:
 
 ```bash
 # Install Bun (if not already installed)
@@ -48,8 +38,6 @@ bun test
 - **Drop-in replacement**: Compatible with npm scripts and packages
 
 The project will run on `http://localhost:4200/` with hot module replacement enabled.
-
-
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
 
