@@ -1,0 +1,55 @@
+<div class="auth-container">
+    <div class="container-fluid">
+        <div class="row min-vh-100 justify-content-center align-items-center py-4">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+                <div class="auth-card">
+                    <div class="text-center mb-4">
+                        <img src="./icon.png" alt="App Fin" class="logo-img mb-3">
+                        <h1 class="fw-bold mb-2 fs-3">App Fin</h1>
+                        <h2 class="fw-bold mb-2 fs-4">Criar sua conta</h2>
+                        <p class="text-muted">Preencha os dados para começar</p>
+                    </div>
+                    <form class="auth-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome completo</label>
+                            <input type="text" class="form-control" id="name" placeholder="Digite seu nome completo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirmar senha</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme sua senha">
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="terms">
+                                <label class="form-check-label" for="terms">
+                                    Eu concordo com os <a href="#" class="text-decoration-none">Termos de Uso</a> e <a href="#" class="text-decoration-none">Política de Privacidade</a>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Criar conta</button>
+
+                        <div class="divider mb-3">
+                            <span>ou</span>
+                        </div>
+                        <button type="button" class="btn btn-google w-100 mb-3" (click)="loginWithGoogle()">
+                            <img src="./google.png" alt="Google" width="20" height="20" class="me-2">Continuar com Google
+                        </button>
+
+                        <div class="text-center">
+                            <span class="text-muted">Já tem uma conta? </span>
+                            <a href="/login" class="text-decoration-none fw-medium">Fazer login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

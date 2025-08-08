@@ -1,8 +1,3 @@
-# FinFrontend
-
-## Using Bun Package Manager
-
-### Installation
 
 ```bash
 # Install Bun (if not already installed)
@@ -43,7 +38,6 @@ bun test
 - **Drop-in replacement**: Compatible with npm scripts and packages
 
 The project will run on `http://localhost:4200/` with hot module replacement enabled.
-
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
 
@@ -102,3 +96,4 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
