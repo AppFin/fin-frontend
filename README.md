@@ -1,5 +1,50 @@
 # FinFrontend
 
+## Using Bun Package Manager
+
+### Installation
+
+```bash
+# Install Bun (if not already installed)
+curl -fsSL https://bun.sh/install | bash
+```
+
+### Development with Bun
+
+To install dependencies:
+
+```bash
+bun install
+```
+
+To start the development server:
+
+```bash
+bun start
+```
+
+To build the project:
+
+```bash
+bun run build
+```
+
+To run tests:
+
+```bash
+bun test
+```
+
+### Why Bun?
+
+- **Faster package installation**: Up to 25x faster than npm
+- **Built-in bundler**: No need for additional build tools
+- **TypeScript support**: Native TypeScript execution
+- **Drop-in replacement**: Compatible with npm scripts and packages
+
+The project will run on `http://localhost:4200/` with hot module replacement enabled.
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
 
 ## Development server
