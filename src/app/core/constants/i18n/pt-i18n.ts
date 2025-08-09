@@ -1,17 +1,22 @@
 import { ITranslate } from './i-translate';
 
 export const PtI18n: ITranslate = {
-  "fin-core": {
+  'fin-core': {
     actions: {
       loading: 'Carregando...',
       save: 'Salvar',
     },
     errors: {
-      email: "Email inválido",
-      maxLength: "Máximo de {{maxLength}} caracteres",
-      minLength: "Mínimo de {{minLength}} caracteres",
-      pattern: "Formato inválido",
-      required: "Este campo é obrigatório"
-    }
-  }
-}
+      email: 'Email inválido',
+      maxLength: 'Máximo de {{maxLength}} caracteres',
+      minLength: 'Mínimo de {{minLength}} caracteres',
+      pattern: 'Formato inválido',
+      required: 'Este campo é obrigatório',
+    },
+    grid: {
+      sample: {
+        item: 'Teste',
+      },
+    },
+  },
+};

@@ -1,4 +1,4 @@
 export class FilteredProperty {
-  public property: string;
-  public filter : string;
+  public property = '';
+  public filter = '';
 }

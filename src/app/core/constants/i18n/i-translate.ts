@@ -11,5 +11,10 @@ export interface ITranslate {
       pattern: string;
       required: string;
     };
+    grid: {
+      sample: {
+        item: string
+      }
+    }
   };
 }

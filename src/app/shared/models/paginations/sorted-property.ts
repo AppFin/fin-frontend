@@ -1,4 +1,4 @@
 export class SortedProperty {
-  public property: string;
-  public desc: boolean;
+  public property = '';
+  public desc = false
 }

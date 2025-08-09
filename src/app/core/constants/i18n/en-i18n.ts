@@ -13,5 +13,10 @@ export const EnI18n: ITranslate = {
       pattern: 'Invalid format',
       required: 'This field is required',
     },
+    grid: {
+      sample: {
+        item: 'Test',
+      },
+    },
   },
 };

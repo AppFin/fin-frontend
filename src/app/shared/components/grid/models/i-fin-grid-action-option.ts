@@ -1,0 +1,9 @@
+import { FinIconOptions } from './columns/fin-grid-icon-column-option';
+import { Observable } from 'rxjs';
+
+export interface IFinGridColumnOption<T = any> {
+  icon: FinIconOptions;
+  canShow: (item: T) => Observable<boolean>;
+  disabled: (item: T) => Observable<boolean>;
+  onClick: (item: T) => Observable<boolean>;
+}

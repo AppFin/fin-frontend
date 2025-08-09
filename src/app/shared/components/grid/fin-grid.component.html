@@ -8,14 +8,14 @@
     >
         <ng-template #header>
             <tr>
-                @for (column of columns(); track column.field) {
+                @for (column of columns(); track column) {
                     <th [style.width]="column.width">{{ column.header | translate }}</th>
                 }
             </tr>
         </ng-template>
         <ng-template #body let-value>
             <tr>
-                @for (column of columns(); track column.field) {
+                @for (column of columns(); track column) {
                     <td>
                         <fin-grid-column-renderer [columnOption]="column" [item]="value"/>
                     </td>

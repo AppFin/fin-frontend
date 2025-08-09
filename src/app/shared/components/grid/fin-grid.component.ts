@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angu
 import { TableModule } from 'primeng/table';
 import { FinGridOptions } from './models/fin-grid-options';
 import { firstValueFrom } from 'rxjs';
-import { FinGridColumnOption } from './models/fin-grid-column-option';
+import { FinGridSimpleColumnOption } from './models/columns/fin-grid-simple-column-option';
 import { FinGridColumnRendererComponent } from './fin-grid-column-renderer/fin-grid-column-renderer.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PagedFilteredAndSortedInput } from '../../models/paginations/paged-filtered-and-sorted-input';
+import { IFinGridColumnOption } from './models/columns/i-fin-grid-column-option';
 
 @Component({
   selector: 'fin-grid',
@@ -18,7 +19,7 @@ export class FinGridComponent<T> implements OnInit {
   public readonly options = input<FinGridOptions<T>>({} as FinGridOptions);
 
   public readonly loading = signal(true);
-  public readonly columns = signal<FinGridColumnOption<T>[]>([]);
+  public readonly columns = signal<IFinGridColumnOption<T>[]>([]);
   public readonly itens = signal<T[]>([]);
 
   public async ngOnInit(): Promise<void> {
@@ -28,6 +29,7 @@ export class FinGridComponent<T> implements OnInit {
   }
 
   private async loadColumns(): Promise<void> {
+    // TODO melhorar essa busca, dá para buscar tudo de uma vez!
     if (!this.options()?.getColumns) throw 'Invalid columns options';
 
     const columns = await firstValueFrom(this.options().getColumns());

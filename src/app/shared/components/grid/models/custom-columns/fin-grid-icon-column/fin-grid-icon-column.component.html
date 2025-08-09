@@ -1,0 +1,11 @@
+@if (iconOptions()) {
+    <fin-icon
+            [icon]="iconOptions()?.icon"
+            [tooltip]="iconOptions()?.tooltip ?? ''"
+            [iconColor]="iconOptions()?.color"
+            [fontAwesomeType]="iconOptions()?.fontAwesomeType ?? 'fas'"
+            [type]="iconOptions()?.type ?? 'fontAwesome'"
+            [imageFolder]="iconOptions()?.imageFolder ?? 'icons/'"
+            [imageExtension]="iconOptions()?.imageExtension ?? '.png'"
+    />
+}
