@@ -8,6 +8,9 @@
     >
         <ng-template #header>
             <tr>
+                @if (actions().length > 0) {
+                    <th>Actions</th>
+                }
                 @for (column of columns(); track column) {
                     <th [style.width]="column.width">{{ column.header | translate }}</th>
                 }
@@ -15,6 +18,11 @@
         </ng-template>
         <ng-template #body let-value>
             <tr>
+                @if (actions().length > 0) {
+                    <td>
+                        <fin-grid-actions-renderer [actions]="actions()" [item]="value" />
+                    </td>
+                }
                 @for (column of columns(); track column) {
                     <td>
                         <fin-grid-column-renderer [columnOption]="column" [item]="value"/>
