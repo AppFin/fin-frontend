@@ -36,6 +36,7 @@ export class ThemeService {
     body.classList.remove(`${themeRemove}-theme`);
     html.setAttribute('data-theme', theme);
     html.setAttribute('data-p-theme', theme);
+    html.setAttribute('data-bs-theme', theme);
     localStorage.setItem('theme', theme);
   }
 }
