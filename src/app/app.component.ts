@@ -21,6 +21,7 @@ import {
   FinGridIconColumnOption,
   FinIconOptions,
 } from './shared/components/grid/models/columns/fin-grid-icon-column-option';
+import { IFinGridActionOption } from './shared/components/grid/models/i-fin-grid-action-option';
 
 @Component({
   selector: 'app-root',
@@ -58,11 +59,17 @@ export class AppComponent implements OnInit {
         }),
       ]),
     id: 'asd',
-    getList: (input) =>
-      of({
-        totalCount: 100,
-        items: generateRandomDataArray(input.maxResultCount ?? 15),
-      } as PagedOutput),
+    getActions: () => of([
+      { icon: new FinIconOptions({ icon: 'times', tooltip: 'asdasd' }), onClick: (t: FakeData) => console.log(t) } as IFinGridActionOption<FakeData>,
+      { icon: new FinIconOptions({ icon: 'plus' }), onClick: (t: FakeData) => console.log('asdasdsadsad') } as IFinGridActionOption<FakeData>,
+    ]),
+    getList: (input) => {
+      console.log(input)
+      return of({
+        totalCount: 60,
+        items: generateRandomDataArray(input.maxResultCount),
+      } as PagedOutput);
+    },
   });
 
   private readonly themeService = inject(ThemeService);

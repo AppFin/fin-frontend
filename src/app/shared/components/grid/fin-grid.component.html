@@ -1,31 +1,35 @@
-@if (!loading()) {
+@if (!loadingColumns()) {
     <p-table
             [value]="itens()"
-            [paginator]="true"
-            [rows]="5"
             [tableStyle]="{ 'width': '100%', 'height': '100%' }"
-            [rowsPerPageOptions]="[5, 10, 20]"
+            [loading]="loading()"
+            [paginator]="true"
+            [lazy]="true"
+            [rowsPerPageOptions]="maxResultCountOptions"
+            [rows]="maxResultCount"
+            (onLazyLoad)="gridLoadItens($event)"
+            [totalRecords]="totalItens()"
     >
         <ng-template #header>
             <tr>
-                @if (actions().length > 0) {
-                    <th>Actions</th>
-                }
                 @for (column of columns(); track column) {
                     <th [style.width]="column.width">{{ column.header | translate }}</th>
+                }
+                @if (actions().length > 0) {
+                    <th [style.width]="actionsColumnsWidth()" ></th>
                 }
             </tr>
         </ng-template>
         <ng-template #body let-value>
             <tr>
-                @if (actions().length > 0) {
-                    <td>
-                        <fin-grid-actions-renderer [actions]="actions()" [item]="value" />
-                    </td>
-                }
                 @for (column of columns(); track column) {
                     <td>
                         <fin-grid-column-renderer [columnOption]="column" [item]="value"/>
+                    </td>
+                }
+                @if (actions().length > 0) {
+                    <td>
+                        <fin-grid-actions-renderer [actions]="actions()" [item]="value" />
                     </td>
                 }
             </tr>

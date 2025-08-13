@@ -10,9 +10,9 @@ export class FinGridOptions<T = any> {
   public getList: (input: PagedFilteredAndSortedInput) => Observable<PagedOutput<T>>;
   public getColumns: () => Observable<IFinGridColumnOption<T>[]>;
   public getActions: () => Observable<IFinGridActionOption<T>[]>;
-  public reloadItens: () => Observable<void>;
-  public reloadActions: () => Observable<void>;
-  public reloadColumns: () => Observable<void>;
+  public reloadItens: Observable<void>;
+  public reloadActions: Observable<void>;
+  public reloadColumns: Observable<void>;
 
   constructor(options: Partial<FinGridOptions<T>> = {}) {
     Object.assign(this, options);

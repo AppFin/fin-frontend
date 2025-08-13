@@ -54,6 +54,7 @@ export class FinButtonComponent {
   public readonly iconType = input<FinIconType>('fontAwesome');
   public readonly iconImageFolder = input<string>('icons/');
   public readonly iconImageExtension = input<string>('.png');
+  public readonly iconTooltip = input<string>('');
 
   // icon suffic
   public readonly iconSuffix = input<string>('');

@@ -24,8 +24,8 @@ export class FinGridIconColumnOptionInput<T> {
 
 export class FinIconOptions {
   public icon: string;
-  public tooltip: string;
-  public color: string;
+  public tooltip?: string;
+  public color?: string;
   public fontAwesomeType: FinFontAwesomeType = 'fas';
   public type: FinIconType = 'fontAwesome';
   public imageFolder: string = 'icons/';

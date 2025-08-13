@@ -8,6 +8,7 @@ import {
 import { IFinGridActionOption } from '../models/i-fin-grid-action-option';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 import { FinIconOptions } from '../models/columns/fin-grid-icon-column-option';
+import { FinButtonComponent } from '../../button/fin-button.component';
 
 interface IFinGridEffectiveAction<T> {
   icon: FinIconOptions;
@@ -17,7 +18,7 @@ interface IFinGridEffectiveAction<T> {
 
 @Component({
   selector: 'fin-grid-actions-renderer',
-  imports: [],
+  imports: [FinButtonComponent],
   templateUrl: './fin-grid-actions-renderer.component.html',
   styleUrl: './fin-grid-actions-renderer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,8 +39,8 @@ export class FinGridActionsRendererComponent<T> implements OnInit {
     const actionsRequest = this.actions()?.map(async (a) => {
       return {
         action: a,
-        canShow: await firstValueFrom(a.canShow(item)),
-        disabled: await firstValueFrom(a.disabled(item)),
+        canShow: a.canShow == null ? true : await firstValueFrom(a.canShow(item)),
+        disabled: a.disabled == null ? false : await firstValueFrom(a.disabled(item)),
       };
     });
     if (!actionsRequest) return;
