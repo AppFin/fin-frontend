@@ -1,25 +1,16 @@
 import { Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { AUTH_ROUTES } from './features/authentication/authentication-routes';
 
 export const routes: Routes = [
-  {
-    path: 'login',
-    loadComponent: () => import('./pages/auth/login/login.component').then(m => m.LoginComponent)
-  },
-  {
-    path: 'login-create',
-    loadComponent: () => import('./pages/auth/login-create/login-create.component').then(m => m.LoginCreateComponent)
-  },
-  {
-    path: 'forgot-password',
-    loadComponent: () => import('./pages/auth/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent)
-  },
+  ...AUTH_ROUTES,
   {
     path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
+    component: AppComponent,
+    pathMatch: 'full',
   },
   {
     path: '**',
-    redirectTo: '/login'
-  }
+    redirectTo: '',
+  },
 ];

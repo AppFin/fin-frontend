@@ -2,6 +2,31 @@ import { ITranslate } from './i-translate';
 
 export const PtI18n: ITranslate = {
   'fin-core': {
+    appName: 'App Fin',
+    connectors: {
+      or: 'ou',
+    },
+    auth: {
+      email: 'E-mail',
+      pages: {
+        login: {
+          createAccount: 'Criar conta',
+          forgetPassword: 'Esqueceu sua senha?',
+          loginWithGoogle: 'Continuar com o Google',
+          singIn: 'Entrar',
+          subtitle: 'Bem-vindo de volta!',
+          thereIsNoAccount: 'Não tem uma conta?',
+          title: 'Entre na sua conta',
+        },
+        sendResetEmail: {
+          comeBackLogin: 'Voltar para o login',
+          sendLink: 'Enviar link',
+          subtitle: 'Digite seu email para receber o link de recuperação',
+          title: 'Esqueceu sua senha?',
+        },
+      },
+      password: 'Senha',
+    },
     actions: {
       loading: 'Carregando...',
       save: 'Salvar',
@@ -12,11 +37,6 @@ export const PtI18n: ITranslate = {
       minLength: 'Mínimo de {{minLength}} caracteres',
       pattern: 'Formato inválido',
       required: 'Este campo é obrigatório',
-    },
-    grid: {
-      sample: {
-        item: 'Teste',
-      },
     },
   },
 };

@@ -9,8 +9,22 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 
-export type FinIconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '10xl';
-export type FinFontAwesomeType = 'fas' | 'far' | 'fab' | 'fal' | 'fad';
+export type FinIconSize =
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '10xl'
+  | '15xl';
+export type FinFontAwesomeType =
+  | 'fas'
+  | 'far'
+  | 'fab'
+  | 'fal'
+  | 'fad'
+  | 'fa-brands';
 export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 
 @Component({
@@ -34,7 +48,7 @@ export class FinIconComponent {
   public readonly imageExtension = input<string>('.png');
   public readonly size = input<FinIconSize>('md');
   public readonly customSize = input<number | null>(null);
-  public readonly iconColor = input<string|undefined>(undefined);
+  public readonly iconColor = input<string | undefined>(undefined);
   public readonly boxColor = input<string>('transparent');
   public readonly boxRadius = input<number>(6);
   public readonly padding = input<number>(4);
@@ -65,6 +79,7 @@ export class FinIconComponent {
     xl: 32,
     '2xl': 40,
     '10xl': 120,
+    '15xl': 180,
   };
   public readonly iconSize = computed(() => {
     return this.customSize() || this.sizeMap[this.size()];

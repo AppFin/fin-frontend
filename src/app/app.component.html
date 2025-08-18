@@ -1,13 +1,10 @@
 <div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="app-container">
-    <fin-text text="welcome"/>
-    <br/>
-    <button (click)="toggleTheme()" mat-button>toggle theme</button>
-    <br/>
+<!--    <fin-text text="welcome"/>-->
+<!--    <br/>-->
+<!--    <fin-button (onClick)="toggleTheme()" text="Toggle Theme"/>-->
+<!--    <br/>-->
 
 
-    <div style="display: flex; padding: 16px; gap: 8px; flex-direction: column; height: 600px">
-        <fin-grid [options]="options"/>
-    </div>
-
+    <router-outlet/>
 
 </div>

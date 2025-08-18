@@ -1,0 +1,51 @@
+<div class="login-container">
+    <div class="login-header">
+        <fin-icon type="image" icon="fin" size="15xl"/>
+        <fin-text text="fin-core.appName" type="title"/>
+        <fin-text text="fin-core.auth.pages.login.title" type="subtitle"/>
+        <fin-text text="fin-core.auth.pages.login.subtitle" type="info"/>
+    </div>
+    <form [formGroup]="form" class="login-form">
+        <fin-input
+                [formControl]="form.controls.email"
+                label="fin-core.auth.email"
+                type="email"
+                width="22rem"
+        />
+
+        <fin-input
+                [formControl]="form.controls.password"
+                label="fin-core.auth.password"
+                type="password"
+                width="22rem"
+        />
+        <fin-text
+                text="fin-core.auth.pages.login.forgetPassword"
+                routerLink="/auth/send-reset-email"
+                type="info"
+        />
+    </form>
+
+    <div class="actions">
+        <fin-button
+                text="fin-core.auth.pages.login.singIn"
+        />
+
+        <fin-button
+                variant="outlined"
+                text="fin-core.auth.pages.login.loginWithGoogle"
+                icon="google"
+                iconFontAwesomeType="fa-brands"
+                iconColor="var(--color-seccondary)"
+        />
+
+    </div>
+    <div class="footer">
+        <fin-text text="fin-core.auth.pages.login.thereIsNoAccount" type="info"/>
+        <fin-text
+                text="fin-core.auth.pages.login.createAccount"
+                routerLink="/auth/send-reset-email"
+                type="info"
+        />
+    </div>
+</div>

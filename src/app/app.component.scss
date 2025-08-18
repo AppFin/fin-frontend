@@ -2,12 +2,14 @@
   background-color: var(--background-dark);
   color: var(--text-dark);
   --text-color: var(--text-dark);
+  --background-color: var(--background-dark);
 }
 
 .app-container.light-theme {
   background-color: var(--background-light);
   color: var(--text-light);
   --text-color: var(--text-light);
+  --background-color: var(--background-light);
 }
 
 .app-container {

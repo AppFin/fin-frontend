@@ -4,6 +4,7 @@ import {
   computed,
   DestroyRef,
   ElementRef,
+  forwardRef,
   inject,
   Input,
   input,
@@ -12,7 +13,13 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormControl,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -26,8 +33,8 @@ import { LocalizationService } from '../../../core/services/localization/localiz
 import { DecimalMark } from '../../../core/types/localizations/decimal-mark';
 import { InputIcon } from 'primeng/inputicon';
 import {
-  FinIconComponent,
   FinFontAwesomeType,
+  FinIconComponent,
   FinIconType,
 } from '../icon/fin-icon.component';
 import { IconField } from 'primeng/iconfield';
@@ -50,9 +57,16 @@ import { IftaLabel } from 'primeng/iftalabel';
   ],
   templateUrl: './fin-input.component.html',
   styleUrl: './fin-input.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => FinInputComponent),
+      multi: true,
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FinInputComponent implements OnInit {
+export class FinInputComponent implements OnInit, ControlValueAccessor {
   @Input() public formControl: FormControl<string | null>;
 
   public readonly label = input('');
@@ -60,6 +74,8 @@ export class FinInputComponent implements OnInit {
 
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
+
+  public readonly width = input('250px');
 
   public readonly readonly = input(false);
   public readonly id = input(
@@ -179,4 +195,9 @@ export class FinInputComponent implements OnInit {
 
     this.errorMessage.set(errorMessage);
   }
+
+  writeValue(obj: any): void {}
+  registerOnChange(fn: any): void {}
+  registerOnTouched(fn: any): void {}
+  setDisabledState?(isDisabled: boolean): void {}
 }
