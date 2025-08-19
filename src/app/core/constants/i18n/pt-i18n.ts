@@ -7,6 +7,7 @@ export const PtI18n: ITranslate = {
       or: 'ou',
     },
     auth: {
+      confirmYourPassword: 'Confirme sua senha',
       email: 'E-mail',
       pages: {
         login: {
@@ -17,6 +18,11 @@ export const PtI18n: ITranslate = {
           subtitle: 'Bem-vindo de volta!',
           thereIsNoAccount: 'Não tem uma conta?',
           title: 'Entre na sua conta',
+        },
+        resetPassword: {
+          resetPassword: 'Redefinir sua senha',
+          subtitle: 'Informe confirme sua nova senha',
+          title: 'Redefinir senha',
         },
         sendResetEmail: {
           comeBackLogin: 'Voltar para o login',

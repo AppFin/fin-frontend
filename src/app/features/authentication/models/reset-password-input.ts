@@ -7,7 +7,6 @@ export class ResetPasswordInput {
 }
 
 export class ResetPasswordInputForm {
-  public resetToken: FormControl<string>;
-  public password: FormControl<string>;
-  public passwordConfirmation: FormControl<string>;
+  public password: FormControl<string | null>;
+  public passwordConfirmation: FormControl<string | null>;
 }

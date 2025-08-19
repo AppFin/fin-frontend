@@ -10,18 +10,18 @@
                 [formControl]="form.controls.email"
                 label="fin-core.auth.email"
                 type="email"
-                width="22rem"
+                width="20rem"
         />
 
         <fin-input
                 [formControl]="form.controls.password"
                 label="fin-core.auth.password"
                 type="password"
-                width="22rem"
+                width="20rem"
         />
         <fin-text
                 text="fin-core.auth.pages.login.forgetPassword"
-                routerLink="/auth/send-reset-email"
+                routerLink="/authentication/send-reset-email"
                 type="info"
         />
     </form>
@@ -35,8 +35,7 @@
                 variant="outlined"
                 text="fin-core.auth.pages.login.loginWithGoogle"
                 icon="google"
-                iconFontAwesomeType="fa-brands"
-                iconColor="var(--color-seccondary)"
+                iconType="image"
         />
 
     </div>
@@ -44,7 +43,7 @@
         <fin-text text="fin-core.auth.pages.login.thereIsNoAccount" type="info"/>
         <fin-text
                 text="fin-core.auth.pages.login.createAccount"
-                routerLink="/auth/send-reset-email"
+                routerLink="/authentication/send-reset-email"
                 type="info"
         />
     </div>

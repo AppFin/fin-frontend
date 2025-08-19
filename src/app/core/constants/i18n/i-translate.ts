@@ -6,6 +6,7 @@ export interface ITranslate {
     };
     appName: string;
     auth: {
+      confirmYourPassword: string;
       email: string;
       pages: {
         login: {
@@ -15,6 +16,11 @@ export interface ITranslate {
           singIn: string;
           subtitle: string;
           thereIsNoAccount: string;
+          title: string;
+        };
+        resetPassword: {
+          resetPassword: string;
+          subtitle: string;
           title: string;
         };
         sendResetEmail: {

@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const AUTH_ROUTES: Routes = [
   {
-    path: 'auth',
+    path: 'authentication',
     loadComponent: () =>
       import('./authentication.component').then(
         (m) => m.AuthenticationComponent
@@ -19,6 +19,13 @@ export const AUTH_ROUTES: Routes = [
           import(
             './pages/send-reset-password-email/send-reset-password-email.component'
           ).then((m) => m.SendResetPasswordEmailComponent),
+      },
+      {
+        path: 'reset-password',
+        loadComponent: () =>
+          import('./pages/reset-password/reset-password.component').then(
+            (m) => m.ResetPasswordComponent
+          ),
       },
       {
         path: '*',

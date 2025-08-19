@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
 import {
@@ -25,6 +25,7 @@ import { FinButtonComponent } from '../../../../shared/components/button/fin-but
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
   public readonly form = new FormGroup<LoginInputForm>({

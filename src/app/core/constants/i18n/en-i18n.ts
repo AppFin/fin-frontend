@@ -7,6 +7,7 @@ export const EnI18n: ITranslate = {
       or: 'or',
     },
     auth: {
+      confirmYourPassword: 'Confirm Your password',
       email: 'Email',
       pages: {
         login: {
@@ -17,6 +18,11 @@ export const EnI18n: ITranslate = {
           subtitle: 'Log in to your account',
           thereIsNoAccount: "Don't have an account?",
           title: 'Welcome back!',
+        },
+        resetPassword: {
+          resetPassword: 'Reset your password',
+          subtitle: 'Type your new password and confirm it',
+          title: 'Reset password',
         },
         sendResetEmail: {
           comeBackLogin: 'Back to login',

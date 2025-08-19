@@ -1,6 +1,4 @@
 :host {
-  --theme-color: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-
   width: 100vw;
   height: 100vh;
   padding-top: 25px;
@@ -11,7 +9,7 @@
 }
 
 div.auth-container {
-  height: 65vh;
+  height: 75vh;
   width: 20vw;
   background-color: var(--background-color);
   border-radius: 10px;
@@ -20,7 +18,7 @@ div.auth-container {
 
 .light-theme {
   :host {
-    background: var(--theme-color);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   }
 }
 
