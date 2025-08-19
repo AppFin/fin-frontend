@@ -1,23 +1,41 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
+
+type PasswordFieldRule = {
+  error: string;
+  message: string;
+};
 
 @Component({
   selector: 'fin-password-rules-info',
-  imports: [],
   templateUrl: './password-rules-info.component.html',
   styleUrl: './password-rules-info.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [FinTextComponent],
 })
 export class PasswordRulesInfoComponent {
-  public readonly  passwordControl = input<FormControl<string | null>>();
+  public readonly passwordControl = input<FormControl<string | null>>();
 
-  public readonly validationMessages: [[string,string]] = []
-    'required': 'Este campo é obrigatório.',
-    'minLength': 'A senha deve ter pelo menos 5 caracteres.',
-    'hasLowercase': 'A senha deve conter uma letra minúscula.',
-    'hasUppercase': 'A senha deve conter uma letra maiúscula.',
-    'hasNumber': 'A senha deve conter um número.',
-    'hasSpecial': 'A senha deve conter um caractere especial.',
-    'passwordsDoNotMatch': 'As senhas não coincidem.'
-  };
+  public readonly validationMessage: PasswordFieldRule[] = [
+    {
+      error: 'minLength',
+      message: 'fin-core.auth.erros.passwordMinLength',
+    },
+    {
+      error: 'hasLowercase',
+      message: 'fin-core.auth.erros.passwordMustHasLowercase',
+    },
+    {
+      error: 'hasUppercase',
+      message: 'fin-core.auth.erros.passwordMustHasUppercase',
+    },
+    {
+      error: 'hasNumber',
+      message: 'fin-core.auth.erros.passwordMustHasNumber',
+    },
+    {
+      error: 'hasSpecial',
+      message: 'fin-core.auth.erros.passwordMustHasSpecial',
+    },
+  ];
 }

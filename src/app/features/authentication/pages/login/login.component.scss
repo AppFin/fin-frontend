@@ -18,8 +18,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   width: fit-content;
+}
+
+.forget-password-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .actions {

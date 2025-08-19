@@ -3,16 +3,12 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export const passwordValidator: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
-  const password = control.value;
-
-  if (!password) {
-    return null;
-  }
+  const password = control.value ?? '';
 
   const errors: ValidationErrors = {};
 
   if (password.length < 5) {
-    errors['minLength'] = true;
+    errors['minLength'] = { requiredLength: 5 };
   }
   if (!/[a-z]/.test(password)) {
     errors['hasLowercase'] = true;

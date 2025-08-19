@@ -2,13 +2,24 @@ import { ITranslate } from './i-translate';
 
 export const EnI18n: ITranslate = {
   'fin-core': {
-    appName: 'Fin App',
-    connectors: {
-      or: 'or',
+    actions: {
+      loading: 'Loading...',
+      save: 'Save',
     },
+    appName: 'Fin App',
     auth: {
       confirmYourPassword: 'Confirm Your password',
       email: 'Email',
+      erros: {
+        passwordMinLength: 'The password must have at least 5 characters',
+        passwordMustHasLowercase:
+          'The password must contain a lowercase letter',
+        passwordMustHasNumber: 'The password must contain a number',
+        passwordMustHasSpecial: 'The password must contain a special character',
+        passwordMustHasUppercase:
+          'The password must contain an uppercase letter',
+        passwordsMustBeEquals: 'Passwords must be the same',
+      },
       pages: {
         login: {
           createAccount: 'Create account',
@@ -33,9 +44,8 @@ export const EnI18n: ITranslate = {
       },
       password: 'Password',
     },
-    actions: {
-      loading: 'Loading...',
-      save: 'Save',
+    connectors: {
+      or: 'or',
     },
     errors: {
       email: 'Invalid email',

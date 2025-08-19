@@ -13,13 +13,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormControl,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators, } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -32,11 +26,7 @@ import { ThousandSeparator } from '../../../core/types/localizations/thousand-se
 import { LocalizationService } from '../../../core/services/localization/localization.service';
 import { DecimalMark } from '../../../core/types/localizations/decimal-mark';
 import { InputIcon } from 'primeng/inputicon';
-import {
-  FinFontAwesomeType,
-  FinIconComponent,
-  FinIconType,
-} from '../icon/fin-icon.component';
+import { FinFontAwesomeType, FinIconComponent, FinIconType, } from '../icon/fin-icon.component';
 import { IconField } from 'primeng/iconfield';
 import { IftaLabel } from 'primeng/iftalabel';
 
@@ -180,16 +170,16 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
       (this.formControl.touched || this.formControl.dirty);
     this._hasError.set(hasError);
 
-    let errorMessage = '';
+    let errorMessage = this.customErrorText() ?? '';
 
     if (!!this.formControl.errors) {
       const errors = this.formControl.errors;
       if (errors['required']) errorMessage = 'fin-core.errors.required';
       if (errors['email']) errorMessage = 'fin-core.errors.email';
       if (errors['minlength'])
-        errorMessage = `fin-core.errors.minLength|minLength:${errors['minLength'].requiredLength}`;
+        errorMessage = `fin-core.errors.minLength|minLength:${errors['minlength'].requiredLength}`;
       if (errors['maxlength'])
-        errorMessage = `fin-core.errors.maxLength|maxLength:${errors['maxLength'].requiredLength}`;
+        errorMessage = `fin-core.errors.maxLength|maxLength:${errors['maxlength'].requiredLength}`;
       if (errors['pattern']) errorMessage = 'fin-core.errors.pattern';
     }
 

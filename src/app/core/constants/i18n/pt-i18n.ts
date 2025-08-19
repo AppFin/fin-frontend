@@ -9,6 +9,14 @@ export const PtI18n: ITranslate = {
     auth: {
       confirmYourPassword: 'Confirme sua senha',
       email: 'E-mail',
+      erros: {
+        passwordMinLength: 'A senha deve ter no mínimo 5 caracteres',
+        passwordMustHasLowercase: 'A senha deve conter uma letra minúscula',
+        passwordMustHasNumber: 'A senha deve conter um número',
+        passwordMustHasSpecial: 'A senha deve conter um caractere especial',
+        passwordMustHasUppercase: 'A senha deve conter uma letra maiúscula',
+        passwordsMustBeEquals: 'As senhas devem ser iguais',
+      },
       pages: {
         login: {
           createAccount: 'Criar conta',

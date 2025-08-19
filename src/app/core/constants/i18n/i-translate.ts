@@ -8,6 +8,14 @@ export interface ITranslate {
     auth: {
       confirmYourPassword: string;
       email: string;
+      erros: {
+        passwordMinLength: string;
+        passwordMustHasLowercase: string;
+        passwordMustHasNumber: string;
+        passwordMustHasSpecial: string;
+        passwordMustHasUppercase: string;
+        passwordsMustBeEquals: string;
+      };
       pages: {
         login: {
           createAccount: string;

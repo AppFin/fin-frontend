@@ -25,11 +25,15 @@ import { FinButtonComponent } from '../../../../shared/components/button/fin-but
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   public readonly form = new FormGroup<LoginInputForm>({
-    password: new FormControl('', [Validators.required, Validators.email]),
-    email: new FormControl('', Validators.required),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
+  protected readonly decodeURI = decodeURI;
 }

@@ -10,25 +10,29 @@
                 [formControl]="form.controls.email"
                 label="fin-core.auth.email"
                 type="email"
-                width="20rem"
+                width="300px"
         />
-
         <fin-input
                 [formControl]="form.controls.password"
                 label="fin-core.auth.password"
                 type="password"
-                width="20rem"
+                width="300px"
         />
-        <fin-text
-                text="fin-core.auth.pages.login.forgetPassword"
-                routerLink="/authentication/send-reset-email"
-                type="info"
-        />
+
+        <div class="forget-password-container">
+            <fin-text
+                    text="fin-core.auth.pages.login.forgetPassword"
+                    routerLink="/authentication/send-reset-email"
+                    type="info"
+            />
+        </div>
+
     </form>
 
     <div class="actions">
         <fin-button
                 text="fin-core.auth.pages.login.singIn"
+                [disabled]="!form.valid"
         />
 
         <fin-button

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
 import {
@@ -14,6 +20,7 @@ import { FinButtonComponent } from '../../../../shared/components/button/fin-but
 import { passwordValidator } from '../../validators/password-validator';
 import { matchPasswordValidator } from '../../validators/match-password-validator';
 import { PasswordRulesInfoComponent } from '../../components/password-rules-info/password-rules-info.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'fin-reset-password',
@@ -28,17 +35,24 @@ import { PasswordRulesInfoComponent } from '../../components/password-rules-info
   ],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit {
   public readonly form = new FormGroup<ResetPasswordInputForm>(
     {
       password: new FormControl('', [Validators.required, passwordValidator]),
-      passwordConfirmation: new FormControl('', [
-        Validators.required,
-        passwordValidator,
-      ]),
+      passwordConfirmation: new FormControl('', [Validators.required]),
     },
     [matchPasswordValidator]
   );
+
+  private readonly destroyRef = inject(DestroyRef);
+
+  public ngOnInit(): void {
+    this.form.controls.password.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() =>
+        this.form.controls.passwordConfirmation.updateValueAndValidity()
+      );
+  }
 }

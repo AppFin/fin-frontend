@@ -10,10 +10,10 @@
 
 div.auth-container {
   height: 75vh;
-  width: 20vw;
+  width: 25vw;
   background-color: var(--background-color);
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 }
 
 .light-theme {
@@ -28,15 +28,34 @@ div.auth-container {
 
     div.auth-container {
       border: var(--color-primary) 4px solid;
-      box-shadow: var(--color-primary) 0px 0px 50px;
+      box-shadow: var(--color-primary) 0 0 50px;
     }
   }
 }
 
-@media (width <= 768px) {
+fin-text {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (width <= 1650px) {
   div.auth-container {
-    width: 90vw;
+    width: 30vw;
     height: 80vh;
+  }
+}
+
+@media (width <= 1150px) {
+  div.auth-container {
+    width: 50vw;
+  }
+}
+
+@media (width <= 800px) {
+  div.auth-container {
+    width: 85vw;
   }
 }
 
