@@ -28,6 +28,13 @@ export const AUTH_ROUTES: Routes = [
           ),
       },
       {
+        path: 'create-account',
+        loadComponent: () =>
+          import('./pages/create-account/create-account.component').then(
+            (m) => m.CreateAccountComponent
+          ),
+      },
+      {
         path: '*',
         redirectTo: 'login',
         pathMatch: 'full',

@@ -21,6 +21,10 @@ export const EnI18n: ITranslate = {
         passwordsMustBeEquals: 'Passwords must be the same',
       },
       pages: {
+        createAccount: {
+          subtitle: 'Preencha os dados abaixo para começar',
+          title: 'Criar sua conta',
+        },
         login: {
           createAccount: 'Create account',
           forgetPassword: 'Forgot your password?',

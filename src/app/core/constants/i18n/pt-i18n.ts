@@ -18,6 +18,10 @@ export const PtI18n: ITranslate = {
         passwordsMustBeEquals: 'As senhas devem ser iguais',
       },
       pages: {
+        createAccount: {
+          subtitle: 'Preencha os dados abaixo para começar',
+          title: 'Criar sua conta',
+        },
         login: {
           createAccount: 'Criar conta',
           forgetPassword: 'Esqueceu sua senha?',

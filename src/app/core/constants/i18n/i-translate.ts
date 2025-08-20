@@ -17,6 +17,10 @@ export interface ITranslate {
         passwordsMustBeEquals: string;
       };
       pages: {
+        createAccount: {
+          subtitle: string;
+          title: string;
+        };
         login: {
           createAccount: string;
           forgetPassword: string;
