@@ -24,6 +24,23 @@ export const EnI18n: ITranslate = {
         createAccount: {
           subtitle: 'Preencha os dados abaixo para começar',
           title: 'Criar sua conta',
+          steps: {
+            credentials: {
+              resendConde: 'Reenviar código',
+              title: 'Credenciais',
+              typeCodeSentOnEmail: 'Digite o código enviado no seu e-mail',
+            },
+            personal: {
+              displayName: 'Como quer ser chamado?',
+              firstName: 'Primeiro nome',
+              lastName: 'Segundo nome',
+              title: 'Você',
+            },
+            finished: {
+              title: 'Pronto!',
+            },
+          },
+          next: 'Próximo',
         },
         login: {
           createAccount: 'Create account',

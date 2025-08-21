@@ -18,6 +18,23 @@ export interface ITranslate {
       };
       pages: {
         createAccount: {
+          steps: {
+            credentials: {
+              resendConde: string;
+              title: string;
+              typeCodeSentOnEmail: string;
+            };
+            personal: {
+              displayName: string;
+              firstName: string;
+              lastName: string;
+              title: string;
+            };
+            finished: {
+              title: string;
+            };
+          };
+          next: string;
           subtitle: string;
           title: string;
         };

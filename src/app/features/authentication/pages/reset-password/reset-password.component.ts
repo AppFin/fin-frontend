@@ -40,7 +40,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class ResetPasswordComponent implements OnInit {
   public readonly form = new FormGroup<ResetPasswordInputForm>(
     {
-      password: new FormControl('', [Validators.required, passwordValidator]),
+      password: new FormControl('', [
+        Validators.required,
+        passwordValidator,
+        Validators.maxLength(100),
+      ]),
       passwordConfirmation: new FormControl('', [Validators.required]),
     },
     [matchPasswordValidator]
