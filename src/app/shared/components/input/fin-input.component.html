@@ -1,0 +1,71 @@
+<div class="input-container">
+    <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
+        <p-iconfield>
+            @if (iconPrefix() || prefixTemplate()) {
+                <p-inputicon>
+                    @if (prefixTemplate()) {
+                        <ng-container *ngTemplateOutlet="prefixTemplate()"/>
+                    } @else {
+                        <fin-icon
+                                [icon]="iconPrefix()"
+                                [tooltip]="iconPrefixTooltip()"
+                                [iconColor]="iconPrefixColor()"
+                                [fontAwesomeType]="iconPrefixFontAwesomeType()"
+                                [type]="iconPrefixType()"
+                                [imageFolder]="iconPrefixImageFolder()"
+                                [imageExtension]="iconPrefixImageExtension()"
+
+                        />
+                    }
+                </p-inputicon>
+            }
+            <input #input
+                   (blur)="validStatesChange()"
+                   [allowNegativeNumbers]="allowNegativeNumbers()"
+                   [decimalMarker]="validDecimalMarker()"
+                   [formControl]="formControl"
+                   [hiddenInput]="hiddenInput()"
+                   [id]="id()"
+                   [inputTransformFn]="inputTransformFn()"
+                   [leadZero]="leadZero()"
+                   [style.width]="width()"
+
+                   [mask]="mask()"
+                   [outputTransformFn]="outputTransformFn()"
+                   [readOnly]="readonly()"
+                   [shownMaskExpression]="shownMaskExpression()"
+                   [thousandSeparator]="validThousandSeparator()"
+                   [type]="type()"
+                   [validation]="validationMask()"
+                   autocomplete="off"
+                   pInputText
+            />
+            @if (iconSuffix() || suffixTemplate()) {
+                <p-inputicon>
+                    @if (suffixTemplate()) {
+                        <ng-container *ngTemplateOutlet="suffixTemplate()"/>
+                    } @else {
+                        <fin-icon
+                                [icon]="iconSuffix()"
+                                [tooltip]="iconSuffixTooltip()"
+                                [iconColor]="iconSuffixColor()"
+                                [fontAwesomeType]="iconSuffixFontAwesomeType()"
+                                [type]="iconSuffixType()"
+                                [imageFolder]="iconSuffixImageFolder()"
+                                [imageExtension]="iconSuffixImageExtension()"
+
+                        />
+                    }
+                </p-inputicon>
+            }
+        </p-iconfield>
+        <label [for]="id()">{{ label() | finTranslate }}</label>
+    </p-iftalabel>
+    <div class="sub-text">
+        @if (!hasError()) {
+            <fin-text [text]="helpText()" class="info-sub" type="info"/>
+        } @else {
+            <fin-text [text]="errorMessageEffective()" class="error-sub" type="info"/>
+        }
+    </div>
+</div>

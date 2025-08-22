@@ -1,41 +1,42 @@
 :root {
-    --color-primary: #f87b07;
-    --color-secondary: #fdc570;
-    --color-tertiary: rgb(46, 38, 26);
-    --color-error: #f21b3f;
-    --color-warning: #ff9914;
+  --color-primary: #f87b07;
+  --color-secondary: #fdc570;
+  --color-tertiary: rgb(46, 38, 26);
+  --color-error: #f21b3f;
+  --color-success: #00b62f;
+  --color-warning: #ff9914;
 
-    --color-primary-light: #fdc570;
-    --color-primary-dark: rgb(46, 38, 26);
+  --color-primary-light: #fdc570;
+  --color-primary-dark: rgb(46, 38, 26);
 
-    --color-secondary-light: #fdc570;
-    --color-secondary-dark: #f87b07;
+  --color-secondary-light: #fdc570;
+  --color-secondary-dark: #f87b07;
 
-    --background-light: #f8f9fa;
-    --background-dark: #1a1d23;
-    --text-light: #212529;
-    --text-dark: #e9ecef;
-    --text-muted-light: #6c757d;
-    --text-muted-dark: #adb5bd;
+  --background-light: #f8f9fa;
+  --background-dark: #1a1d23;
+  --text-light: #212529;
+  --text-dark: #e9ecef;
+  --text-muted-light: #6c757d;
+  --text-muted-dark: #adb5bd;
 
-    --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    --gradient-success: linear-gradient(135deg, var(--color-tertiary) 0%, var(--color-secondary) 100%);
-    --gradient-error: linear-gradient(135deg, var(--color-error) 0%, #ff6b6b 100%);
-    --gradient-warning: linear-gradient(135deg, var(--color-warning) 0%, #ffa726 100%);
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-success: linear-gradient(135deg, var(--color-tertiary) 0%, var(--color-secondary) 100%);
+  --gradient-error: linear-gradient(135deg, var(--color-error) 0%, #ff6b6b 100%);
+  --gradient-warning: linear-gradient(135deg, var(--color-warning) 0%, #ffa726 100%);
 
-    .gradient-primary {
-        background: var(--gradient-primary);
-    }
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
 
-    .gradient-success {
-        background: var(--gradient-success);
-    }
+  .gradient-success {
+    background: var(--gradient-success);
+  }
 
-    .gradient-error {
-        background: var(--gradient-error);
-    }
+  .gradient-error {
+    background: var(--gradient-error);
+  }
 
-    .gradient-warning {
-        background: var(--gradient-warning);
-    }
+  .gradient-warning {
+    background: var(--gradient-warning);
+  }
 }

@@ -1,0 +1,25 @@
+<form>
+    <fin-input
+            [formControl]="form.controls.firstName"
+            label="fin-core.auth.pages.createAccount.steps.personal.firstName"
+            width="300px"
+    />
+    <fin-input
+            [formControl]="form.controls.lastName"
+            label="fin-core.auth.pages.createAccount.steps.personal.lastName"
+            width="300px"
+    />
+    <fin-input
+            [formControl]="form.controls.displayName"
+            label="fin-core.auth.pages.createAccount.steps.personal.displayName"
+            width="300px"
+    />
+</form>
+
+<fin-button
+        (onClick)="save()"
+        [disabled]="form.invalid || loading()"
+        [spinner]="loading()"
+        iconSuffix="arrow-right"
+        text="fin-core.auth.pages.createAccount.next"
+/>

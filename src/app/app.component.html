@@ -1,5 +1,3 @@
-<div class="app-container" [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode">
-    <!-- <span>{{ 'welcome' | translate }}</span>
-    <button (click)="toggleTheme()">toggle theme</button> -->
-    <router-outlet></router-outlet>
+<div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="app-container">
+    <router-outlet/>
 </div>

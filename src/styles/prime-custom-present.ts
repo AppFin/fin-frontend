@@ -2,101 +2,101 @@ import { definePreset } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 
 export const PrimeCustomPreset = definePreset(Aura, {
-    semantic: {
+  semantic: {
     primary: {
-      50: '#e8f2f1',
-      100: '#c6dfdc',
-      200: '#a0cac5',
-      300: '#7ab5ae',
-      400: '#5ea59c',
-      500: '#19554d',
-      600: '#164e46',
-      700: '#12443d',
-      800: '#0f3b34',
-      900: '#0a2b25',
-      950: '#051611'
+      50: '#fdc570',
+      100: '#fdc570',
+      200: '#fdc570',
+      300: '#f87b07',
+      400: '#f87b07',
+      500: '#f87b07',
+      600: '#f87b07',
+      700: '#f87b07',
+      800: '#fdc570',
+      900: '#fdc570',
+      950: '#fdc570',
     },
     secondary: {
-      50: '#f2fef8',
-      100: '#dffced',
-      200: '#cafae1',
-      300: '#b4f8d4',
-      400: '#a4f6cb',
-      500: '#6fffaa',
-      600: '#67ff9e',
-      700: '#5cff94',
-      800: '#52ff8a',
-      900: '#40ff79',
-      950: '#2ee066'
+      50: '#212522',
+      100: '#212522',
+      200: '#212522',
+      300: '#212522',
+      400: '#212522',
+      500: '#212522',
+      600: '#212522',
+      700: '#212522',
+      800: '#212522',
+      900: '#212522',
+      950: '#212522',
     },
     colorScheme: {
       light: {
         primary: {
-          color: '#19554d',
+          color: '#f87b07',
           contrastColor: '#ffffff',
-          hoverColor: '#164e46',
-          activeColor: '#12443d'
+          hoverColor: '#fdc570',
+          activeColor: 'rgb(46, 38, 26)',
         },
         highlight: {
-          background: '#e8f2f1',
-          focusBackground: '#c6dfdc',
-          color: '#19554d',
-          focusColor: '#164e46'
+          background: '#f87b07',
+          focusBackground: '#fdc570',
+          color: '#ffffff',
+          focusColor: '#f8f9fa',
         },
         surface: {
           0: '#ffffff',
-          50: '#fafafa',
-          100: '#f5f5f5',
-          200: '#eeeeee',
-          300: '#e0e0e0',
-          400: '#bdbdbd',
-          500: '#9e9e9e',
-          600: '#757575',
-          700: '#616161',
-          800: '#424242',
-          900: '#212121',
-          950: '#0f0f0f'
+          50: '#f8f9fa',
+          100: '#f1f3f4',
+          200: '#e8eaed',
+          300: '#dadce0',
+          400: '#bdc1c6',
+          500: '#9aa0a6',
+          600: '#80868b',
+          700: '#5f6368',
+          800: '#3c4043',
+          900: '#202124',
+          950: '#171717',
         },
         content: {
-          color: '#212121',
-          hoverColor: '#19554d',
-          activeColor: '#164e46'
-        }
+          color: '#212529',
+          hoverColor: '#f87b07',
+          activeColor: 'rgb(46, 38, 26)',
+        },
       },
       dark: {
         primary: {
-          color: '#5ea59c',
+          color: '#fdc570',
           contrastColor: '#000000',
-          hoverColor: '#7ab5ae',
-          activeColor: '#a0cac5'
+          hoverColor: '#f87b07',
+          activeColor: 'rgb(46, 38, 26)',
         },
         highlight: {
-          background: '#0a2b25',
-          focusBackground: '#12443d',
-          color: '#5ea59c',
-          focusColor: '#7ab5ae'
+          background: '#fdc570',
+          focusBackground: '#f87b07',
+          color: '#000000',
+          focusColor: '#1a1d23',
         },
         surface: {
-          0: '#0f0f0f',
-          50: '#171717',
-          100: '#262626',
-          200: '#404040',
-          300: '#525252',
-          400: '#737373',
-          500: '#a3a3a3',
-          600: '#d4d4d4',
-          700: '#e5e5e5',
-          800: '#f5f5f5',
-          900: '#fafafa',
-          950: '#ffffff'
+          0: '#1a1a1a',
+          50: '#1e1e1e',
+          100: '#222222',
+          200: '#262626',
+          300: '#2a2a2a',
+          400: '#404040',
+          500: '#4f4f4f',
+          600: '#5e5e5e',
+          700: '#6d6d6d',
+          800: '#7c7c7c',
+          900: '#8b8b8b',
+          950: '#9a9a9a',
         },
         content: {
-          color: '#f5f5f5',
-          hoverColor: '#5ea59c',
-          activeColor: '#7ab5ae'
-        }
-      }
-    }
+          color: '#f8f9fa',
+          hoverColor: '#fdc570',
+          activeColor: '#f87b07',
+        },
+      },
+    },
   },
   components: {
     button: {
@@ -104,290 +104,634 @@ export const PrimeCustomPreset = definePreset(Aura, {
         light: {
           root: {
             primary: {
-              background: '#19554d',
-              hoverBackground: '#164e46',
-              activeBackground: '#12443d',
-              borderColor: '#19554d',
-              hoverBorderColor: '#164e46',
-              activeBorderColor: '#12443d',
+              background: '#f87b07',
+              hoverBackground: '#fdc570',
+              activeBackground: 'rgb(46, 38, 26)',
+              borderColor: '#f87b07',
+              hoverBorderColor: '#fdc570',
+              activeBorderColor: 'rgb(46, 38, 26)',
               color: '#ffffff',
               hoverColor: '#ffffff',
-              activeColor: '#ffffff'
+              activeColor: '#ffffff',
             },
             secondary: {
-              background: '#177e89',
-              hoverBackground: '#147681',
-              activeBackground: '#116b76',
-              borderColor: '#177e89',
-              hoverBorderColor: '#147681',
-              activeBorderColor: '#116b76',
+              background: 'rgb(46, 38, 26)',
+              hoverBackground: '#6c757d',
+              activeBackground: '#adb5bd',
+              borderColor: 'rgb(46, 38, 26)',
+              hoverBorderColor: '#6c757d',
+              activeBorderColor: '#adb5bd',
               color: '#ffffff',
               hoverColor: '#ffffff',
-              activeColor: '#ffffff'
+              activeColor: '#ffffff',
             },
             success: {
-              background: '#6fffaa',
-              hoverBackground: '#5cff94',
-              activeBackground: '#52ff8a',
-              borderColor: '#6fffaa',
-              hoverBorderColor: '#5cff94',
-              activeBorderColor: '#52ff8a',
-              color: '#000000',
-              hoverColor: '#000000',
-              activeColor: '#000000'
+              background: 'rgb(46, 38, 26)',
+              hoverBackground: '#fdc570',
+              activeBackground: '#f87b07',
+              borderColor: 'rgb(46, 38, 26)',
+              hoverBorderColor: '#fdc570',
+              activeBorderColor: '#f87b07',
+              color: '#ffffff',
+              hoverColor: '#ffffff',
+              activeColor: '#ffffff',
             },
             warn: {
               background: '#ff9914',
-              hoverBackground: '#ff8f12',
-              activeBackground: '#ff820f',
+              hoverBackground: '#ff9914',
+              activeBackground: '#ff9914',
               borderColor: '#ff9914',
-              hoverBorderColor: '#ff8f12',
-              activeBorderColor: '#ff820f',
+              hoverBorderColor: '#ff9914',
+              activeBorderColor: '#ff9914',
               color: '#000000',
               hoverColor: '#000000',
-              activeColor: '#ffffff'
+              activeColor: '#ffffff',
             },
             danger: {
               background: '#f21b3f',
-              hoverBackground: '#f01839',
-              activeBackground: '#ed1431',
+              hoverBackground: '#f21b3f',
+              activeBackground: '#f21b3f',
               borderColor: '#f21b3f',
-              hoverBorderColor: '#f01839',
-              activeBorderColor: '#ed1431',
+              hoverBorderColor: '#f21b3f',
+              activeBorderColor: '#f21b3f',
               color: '#ffffff',
               hoverColor: '#ffffff',
-              activeColor: '#ffffff'
-            }
-          }
+              activeColor: '#ffffff',
+            },
+          },
         },
         dark: {
           root: {
             primary: {
-              background: '#5ea59c',
-              hoverBackground: '#7ab5ae',
-              activeBackground: '#a0cac5',
-              borderColor: '#5ea59c',
-              hoverBorderColor: '#7ab5ae',
-              activeBorderColor: '#a0cac5',
+              background: '#fdc570',
+              hoverBackground: '#f87b07',
+              activeBackground: 'rgb(46, 38, 26)',
+              borderColor: '#fdc570',
+              hoverBorderColor: '#f87b07',
+              activeBorderColor: 'rgb(46, 38, 26)',
               color: '#000000',
               hoverColor: '#000000',
-              activeColor: '#000000'
+              activeColor: '#000000',
             },
             secondary: {
-              background: '#58b1b8',
-              hoverBackground: '#76bfc5',
-              activeBackground: '#9dd1d6',
-              borderColor: '#58b1b8',
-              hoverBorderColor: '#76bfc5',
-              activeBorderColor: '#9dd1d6',
+              background: '#adb5bd',
+              hoverBackground: '#6c757d',
+              activeBackground: '#212529',
+              borderColor: '#adb5bd',
+              hoverBorderColor: '#6c757d',
+              activeBorderColor: '#212529',
               color: '#000000',
               hoverColor: '#000000',
-              activeColor: '#000000'
+              activeColor: '#000000',
             },
             success: {
-              background: '#6fffaa',
-              hoverBackground: '#5cff94',
-              activeBackground: '#52ff8a',
-              borderColor: '#6fffaa',
-              hoverBorderColor: '#5cff94',
-              activeBorderColor: '#52ff8a',
-              color: '#000000',
-              hoverColor: '#000000',
-              activeColor: '#000000'
+              background: 'rgb(46, 38, 26)',
+              hoverBackground: '#fdc570',
+              activeBackground: '#f87b07',
+              borderColor: 'rgb(46, 38, 26)',
+              hoverBorderColor: '#fdc570',
+              activeBorderColor: '#f87b07',
+              color: '#ffffff',
+              hoverColor: '#ffffff',
+              activeColor: '#ffffff',
             },
             warn: {
               background: '#ff9914',
-              hoverBackground: '#ff8f12',
-              activeBackground: '#ff820f',
+              hoverBackground: '#ff9914',
+              activeBackground: '#ff9914',
               borderColor: '#ff9914',
-              hoverBorderColor: '#ff8f12',
-              activeBorderColor: '#ff820f',
+              hoverBorderColor: '#ff9914',
+              activeBorderColor: '#ff9914',
               color: '#000000',
               hoverColor: '#000000',
-              activeColor: '#000000'
+              activeColor: '#000000',
             },
             danger: {
               background: '#f21b3f',
-              hoverBackground: '#f01839',
-              activeBackground: '#ed1431',
+              hoverBackground: '#f21b3f',
+              activeBackground: '#f21b3f',
               borderColor: '#f21b3f',
-              hoverBorderColor: '#f01839',
-              activeBorderColor: '#ed1431',
+              hoverBorderColor: '#f21b3f',
+              activeBorderColor: '#f21b3f',
               color: '#ffffff',
               hoverColor: '#ffffff',
-              activeColor: '#ffffff'
-            }
-          }
-        }
-      }
+              activeColor: '#ffffff',
+            },
+          },
+        },
+      },
     },
     card: {
       colorScheme: {
         light: {
           root: {
-            background: '#ffffff',
-            color: '#212121'
+            background: '#f8f9fa',
+            color: '#212529',
           },
           subtitle: {
-            color: '#616161'
-          }
+            color: '#6c757d',
+          },
         },
         dark: {
           root: {
-            background: '#262626',
-            color: '#f5f5f5'
+            background: '#1a1d23',
+            color: '#e9ecef',
           },
           subtitle: {
-            color: '#a3a3a3'
-          }
-        }
-      }
+            color: '#adb5bd',
+          },
+        },
+      },
     },
     panel: {
       colorScheme: {
         light: {
           root: {
-            background: '#ffffff',
-            borderColor: '#e0e0e0',
-            color: '#212121'
+            background: '#f8f9fa',
+            borderColor: '#adb5bd',
+            color: '#212529',
           },
           header: {
-            background: '#f5f5f5',
-            borderColor: '#e0e0e0',
-            color: '#19554d'
-          }
+            background: '#f8f9fa',
+            borderColor: '#adb5bd',
+            color: '#f87b07',
+          },
         },
         dark: {
           root: {
-            background: '#262626',
-            borderColor: '#404040',
-            color: '#f5f5f5'
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#e9ecef',
           },
           header: {
-            background: '#171717',
-            borderColor: '#404040',
-            color: '#5ea59c'
-          }
-        }
-      }
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#fdc570',
+          },
+        },
+      },
+    },
+    tabs: {
+      colorScheme: {
+        light: {
+          root: {
+            transitionDuration: '0.2s',
+          },
+          tablist: {
+            borderWidth: '0 0 2px 0',
+            background: '#f8f9fa',
+            borderColor: '#e9ecef',
+          },
+          tab: {
+            background: 'transparent',
+            hoverBackground: '#fdc570',
+            activeBackground: '#f87b07',
+            borderWidth: '0 0 2px 0',
+            borderColor: 'transparent',
+            hoverBorderColor: '#fdc570',
+            activeBorderColor: '#f87b07',
+            color: '#6c757d',
+            hoverColor: '#212529',
+            activeColor: '#ffffff',
+            padding: '1rem 1.25rem',
+            fontWeight: '600',
+            margin: '0 0 -2px 0',
+            gap: '0.5rem',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+          tabpanel: {
+            background: '#ffffff',
+            color: '#212529',
+            padding: '1.25rem 0 0 0',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+        },
+        dark: {
+          root: {
+            transitionDuration: '0.2s',
+          },
+          tablist: {
+            borderWidth: '0 0 2px 0',
+            background: '#1a1d23',
+            borderColor: '#212529',
+          },
+          tab: {
+            background: 'transparent',
+            hoverBackground: '#212529',
+            activeBackground: '#fdc570',
+            borderWidth: '0 0 2px 0',
+            borderColor: 'transparent',
+            hoverBorderColor: '#212529',
+            activeBorderColor: '#fdc570',
+            color: '#adb5bd',
+            hoverColor: '#e9ecef',
+            activeColor: '#000000',
+            padding: '1rem 1.25rem',
+            fontWeight: '600',
+            margin: '0 0 -2px 0',
+            gap: '0.5rem',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+          tabpanel: {
+            background: '#1a1d23',
+            color: '#e9ecef',
+            padding: '1.25rem 0 0 0',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+        },
+      },
     },
     inputtext: {
       colorScheme: {
         light: {
           root: {
             background: '#ffffff',
-            disabledBackground: '#f5f5f5',
-            filledBackground: '#f5f5f5',
-            filledHoverBackground: '#eeeeee',
+            disabledBackground: '#f8f9fa',
+            filledBackground: '#f8f9fa',
+            filledHoverBackground: '#e9ecef',
             filledFocusBackground: '#ffffff',
-            borderColor: '#bdbdbd',
-            hoverBorderColor: '#19554d',
-            focusBorderColor: '#19554d',
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            focusBorderColor: '#f87b07',
             invalidBorderColor: '#f21b3f',
-            color: '#212121',
-            disabledColor: '#9e9e9e',
-            placeholderColor: '#757575'
-          }
+            color: '#212529',
+            disabledColor: '#6c757d',
+            placeholderColor: '#6c757d',
+          },
         },
         dark: {
           root: {
-            background: '#262626',
-            disabledBackground: '#171717',
-            filledBackground: '#171717',
-            filledHoverBackground: '#404040',
-            filledFocusBackground: '#262626',
-            borderColor: '#525252',
-            hoverBorderColor: '#5ea59c',
-            focusBorderColor: '#5ea59c',
+            background: '#1a1d23',
+            disabledBackground: '#1a1d23',
+            filledBackground: '#1a1d23',
+            filledHoverBackground: '#212529',
+            filledFocusBackground: '#1a1d23',
+            borderColor: '#212529',
+            hoverBorderColor: '#fdc570',
+            focusBorderColor: '#fdc570',
             invalidBorderColor: '#f21b3f',
-            color: '#f5f5f5',
-            disabledColor: '#737373',
-            placeholderColor: '#a3a3a3'
-          }
-        }
-      }
+            color: '#f8f9fa',
+            disabledColor: '#adb5bd',
+            placeholderColor: '#adb5bd',
+          },
+        },
+      },
     },
     dropdown: {
       colorScheme: {
         light: {
           root: {
             background: '#ffffff',
-            disabledBackground: '#f5f5f5',
-            borderColor: '#bdbdbd',
-            hoverBorderColor: '#19554d',
-            focusBorderColor: '#19554d',
+            disabledBackground: '#f8f9fa',
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            focusBorderColor: '#f87b07',
             invalidBorderColor: '#f21b3f',
-            color: '#212121',
-            disabledColor: '#9e9e9e',
-            placeholderColor: '#757575'
+            color: '#212529',
+            disabledColor: '#6c757d',
+            placeholderColor: '#6c757d',
           },
           dropdown: {
             width: '2.5rem',
-            color: '#757575'
+            color: '#6c757d',
           },
           overlay: {
-            background: '#ffffff',
-            borderColor: '#e0e0e0',
+            background: '#f8f9fa',
+            borderColor: '#e9ecef',
             borderRadius: '0.375rem',
-            color: '#212121',
-            shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+            color: '#212529',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           },
           list: {
             padding: '0.25rem 0',
-            gap: '2px'
+            gap: '2px',
           },
           option: {
-            focusBackground: '#e8f2f1',
-            selectedBackground: '#19554d',
-            selectedFocusBackground: '#164e46',
-            color: '#212121',
-            focusColor: '#19554d',
+            focusBackground: '#fdc570',
+            selectedBackground: '#f87b07',
+            selectedFocusBackground: 'rgb(46, 38, 26)',
+            color: '#212529',
+            focusColor: '#212529',
             selectedColor: '#ffffff',
             selectedFocusColor: '#ffffff',
             padding: '0.5rem 0.75rem',
-            borderRadius: '0.25rem'
-          }
+            borderRadius: '0.25rem',
+          },
         },
         dark: {
           root: {
-            background: '#262626',
-            disabledBackground: '#171717',
-            borderColor: '#525252',
-            hoverBorderColor: '#5ea59c',
-            focusBorderColor: '#5ea59c',
+            background: '#1a1d23',
+            disabledBackground: '#1a1d23',
+            borderColor: '#212529',
+            hoverBorderColor: '#fdc570',
+            focusBorderColor: '#fdc570',
             invalidBorderColor: '#f21b3f',
-            color: '#f5f5f5',
-            disabledColor: '#737373',
-            placeholderColor: '#a3a3a3'
+            color: '#e9ecef',
+            disabledColor: '#adb5bd',
+            placeholderColor: '#adb5bd',
           },
           dropdown: {
             width: '2.5rem',
-            color: '#a3a3a3'
+            color: '#adb5bd',
           },
           overlay: {
-            background: '#262626',
-            borderColor: '#404040',
+            background: '#1a1d23',
+            borderColor: '#212529',
             borderRadius: '0.375rem',
-            color: '#f5f5f5',
-            shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)'
+            color: '#e9ecef',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
           },
           list: {
             padding: '0.25rem 0',
-            gap: '2px'
+            gap: '2px',
           },
           option: {
-            focusBackground: '#0a2b25',
-            selectedBackground: '#5ea59c',
-            selectedFocusBackground: '#7ab5ae',
-            color: '#f5f5f5',
-            focusColor: '#5ea59c',
+            focusBackground: '#212529',
+            selectedBackground: '#fdc570',
+            selectedFocusBackground: '#f87b07',
+            color: '#e9ecef',
+            focusColor: '#e9ecef',
             selectedColor: '#000000',
             selectedFocusColor: '#000000',
             padding: '0.5rem 0.75rem',
-            borderRadius: '0.25rem'
-          }
-        }
-      }
-    }
-  }
+            borderRadius: '0.25rem',
+          },
+        },
+      },
+    },
+    datatable: {
+      colorScheme: {
+        light: {
+          root: {
+            borderColor: '#e9ecef',
+            backgroundColor: '#ffffff',
+          },
+          header: {
+            background: '#f8f9fa',
+            borderColor: '#e9ecef',
+            color: '#212529',
+          },
+          headerCell: {
+            background: '#f8f9fa',
+            hoverBackground: '#e9ecef',
+            selectedBackground: '#fdc570',
+            borderColor: '#e9ecef',
+            color: '#212529',
+            hoverColor: '#212529',
+            selectedColor: '#212529',
+            gap: '0.5rem',
+            padding: '1rem',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+          columnTitle: {
+            fontWeight: '600',
+          },
+          row: {
+            background: '#ffffff',
+            hoverBackground: '#f8f9fa',
+            selectedBackground: '#fdc570',
+            stripedBackground: '#f8f9fa',
+            focusBackground: '#e9ecef',
+            color: '#212529',
+            hoverColor: '#212529',
+            selectedColor: '#212529',
+            focusColor: '#212529',
+          },
+          bodyCell: {
+            borderColor: '#e9ecef',
+            padding: '1rem',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+          footerCell: {
+            background: '#f8f9fa',
+            borderColor: '#e9ecef',
+            color: '#212529',
+            padding: '1rem',
+          },
+          columnFooter: {
+            fontWeight: '600',
+          },
+          footer: {
+            background: '#f8f9fa',
+            borderColor: '#e9ecef',
+            color: '#212529',
+          },
+          dropPointColor: '#f87b07',
+          columnResizerWidth: '0.5rem',
+        },
+        dark: {
+          root: {
+            borderColor: '#212529',
+            backgroundColor: '#1a1d23',
+          },
+          header: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#e9ecef',
+          },
+          headerCell: {
+            background: '#1a1d23',
+            hoverBackground: '#212529',
+            selectedBackground: '#212529',
+            borderColor: '#212529',
+            color: '#e9ecef',
+            hoverColor: '#e9ecef',
+            selectedColor: '#fdc570',
+            gap: '0.5rem',
+            padding: '1rem',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+          columnTitle: {
+            fontWeight: '600',
+          },
+          row: {
+            background: '#1a1d23',
+            hoverBackground: '#212529',
+            selectedBackground: '#212529',
+            stripedBackground: '#212529',
+            focusBackground: '#212529',
+            color: '#e9ecef',
+            hoverColor: '#e9ecef',
+            selectedColor: '#fdc570',
+            focusColor: '#e9ecef',
+          },
+          bodyCell: {
+            borderColor: '#212529',
+            padding: '1rem',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+          footerCell: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#e9ecef',
+            padding: '1rem',
+          },
+          columnFooter: {
+            fontWeight: '600',
+          },
+          footer: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#e9ecef',
+          },
+          dropPointColor: '#fdc570',
+          columnResizerWidth: '0.5rem',
+        },
+      },
+    },
+    stepper: {
+      colorScheme: {
+        light: {
+          root: {
+            transitionDuration: '0.2s',
+          },
+          separator: {
+            background: '#e9ecef',
+            activeBackground: '#f87b07',
+            margin: '0 0.5rem',
+            size: '2px',
+          },
+          step: {
+            padding: '0.5rem',
+            gap: '0.5rem',
+          },
+          stepHeader: {
+            padding: '0',
+            borderRadius: '0.375rem',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+            gap: '0.5rem',
+          },
+          stepTitle: {
+            color: '#6c757d',
+            activeColor: '#f87b07',
+            fontWeight: '500',
+          },
+          stepNumber: {
+            background: '#e9ecef',
+            activeBackground: '#f87b07',
+            borderColor: '#e9ecef',
+            activeBorderColor: '#f87b07',
+            color: '#6c757d',
+            activeColor: '#ffffff',
+            size: '2rem',
+            fontSize: '1.143rem',
+            fontWeight: '500',
+            borderRadius: '50%',
+            shadow: 'none',
+          },
+          stepPanel: {
+            background: '#ffffff',
+            color: '#212529',
+            padding: '1.25rem 0.5rem',
+          },
+        },
+        dark: {
+          root: {
+            transitionDuration: '0.2s',
+          },
+          separator: {
+            background: '#212529',
+            activeBackground: '#fdc570',
+            margin: '0 0.5rem',
+            size: '2px',
+          },
+          step: {
+            padding: '0.5rem',
+            gap: '0.5rem',
+          },
+          stepHeader: {
+            padding: '0',
+            borderRadius: '0.375rem',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+            gap: '0.5rem',
+          },
+          stepTitle: {
+            color: '#adb5bd',
+            activeColor: '#fdc570',
+            fontWeight: '500',
+          },
+          stepNumber: {
+            background: '#212529',
+            activeBackground: '#fdc570',
+            borderColor: '#212529',
+            activeBorderColor: '#fdc570',
+            color: '#adb5bd',
+            activeColor: '#000000',
+            size: '2rem',
+            fontSize: '1.143rem',
+            fontWeight: '500',
+            borderRadius: '50%',
+            shadow: 'none',
+          },
+          stepPanel: {
+            background: '#1a1d23',
+            color: '#e9ecef',
+            padding: '1.25rem 0.5rem',
+          },
+        },
+      },
+    },
+  },
 });

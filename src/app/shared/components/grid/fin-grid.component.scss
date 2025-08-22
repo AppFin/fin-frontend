@@ -1,0 +1,101 @@
+fin-grid {
+  max-height: 100%;
+  display: block;
+
+  p-table {
+    max-height: 100%;
+    display: flex;
+
+    .p-datatable {
+      max-height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background: var(--p-content-background);
+      border: 1px solid var(--p-content-border-color);
+    }
+
+    .p-datatable-table-container {
+      flex: 1;
+      overflow-y: auto;
+
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-track {
+        display: none;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        display: none;
+      }
+
+      .p-datatable-table {
+        thead {
+          z-index: 2;
+        }
+
+        thead th {
+          background: var(--color-secondary);
+          color: var(--p-primary-contrast-color);
+          font-weight: 600;
+          padding-left: 1rem;
+          padding-bottom: 0.2rem;
+          padding-top: 0.2rem;
+          border: none;
+          position: sticky;
+          top: 0;
+          z-index: 10;
+        }
+
+        tbody {
+          tr {
+            background: var(--p-surface-50);
+
+            td {
+              color: var(--text-color);
+              padding-left: 1rem;
+              padding-bottom: 0.1rem;
+              padding-top: 0.1rem;
+            }
+          }
+        }
+      }
+    }
+
+    .p-paginator {
+      background: var(--p-surface-50);
+      border-top: 1px solid var(--p-content-border-color);
+      padding: 0.25rem;
+
+      .p-paginator-page,
+      .p-paginator-prev,
+      .p-paginator-next,
+      .p-paginator-first,
+      .p-paginator-last {
+        &.p-paginator-page-selected {
+          background: var(--color-primary);
+          color: var(--p-primary-contrast-color);
+        }
+      }
+    }
+  }
+}
+
+fin-grid p-table .p-datatable-table-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+
+  .p-datatable-table {
+    width: 100%;
+    margin: 0;
+  }
+}

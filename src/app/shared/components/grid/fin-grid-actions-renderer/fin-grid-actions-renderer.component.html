@@ -1,0 +1,18 @@
+@let i = item();
+
+@if(i) {
+    @for (action of effectiveActions(); track action) {
+        <fin-button
+                (onClick)="action.onClick(i)"
+                [disabled]="action.disabled"
+                [icon]="action.icon.icon"
+                [iconColor]="action.icon.color"
+                [iconFontAwesomeType]="action.icon.fontAwesomeType"
+                [iconType]="action.icon.type"
+                [iconImageFolder]="action.icon.imageFolder"
+                [iconImageExtension]="action.icon.imageExtension"
+                [iconTooltip]="action.icon.tooltip ?? ''"
+        />
+    }
+}
+
