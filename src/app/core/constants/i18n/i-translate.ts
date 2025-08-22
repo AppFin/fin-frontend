@@ -20,6 +20,7 @@ export interface ITranslate {
         createAccount: {
           steps: {
             credentials: {
+              invalidCode: string;
               resendConde: string;
               title: string;
               typeCodeSentOnEmail: string;
@@ -32,6 +33,7 @@ export interface ITranslate {
             };
             finished: {
               title: string;
+              goToFin: string;
             };
           };
           next: string;
@@ -60,6 +62,7 @@ export interface ITranslate {
         };
       };
       password: string;
+      talkWithSupport: string;
     };
     connectors: {
       or: string;

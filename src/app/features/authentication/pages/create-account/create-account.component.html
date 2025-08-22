@@ -6,26 +6,26 @@
         <fin-text text="fin-core.auth.pages.createAccount.subtitle" type="info"/>
     </div>
 
-    <p-stepper [value]="1" [linear]="true">
+    <p-stepper [linear]="true" [value]="currentStep()">
         <p-step-list>
-            <p-step [value]="1">{{ 'fin-core.auth.pages.createAccount.steps.credentials.title' | translate }}</p-step>
-            <p-step [value]="2">{{ 'fin-core.auth.pages.createAccount.steps.personal.title' | translate }}</p-step>
-            <p-step [value]="3">{{ 'fin-core.auth.pages.createAccount.steps.finished.title' | translate }}</p-step>
+            <p-step [value]="steps.Credential">{{ 'fin-core.auth.pages.createAccount.steps.credentials.title' | translate }}</p-step>
+            <p-step [value]="steps.Personal">{{ 'fin-core.auth.pages.createAccount.steps.personal.title' | translate }}</p-step>
+            <p-step [value]="steps.Finished">{{ 'fin-core.auth.pages.createAccount.steps.finished.title' | translate }}</p-step>
         </p-step-list>
         <p-step-panels>
-            <p-step-panel [value]="1">
+            <p-step-panel [value]="steps.Credential">
                 <ng-template #content>
-                    <fin-auth-create-credential-step/>
+                    <fin-auth-create-credential-step (setCreationToken)="setCreateToken($event)"/>
                 </ng-template>
             </p-step-panel>
 
-            <p-step-panel [value]="2">
+            <p-step-panel [value]="steps.Personal">
                 <ng-template #content>
-                    <fin-auth-create-personal-step/>
+                    <fin-auth-create-personal-step (userCreated)="setUserCreated()"/>
                 </ng-template>
             </p-step-panel>
 
-            <p-step-panel [value]="3">
+            <p-step-panel [value]="steps.Finished">
                 <ng-template #content>
                     <fin-auth-create-finished-step/>
                 </ng-template>

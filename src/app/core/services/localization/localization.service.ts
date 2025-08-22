@@ -8,17 +8,16 @@ import { ThousandSeparator } from '../../types/localizations/thousand-separator'
 export class LocalizationService {
   public getLang(): string {
     const browserLang = navigator.language || navigator.languages[0];
-    const langCode = browserLang.split('-')[0];
-    return langCode || 'pt';
+    return browserLang || 'pt-BR';
   }
 
   public getDecimalMark(): DecimalMark {
     const lang = this.getLang();
-    return lang === 'pt' ? ',' : '.';
+    return lang === 'pt-BR' ? ',' : '.';
   }
 
   public getThousandSeparator(): ThousandSeparator {
     const lang = this.getLang();
-    return lang === 'pt' ? '.' : ',';
+    return lang === 'pt-BR' ? '.' : ',';
   }
 }

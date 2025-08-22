@@ -22,25 +22,27 @@ export const EnI18n: ITranslate = {
       },
       pages: {
         createAccount: {
-          subtitle: 'Preencha os dados abaixo para começar',
-          title: 'Criar sua conta',
+          subtitle: 'Fill in the information below to get started',
+          title: 'Create your account',
           steps: {
             credentials: {
-              resendConde: 'Reenviar código',
-              title: 'Credenciais',
-              typeCodeSentOnEmail: 'Digite o código enviado no seu e-mail',
+              invalidCode: 'Code is invalid',
+              resendConde: 'Resend code',
+              title: 'Credentials',
+              typeCodeSentOnEmail: 'Enter the code sent to your email',
             },
             personal: {
-              displayName: 'Como quer ser chamado?',
-              firstName: 'Primeiro nome',
-              lastName: 'Segundo nome',
-              title: 'Você',
+              displayName: 'How would you like to be called?',
+              firstName: 'First name',
+              lastName: 'Last name',
+              title: 'You',
             },
             finished: {
-              title: 'Pronto!',
+              goToFin: 'Go to Fin',
+              title: 'Done!',
             },
           },
-          next: 'Próximo',
+          next: 'Next',
         },
         login: {
           createAccount: 'Create account',
@@ -63,6 +65,7 @@ export const EnI18n: ITranslate = {
           title: 'Forgot your password?',
         },
       },
+      talkWithSupport: 'Talk with support',
       password: 'Password',
     },
     connectors: {

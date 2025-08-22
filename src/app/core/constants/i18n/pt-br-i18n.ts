@@ -1,6 +1,6 @@
 import { ITranslate } from './i-translate';
 
-export const PtI18n: ITranslate = {
+export const PtBrI18n: ITranslate = {
   'fin-core': {
     appName: 'App Fin',
     connectors: {
@@ -23,6 +23,7 @@ export const PtI18n: ITranslate = {
           title: 'Criar sua conta',
           steps: {
             credentials: {
+              invalidCode: 'Código é obrigatório',
               resendConde: 'Reenviar código',
               title: 'Credenciais',
               typeCodeSentOnEmail: 'Digite o código enviado no seu e-mail',
@@ -34,6 +35,7 @@ export const PtI18n: ITranslate = {
               title: 'Você',
             },
             finished: {
+              goToFin: 'Acessar o Fin!',
               title: 'Pronto!',
             },
           },
@@ -60,6 +62,7 @@ export const PtI18n: ITranslate = {
           title: 'Esqueceu sua senha?',
         },
       },
+      talkWithSupport: 'Falar com o Suporte',
       password: 'Senha',
     },
     actions: {
