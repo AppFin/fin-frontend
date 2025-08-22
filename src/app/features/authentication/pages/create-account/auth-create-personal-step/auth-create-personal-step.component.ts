@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit, output, signal, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserCreateInputForm } from '../../../../../core/models/users/user-update-or-create-input';

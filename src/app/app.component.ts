@@ -23,10 +23,6 @@ export class AppComponent implements OnInit {
     return this.themeService.isDarkMode;
   }
 
-  public toggleTheme(): void {
-    this.themeService.toggleTheme();
-  }
-
   private removeSplashScreen(): void {
     const splash = document.getElementById('splash-screen');
     if (splash) {
