@@ -41,7 +41,7 @@ export function generateRandomDataArray(maxItems = 10) {
     return new Date(+date + Math.random() * (+date1 - +date2));
   };
 
-  const quantity = Math.floor(Math.random() * maxItems) + 1;
+  const quantity = 5;
   const result = [];
 
   for (let i = 0; i < quantity; i++) {
@@ -59,18 +59,19 @@ export function generateRandomDataArray(maxItems = 10) {
     } as FakeData);
   }
 
+  console.log(result);
   return result;
 }
 
 export class FakeData {
   id: number;
   name: string;
-  country: {  name: string; code: string; };
+  country: { name: string; code: string };
   company: string;
   date: Date;
   status: string;
   verified: boolean;
   activity: number;
-  representative: { name: string; image: string; };
+  representative: { name: string; image: string };
   balance: number;
 }
