@@ -9,19 +9,30 @@
             [rows]="maxResultCount"
             (onLazyLoad)="gridLoadItens($event)"
             [totalRecords]="totalItens()"
+            paginatorDropdownAppendTo="body"
+            paginatorDropdownScrollHeight="200px"
     >
         <ng-template #header>
             <tr>
+                @if (rightActions().length > 0) {
+                    <th [style.width]="rightActionsColumnsWidth()"></th>
+                }
                 @for (column of columns(); track column) {
                     <th [style.width]="column.width">{{ column.header | translate }}</th>
                 }
                 @if (actions().length > 0) {
-                    <th [style.width]="actionsColumnsWidth()" ></th>
+                    <th [style.width]="actionsColumnsWidth()"></th>
                 }
             </tr>
         </ng-template>
         <ng-template #body let-value>
             <tr>
+                @if (rightActions().length > 0) {
+                    <td>
+                        <fin-grid-actions-renderer [actions]="rightActions()"
+                                                   [item]="value"></fin-grid-actions-renderer>
+                    </td>
+                }
                 @for (column of columns(); track column) {
                     <td>
                         <fin-grid-column-renderer [columnOption]="column" [item]="value"/>
@@ -29,10 +40,20 @@
                 }
                 @if (actions().length > 0) {
                     <td>
-                        <fin-grid-actions-renderer [actions]="actions()" [item]="value" />
+                        <fin-grid-actions-renderer [actions]="actions()" [item]="value"></fin-grid-actions-renderer>
                     </td>
                 }
             </tr>
+        </ng-template>
+
+        <ng-template #emptymessage>
+            <div class="empty-placeholder">
+                <div class="empty-content">
+                    <fin-text text="Nenhum item para visualizar" type="subtitle" textColor="var(--color-secondary)"/>
+                    <fin-button (onClick)="reloadTable()" [spinner]="loading()" iconTooltip="Recarregar"
+                                icon="rotate-right"/>
+                </div>
+            </div>
         </ng-template>
     </p-table>
 }

@@ -41,7 +41,7 @@ export function generateRandomDataArray(maxItems = 10) {
     return new Date(+date + Math.random() * (+date1 - +date2));
   };
 
-  const quantity = 5;
+  const quantity = 100;
   const result = [];
 
   for (let i = 0; i < quantity; i++) {

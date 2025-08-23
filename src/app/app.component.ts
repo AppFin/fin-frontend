@@ -58,10 +58,21 @@ export class AppComponent implements OnInit {
           onClick: (t: FakeData) => console.log('asdasdsadsad'),
         } as IFinGridActionOption<FakeData>,
       ]),
+    getRightActions: () =>
+      of([
+        {
+          icon: new FinIconOptions({ icon: 'times', tooltip: 'asdasd' }),
+          onClick: (t: FakeData) => console.log(t),
+        } as IFinGridActionOption<FakeData>,
+        {
+          icon: new FinIconOptions({ icon: 'plus' }),
+          onClick: (t: FakeData) => console.log('asdasdsadsad'),
+        } as IFinGridActionOption<FakeData>,
+      ]),
     getList: (input) => {
       console.log(input);
       return of({
-        totalCount: 60,
+        totalCount: 100,
         items: generateRandomDataArray(input.maxResultCount),
       } as PagedOutput);
     },

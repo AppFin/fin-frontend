@@ -1,15 +1,17 @@
 import { PagedFilteredAndSortedInput } from '../../../models/paginations/paged-filtered-and-sorted-input';
 import { Observable } from 'rxjs';
 import { PagedOutput } from '../../../models/paginations/paged-output';
-import { FinGridSimpleColumnOption } from './columns/fin-grid-simple-column-option';
 import { IFinGridColumnOption } from './columns/i-fin-grid-column-option';
 import { IFinGridActionOption } from './i-fin-grid-action-option';
 
 export class FinGridOptions<T = any> {
   public id: string;
-  public getList: (input: PagedFilteredAndSortedInput) => Observable<PagedOutput<T>>;
+  public getList: (
+    input: PagedFilteredAndSortedInput
+  ) => Observable<PagedOutput<T>>;
   public getColumns: () => Observable<IFinGridColumnOption<T>[]>;
   public getActions: () => Observable<IFinGridActionOption<T>[]>;
+  public getRightActions: () => Observable<IFinGridActionOption<T>[]>;
   public reloadItens: Observable<void>;
   public reloadActions: Observable<void>;
   public reloadColumns: Observable<void>;

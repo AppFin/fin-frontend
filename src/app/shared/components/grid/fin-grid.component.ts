@@ -19,6 +19,8 @@ import { IFinGridColumnOption } from './models/columns/i-fin-grid-column-option'
 import { IFinGridActionOption } from './models/i-fin-grid-action-option';
 import { FinGridActionsRendererComponent } from './fin-grid-actions-renderer/fin-grid-actions-renderer.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FinTextComponent } from '../text/fin-text.component';
+import { FinButtonComponent } from '../button/fin-button.component';
 
 @Component({
   selector: 'fin-grid',
@@ -28,6 +30,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     TranslatePipe,
     FinGridActionsRendererComponent,
     FinGridActionsRendererComponent,
+    FinTextComponent,
+    FinButtonComponent,
   ],
   templateUrl: './fin-grid.component.html',
   styleUrl: './fin-grid.component.scss',
@@ -42,10 +46,17 @@ export class FinGridComponent<T> implements OnInit {
 
   public readonly columns = signal<IFinGridColumnOption<T>[]>([]);
   public readonly actions = signal<IFinGridActionOption<T>[]>([]);
+  public readonly rightActions = signal<IFinGridActionOption<T>[]>([]);
   public readonly itens = signal<T[]>([]);
   public readonly totalItens = signal(0);
 
-  public readonly actionsColumnsWidth = computed(() => this.calcularteActionsColumnsWidth(this.actions()));
+  public readonly actionsColumnsWidth = computed(() =>
+    this.calculateActionsColumnsWidth(this.actions())
+  );
+
+  public readonly rightActionsColumnsWidth = computed(() =>
+    this.calculateActionsColumnsWidth(this.rightActions())
+  );
 
   public maxResultCountOptions = [15, 30, 50];
   public maxResultCount = this.maxResultCountOptions[0];
@@ -55,8 +66,12 @@ export class FinGridComponent<T> implements OnInit {
   public async ngOnInit(): Promise<void> {
     await this.loadColumns();
     await this.loadActions();
-    this.loadingColumns.set(false)
+    this.loadingColumns.set(false);
     this.startSubs();
+  }
+
+  public async reloadTable(): Promise<void> {
+    await this.loadItens();
   }
 
   public async gridLoadItens($event: TableLazyLoadEvent): Promise<void> {
@@ -72,31 +87,41 @@ export class FinGridComponent<T> implements OnInit {
   }
 
   private async loadActions(): Promise<void> {
-    if (!this.options()?.getActions) return;
+    if (this.options()?.getActions) {
+      const actions = await firstValueFrom(this.options().getActions());
+      this.actions.set(actions);
+    }
 
-    const actions = await firstValueFrom(this.options().getActions());
-    this.actions.set(actions);
+    if (this.options()?.getRightActions) {
+      const actions = await firstValueFrom(this.options().getRightActions());
+      this.rightActions.set(actions);
+    }
   }
 
   private async loadItens(skipCount = 0): Promise<void> {
     if (!this.options()?.getList) throw 'Invalid columns options';
     this.loading.set(true);
     const pagedItens = await firstValueFrom(
-      this.options().getList({ skipCount, maxResultCount: this.maxResultCount } as PagedFilteredAndSortedInput)
+      this.options().getList({
+        skipCount,
+        maxResultCount: this.maxResultCount,
+      } as PagedFilteredAndSortedInput)
     );
     this.itens.set(pagedItens.items);
     this.totalItens.set(pagedItens.totalCount);
     this.loading.set(false);
   }
 
-  private calcularteActionsColumnsWidth(actions: IFinGridActionOption<T>[]): string {
-    const p = actions.length * 40 + ((actions.length - 1) * 2);
-    return `${p}px`
+  private calculateActionsColumnsWidth(
+    actions: IFinGridActionOption<T>[]
+  ): string {
+    const p = actions.length * 40 + (actions.length - 1) * 2;
+    return `${p}px`;
   }
 
   private startSubs(): void {
-    this.options().reloadColumns
-      ?.pipe(takeUntilDestroyed(this.destroyRef))
+    this.options()
+      .reloadColumns?.pipe(takeUntilDestroyed(this.destroyRef))
       ?.subscribe(async () => {
         this.loadingColumns.set(true);
         await this.loadColumns();
@@ -105,16 +130,16 @@ export class FinGridComponent<T> implements OnInit {
         await this.loadItens();
       });
 
-    this.options().reloadActions
-      ?.pipe(takeUntilDestroyed(this.destroyRef))
+    this.options()
+      .reloadActions?.pipe(takeUntilDestroyed(this.destroyRef))
       ?.subscribe(async () => {
-        this.loadingColumns.set(true)
+        this.loadingColumns.set(true);
         await this.loadActions();
-        this.loadingColumns.set(false)
+        this.loadingColumns.set(false);
       });
 
-    this.options().reloadItens
-      ?.pipe(takeUntilDestroyed(this.destroyRef))
+    this.options()
+      .reloadItens?.pipe(takeUntilDestroyed(this.destroyRef))
       ?.subscribe(async () => {
         await this.loadItens();
       });
