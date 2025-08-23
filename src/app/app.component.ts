@@ -20,13 +20,20 @@ import { FinGridSimpleColumnOption } from './shared/components/grid/models/colum
 import { FinGridDateTimeColumnOption } from './shared/components/grid/models/columns/fin-grid-date-time-column-option';
 import { IFinGridActionOption } from './shared/components/grid/models/i-fin-grid-action-option';
 import { FinGridComponent } from './shared/components/grid/fin-grid.component';
+import { ThemeToggleComponent } from './shared/components/theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslateModule, FinGridComponent],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FinGridComponent,
+    ThemeToggleComponent,
+    ThemeToggleComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   public options = new FinGridOptions<FakeData>({
