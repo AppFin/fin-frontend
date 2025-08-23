@@ -61,9 +61,17 @@ export class FinGridComponent<T> implements OnInit {
   public maxResultCountOptions = [15, 30, 50];
   public maxResultCount = this.maxResultCountOptions[0];
 
+  public get isMobile(): boolean {
+    return window.innerWidth <= 768;
+  }
+
   private readonly destroyRef = inject(DestroyRef);
 
   public async ngOnInit(): Promise<void> {
+    if (this.isMobile) {
+      this.maxResultCountOptions = [5, 10, 15];
+    }
+
     await this.loadColumns();
     await this.loadActions();
     this.loadingColumns.set(false);

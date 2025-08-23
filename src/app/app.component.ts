@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme/theme.service';
@@ -30,10 +35,6 @@ export class AppComponent implements OnInit {
         new FinGridSimpleColumnOption<FakeData>({
           getValue: (i) => i.name,
           header: 'Name',
-        }),
-        new FinGridSimpleColumnOption<FakeData>({
-          getValue: (i) => i.company,
-          header: 'fin-core.grid.sample.item',
         }),
         new FinGridDateTimeColumnOption<FakeData>({
           getValue: (i) => i.date,
