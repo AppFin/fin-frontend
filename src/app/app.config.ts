@@ -9,21 +9,19 @@ import { provideRouter } from '@angular/router';
 import { PrimeCustomPreset } from '../styles/prime-custom-present';
 import { providePrimeNG } from 'primeng/config';
 
-import {
-  TranslateFakeLoader,
-  TranslateLoader,
-  TranslateModule,
-} from '@ngx-translate/core';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule, } from '@ngx-translate/core';
 
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { finAppInitializer } from './core/functions/app-initializer';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideHttpClient(),
     provideAnimationsAsync(),
     provideEnvironmentNgxMask(),

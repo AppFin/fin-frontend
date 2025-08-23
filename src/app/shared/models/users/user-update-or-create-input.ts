@@ -1,4 +1,4 @@
-import { UserGender } from '../../../core/enums/users/user-gender';
+import { UserGender } from '../../enums/users/user-gender';
 import { FormControl } from '@angular/forms';
 
 export class UserUpdateOrCreateInput {

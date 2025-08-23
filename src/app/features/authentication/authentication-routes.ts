@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
+import { notAuthenticatedGuard } from '../../core/guards/authentication/not-authenticated.guard';
 
 export const AUTH_ROUTES: Routes = [
   {
     path: 'authentication',
+    canActivate: [notAuthenticatedGuard],
     loadComponent: () =>
       import('./authentication.component').then(
         (m) => m.AuthenticationComponent

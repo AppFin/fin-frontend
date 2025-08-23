@@ -1,16 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, } from '@angular/core';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { LoginInputForm } from '../../models/login-input';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
+import { LoginInputForm } from '../../models/login-input-form';
 import { FinInputComponent } from '../../../../shared/components/input/fin-input.component';
 import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
+import { AuthService } from '../../../../core/services/authentication/auth.service';
+import { LoginInput } from '../../../../core/models/authentication/login-input';
+import { finalize, first } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -35,5 +33,23 @@ export class LoginComponent {
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
   });
-  protected readonly decodeURI = decodeURI;
+
+  public readonly loading = signal(false);
+
+  private readonly authService = inject(AuthService);
+
+  public login(): void {
+    if (this.form.invalid || this.loading()) return;
+
+    this.loading.set(true);
+
+    const input = this.form.getRawValue() as LoginInput;
+    this.authService
+      .login(input)
+      .pipe(
+        first(),
+        finalize(() => this.loading.set(false))
+      )
+      .subscribe();
+  }
 }

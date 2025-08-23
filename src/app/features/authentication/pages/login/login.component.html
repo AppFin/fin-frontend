@@ -32,7 +32,9 @@
     <div class="actions">
         <fin-button
                 text="finCore.auth.pages.login.singIn"
-                [disabled]="!form.valid"
+                (onClick)="login()"
+                [disabled]="!form.valid || loading()"
+                [spinner]="loading()"
         />
 
         <fin-button
