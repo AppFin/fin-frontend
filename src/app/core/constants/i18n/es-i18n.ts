@@ -1,10 +1,12 @@
 import { ITranslate } from './i-translate';
 
 export const EsI18n: ITranslate = {
-  'fin-core': {
+  finCore: {
     actions: {
       loading: 'Cargando...',
       save: 'Guardar',
+      toggleToLightMode: 'Cambiar a modo claro',
+      toggleToDarkMode: 'Cambiar a modo oscuro',
     },
     appName: 'Fin App',
     auth: {
@@ -67,8 +69,8 @@ export const EsI18n: ITranslate = {
           title: '¿Olvidaste tu contraseña?',
         },
       },
-      talkWithSupport: 'Hablar con el Soporte',
       password: 'Contraseña',
+      talkWithSupport: 'Hablar con el Soporte',
     },
     connectors: {
       or: 'o',
@@ -79,6 +81,12 @@ export const EsI18n: ITranslate = {
       minLength: 'Mínimo de {{minLength}} caracteres',
       pattern: 'Formato inválido',
       required: 'Este campo es obligatorio',
+    },
+    sharedComponents: {
+      grid: {
+        noData: 'No hay datos para mostrar',
+        reload: 'Recargar',
+      },
     },
   },
 };

@@ -1,6 +1,6 @@
 <fin-button
         (onClick)="toggleTheme($event)"
         [disabled]="isAnimating()"
-        [iconTooltip]="themeService.isDarkMode ? 'Mudar para modo claro' : 'Mudar para modo escuro'"
+        [iconTooltip]="themeService.isDarkMode ? 'finCore.actions.toggleToLightMode' : 'finCore.actions.toggleToDarkMode'"
         [icon]="themeService.isDarkMode ? 'moon' : 'sun'"
 />

@@ -24,7 +24,6 @@ export class ThemeToggleComponent {
 
     this.isAnimating.set(true);
 
-    console.log('asdas');
     try {
       await this.animateThemeTransition(x, y);
     } finally {

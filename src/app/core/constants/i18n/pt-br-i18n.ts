@@ -1,11 +1,14 @@
 import { ITranslate } from './i-translate';
 
 export const PtBrI18n: ITranslate = {
-  'fin-core': {
-    appName: 'App Fin',
-    connectors: {
-      or: 'ou',
+  finCore: {
+    actions: {
+      loading: 'Carregando...',
+      save: 'Salvar',
+      toggleToLightMode: 'Mudar para modo claro',
+      toggleToDarkMode: 'Mudar para modo escuro',
     },
+    appName: 'App Fin',
     auth: {
       confirmYourPassword: 'Confirme sua senha',
       email: 'E-mail',
@@ -65,9 +68,8 @@ export const PtBrI18n: ITranslate = {
       talkWithSupport: 'Falar com o Suporte',
       password: 'Senha',
     },
-    actions: {
-      loading: 'Carregando...',
-      save: 'Salvar',
+    connectors: {
+      or: 'ou',
     },
     errors: {
       email: 'Email inválido',
@@ -75,6 +77,12 @@ export const PtBrI18n: ITranslate = {
       minLength: 'Mínimo de {{minLength}} caracteres',
       pattern: 'Formato inválido',
       required: 'Este campo é obrigatório',
+    },
+    sharedComponents: {
+      grid: {
+        noData: 'Nenhum item para visualizar',
+        reload: 'Recarregar',
+      },
     },
   },
 };

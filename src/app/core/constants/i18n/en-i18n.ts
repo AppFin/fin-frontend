@@ -1,10 +1,12 @@
 import { ITranslate } from './i-translate';
 
 export const EnI18n: ITranslate = {
-  'fin-core': {
+  finCore: {
     actions: {
       loading: 'Loading...',
       save: 'Save',
+      toggleToLightMode: 'Toggle to light mode',
+      toggleToDarkMode: 'Toggle to dark mode',
     },
     appName: 'Fin App',
     auth: {
@@ -77,6 +79,12 @@ export const EnI18n: ITranslate = {
       minLength: 'Minimum of {{minLength}} characters',
       pattern: 'Invalid format',
       required: 'This field is required',
+    },
+    sharedComponents: {
+      grid: {
+        noData: 'No data to display',
+        reload: 'Reload',
+      },
     },
   },
 };

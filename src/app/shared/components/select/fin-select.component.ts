@@ -123,7 +123,7 @@ export class FinSelectComponent implements OnInit {
 
     if (!!this.formControl.errors) {
       const errors = this.formControl.errors;
-      if (errors['required']) errorMessage = 'fin-core.errors.required';
+      if (errors['required']) errorMessage = 'finCore.errors.required';
     }
 
     this.errorMessage.set(errorMessage);

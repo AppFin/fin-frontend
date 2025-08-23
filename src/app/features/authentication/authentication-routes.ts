@@ -35,9 +35,14 @@ export const AUTH_ROUTES: Routes = [
           ),
       },
       {
-        path: '*',
-        redirectTo: 'login',
+        path: '',
         pathMatch: 'full',
+        redirectTo: 'login',
+      },
+      {
+        path: '*',
+        pathMatch: 'full',
+        redirectTo: 'login',
       },
     ],
   },

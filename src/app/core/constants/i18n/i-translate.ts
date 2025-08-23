@@ -1,8 +1,10 @@
 export interface ITranslate {
-  'fin-core': {
+  finCore: {
     actions: {
       loading: string;
       save: string;
+      toggleToLightMode: string;
+      toggleToDarkMode: string;
     };
     appName: string;
     auth: {
@@ -73,6 +75,12 @@ export interface ITranslate {
       minLength: string;
       pattern: string;
       required: string;
+    };
+    sharedComponents: {
+      grid: {
+        noData: string;
+        reload: string;
+      };
     };
   };
 }

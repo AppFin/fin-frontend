@@ -48,8 +48,10 @@
         <ng-template #emptymessage>
             <div class="empty-placeholder">
                 <div class="empty-content">
-                    <fin-text text="Nenhum item para visualizar" type="subtitle" textColor="var(--color-secondary)"/>
-                    <fin-button (onClick)="reloadTable()" [spinner]="loading()" iconTooltip="Recarregar"
+                    <fin-text text="finCore.sharedComponents.grid.noData" type="subtitle"
+                              textColor="var(--color-secondary)"/>
+                    <fin-button (onClick)="reloadTable()" [spinner]="loading()"
+                                iconTooltip="finCore.sharedComponents.grid.reload"
                                 icon="rotate-right"/>
                 </div>
             </div>
