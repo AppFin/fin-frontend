@@ -42,6 +42,8 @@
                 text="finCore.auth.pages.login.loginWithGoogle"
                 icon="google"
                 iconType="image"
+                [disabled]="loading()"
+                (onClick)="loginWithExternalProvider('Google')"
         />
 
     </div>

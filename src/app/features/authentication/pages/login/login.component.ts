@@ -1,12 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  inject,
+  signal,
+} from '@angular/core';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { LoginInputForm } from '../../models/login-input-form';
 import { FinInputComponent } from '../../../../shared/components/input/fin-input.component';
 import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
-import { AuthService } from '../../../../core/services/authentication/auth.service';
+import {
+  AuthService,
+  EXTERNAL_LOGIN_PROVIDER,
+} from '../../../../core/services/authentication/auth.service';
 import { LoginInput } from '../../../../core/models/authentication/login-input';
 import { finalize, first } from 'rxjs';
 
@@ -37,6 +51,20 @@ export class LoginComponent {
   public readonly loading = signal(false);
 
   private readonly authService = inject(AuthService);
+
+  @HostListener('keydown.enter', ['$event'])
+  public onEnterKeydown(event: KeyboardEvent): void {
+    event.preventDefault();
+    this.login();
+  }
+
+  public async loginWithExternalProvider(
+    provider: EXTERNAL_LOGIN_PROVIDER
+  ): Promise<void> {
+    this.loading.set(true);
+    await this.authService.externalLogin(provider);
+    this.loading.set(false);
+  }
 
   public login(): void {
     if (this.form.invalid || this.loading()) return;

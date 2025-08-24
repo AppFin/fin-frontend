@@ -54,15 +54,17 @@ export interface ITranslate {
         resetPassword: {
           resetPassword: string;
           subtitle: string;
+          success: string;
           title: string;
         };
         sendResetEmail: {
-          comeBackLogin: string;
+          emailSent: string;
           sendLink: string;
           subtitle: string;
           title: string;
         };
       };
+      comeBackLogin: string;
       password: string;
       talkWithSupport: string;
     };

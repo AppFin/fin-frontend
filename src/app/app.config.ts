@@ -9,7 +9,11 @@ import { provideRouter } from '@angular/router';
 import { PrimeCustomPreset } from '../styles/prime-custom-present';
 import { providePrimeNG } from 'primeng/config';
 
-import { TranslateFakeLoader, TranslateLoader, TranslateModule, } from '@ngx-translate/core';
+import {
+  TranslateFakeLoader,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';

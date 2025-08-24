@@ -57,14 +57,17 @@ export const PtBrI18n: ITranslate = {
           resetPassword: 'Redefinir sua senha',
           subtitle: 'Informe confirme sua nova senha',
           title: 'Redefinir senha',
+          success: 'Sucesso!',
         },
         sendResetEmail: {
-          comeBackLogin: 'Voltar para o login',
+          emailSent:
+            'Se o e-email existir na plataforma ele  foi enviado agora',
           sendLink: 'Enviar link',
           subtitle: 'Digite seu email para receber o link de recuperação',
           title: 'Esqueceu sua senha?',
         },
       },
+      comeBackLogin: 'Voltar para o login',
       talkWithSupport: 'Falar com o Suporte',
       password: 'Senha',
     },

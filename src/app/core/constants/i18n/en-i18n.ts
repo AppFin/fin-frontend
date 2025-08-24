@@ -59,14 +59,17 @@ export const EnI18n: ITranslate = {
           resetPassword: 'Reset your password',
           subtitle: 'Type your new password and confirm it',
           title: 'Reset password',
+          success: 'Success!',
         },
         sendResetEmail: {
-          comeBackLogin: 'Back to login',
+          emailSent:
+            'We’ve sent you an email if your address exists in our system',
           sendLink: 'Send link',
           subtitle: 'Enter your email to receive the recovery link',
           title: 'Forgot your password?',
         },
       },
+      comeBackLogin: 'Back to login',
       talkWithSupport: 'Talk with support',
       password: 'Password',
     },

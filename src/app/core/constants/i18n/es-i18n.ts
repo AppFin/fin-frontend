@@ -60,15 +60,18 @@ export const EsI18n: ITranslate = {
           resetPassword: 'Restablecer tu contraseña',
           subtitle: 'Escribe tu nueva contraseña y confírmala',
           title: 'Restablecer contraseña',
+          success: '¡Éxito!',
         },
         sendResetEmail: {
-          comeBackLogin: 'Volver al inicio de sesión',
+          emailSent:
+            'Te hemos enviado un correo si tu dirección existe en nuestro sistema',
           sendLink: 'Enviar enlace',
           subtitle:
             'Introduce tu correo para recibir el enlace de recuperación',
           title: '¿Olvidaste tu contraseña?',
         },
       },
+      comeBackLogin: 'Volver al inicio de sesión',
       password: 'Contraseña',
       talkWithSupport: 'Hablar con el Soporte',
     },

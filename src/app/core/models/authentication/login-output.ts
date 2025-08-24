@@ -1,4 +1,4 @@
-import { LoginErrorCode } from '../../enums/login-error-code';
+import { LoginErrorCode } from '../../enums/authentication/login-error-code';
 
 export type LoginOutput = {
   success: boolean;
