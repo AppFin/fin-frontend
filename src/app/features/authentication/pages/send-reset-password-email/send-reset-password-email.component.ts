@@ -57,10 +57,15 @@ export class SendResetPasswordEmailComponent {
     this.sendingEmail.set(true);
     this.form.disable();
 
-    await this.authService.sendResetPasswordEmail(
+    const success = await this.authService.sendResetPasswordEmail(
       this.form.getRawValue().email
     );
-    this.emailSent.set(true);
+
+    if (success) {
+      this.emailSent.set(true);
+    } else {
+      this.form.enable();
+    }
     this.sendingEmail.set(false);
   }
 }

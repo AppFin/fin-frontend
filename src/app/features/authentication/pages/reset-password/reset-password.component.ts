@@ -25,8 +25,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/authentication/auth.service';
 import { ResetPasswordInputForm } from '../../models/reset-password-form';
-import { firstValueFrom } from 'rxjs';
-import { ResetPasswordErrorCode } from '../../../../core/enums/authentication/reset-password-error-code';
 
 @Component({
   selector: 'fin-reset-password',
@@ -47,7 +45,7 @@ import { ResetPasswordErrorCode } from '../../../../core/enums/authentication/re
 export class ResetPasswordComponent implements OnInit {
   public readonly resetToken = signal('');
   public readonly loading = signal(false);
-  public readonly resetDone = signal(false);
+  public readonly reseted = signal(false);
   public form: FormGroup<ResetPasswordInputForm>;
 
   private readonly destroyRef = inject(DestroyRef);
@@ -74,24 +72,17 @@ export class ResetPasswordComponent implements OnInit {
     this.form.disable();
 
     const input = this.form.getRawValue();
-    const request = this.authService.resetPassword({
+    const success = await this.authService.resetPassword({
       ...input,
       resetToken: this.resetToken(),
     });
 
-    const result = await firstValueFrom(request);
-
-    const success =
-      (typeof result === 'boolean' && result) ||
-      (typeof result === 'object' && result.success);
-    const errorCode = typeof result === 'object' ? result.errorCode : null;
-
     if (success) {
-      this.resetDone.set(true);
-      this.loading.set(false);
+      this.reseted.set(true);
     } else {
-      this.emmitResetFailMessage(errorCode);
+      this.form.enable();
     }
+    this.loading.set(false);
   }
 
   private setSubs(): void {
@@ -134,11 +125,5 @@ export class ResetPasswordComponent implements OnInit {
       },
       [matchPasswordValidator]
     );
-  }
-
-  private emmitResetFailMessage(
-    errorCode: ResetPasswordErrorCode | null
-  ): void {
-    // TODO emmit message here
   }
 }

@@ -2,14 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import {
-  catchError,
-  first,
-  firstValueFrom,
-  Observable,
-  tap,
-  throwError,
-} from 'rxjs';
+import { catchError, first, firstValueFrom, Observable, of, tap, throwError, } from 'rxjs';
 import { UserProps } from '../../models/authentication/user-props';
 import { LoginOutput } from '../../models/authentication/login-output';
 import { ensureTrailingSlash } from '../../functions/ensure-trailing-slash';
@@ -19,7 +12,7 @@ import { ResetPasswordInput } from '../../models/authentication/reset-password-i
 import { ValidationResultDto } from '../../../shared/models/validation-results/validation-result-dto';
 import { ResetPasswordErrorCode } from '../../enums/authentication/reset-password-error-code';
 
-export type EXTERNAL_LOGIN_PROVIDER = 'Google';
+export type ExternalLoginProvider = 'Google';
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;
 
@@ -46,32 +39,34 @@ export class AuthService {
     this.initializeAuth();
   }
 
-  public login(input: LoginInput): Observable<LoginOutput> {
-    return this.http.post<LoginOutput>(`${this.API_URL}login`, input).pipe(
-      tap((response) => {
-        this.handleLogin(response);
-      }),
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 422) {
-          this.handleLogin(error.error);
-        }
-        return throwError(() => error);
-      })
-    );
+  public async login(input: LoginInput): Promise<void> {
+    const request = this.http
+      .post<LoginOutput>(`${this.API_URL}login`, input)
+      .pipe(
+        tap((response) => {
+          this.handleLogin(response);
+        }),
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 422) {
+            this.handleLogin(error.error);
+          }
+          return throwError(() => error);
+        })
+      );
+    await firstValueFrom(request);
   }
 
   public async logout(): Promise<void> {
-    this.http.post(`${this.API_URL}logged-out`, null).pipe(first()).subscribe();
+    const request = this.http
+      .post(`${this.API_URL}logged-out`, null)
+      .pipe(catchError(() => of()));
+    await firstValueFrom(request);
 
     this.clearAuth();
     await this.router.navigate(['/authentication/login']);
   }
 
-  public getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
-  }
-
-  public async externalLogin(provider: EXTERNAL_LOGIN_PROVIDER): Promise<void> {
+  public async externalLogin(provider: ExternalLoginProvider): Promise<void> {
     try {
       let loginOutput: LoginOutput;
 
@@ -87,12 +82,49 @@ export class AuthService {
     }
   }
 
-  public async sendResetPasswordEmail(email: string): Promise<void> {
+  public async sendResetPasswordEmail(email: string): Promise<boolean> {
     const request = this.http.post<void>(
       `${this.API_URL}send-reset-password-email`,
       { email }
     );
-    await firstValueFrom(request);
+    return await firstValueFrom(request)
+      .then(() => true)
+      .catch(() => {
+        this.emmitSendResetErrorMessage();
+        return false;
+      });
+  }
+
+  public async resetPassword(input: ResetPasswordInput): Promise<boolean> {
+    const request = this.http
+      .post<boolean>(`${this.API_URL}reset-password`, input)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 422) {
+            return of(
+              error.error as ValidationResultDto<
+                boolean,
+                ResetPasswordErrorCode
+              >
+            );
+          }
+          return throwError(() => error);
+        })
+      );
+    const result = await firstValueFrom(request);
+
+    const success =
+      (typeof result === 'boolean' && result) ||
+      (typeof result === 'object' && result.success);
+    const errorCode = typeof result === 'object' ? result.errorCode : null;
+
+    if (!success && errorCode) this.emmitResetErrorMessage(errorCode);
+
+    return success;
+  }
+
+  public getToken(): string | null {
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 
   private startTokenRefreshTimer(): void {
@@ -117,16 +149,6 @@ export class AuthService {
     } catch (error) {
       console.error('Error setting refresh timer:', error);
     }
-  }
-
-  public resetPassword(
-    input: ResetPasswordInput
-  ): Observable<
-    boolean | ValidationResultDto<boolean, ResetPasswordErrorCode>
-  > {
-    return this.http.post<
-      boolean | ValidationResultDto<boolean, ResetPasswordErrorCode>
-    >(`${this.API_URL}reset-password`, input);
   }
 
   private performTokenRefresh(): void {
@@ -162,7 +184,7 @@ export class AuthService {
         }),
         catchError((error: HttpErrorResponse) => {
           this.clearAuth();
-          this.emmitErrorMessage(error.error);
+          this.emmitLoginErrorMessage(error.error);
           return throwError(() => error);
         })
       );
@@ -231,16 +253,25 @@ export class AuthService {
     }
   }
 
-  private emmitErrorMessage(error: LoginOutput) {
-    // TODO here we notify user via snack ou dialog.
-  }
-
   private async handleLogin(response: LoginOutput): Promise<void> {
     if (response.success) {
       this.setToken(response.token);
       this.setRefreshToken(response.refreshToken);
       this.setCurrentUser();
       await this.router.navigate(['/']);
-    } else this.emmitErrorMessage(response);
+    } else this.emmitLoginErrorMessage(response);
+  }
+
+  private emmitLoginErrorMessage(error: LoginOutput) {
+    // TODO here we notify user via snack ou dialog.
+  }
+
+  private emmitResetErrorMessage(errorCode: ResetPasswordErrorCode) {
+    // TODO here we notify user via snack ou dialog.
+    // If error codeis invalid token bring user to login page.
+  }
+
+  private emmitSendResetErrorMessage() {
+    // TODO here we notify user via snack ou dialog.
   }
 }

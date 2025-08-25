@@ -19,10 +19,9 @@ import { FinInputComponent } from '../../../../shared/components/input/fin-input
 import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
 import {
   AuthService,
-  EXTERNAL_LOGIN_PROVIDER,
+  ExternalLoginProvider,
 } from '../../../../core/services/authentication/auth.service';
 import { LoginInput } from '../../../../core/models/authentication/login-input';
-import { finalize, first } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -59,25 +58,20 @@ export class LoginComponent {
   }
 
   public async loginWithExternalProvider(
-    provider: EXTERNAL_LOGIN_PROVIDER
+    provider: ExternalLoginProvider
   ): Promise<void> {
     this.loading.set(true);
     await this.authService.externalLogin(provider);
     this.loading.set(false);
   }
 
-  public login(): void {
+  public async login(): Promise<void> {
     if (this.form.invalid || this.loading()) return;
 
     this.loading.set(true);
 
     const input = this.form.getRawValue() as LoginInput;
-    this.authService
-      .login(input)
-      .pipe(
-        first(),
-        finalize(() => this.loading.set(false))
-      )
-      .subscribe();
+    await this.authService.login(input);
+    this.loading.set(false);
   }
 }
