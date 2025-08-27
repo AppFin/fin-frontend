@@ -1,16 +1,15 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import { catchError, first, firstValueFrom, Observable, of, tap, throwError, } from 'rxjs';
+import { catchError, firstValueFrom, of, tap, throwError } from 'rxjs';
 import { UserProps } from '../../models/authentication/user-props';
 import { LoginOutput } from '../../models/authentication/login-output';
-import { ensureTrailingSlash } from '../../functions/ensure-trailing-slash';
 import { LoginInput } from '../../models/authentication/login-input';
 import { AuthGoogleService } from './auth-google.service';
 import { ResetPasswordInput } from '../../models/authentication/reset-password-input';
-import { ValidationResultDto } from '../../../shared/models/validation-results/validation-result-dto';
 import { ResetPasswordErrorCode } from '../../enums/authentication/reset-password-error-code';
+import { AuthApiService } from './auth-api.service';
 
 export type ExternalLoginProvider = 'Google';
 
@@ -25,12 +24,10 @@ export class AuthService {
   private readonly isAuthenticatedSubject = signal<boolean>(false);
   public readonly isAuthenticated = this.isAuthenticatedSubject.asReadonly();
 
-  private readonly http = inject(HttpClient);
+  private readonly api = inject(AuthApiService);
   private readonly router = inject(Router);
   private readonly googleAuthService = inject(AuthGoogleService);
 
-  private readonly API_URL =
-    ensureTrailingSlash(environment.apiUrl) + 'authentications/';
   private readonly TOKEN_KEY = 'auth_token';
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';
   private tokenRefreshTimer: any;
@@ -40,26 +37,22 @@ export class AuthService {
   }
 
   public async login(input: LoginInput): Promise<void> {
-    const request = this.http
-      .post<LoginOutput>(`${this.API_URL}login`, input)
-      .pipe(
-        tap((response) => {
-          this.handleLogin(response);
-        }),
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === 422) {
-            this.handleLogin(error.error);
-          }
-          return throwError(() => error);
-        })
-      );
+    const request = this.api.login(input).pipe(
+      tap((response) => {
+        this.handleLogin(response);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.handleLogin(error.error);
+        }
+        return throwError(() => error);
+      })
+    );
     await firstValueFrom(request);
   }
 
   public async logout(): Promise<void> {
-    const request = this.http
-      .post(`${this.API_URL}logged-out`, null)
-      .pipe(catchError(() => of()));
+    const request = this.api.logout().pipe(catchError(() => of()));
     await firstValueFrom(request);
 
     this.clearAuth();
@@ -83,11 +76,7 @@ export class AuthService {
   }
 
   public async sendResetPasswordEmail(email: string): Promise<boolean> {
-    const request = this.http.post<void>(
-      `${this.API_URL}send-reset-password-email`,
-      { email }
-    );
-    return await firstValueFrom(request)
+    return await firstValueFrom(this.api.sendResetPasswordEmail(email))
       .then(() => true)
       .catch(() => {
         this.emmitSendResetErrorMessage();
@@ -96,22 +85,7 @@ export class AuthService {
   }
 
   public async resetPassword(input: ResetPasswordInput): Promise<boolean> {
-    const request = this.http
-      .post<boolean>(`${this.API_URL}reset-password`, input)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === 422) {
-            return of(
-              error.error as ValidationResultDto<
-                boolean,
-                ResetPasswordErrorCode
-              >
-            );
-          }
-          return throwError(() => error);
-        })
-      );
-    const result = await firstValueFrom(request);
+    const result = await firstValueFrom(this.api.resetPassword(input));
 
     const success =
       (typeof result === 'boolean' && result) ||
@@ -140,7 +114,7 @@ export class AuthService {
         (payload.exp - currentTime - ONE_HOUR_IN_SECONDS) * 1000;
 
       if (timeUntilRefresh > 0) {
-        this.tokenRefreshTimer = setTimeout(() => {
+        this.tokenRefreshTimer = setTimeout(async () => {
           this.performTokenRefresh();
         }, timeUntilRefresh);
       } else {
@@ -151,15 +125,11 @@ export class AuthService {
     }
   }
 
-  private performTokenRefresh(): void {
-    this.refreshToken()
-      .pipe(first())
-      .subscribe({
-        error: (error) => {
-          console.error('Token refresh failed:', error);
-          this.logout();
-        },
-      });
+  private async performTokenRefresh(): Promise<void> {
+    await this.refreshToken().catch((error) => {
+      console.error('Token refresh failed:', error);
+      this.logout();
+    });
   }
 
   private clearTokenRefreshTimer(): void {
@@ -169,25 +139,23 @@ export class AuthService {
     }
   }
 
-  private refreshToken(): Observable<LoginOutput> {
+  private refreshToken(): Promise<LoginOutput> {
     const refreshToken = this.getRefreshToken();
-    if (!refreshToken)
-      return throwError(() => new Error('No refresh token available'));
+    if (!refreshToken) throw new Error('No refresh token available');
 
-    return this.http
-      .post<LoginOutput>(`${this.API_URL}refresh-token`, { refreshToken })
-      .pipe(
-        tap((response) => {
-          this.setToken(response.token);
-          this.setRefreshToken(response.refreshToken);
-          this.startTokenRefreshTimer();
-        }),
-        catchError((error: HttpErrorResponse) => {
-          this.clearAuth();
-          this.emmitLoginErrorMessage(error.error);
-          return throwError(() => error);
-        })
-      );
+    const request = this.api.refreshToken(refreshToken).pipe(
+      tap((response) => {
+        this.setToken(response.token);
+        this.setRefreshToken(response.refreshToken);
+        this.startTokenRefreshTimer();
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.clearAuth();
+        this.emmitLoginErrorMessage(error.error);
+        return throwError(() => error);
+      })
+    );
+    return firstValueFrom(request);
   }
 
   private initializeAuth(): void {

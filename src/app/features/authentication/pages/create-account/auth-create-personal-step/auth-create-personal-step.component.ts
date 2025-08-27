@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, output, signal, } from '@angular/core';
 import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserCreateInputForm } from '../../../../../shared/models/users/user-update-or-create-input';
 import { FinInputComponent } from '../../../../../shared/components/input/fin-input.component';
+import { UserCreateForm } from '../../../models/user-create-form';
 
 @Component({
   selector: 'fin-auth-create-personal-step',
@@ -16,7 +16,7 @@ export class AuthCreatePersonalStepComponent implements OnInit {
 
   public readonly loading = signal(false);
 
-  public form: FormGroup<UserCreateInputForm>;
+  public form: FormGroup<UserCreateForm>;
 
   public ngOnInit(): void {
     this.createForm();
@@ -33,9 +33,15 @@ export class AuthCreatePersonalStepComponent implements OnInit {
   }
 
   private createForm() {
-    this.form = new FormGroup<UserCreateInputForm>({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
+    this.form = new FormGroup<UserCreateForm>({
+      firstName: new FormControl('', {
+        validators: Validators.required,
+        nonNullable: true,
+      }),
+      lastName: new FormControl('', {
+        validators: Validators.required,
+        nonNullable: true,
+      }),
       displayName: new FormControl(''),
     });
   }
