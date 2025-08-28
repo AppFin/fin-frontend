@@ -1,99 +1,214 @@
+# FinApp Frontend
+
+[Em português](./README_pt.md)
+
+## Overview
+
+FinApp Frontend is a modern, intuitive web interface for personal finance management designed specifically for young
+adults and teenagers. Built with Angular 19 and powered by Bun, this frontend provides a fast, engaging, and accessible
+digital experience that replaces traditional spreadsheets with a gamified approach to financial management.
+
+---
+
+## Purpose
+
+Deliver a sleek, responsive web application that makes financial management simple, fast, and attractive, promoting
+financial education through an intuitive interface and practical features. This frontend serves as the "Duolingo for
+finance" user interface, focused on building financial awareness with a friendly design and seamless user experience.
+
+---
+
+## Target Audience
+
+- **Primary**: Young adults (18-25) and teenagers (16-18)
+- Digital natives seeking simplicity, speed, and mobility in their financial tools
+- Users transitioning to financial independence who prefer visual, interactive experiences
+
+---
+
+## Value Proposition
+
+- **Modern UI/UX**: Clean, intuitive interface optimized for young users
+- **Lightning Fast**: Built with Bun for ultra-fast development and performance
+- **Responsive Design**: Seamless experience across desktop, tablet, and mobile
+- **Real-time Updates**: Live data synchronization with SignalR integration
+- **Accessibility**: Designed with inclusivity and ease of use in mind
+
+---
+
+## Project Differentials
+
+- **Youth-Focused Design**: Interface and language tailored specifically for young users
+- **Ultra-Fast Performance**: Bun runtime provides exceptional speed and efficiency
+- **Progressive Web App**: Mobile-like experience with offline capabilities
+- **Micro-Interactions**: Engaging animations and feedback for better user experience
+- **Component-Driven**: Modular, reusable Angular components for maintainability
+
+---
+
+## Expected Benefits
+
+- **Enhanced User Engagement**: Interactive and gamified financial tracking
+- **Improved Financial Habits**: Visual insights promote better spending awareness
+- **Seamless Experience**: Fast loading times and smooth navigation
+- **Cross-Platform Consistency**: Unified experience across all devices
+- **Educational Integration**: Built-in financial tips and guidance without friction
+
+---
+
+## Frontend Scope
+
+### Includes:
+
+- **User Authentication**: Login, registration, and profile management
+- **Dashboard**: Real-time financial overview and key metrics
+- **Transaction Management**: Add, edit, and categorize income/expenses _(in progress)_
+- **Budget Tracking**: Visual budget management and goal setting _(in progress)_
+- **Financial Reports**: Interactive charts and spending insights _(in progress)_
+- **Responsive Design**: Mobile-first approach with PWA capabilities
+- **Real-time Features**: Live updates via SignalR integration _(in progress)_
+- **Accessibility**: WCAG-compliant interface design
+
+### Does not include:
+
+- **Backend Logic**: All business logic handled by the FinApp API
+- **Direct Database Access**: Data management through API endpoints only
+- **Payment Processing**: Financial transactions handled by backend
+- **Native Mobile Apps**: Web-based solution with PWA capabilities
+
+---
+
+## Tech Stack
+
+- **Framework**: Angular 19 with standalone components
+- **Runtime**: Bun (package manager and bundler)
+- **Styling**: Tailwind CSS + Angular Material
+- **State Management**: NgRx for complex state handling
+- **Charts**: Chart.js for financial visualizations
+- **HTTP Client**: Angular HttpClient with interceptors
+- **Real-time**: SignalR client integration
+- **Testing**: Jasmine + Karma + Jest
+- **PWA**: Angular Service Worker
+- **Build Tool**: Angular CLI with Bun integration
+
+---
+
+## How to Run
+
+### Prerequisites
+
+- Node.js (latest LTS version)
+- Bun runtime
+- Git
+- FinApp Backend running (for API integration)
+
+### Installation
+
+**Install Bun (if not already installed):**
 
 ```bash
-# Install Bun (if not already installed)
 curl -fsSL https://bun.sh/install | bash
 ```
 
-### Development with Bun
+**Clone the repository:**
 
-To install dependencies:
+```bash
+git clone https://github.com/AppFin/fin-frontend.git
+cd fin-frontend
+```
+
+**Install dependencies:**
 
 ```bash
 bun install
 ```
 
-To start the development server:
+**Configure environment:**
+
+- Copy `src/environments/environment.example.ts` to `src/environments/environment.ts`
+- Update API endpoints and configuration based on your backend setup
+
+### Development Commands
+
+**Start development server:**
 
 ```bash
 bun start
-```
-
-To build the project:
-
-```bash
-bun run build
-```
-
-To run tests:
-
-```bash
-bun test
-```
-
-### Why Bun?
-
-- **Faster package installation**: Up to 25x faster than npm
-- **Built-in bundler**: No need for additional build tools
-- **TypeScript support**: Native TypeScript execution
-- **Drop-in replacement**: Compatible with npm scripts and packages
-
-The project will run on `http://localhost:4200/` with hot module replacement enabled.
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
-
-## Development server
-
-To start a local development server, run:
-
-```bash
+# or
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Build for production:**
 
 ```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+bun run build
+# or
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+**Run tests:**
 
 ```bash
+bun test
+# or
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+**Run e2e tests:**
 
 ```bash
+bun run e2e
+# or
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+**Lint code:**
 
-## Additional Resources
+```bash
+bun run lint
+# or
+ng lint
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
 
+## Development Server
+
+The application runs on `http://localhost:4200/` with hot module replacement enabled. The development server
+automatically reloads when you modify source files.
+
+### Code Scaffolding
+
+Generate new components, services, and other Angular schematics:
+
+```bash
+# Generate a new component
+ng generate component components/component-name
+
+# Generate a new service
+ng generate service services/service-name
+
+# Generate a new module
+ng generate module modules/module-name
+
+# View all available schematics
+ng generate --help
+```
+
+---
+
+## API Integration
+
+This frontend integrates with the FinApp Backend API. Ensure the backend is running and accessible at the configured
+endpoint in your environment file.
+
+---
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details
+
+---
+
+*This README reflects the vision, architecture, and development approach of the FinApp Frontend, providing clear
+guidance for developers and contributors working on the user interface.*
