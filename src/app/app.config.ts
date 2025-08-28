@@ -20,12 +20,13 @@ import { routes } from './app.routes';
 import { finAppInitializer } from './core/functions/app-initializer';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { appInterceptor } from './core/interceptors/app.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, appInterceptor])),
     provideHttpClient(),
     provideAnimationsAsync(),
     provideEnvironmentNgxMask(),
