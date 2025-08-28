@@ -1,11 +1,14 @@
 import { ITranslate } from './i-translate';
 
 export const PtBrI18n: ITranslate = {
-  'fin-core': {
-    appName: 'App Fin',
-    connectors: {
-      or: 'ou',
+  finCore: {
+    actions: {
+      loading: 'Carregando...',
+      save: 'Salvar',
+      toggleToLightMode: 'Mudar para modo claro',
+      toggleToDarkMode: 'Mudar para modo escuro',
     },
+    appName: 'App Fin',
     auth: {
       confirmYourPassword: 'Confirme sua senha',
       email: 'E-mail',
@@ -27,6 +30,8 @@ export const PtBrI18n: ITranslate = {
               resendConde: 'Reenviar código',
               title: 'Credenciais',
               typeCodeSentOnEmail: 'Digite o código enviado no seu e-mail',
+              resendCode: 'Reenviar código',
+              youCanResendCodeIn: 'Você pode reenviar o código em {{resendIn}}',
             },
             personal: {
               displayName: 'Como quer ser chamado?',
@@ -54,20 +59,22 @@ export const PtBrI18n: ITranslate = {
           resetPassword: 'Redefinir sua senha',
           subtitle: 'Informe confirme sua nova senha',
           title: 'Redefinir senha',
+          success: 'Sucesso!',
         },
         sendResetEmail: {
-          comeBackLogin: 'Voltar para o login',
+          emailSent:
+            'Se o e-email existir na plataforma ele  foi enviado agora',
           sendLink: 'Enviar link',
           subtitle: 'Digite seu email para receber o link de recuperação',
           title: 'Esqueceu sua senha?',
         },
       },
+      comeBackLogin: 'Voltar para o login',
       talkWithSupport: 'Falar com o Suporte',
       password: 'Senha',
     },
-    actions: {
-      loading: 'Carregando...',
-      save: 'Salvar',
+    connectors: {
+      or: 'ou',
     },
     errors: {
       email: 'Email inválido',
@@ -75,6 +82,12 @@ export const PtBrI18n: ITranslate = {
       minLength: 'Mínimo de {{minLength}} caracteres',
       pattern: 'Formato inválido',
       required: 'Este campo é obrigatório',
+    },
+    sharedComponents: {
+      grid: {
+        noData: 'Nenhum item para visualizar',
+        reload: 'Recarregar',
+      },
     },
   },
 };

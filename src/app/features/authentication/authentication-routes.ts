@@ -1,8 +1,11 @@
 import { Routes } from '@angular/router';
+import { notAuthenticatedGuard } from '../../core/guards/authentication/not-authenticated.guard';
+import { authenticatedGuard } from '../../core/guards/authentication/authenticated.guard';
 
 export const AUTH_ROUTES: Routes = [
   {
     path: 'authentication',
+    canActivate: [notAuthenticatedGuard],
     loadComponent: () =>
       import('./authentication.component').then(
         (m) => m.AuthenticationComponent
@@ -35,10 +38,21 @@ export const AUTH_ROUTES: Routes = [
           ),
       },
       {
-        path: '*',
-        redirectTo: 'login',
+        path: '',
         pathMatch: 'full',
+        redirectTo: 'login',
+      },
+      {
+        path: '*',
+        pathMatch: 'full',
+        redirectTo: 'login',
       },
     ],
+  },
+  {
+    path: 'logout',
+    canActivate: [authenticatedGuard],
+    loadComponent: () =>
+      import('./pages/logout/logout.component').then((m) => m.LogoutComponent),
   },
 ];

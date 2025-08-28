@@ -1,10 +1,12 @@
 import { ITranslate } from './i-translate';
 
 export const EnI18n: ITranslate = {
-  'fin-core': {
+  finCore: {
     actions: {
       loading: 'Loading...',
       save: 'Save',
+      toggleToLightMode: 'Toggle to light mode',
+      toggleToDarkMode: 'Toggle to dark mode',
     },
     appName: 'Fin App',
     auth: {
@@ -30,6 +32,8 @@ export const EnI18n: ITranslate = {
               resendConde: 'Resend code',
               title: 'Credentials',
               typeCodeSentOnEmail: 'Enter the code sent to your email',
+              resendCode: 'Resend code',
+              youCanResendCodeIn: 'You can resend the code in {{resendIn}}',
             },
             personal: {
               displayName: 'How would you like to be called?',
@@ -57,14 +61,17 @@ export const EnI18n: ITranslate = {
           resetPassword: 'Reset your password',
           subtitle: 'Type your new password and confirm it',
           title: 'Reset password',
+          success: 'Success!',
         },
         sendResetEmail: {
-          comeBackLogin: 'Back to login',
+          emailSent:
+            'We’ve sent you an email if your address exists in our system',
           sendLink: 'Send link',
           subtitle: 'Enter your email to receive the recovery link',
           title: 'Forgot your password?',
         },
       },
+      comeBackLogin: 'Back to login',
       talkWithSupport: 'Talk with support',
       password: 'Password',
     },
@@ -77,6 +84,12 @@ export const EnI18n: ITranslate = {
       minLength: 'Minimum of {{minLength}} characters',
       pattern: 'Invalid format',
       required: 'This field is required',
+    },
+    sharedComponents: {
+      grid: {
+        noData: 'No data to display',
+        reload: 'Reload',
+      },
     },
   },
 };

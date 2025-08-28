@@ -1,5 +1,5 @@
 <p-button
-        (click)="onClick.emit()"
+        (click)="onClick.emit($event)"
         [disabled]="disabled()"
         [severity]="severity()"
         [variant]="variant()"

@@ -1,5 +1,19 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, output, signal, } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  HostListener,
+  inject,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { UserStartCreateInputForm } from '../../../models/user-start-create-input';
 import { passwordValidator } from '../../../validators/password-validator';
 import { FinInputComponent } from '../../../../../shared/components/input/fin-input.component';
@@ -10,9 +24,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { InputOtpModule } from 'primeng/inputotp';
 import { MessageModule } from 'primeng/message';
 import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
+import { UserCreateService } from '../../../services/user-create.service';
+import { interval, map, takeWhile } from 'rxjs';
+import { TimerFomatterPipe } from '../../../../../shared/pipes/timer-formatter/timer-fomatter.pipe';
+import { UserCreationStatedDto } from '../../../models/user-creation-stated-dto';
 
 type ConfirmationCodeForm = {
-  confirmationCode: FormControl<string | null>;
+  confirmationCode: FormControl<string>;
 };
 
 @Component({
@@ -25,13 +43,14 @@ type ConfirmationCodeForm = {
     InputOtpModule,
     MessageModule,
     FinTextComponent,
+    TimerFomatterPipe,
   ],
   templateUrl: './auth-create-credential-step.component.html',
   styleUrl: './auth-create-credential-step.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthCreateCredentialStepComponent implements OnInit {
-  public readonly setCreationToken = output<string>();
+  public readonly creationStarted = output<UserCreationStatedDto>();
 
   public readonly creationToken = signal('');
   public readonly loadingButton = signal(false);
@@ -39,11 +58,21 @@ export class AuthCreateCredentialStepComponent implements OnInit {
   public confirmationCodeForm: FormGroup<ConfirmationCodeForm>;
   public credentialForm: FormGroup<UserStartCreateInputForm>;
 
+  public readonly canResendEmail = signal(false);
+  public readonly resendEmailTimer = signal(0);
+
   private readonly destroyRef = inject(DestroyRef);
+  private readonly userCreateService = inject(UserCreateService);
 
   public ngOnInit(): void {
     this.createForms();
     this.setSubs();
+  }
+
+  @HostListener('keydown.enter', ['$event'])
+  public onEnterKeydown(event: KeyboardEvent): void {
+    event.preventDefault();
+    this.nextStep();
   }
 
   public async nextStep(): Promise<void> {
@@ -52,21 +81,54 @@ export class AuthCreateCredentialStepComponent implements OnInit {
       this.credentialForm.disable();
       this.loadingButton.set(true);
 
-      setTimeout(() => {
-        this.creationToken.set('asdasd');
-        this.loadingButton.set(false);
-      }, 1500);
+      const input = this.credentialForm.getRawValue();
+      const result = await this.userCreateService.start(input);
+
+      if (!!result) {
+        this.startResendEmailTimer(result.sentEmailDateTime);
+        this.creationToken.set(result.creationToken);
+      } else {
+        this.credentialForm.enable();
+      }
     } else if (this.confirmationCodeForm.valid) {
       this.confirmationCodeForm.disable();
       this.loadingButton.set(true);
 
-      setTimeout(() => {
-        this.loadingButton.set(false);
-        this.setCreationToken.emit(
-          this.confirmationCodeForm.controls.confirmationCode.value ?? ''
-        );
-      }, 1500);
+      const code = this.confirmationCodeForm.getRawValue().confirmationCode;
+      const result = await this.userCreateService.validEmail(
+        this.creationToken(),
+        code
+      );
+
+      if (result) {
+        const credentials = this.credentialForm.getRawValue();
+        this.creationStarted.emit({
+          creationToken: this.creationToken(),
+          email: credentials.email,
+          password: credentials.password,
+        });
+      } else {
+        this.confirmationCodeForm.enable();
+      }
     }
+    this.loadingButton.set(false);
+  }
+
+  public async resendEmail(): Promise<void> {
+    if (!this.canResendEmail()) return;
+    this.loadingButton.set(true);
+    this.confirmationCodeForm.disable();
+
+    const result = await this.userCreateService.resendEmail(
+      this.creationToken()
+    );
+    if (!!result) {
+      this.startResendEmailTimer(result);
+      this.confirmationCodeForm.reset();
+    }
+
+    this.loadingButton.set(false);
+    this.confirmationCodeForm.enable();
   }
 
   private setSubs(): void {
@@ -90,23 +152,52 @@ export class AuthCreateCredentialStepComponent implements OnInit {
 
   private createForms(): void {
     this.confirmationCodeForm = new FormGroup<ConfirmationCodeForm>({
-      confirmationCode: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[A-Z0-9]{6}$'),
-      ]),
+      confirmationCode: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern('^[A-Z0-9]{6}$')],
+      }),
     });
 
     this.credentialForm = new FormGroup<UserStartCreateInputForm>(
       {
-        password: new FormControl('', [
-          Validators.required,
-          passwordValidator,
-          Validators.maxLength(100),
-        ]),
-        passwordConfirmation: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', {
+          nonNullable: true,
+          validators: [
+            Validators.required,
+            passwordValidator,
+            Validators.maxLength(100),
+          ],
+        }),
+        passwordConfirmation: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        email: new FormControl('', {
+          validators: [Validators.required, Validators.email],
+          nonNullable: true,
+        }),
       },
       matchPasswordValidator
     );
+  }
+
+  private startResendEmailTimer(sentEmailDateTime: Date) {
+    this.canResendEmail.set(false);
+
+    const duration = 1.5 * 60 * 1000; // 1.5 minute in milliseconds;
+
+    const timer$ = interval(1000).pipe(
+      map(() => {
+        const now = new Date();
+        const diff = duration - (now.getTime() - sentEmailDateTime.getTime());
+        return Math.max(0, diff);
+      }),
+      takeWhile((remaining) => remaining > 0, true)
+    );
+
+    timer$.subscribe({
+      next: (ms) => this.resendEmailTimer.set(ms),
+      complete: () => this.canResendEmail.set(true),
+    });
   }
 }

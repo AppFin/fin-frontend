@@ -19,23 +19,23 @@ export class PasswordRulesInfoComponent {
   public readonly validationMessage: PasswordFieldRule[] = [
     {
       error: 'minLength',
-      message: 'fin-core.auth.erros.passwordMinLength',
+      message: 'finCore.auth.erros.passwordMinLength',
     },
     {
       error: 'hasLowercase',
-      message: 'fin-core.auth.erros.passwordMustHasLowercase',
+      message: 'finCore.auth.erros.passwordMustHasLowercase',
     },
     {
       error: 'hasUppercase',
-      message: 'fin-core.auth.erros.passwordMustHasUppercase',
+      message: 'finCore.auth.erros.passwordMustHasUppercase',
     },
     {
       error: 'hasNumber',
-      message: 'fin-core.auth.erros.passwordMustHasNumber',
+      message: 'finCore.auth.erros.passwordMustHasNumber',
     },
     {
       error: 'hasSpecial',
-      message: 'fin-core.auth.erros.passwordMustHasSpecial',
+      message: 'finCore.auth.erros.passwordMustHasSpecial',
     },
   ];
 }

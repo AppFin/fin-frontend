@@ -1,101 +1,393 @@
-fin-grid {
-  max-height: 100%;
+$border-radius-default: 0.7rem;
+$border-radius-large: 0.8rem;
+$row-height: 45px;
+$header-padding: 0.4rem;
+$cell-padding-horizontal: 0.5rem;
+$cell-padding-vertical: 0.1rem;
+$paginator-height: 2rem;
+$background-color: var(--p-surface-100);
+
+
+$mobile: 768px;
+$tablet: 1024px;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+}
+
+@mixin table-cell-base {
+  color: var(--text-color);
+  height: $row-height;
+  min-height: $row-height;
+  max-height: $row-height;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin mobile-card {
   display: block;
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: $border-radius-default;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px;
+}
+
+fin-grid {
+  height: 100%;
+  width: 100%;
+  display: flex;
 
   p-table {
-    max-height: 100%;
+    height: 100%;
+    width: 100%;
     display: flex;
 
     .p-datatable {
       max-height: 100%;
+      overflow: hidden;
       width: 100%;
       display: flex;
       flex-direction: column;
-      background: var(--p-content-background);
+      background: $background-color;
       border: 1px solid var(--p-content-border-color);
+      border-radius: $border-radius-large;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+
+      @media (max-width: $mobile) {
+        border-radius: $border-radius-default;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+      }
     }
 
     .p-datatable-table-container {
       flex: 1;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      @include hide-scrollbar;
 
-      scrollbar-width: none;
-      -ms-overflow-style: none;
 
-      &::-webkit-scrollbar {
-        display: none;
-        width: 0;
-        height: 0;
-        background: transparent;
-      }
-
-      &::-webkit-scrollbar-track {
-        display: none;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        display: none;
+      @media (max-width: $mobile) {
+        overflow: visible;
+        padding: 0.5rem;
       }
 
       .p-datatable-table {
-        thead {
-          z-index: 2;
-        }
+        height: auto !important;
+        flex-shrink: 0;
+        width: 100%;
+        margin: 0;
 
-        thead th {
-          background: var(--color-secondary);
-          color: var(--p-primary-contrast-color);
-          font-weight: 600;
-          padding-left: 1rem;
-          padding-bottom: 0.2rem;
-          padding-top: 0.2rem;
-          border: none;
-          position: sticky;
-          top: 0;
-          z-index: 10;
-        }
 
-        tbody {
-          tr {
-            background: var(--p-surface-50);
+        @media (min-width: $mobile + 1px) {
+          thead {
+            z-index: 2;
+            overflow: hidden;
 
-            td {
-              color: var(--text-color);
-              padding-left: 1rem;
-              padding-bottom: 0.1rem;
-              padding-top: 0.1rem;
+            th {
+              @include table-cell-base;
+              background: $background-color;
+              font-weight: 700;
+              padding: $header-padding $cell-padding-horizontal;
+              border: none;
+              border-bottom: 1px solid var(--p-content-border-color);
+              position: sticky;
+              top: 0;
+              z-index: 10;
+
+              &:first-child {
+                border-top-left-radius: $border-radius-default;
+              }
+
+              &:last-child {
+                border-top-right-radius: $border-radius-default;
+              }
             }
+          }
+
+          tbody {
+            tr {
+              @include table-cell-base;
+
+              td {
+                @include table-cell-base;
+                padding: $cell-padding-vertical 1rem;
+                vertical-align: middle;
+              }
+
+              &:nth-child(odd) {
+                background-color: var(--p-surface-400);
+              }
+
+              &:nth-child(even) {
+                background-color: var(--p-surface-300);
+              }
+
+              &:last-child {
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+              }
+            }
+          }
+        }
+
+
+        @media (max-width: $mobile) {
+          display: block;
+
+          thead {
+            display: none;
+          }
+
+          tbody {
+            display: block;
+
+            tr {
+              @include mobile-card;
+              display: block;
+              height: auto !important;
+              min-height: auto !important;
+              max-height: none !important;
+              white-space: normal !important;
+              position: relative;
+
+              &:nth-child(odd),
+              &:nth-child(even) {
+                background: var(--p-surface-0);
+              }
+
+              &:last-child {
+                box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px;
+              }
+
+              td {
+                display: block !important;
+                height: auto !important;
+                min-height: auto !important;
+                max-height: none !important;
+                padding: 0.5rem 0 !important;
+                border: none !important;
+                white-space: normal !important;
+                overflow: visible !important;
+                text-overflow: initial !important;
+                position: relative;
+                padding-left: 40% !important;
+
+
+                &:not(:empty):before {
+                  content: attr(data-label);
+                  position: absolute;
+                  left: 0;
+                  top: 0.5rem;
+                  width: 35%;
+                  font-weight: 600;
+                  color: var(--text-color);
+                  font-size: 0.875rem;
+                }
+
+
+                &:has(fin-grid-actions-renderer) {
+                  padding-left: 0 !important;
+                  text-align: right;
+                  margin-top: 1rem;
+                  padding-top: 1rem;
+                  border-top: 1px solid var(--p-content-border-color);
+
+                  &:before {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+
+      .p-datatable .p-datatable-emptymessage {
+        position: relative !important;
+        height: 100% !important;
+        width: 100% !important;
+
+        td {
+          padding: 0 !important;
+          position: relative !important;
+          height: 100% !important;
+        }
+      }
+
+      .empty-placeholder {
+        @include flex-center;
+        height: 400px;
+        width: 100% !important;
+        padding: 2rem !important;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        @media (max-width: $mobile) {
+          height: 300px;
+          padding: 1rem !important;
+        }
+      }
+
+      .empty-content {
+        text-align: center;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        @media (max-width: $mobile) {
+          max-width: 300px;
+          gap: 0.75rem;
+        }
+
+        .empty-icon {
+          margin-bottom: 1rem;
+
+          @media (max-width: $mobile) {
+            margin-bottom: 0.5rem;
+          }
+        }
+
+        .empty-title {
+          color: var(--p-text-color);
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin: 0 0 0.5rem 0;
+
+          @media (max-width: $mobile) {
+            font-size: 1.25rem;
+          }
+        }
+
+        .empty-message {
+          color: var(--p-text-muted-color);
+          margin: 0 0 1.5rem 0;
+          line-height: 1.5;
+
+          @media (max-width: $mobile) {
+            font-size: 0.875rem;
+            margin: 0 0 1rem 0;
+          }
+        }
+
+        .reload-button {
+          gap: 0.5rem;
+
+          i {
+            font-size: 1rem;
           }
         }
       }
     }
 
+
     .p-paginator {
-      background: var(--p-surface-50);
+      background: transparent;
       border-top: 1px solid var(--p-content-border-color);
-      padding: 0.25rem;
+      padding: 0.1rem;
+      border-radius: 0;
+      flex-shrink: 0;
+
+      @media (max-width: $mobile) {
+        padding: 0.5rem;
+        border: none;
+        background: var(--p-surface-0);
+        border-radius: $border-radius-default;
+        margin: 0 0.5rem 0.5rem;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px;
+      }
+
+      .p-paginator-rpp-dropdown {
+        > div,
+        > span {
+          padding: 0.3rem;
+
+          @media (max-width: $mobile) {
+            font-size: 0.875rem;
+          }
+        }
+
+
+        .p-dropdown-panel {
+          transform: translateY(-100%) !important;
+          margin-top: -0.5rem !important;
+          top: auto !important;
+          bottom: 100% !important;
+        }
+      }
 
       .p-paginator-page,
       .p-paginator-prev,
       .p-paginator-next,
       .p-paginator-first,
       .p-paginator-last {
+        color: var(--text-color);
+        min-width: $paginator-height;
+        height: $paginator-height;
+
+        @media (max-width: $mobile) {
+          min-width: 2.5rem;
+          height: 2.5rem;
+          font-size: 0.875rem;
+        }
+
         &.p-paginator-page-selected {
-          background: var(--color-primary);
+          background: var(--color-secondary);
           color: var(--p-primary-contrast-color);
+        }
+      }
+
+
+      @media (max-width: 480px) {
+        .p-paginator-first,
+        .p-paginator-last {
+          display: none;
         }
       }
     }
   }
 }
 
-fin-grid p-table .p-datatable-table-container {
-  padding: 0 !important;
-  margin: 0 !important;
-  box-sizing: border-box;
 
-  .p-datatable-table {
-    width: 100%;
-    margin: 0;
+@media (max-width: $mobile) {
+  .mobile-hidden {
+    display: none !important;
+  }
+
+  .mobile-visible {
+    display: block !important;
   }
 }

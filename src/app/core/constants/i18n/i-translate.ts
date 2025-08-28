@@ -1,8 +1,10 @@
 export interface ITranslate {
-  'fin-core': {
+  finCore: {
     actions: {
       loading: string;
       save: string;
+      toggleToLightMode: string;
+      toggleToDarkMode: string;
     };
     appName: string;
     auth: {
@@ -24,6 +26,8 @@ export interface ITranslate {
               resendConde: string;
               title: string;
               typeCodeSentOnEmail: string;
+              resendCode: string;
+              youCanResendCodeIn: string;
             };
             personal: {
               displayName: string;
@@ -52,15 +56,17 @@ export interface ITranslate {
         resetPassword: {
           resetPassword: string;
           subtitle: string;
+          success: string;
           title: string;
         };
         sendResetEmail: {
-          comeBackLogin: string;
+          emailSent: string;
           sendLink: string;
           subtitle: string;
           title: string;
         };
       };
+      comeBackLogin: string;
       password: string;
       talkWithSupport: string;
     };
@@ -73,6 +79,12 @@ export interface ITranslate {
       minLength: string;
       pattern: string;
       required: string;
+    };
+    sharedComponents: {
+      grid: {
+        noData: string;
+        reload: string;
+      };
     };
   };
 }

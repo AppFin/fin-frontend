@@ -1,27 +1,27 @@
 <div class="login-container">
     <div class="login-header">
         <fin-icon type="image" icon="fin" size="15xl"/>
-        <fin-text text="fin-core.appName" type="title"/>
-        <fin-text text="fin-core.auth.pages.login.title" type="subtitle"/>
-        <fin-text text="fin-core.auth.pages.login.subtitle" type="info"/>
+        <fin-text text="finCore.appName" type="title"/>
+        <fin-text text="finCore.auth.pages.login.title" type="subtitle"/>
+        <fin-text text="finCore.auth.pages.login.subtitle" type="info"/>
     </div>
     <form [formGroup]="form" class="login-form">
         <fin-input
                 [formControl]="form.controls.email"
-                label="fin-core.auth.email"
+                label="finCore.auth.email"
                 type="email"
                 width="300px"
         />
         <fin-input
                 [formControl]="form.controls.password"
-                label="fin-core.auth.password"
+                label="finCore.auth.password"
                 type="password"
                 width="300px"
         />
 
         <div class="forget-password-container">
             <fin-text
-                    text="fin-core.auth.pages.login.forgetPassword"
+                    text="finCore.auth.pages.login.forgetPassword"
                     routerLink="/authentication/send-reset-email"
                     type="info"
             />
@@ -31,22 +31,26 @@
 
     <div class="actions">
         <fin-button
-                text="fin-core.auth.pages.login.singIn"
-                [disabled]="!form.valid"
+                text="finCore.auth.pages.login.singIn"
+                (onClick)="login()"
+                [disabled]="!form.valid || loading()"
+                [spinner]="loading()"
         />
 
         <fin-button
                 variant="outlined"
-                text="fin-core.auth.pages.login.loginWithGoogle"
+                text="finCore.auth.pages.login.loginWithGoogle"
                 icon="google"
                 iconType="image"
+                [disabled]="loading()"
+                (onClick)="loginWithExternalProvider('Google')"
         />
 
     </div>
     <div class="footer">
-        <fin-text text="fin-core.auth.pages.login.thereIsNoAccount" type="info"/>
+        <fin-text text="finCore.auth.pages.login.thereIsNoAccount" type="info"/>
         <fin-text
-                text="fin-core.auth.pages.login.createAccount"
+                text="finCore.auth.pages.login.createAccount"
                 routerLink="/authentication/create-account"
                 type="info"
         />

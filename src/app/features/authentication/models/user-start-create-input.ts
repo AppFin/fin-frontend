@@ -7,7 +7,7 @@ export class UserStartCreateInput {
 }
 
 export class UserStartCreateInputForm {
-  public email: FormControl<string | null>;
-  public password: FormControl<string | null>;
-  public passwordConfirmation: FormControl<string | null>;
+  public email: FormControl<string>;
+  public password: FormControl<string>;
+  public passwordConfirmation: FormControl<string>;
 }
