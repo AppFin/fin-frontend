@@ -25,6 +25,16 @@ export class FinTextComponent {
   public readonly routerLink = input<string | any[]>();
   public readonly rel = input<string>();
 
+  // Click Props
+  public readonly onClick = input<(ev: MouseEvent) => void>();
+  public readonly disabledClick = input<boolean>();
+
   // Label props
   public readonly for = input<string>();
+
+  public clicked(ev: MouseEvent): void {
+    if (!this.onClick() || this.disabledClick()) return;
+    ev.preventDefault();
+    this.onClick()?.(ev);
+  }
 }

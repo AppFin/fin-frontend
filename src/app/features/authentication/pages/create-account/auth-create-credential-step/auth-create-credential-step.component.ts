@@ -1,5 +1,19 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, output, signal, } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  HostListener,
+  inject,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { UserStartCreateInputForm } from '../../../models/user-start-create-input';
 import { passwordValidator } from '../../../validators/password-validator';
 import { FinInputComponent } from '../../../../../shared/components/input/fin-input.component';
@@ -12,6 +26,8 @@ import { MessageModule } from 'primeng/message';
 import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
 import { UserCreateService } from '../../../services/user-create.service';
 import { interval, map, takeWhile } from 'rxjs';
+import { TimerFomatterPipe } from '../../../../../shared/pipes/timer-formatter/timer-fomatter.pipe';
+import { UserCreationStatedDto } from '../../../models/user-creation-stated-dto';
 
 type ConfirmationCodeForm = {
   confirmationCode: FormControl<string>;
@@ -27,13 +43,14 @@ type ConfirmationCodeForm = {
     InputOtpModule,
     MessageModule,
     FinTextComponent,
+    TimerFomatterPipe,
   ],
   templateUrl: './auth-create-credential-step.component.html',
   styleUrl: './auth-create-credential-step.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthCreateCredentialStepComponent implements OnInit {
-  public readonly setCreationToken = output<string>();
+  public readonly creationStarted = output<UserCreationStatedDto>();
 
   public readonly creationToken = signal('');
   public readonly loadingButton = signal(false);
@@ -52,6 +69,12 @@ export class AuthCreateCredentialStepComponent implements OnInit {
     this.setSubs();
   }
 
+  @HostListener('keydown.enter', ['$event'])
+  public onEnterKeydown(event: KeyboardEvent): void {
+    event.preventDefault();
+    this.nextStep();
+  }
+
   public async nextStep(): Promise<void> {
     if (!this.creationToken()) {
       if (this.credentialForm.invalid) return;
@@ -61,9 +84,9 @@ export class AuthCreateCredentialStepComponent implements OnInit {
       const input = this.credentialForm.getRawValue();
       const result = await this.userCreateService.start(input);
 
-      if (result) {
-        this.creationToken.set(result.creationToken);
+      if (!!result) {
         this.startResendEmailTimer(result.sentEmailDateTime);
+        this.creationToken.set(result.creationToken);
       } else {
         this.credentialForm.enable();
       }
@@ -78,13 +101,17 @@ export class AuthCreateCredentialStepComponent implements OnInit {
       );
 
       if (result) {
-        this.setCreationToken.emit(this.creationToken());
+        const credentials = this.credentialForm.getRawValue();
+        this.creationStarted.emit({
+          creationToken: this.creationToken(),
+          email: credentials.email,
+          password: credentials.password,
+        });
       } else {
         this.confirmationCodeForm.enable();
       }
-
-      this.loadingButton.set(false);
     }
+    this.loadingButton.set(false);
   }
 
   public async resendEmail(): Promise<void> {
@@ -95,7 +122,10 @@ export class AuthCreateCredentialStepComponent implements OnInit {
     const result = await this.userCreateService.resendEmail(
       this.creationToken()
     );
-    if (result) this.startResendEmailTimer(result);
+    if (!!result) {
+      this.startResendEmailTimer(result);
+      this.confirmationCodeForm.reset();
+    }
 
     this.loadingButton.set(false);
     this.confirmationCodeForm.enable();
@@ -154,7 +184,7 @@ export class AuthCreateCredentialStepComponent implements OnInit {
   private startResendEmailTimer(sentEmailDateTime: Date) {
     this.canResendEmail.set(false);
 
-    const duration = 2 * 60 * 1000; // 2 minute in milliseconds;
+    const duration = 1.5 * 60 * 1000; // 1.5 minute in milliseconds;
 
     const timer$ = interval(1000).pipe(
       map(() => {

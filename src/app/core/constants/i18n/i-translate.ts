@@ -26,6 +26,8 @@ export interface ITranslate {
               resendConde: string;
               title: string;
               typeCodeSentOnEmail: string;
+              resendCode: string;
+              youCanResendCodeIn: string;
             };
             personal: {
               displayName: string;

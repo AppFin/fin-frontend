@@ -9,6 +9,8 @@
 
 <fin-button
         iconSuffix="arrow-right"
-        routerLink="/"
+        (onClick)="finish()"
+        [spinner]="loading()"
+        [disabled]="loading()"
         text="finCore.auth.pages.createAccount.steps.finished.goToFin"
 />

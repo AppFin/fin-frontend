@@ -3,8 +3,13 @@
   cursor: pointer;
   text-decoration: none;
 
-  &:hover {
+  &:hover:not(.link-disabled) {
     color: var(--color-primary);
+  }
+
+  .link-disabled {
+    cursor: auto;
+    color: var(--color-disabled);
   }
 }
 

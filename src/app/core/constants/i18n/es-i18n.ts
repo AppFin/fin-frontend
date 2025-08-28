@@ -33,6 +33,8 @@ export const EsI18n: ITranslate = {
               resendConde: 'Reenviar código',
               title: 'Credenciales',
               typeCodeSentOnEmail: 'Introduce el código enviado a tu correo',
+              resendCode: 'Reenviar código',
+              youCanResendCodeIn: 'Puedes reenviar el código en {{resendIn}}',
             },
             personal: {
               displayName: '¿Cómo quieres que te llamen?',

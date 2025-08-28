@@ -1,8 +1,18 @@
-import { ChangeDetectionStrategy, Component, OnInit, output, signal, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  inject,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FinInputComponent } from '../../../../../shared/components/input/fin-input.component';
 import { UserCreateForm } from '../../../models/user-create-form';
+import { UserCreateService } from '../../../services/user-create.service';
 
 @Component({
   selector: 'fin-auth-create-personal-step',
@@ -12,9 +22,11 @@ import { UserCreateForm } from '../../../models/user-create-form';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthCreatePersonalStepComponent implements OnInit {
+  public readonly creationToken = input<string>('');
   public readonly userCreated = output<void>();
 
   public readonly loading = signal(false);
+  public readonly userCreateService = inject(UserCreateService);
 
   public form: FormGroup<UserCreateForm>;
 
@@ -22,14 +34,31 @@ export class AuthCreatePersonalStepComponent implements OnInit {
     this.createForm();
   }
 
-  public save(): void {
+  @HostListener('keydown.enter', ['$event'])
+  public onEnterKeydown(event: KeyboardEvent): void {
+    event.preventDefault();
+    this.save();
+  }
+
+  public async save(): Promise<void> {
     if (this.form.invalid) return;
 
     this.loading.set(true);
+    this.form.disable();
 
-    setTimeout(() => {
+    const form = this.form.getRawValue();
+    const result = await this.userCreateService.createUser(
+      this.creationToken(),
+      form
+    );
+
+    if (result) {
       this.userCreated.emit();
-    }, 1500);
+    } else {
+      this.form.enable();
+    }
+
+    this.loading.set(false);
   }
 
   private createForm() {

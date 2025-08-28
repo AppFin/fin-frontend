@@ -25,8 +25,7 @@ export class UserCreateService {
       .post<UserStartCreateOutput>(`${this.API_URL}start`, input)
       .pipe(
         map((r) => {
-          r.sentEmailDateTime = new Date(r.sentEmailDateTime);
-          return r;
+          return new UserStartCreateOutput(r);
         }),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 422)
@@ -55,6 +54,7 @@ export class UserCreateService {
         null
       )
       .pipe(
+        map((r) => new Date(r)),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 422)
             return of(error.error as ValidationResultDto<Date>);
@@ -101,6 +101,7 @@ export class UserCreateService {
         input
       )
       .pipe(
+        map((e) => new UserDto(e)),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 422)
             return of(error.error as ValidationResultDto);

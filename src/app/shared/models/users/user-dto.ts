@@ -12,4 +12,8 @@ export class UserDto {
   public isAdmin: boolean;
   public isActivity: boolean;
   public tenants: Tenant[];
+
+  public constructor(init?: Partial<UserDto>) {
+    if (!!init) Object.assign(this, init);
+  }
 }

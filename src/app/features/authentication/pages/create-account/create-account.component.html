@@ -15,19 +15,22 @@
         <p-step-panels>
             <p-step-panel [value]="steps.Credential">
                 <ng-template #content>
-                    <fin-auth-create-credential-step (setCreationToken)="setCreateToken($event)"/>
+                    <fin-auth-create-credential-step (creationStarted)="setStartedCreate($event)"/>
                 </ng-template>
             </p-step-panel>
 
             <p-step-panel [value]="steps.Personal">
                 <ng-template #content>
-                    <fin-auth-create-personal-step (userCreated)="setUserCreated()"/>
+                    <fin-auth-create-personal-step
+                            (userCreated)="setUserCreated()"
+                            [creationToken]="creationToken()"
+                    />
                 </ng-template>
             </p-step-panel>
 
             <p-step-panel [value]="steps.Finished">
                 <ng-template #content>
-                    <fin-auth-create-finished-step/>
+                    <fin-auth-create-finished-step (login)="loginPosCreated()"/>
                 </ng-template>
             </p-step-panel>
         </p-step-panels>

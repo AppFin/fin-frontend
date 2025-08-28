@@ -30,6 +30,8 @@ export const PtBrI18n: ITranslate = {
               resendConde: 'Reenviar código',
               title: 'Credenciais',
               typeCodeSentOnEmail: 'Digite o código enviado no seu e-mail',
+              resendCode: 'Reenviar código',
+              youCanResendCodeIn: 'Você pode reenviar o código em {{resendIn}}',
             },
             personal: {
               displayName: 'Como quer ser chamado?',

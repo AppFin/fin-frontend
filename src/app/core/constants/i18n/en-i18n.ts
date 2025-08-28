@@ -32,6 +32,8 @@ export const EnI18n: ITranslate = {
               resendConde: 'Resend code',
               title: 'Credentials',
               typeCodeSentOnEmail: 'Enter the code sent to your email',
+              resendCode: 'Resend code',
+              youCanResendCodeIn: 'You can resend the code in {{resendIn}}',
             },
             personal: {
               displayName: 'How would you like to be called?',
