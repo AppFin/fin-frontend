@@ -7,8 +7,14 @@ export const EnI18n: ITranslate = {
       save: 'Save',
       toggleToLightMode: 'Toggle to light mode',
       toggleToDarkMode: 'Toggle to dark mode',
+      search: 'Search (Ctrl + K)',
     },
     appName: 'Fin App',
+    layout: {
+      notifications: 'Notificaciones',
+      xNotifications: '({{notificationCount}}) notificaciones',
+    },
+
     auth: {
       confirmYourPassword: 'Confirm Your password',
       email: 'Email',

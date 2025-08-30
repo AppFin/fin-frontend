@@ -5,8 +5,13 @@ export interface ITranslate {
       save: string;
       toggleToLightMode: string;
       toggleToDarkMode: string;
+      search: string;
     };
     appName: string;
+    layout: {
+      notifications: string;
+      xNotifications: string;
+    };
     auth: {
       confirmYourPassword: string;
       email: string;

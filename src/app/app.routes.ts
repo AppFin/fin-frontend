@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { AUTH_ROUTES } from './features/authentication/authentication-routes';
 import { authenticatedGuard } from './core/guards/authentication/authenticated.guard';
 
@@ -8,7 +7,20 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [authenticatedGuard],
-    component: AppComponent,
+    loadComponent: () => import('./app.component').then((m) => m.AppComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./core/components/layout/layout.component').then(
+            (m) => m.LayoutComponent
+          ),
+      },
+      {
+        path: '**',
+        redirectTo: '',
+      },
+    ],
   },
   {
     path: '**',

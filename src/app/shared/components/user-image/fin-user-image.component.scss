@@ -1,0 +1,9 @@
+p-avatar {
+  background-color: var(--color-secondary);
+  border-radius: 100%;
+}
+
+:host {
+  display: grid;
+  place-items: center;
+}

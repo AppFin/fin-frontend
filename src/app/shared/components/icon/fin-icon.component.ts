@@ -16,6 +16,7 @@ export type FinIconSize =
   | 'lg'
   | 'xl'
   | '2xl'
+  | '3xl'
   | '10xl'
   | '15xl';
 export type FinFontAwesomeType =
@@ -78,6 +79,7 @@ export class FinIconComponent {
     lg: 24,
     xl: 32,
     '2xl': 40,
+    '3xl': 48,
     '10xl': 120,
     '15xl': 180,
   };

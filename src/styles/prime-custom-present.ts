@@ -99,6 +99,28 @@ export const PrimeCustomPreset = definePreset(Aura, {
     },
   },
   components: {
+    toolbar: {
+      colorScheme: {
+        light: {
+          root: {
+            background: '#e8eaed',
+            borderColor: '#dadce0',
+            color: '#212529',
+            borderRadius: '0',
+            padding: '0.05rem 0.8rem 0.05rem 0.05rem',
+          },
+        },
+        dark: {
+          root: {
+            background: '#1c232c',
+            borderColor: '#2a2a2a',
+            color: '#e9ecef',
+            borderRadius: '0',
+            padding: '0.05rem 0.8rem 0.05rem 0.05rem',
+          },
+        },
+      },
+    },
     button: {
       colorScheme: {
         light: {

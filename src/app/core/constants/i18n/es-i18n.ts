@@ -7,8 +7,13 @@ export const EsI18n: ITranslate = {
       save: 'Guardar',
       toggleToLightMode: 'Cambiar a modo claro',
       toggleToDarkMode: 'Cambiar a modo oscuro',
+      search: 'Buscar (Ctrl + K)',
     },
     appName: 'Fin App',
+    layout: {
+      notifications: 'Notifications',
+      xNotifications: '({{notificationCount}})  notifications',
+    },
     auth: {
       confirmYourPassword: 'Confirma tu contraseña',
       email: 'Correo electrónico',

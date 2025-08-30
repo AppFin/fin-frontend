@@ -1,0 +1,13 @@
+.itens-container {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  grid-auto-flow: column;
+}
+
+@media (max-width: 768px) {
+  fin-theme-toggle,
+  fin-user-image {
+    display: none;
+  }
+}

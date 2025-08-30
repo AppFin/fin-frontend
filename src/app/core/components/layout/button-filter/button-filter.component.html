@@ -1,0 +1,45 @@
+<div class="search-container">
+    <div
+            class="search-wrapper"
+            [class.expanded]="isExpanded()"
+    >
+        <button
+                class="search-button"
+                [class.expanded]="isExpanded()"
+                (click)="toggleSearch()"
+                type="button"
+        >
+            <fin-icon icon="search" size="sm"
+                      [iconColor]="isExpanded() ? 'var(--text-light)' : 'var(--text-dark)'"
+                      tooltip="finCore.actions.search"
+            />
+        </button>
+
+        @if (isExpanded()) {
+            <div class="input-container">
+                <input
+                    #input
+                    type="text"
+                    [placeholder]="'finCore.actions.search' | finTranslate"
+                    [formControl]="formControl"
+                    (blur)="onInputBlur()"
+                    (keyup.enter)="onSearch()"
+                    (keyup.escape)="closeSearch()"
+                    class="search-input"
+                />
+                @if (formControl.value) {
+                    <button
+                            class="clear-button"
+                            (click)="clearSearch()"
+                            type="button"
+                    >
+                        <fin-icon
+                                icon="xmark"
+                                iconColor="var(--text-light)"
+                        />
+                    </button>
+                }
+            </div>
+        }
+    </div>
+</div>

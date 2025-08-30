@@ -7,8 +7,13 @@ export const PtBrI18n: ITranslate = {
       save: 'Salvar',
       toggleToLightMode: 'Mudar para modo claro',
       toggleToDarkMode: 'Mudar para modo escuro',
+      search: 'Pesquisar (Ctrl + K)',
     },
     appName: 'App Fin',
+    layout: {
+      notifications: 'Notificações',
+      xNotifications: '({{notificationCount}})  notificações',
+    },
     auth: {
       confirmYourPassword: 'Confirme sua senha',
       email: 'E-mail',
