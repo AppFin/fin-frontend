@@ -13,6 +13,11 @@ export const PtBrI18n: ITranslate = {
     layout: {
       notifications: 'Notificações',
       xNotifications: '({{notificationCount}})  notificações',
+      settings: 'Configurações',
+      exit: 'Sair',
+      termsAndPolicies: 'Termos e políticas',
+      admin: 'Administrador',
+      openMenu: 'Abrir menu',
     },
     auth: {
       confirmYourPassword: 'Confirme sua senha',

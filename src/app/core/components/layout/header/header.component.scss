@@ -1,0 +1,64 @@
+.itens-container {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  grid-auto-flow: column;
+}
+
+@media (max-width: 768px) {
+  fin-theme-toggle,
+  fin-user-image {
+    display: none;
+  }
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.logo-icon {
+  cursor: pointer;
+}
+
+.menu-btn-container {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: unset;
+
+    &:hover {
+      background-color: var(--color-hover);
+    }
+  }
+}
+
+.perfil-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.2rem 0.8rem;
+  gap: 0.5rem;
+  width: 100%;
+
+  &:hover {
+    background-color: var(--color-hover);
+  }
+
+  .name-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}

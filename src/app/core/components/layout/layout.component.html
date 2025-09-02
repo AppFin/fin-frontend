@@ -1,28 +1,6 @@
-<p-toolbar>
-    <ng-template #start>
-        <fin-icon
-                type="image"
-                icon="fin"
-                size="3xl"
-        />
-    </ng-template>
-    <ng-template #center>
-        <fin-text
-                [text]="pageName()"
-                type="paragraph"
-        />
-    </ng-template>
-    <ng-template #end>
-        <div class="itens-container">
-            <fin-theme-toggle/>
-            <fin-button
-                    icon="bell"
-                    iconTooltip="finCore.layout.notifications"
-            />
-            <fin-button-filter/>
-            <fin-user-image/>
-        </div>
-    </ng-template>
-</p-toolbar>
+<fin-header/>
+<fin-side-nav>
+    <router-outlet/>
+    dasdhjadhk
+</fin-side-nav>
 
-<router-outlet/>

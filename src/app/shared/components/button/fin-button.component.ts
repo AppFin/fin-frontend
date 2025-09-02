@@ -1,16 +1,21 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, ViewEncapsulation, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Button, ButtonLabel } from 'primeng/button';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
-import { FinFontAwesomeType, FinIconComponent, FinIconType, } from '../icon/fin-icon.component';
+import {
+  FinFontAwesomeType,
+  FinIconComponent,
+  FinIconType,
+} from '../icon/fin-icon.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FinSeverity } from '../../../core/types/themes/fin-severity';
 
-export type FinButtonSeverity =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warn'
-  | 'danger';
 export type FinButtonVariant = 'text' | 'outlined' | undefined;
 
 @Component({
@@ -32,7 +37,7 @@ export class FinButtonComponent {
 
   public readonly text = input<string | null>(null);
   public readonly disabled = input(false);
-  public readonly severity = input<FinButtonSeverity>('primary');
+  public readonly severity = input<FinSeverity>('primary');
   public readonly variant = input<FinButtonVariant>(undefined);
   public readonly spinner = input<boolean | undefined>(undefined);
 

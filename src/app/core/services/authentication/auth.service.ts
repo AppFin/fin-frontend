@@ -1,7 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment';
 import { catchError, firstValueFrom, of, tap, throwError } from 'rxjs';
 import { UserProps } from '../../models/authentication/user-props';
 import { LoginOutput } from '../../models/authentication/login-output';
@@ -10,6 +9,7 @@ import { AuthGoogleService } from './auth-google.service';
 import { ResetPasswordInput } from '../../models/authentication/reset-password-input';
 import { ResetPasswordErrorCode } from '../../enums/authentication/reset-password-error-code';
 import { AuthApiService } from './auth-api.service';
+import { jwtDecode } from 'jwt-decode';
 
 export type ExternalLoginProvider = 'Google';
 
@@ -191,7 +191,7 @@ export class AuthService {
     const token = this.getToken();
     if (!token) return;
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+      const payload = jwtDecode(token) as any;
 
       const user = new UserProps({
         userId: payload.userId || '',

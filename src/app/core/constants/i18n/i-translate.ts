@@ -11,6 +11,11 @@ export interface ITranslate {
     layout: {
       notifications: string;
       xNotifications: string;
+      settings: string;
+      exit: string;
+      termsAndPolicies: string;
+      admin: string;
+      openMenu: string;
     };
     auth: {
       confirmYourPassword: string;

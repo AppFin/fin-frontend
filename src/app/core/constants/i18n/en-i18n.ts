@@ -13,6 +13,11 @@ export const EnI18n: ITranslate = {
     layout: {
       notifications: 'Notificaciones',
       xNotifications: '({{notificationCount}}) notificaciones',
+      settings: 'Settings',
+      exit: 'Exit',
+      termsAndPolicies: 'Terms and policies',
+      admin: 'Admin',
+      openMenu: 'Open menu',
     },
 
     auth: {

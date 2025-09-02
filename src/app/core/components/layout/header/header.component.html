@@ -1,0 +1,60 @@
+<p-toolbar>
+    <ng-template #start>
+        <fin-icon
+                class="logo-icon"
+                type="image"
+                icon="fin"
+                size="3xl"
+                tooltip="finCore.appName"
+                routerLink="/"
+        />
+    </ng-template>
+    <ng-template #center>
+        <fin-text
+                [text]="pageName()"
+                type="paragraph"
+        />
+    </ng-template>
+    <ng-template #end>
+        <div class="itens-container">
+            <fin-theme-toggle/>
+            <fin-button
+                    icon="bell"
+                    iconTooltip="finCore.layout.notifications"
+            />
+            <fin-button-filter/>
+            <button (click)="menu.toggle($event)">
+                <fin-user-image/>
+            </button>
+        </div>
+    </ng-template>
+</p-toolbar>
+
+<p-menu #menu [popup]="true">
+    <ng-template #start>
+        <div class="menu-btn-container">
+            <button class="option">
+                <fin-icon icon="cog" severity="secondary"/>
+                <fin-text text="finCore.layout.settings" type="paragraph"/>
+            </button>
+            <button class="option">
+                <fin-icon icon="pen-to-square" severity="secondary"/>
+                <fin-text text="finCore.layout.termsAndPolicies" type="paragraph"/>
+            </button>
+            <a routerLink="/logout" class="option">
+                <fin-icon icon="right-from-bracket" severity="danger"/>
+                <fin-text text="finCore.layout.exit" type="paragraph"/>
+            </a>
+        </div>
+        <p-divider/>
+        <button class="perfil-container">
+            <fin-user-image size="2.3rem"/>
+            <span class="name-container">
+                <fin-text [text]="user()?.name ?? ''" type="paragraph"/>
+                @if (user()?.isAdmin) {
+                    <fin-text text="finCore.layout.admin" type="info"/>
+                }
+            </span>
+        </button>
+    </ng-template>
+</p-menu>

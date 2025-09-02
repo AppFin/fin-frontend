@@ -13,6 +13,11 @@ export const EsI18n: ITranslate = {
     layout: {
       notifications: 'Notifications',
       xNotifications: '({{notificationCount}})  notifications',
+      settings: 'Configuración',
+      exit: 'Salir',
+      termsAndPolicies: 'Términos y políticas',
+      admin: 'Administrador',
+      openMenu: 'Abrir menú',
     },
     auth: {
       confirmYourPassword: 'Confirma tu contraseña',
