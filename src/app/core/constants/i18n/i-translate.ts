@@ -16,6 +16,7 @@ export interface ITranslate {
       termsAndPolicies: string;
       admin: string;
       openMenu: string;
+      closeMenu: string;
     };
     auth: {
       confirmYourPassword: string;

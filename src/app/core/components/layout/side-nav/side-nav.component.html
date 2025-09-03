@@ -1,16 +1,29 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="false">
-    <mat-drawer #drawer mode="side">
+    <mat-drawer
+            [opened]="sideNavOpened()"
+            [mode]="isMobile ? 'over' : 'side'"
+    >
         <div class="drawer-container">
-            <button class="menu-item" (click)="drawer.toggle()">
-                <fin-icon tooltip="finCore.layout.openMenu" icon="bars" size="md"/>
-            </button>
+            <div class="drawer-header">
+                <button class="menu-item" (click)="toggleSideNav()">
+                    <fin-icon
+                            tooltip="finCore.layout.closeMenu"
+                            icon="chevron-left"
+                            size="md"
+                    />
+                </button>
+            </div>
         </div>
     </mat-drawer>
     <mat-drawer-content>
-        @if (!drawer.opened) {
+        @if (!sideNavOpened()) {
             <div class="menus-container">
-                <button class="menu-item" (click)="drawer.toggle()">
-                    <fin-icon tooltip="finCore.layout.openMenu" icon="bars" size="md"/>
+                <button class="menu-item" (click)="toggleSideNav()">
+                    <fin-icon
+                            tooltip="finCore.layout.openMenu"
+                            icon="chevron-right"
+                            size="md"
+                    />
                 </button>
                 @for (menu of menus(); track menu.id) {
                     <ng-container *ngTemplateOutlet="btn; context: {menu: menu}"/>

@@ -13,11 +13,10 @@ mat-drawer-container {
   background-color: var(--p-toolbar-background);;
 }
 
-.drawer-container {
-  width: 100%;
-  height: 100%;
-  background-color: var(--p-toolbar-background);;
+mat-drawer {
+  border-right: none;
 }
+
 
 .app-container {
   flex: 1;
@@ -36,16 +35,44 @@ mat-drawer-container {
   background-color: var(--p-toolbar-background);;
   padding: 0.2rem;
   gap: 0.3rem;
+}
 
-  button {
-    background-color: transparent;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 1rem;
+.menu-item {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
 
 
-    &:hover {
-      background-color: var(--color-hover);
-    }
+  &:hover {
+    background-color: var(--color-hover);
   }
+}
+
+@media (max-width: 768px) {
+  .menus-container {
+    display: none;
+  }
+
+  .app-container {
+    border-start-end-radius: 1.5rem;
+  }
+
+  .drawer-container {
+    width: 100vw;
+  }
+}
+
+.drawer-container {
+  width: 25rem;
+  height: 100%;
+  background-color: var(--p-toolbar-background);;
+  padding: 0.8rem;
+}
+
+.drawer-header {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
 }

@@ -18,6 +18,7 @@ export const PtBrI18n: ITranslate = {
       termsAndPolicies: 'Termos e políticas',
       admin: 'Administrador',
       openMenu: 'Abrir menu',
+      closeMenu: 'Fechar menu',
     },
     auth: {
       confirmYourPassword: 'Confirme sua senha',

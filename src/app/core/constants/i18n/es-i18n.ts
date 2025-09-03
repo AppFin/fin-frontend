@@ -18,6 +18,7 @@ export const EsI18n: ITranslate = {
       termsAndPolicies: 'Términos y políticas',
       admin: 'Administrador',
       openMenu: 'Abrir menú',
+      closeMenu: 'Cerrar menú',
     },
     auth: {
       confirmYourPassword: 'Confirma tu contraseña',

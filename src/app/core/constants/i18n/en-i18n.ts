@@ -18,6 +18,7 @@ export const EnI18n: ITranslate = {
       termsAndPolicies: 'Terms and policies',
       admin: 'Admin',
       openMenu: 'Open menu',
+      closeMenu: 'Close menu',
     },
 
     auth: {
