@@ -5,10 +5,19 @@
   grid-auto-flow: column;
 }
 
+.side-nav-toggle {
+  display: none;
+}
+
 @media (max-width: 768px) {
   fin-theme-toggle,
-  fin-user-image {
+  fin-user-image,
+  .logo-icon {
     display: none;
+  }
+
+  .side-nav-toggle {
+    display: block;
   }
 }
 
@@ -19,6 +28,7 @@ button {
 
 .logo-icon {
   cursor: pointer;
+  margin-left: 0.1px;
 }
 
 .menu-btn-container {

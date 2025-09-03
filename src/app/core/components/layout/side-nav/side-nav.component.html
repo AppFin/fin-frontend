@@ -1,18 +1,64 @@
-<mat-drawer-container class="example-container" [hasBackdrop]="false">
-    <mat-drawer #drawer mode="side">
+<mat-drawer-container class="example-container" [hasBackdrop]="false" [class.drawer-opened]="drawer.opened">
+    <mat-drawer #drawer [mode]="isMobile ? 'over' : 'side'" class="fin-drawer">
         <div class="drawer-container">
-            <button class="menu-item" (click)="drawer.toggle()">
-                <fin-icon tooltip="finCore.layout.openMenu" icon="bars" size="md"/>
-            </button>
+            <div class="close-btn-container">
+                <button class="menu-item close-btn" (click)="toggleDrawer()">
+                    <fin-icon tooltip="finCore.layout.openMenu" icon="xmark" size="md"/>
+                </button>
+            </div>
+            <div class="drawer-header">
+                <fin-text type="subtitle" [text]="'Pinned'"/>
+            </div>
+
+            <div cdkDropListGroup>
+                <div class="drawer-grid pinned" cdkDropList #pinnedList="cdkDropList"
+                     (cdkDropListDropped)="handleDropPinned($event)"
+                     [cdkDropListData]="pinnedMenus()" [cdkDropListConnectedTo]="['unpinnedList']">
+                    @for (menu of pinnedMenus(); track menu.id) {
+                        <div class="menu-card" cdkDrag [cdkDragData]="menu">
+                            <button [routerLink]="menu.frontRoute" class="card-button">
+                                <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color" size="xl"/>
+                                <fin-text type="label" [text]="menu.name"/>
+                            </button>
+                        </div>
+                    }
+                </div>
+
+                <div class="section-title">
+                    <fin-text type="subtitle" [text]="'Not pinned'"/>
+
+                    <fin-button
+                            (onClick)="showUnpinned.set(!showUnpinned())"
+                            [icon]="showUnpinned() ? 'chevron-up' : 'chevron-down'"
+                            [iconTooltip]="showUnpinned() ? 'Hide unpinned' : 'show unpinned'"
+                    />
+                </div>
+
+                @if (showUnpinned()) {
+                    <div class="drawer-grid unpinned" cdkDropList #unpinnedList="cdkDropList"
+                         (cdkDropListDropped)="handleDropUnpinned($event)"
+                         [cdkDropListData]="unpinnedMenus()" [cdkDropListConnectedTo]="[pinnedList]">
+                        @for (menu of unpinnedMenus(); track menu.id) {
+                            <div class="menu-card" cdkDrag [cdkDragData]="menu">
+                                <button [routerLink]="menu.frontRoute" class="card-button">
+                                    <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color"
+                                              size="xl"/>
+                                    <fin-text type="label" [text]="menu.name"/>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
         </div>
     </mat-drawer>
     <mat-drawer-content>
         @if (!drawer.opened) {
             <div class="menus-container">
-                <button class="menu-item" (click)="drawer.toggle()">
+                <button class="menu-item" (click)="toggleDrawer()">
                     <fin-icon tooltip="finCore.layout.openMenu" icon="bars" size="md"/>
                 </button>
-                @for (menu of menus(); track menu.id) {
+                @for (menu of pinnedMenus(); track menu.id) {
                     <ng-container *ngTemplateOutlet="btn; context: {menu: menu}"/>
                 }
             </div>
