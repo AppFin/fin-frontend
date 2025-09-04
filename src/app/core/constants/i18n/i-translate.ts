@@ -6,6 +6,8 @@ export interface ITranslate {
       toggleToLightMode: string;
       toggleToDarkMode: string;
       search: string;
+      open: string;
+      close: string;
     };
     appName: string;
     layout: {

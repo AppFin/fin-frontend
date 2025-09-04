@@ -8,6 +8,8 @@ export const EsI18n: ITranslate = {
       toggleToLightMode: 'Cambiar a modo claro',
       toggleToDarkMode: 'Cambiar a modo oscuro',
       search: 'Buscar (Ctrl + K)',
+      open: 'Abrir',
+      close: 'Cerrar',
     },
     appName: 'Fin App',
     layout: {

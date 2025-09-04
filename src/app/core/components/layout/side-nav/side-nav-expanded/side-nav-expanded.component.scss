@@ -54,6 +54,7 @@
 
   &:hover {
     transform: scale(1.05);
+    background-color: var(--color-hover);
 
     .drag-icon {
       display: block;

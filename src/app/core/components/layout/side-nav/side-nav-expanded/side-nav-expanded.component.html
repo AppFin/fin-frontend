@@ -19,6 +19,8 @@
         <div class="pinned-menus">
             @for (menu of menus(); track menu.id) {
                 <ng-container *ngTemplateOutlet="menuBtn; context: {menu: menu}"/>
+            } @empty {
+                vazio
             }
         </div>
 
@@ -30,14 +32,24 @@
                         severity="primary"
                 />
 
-                <button class="action-btn">
+                <button class="action-btn" (click)="unpinnedOpened.set(!unpinnedOpened())">
                     <fin-icon
-                            tooltip="finCore.layout.closeMenu"
-                            icon="chevron-up"
+                            [tooltip]="unpinnedOpened() ? 'finCore.actions.close' : 'finCore.actions.open'"
+                            [icon]="unpinnedOpened() ? 'chevron-down' : 'chevron-up'"
                             size="md"
                     />
                 </button>
             </div>
+
+            @if (unpinnedOpened()) {
+                <ng-content [@ifVertical]>
+                    @for (menu of menus(); track menu.id) {
+                        <ng-container *ngTemplateOutlet="menuBtn; context: {menu: menu}"/>
+                    } @empty {
+                        vazio
+                    }
+                </ng-content>
+            }
         </div>
 
     </div>

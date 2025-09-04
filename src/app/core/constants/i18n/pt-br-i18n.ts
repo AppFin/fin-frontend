@@ -8,6 +8,8 @@ export const PtBrI18n: ITranslate = {
       toggleToLightMode: 'Mudar para modo claro',
       toggleToDarkMode: 'Mudar para modo escuro',
       search: 'Pesquisar (Ctrl + K)',
+      open: 'Abrir',
+      close: 'Fechar',
     },
     appName: 'App Fin',
     layout: {
