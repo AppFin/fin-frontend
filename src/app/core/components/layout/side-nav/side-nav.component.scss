@@ -1,3 +1,8 @@
+:host {
+  max-height: 100%;
+  flex: 1;
+}
+
 mat-drawer-content {
   display: flex;
   flex-direction: row;
@@ -57,22 +62,4 @@ mat-drawer {
   .app-container {
     border-start-end-radius: 1.5rem;
   }
-
-  .drawer-container {
-    width: 100vw;
-  }
-}
-
-.drawer-container {
-  width: 25rem;
-  height: 100%;
-  background-color: var(--p-toolbar-background);;
-  padding: 0.8rem;
-}
-
-.drawer-header {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  justify-content: center;
 }

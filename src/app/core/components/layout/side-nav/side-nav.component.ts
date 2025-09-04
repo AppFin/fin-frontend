@@ -6,6 +6,7 @@ import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.co
 import { RouterLink } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { LayoutService } from '../../../services/layout/layout.service';
+import { SideNavExpandedComponent } from './side-nav-expanded/side-nav-expanded.component';
 
 @Component({
   selector: 'fin-side-nav',
@@ -16,6 +17,7 @@ import { LayoutService } from '../../../services/layout/layout.service';
     FinIconComponent,
     RouterLink,
     NgTemplateOutlet,
+    SideNavExpandedComponent,
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss',

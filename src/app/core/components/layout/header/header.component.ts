@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, signal, Signal, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+  Signal,
+} from '@angular/core';
 import { ButtonFilterComponent } from '../button-filter/button-filter.component';
 import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
@@ -43,6 +49,10 @@ export class HeaderComponent {
 
   public get pageName(): Signal<string> {
     return this.layoutService.pageName;
+  }
+
+  public get sideNavOpened(): Signal<boolean> {
+    return this.layoutService.sideNavOpened;
   }
 
   public toggleSideNav(): void {

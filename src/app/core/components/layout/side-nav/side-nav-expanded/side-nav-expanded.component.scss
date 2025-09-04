@@ -1,0 +1,85 @@
+
+.drawer-container {
+  width: 25rem;
+  height: 100%;
+  background-color: var(--p-toolbar-background);;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+
+
+  &:hover {
+    background-color: var(--color-hover);
+  }
+}
+
+.pinned-menus {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.menu-option {
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.8rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+
+  .drag-icon {
+    display: none;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+
+    .drag-icon {
+      display: block;
+    }
+  }
+}
+
+.menus-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.unpinned-menus-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .drawer-container {
+    width: 100vw;
+  }
+
+  .drawer-header button {
+    display: none;
+  }
+}

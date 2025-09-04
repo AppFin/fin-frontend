@@ -9,7 +9,11 @@
                 routerLink="/"
         />
         <button class="side-nav-toggle" (click)="toggleSideNav()">
-            <fin-icon tooltip="finCore.layout.openMenu" icon="bars" size="md"/>
+            <fin-icon
+                    [tooltip]="sideNavOpened() ? 'finCore.layout.openMenu' : 'finCore.layout.closeMenu'"
+                    [icon]="sideNavOpened() ? 'chevron-left' : 'chevron-right'"
+                    size="md"
+            />
         </button>
     </ng-template>
     <ng-template #center>

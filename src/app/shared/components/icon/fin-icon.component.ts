@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 import { FinSeverity } from '../../../core/types/themes/fin-severity';
+import { finSeverityConverter } from '../../../core/functions/fin-severity-converter';
 
 export type FinIconSize =
   | 'xs'
@@ -93,23 +94,8 @@ export class FinIconComponent {
   });
   public readonly iconEffectiveColor = computed(() => {
     if (this.iconColor()) return this.iconColor();
-    if (this.severity()) {
-      switch (this.severity()) {
-        case 'primary':
-          return 'var(--color-primary)';
-        case 'secondary':
-          return 'var(--color-secondary)';
-        case 'success':
-          return 'var(--color-success)';
-        case 'info':
-          return 'var(--color-info)';
-        case 'warn':
-          return 'var(--color-warning)';
-        case 'danger':
-          return 'var(--color-error)';
-      }
-    }
-
+    const severity = this.severity();
+    if (severity !== null) return finSeverityConverter(severity);
     return '';
   });
 }

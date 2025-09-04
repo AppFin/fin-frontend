@@ -1,0 +1,59 @@
+<div class="drawer-container">
+    <div class="drawer-header">
+        <fin-text
+                text="Pinneds menus"
+                type="subtitle"
+                severity="primary"
+        />
+
+        <button class="action-btn" (click)="toggleSideNav()">
+            <fin-icon
+                    tooltip="finCore.layout.closeMenu"
+                    icon="chevron-left"
+                    size="md"
+            />
+        </button>
+    </div>
+
+    <div class="menus-container">
+        <div class="pinned-menus">
+            @for (menu of menus(); track menu.id) {
+                <ng-container *ngTemplateOutlet="menuBtn; context: {menu: menu}"/>
+            }
+        </div>
+
+        <div class="unpinned-menus">
+            <div class="unpinned-menus-header">
+                <fin-text
+                        text="Unpinned menus"
+                        type="subtitle"
+                        severity="primary"
+                />
+
+                <button class="action-btn">
+                    <fin-icon
+                            tooltip="finCore.layout.closeMenu"
+                            icon="chevron-up"
+                            size="md"
+                    />
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #menuBtn let-menu="menu">
+    <button [routerLink]="menu.frontRoute" class="menu-option">
+        <fin-icon
+                class="drag-icon"
+                size="sm"
+                icon="bars"
+                severity="secondary"
+                tooltip="Alterar ordem"
+        />
+
+        <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
+        <fin-text [text]="menu.name" type="paragraph"/>
+    </button>
+</ng-template>

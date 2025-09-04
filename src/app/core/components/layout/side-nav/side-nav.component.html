@@ -3,17 +3,7 @@
             [opened]="sideNavOpened()"
             [mode]="isMobile ? 'over' : 'side'"
     >
-        <div class="drawer-container">
-            <div class="drawer-header">
-                <button class="menu-item" (click)="toggleSideNav()">
-                    <fin-icon
-                            tooltip="finCore.layout.closeMenu"
-                            icon="chevron-left"
-                            size="md"
-                    />
-                </button>
-            </div>
-        </div>
+        <fin-side-nav-expanded [(menus)]="menus"/>
     </mat-drawer>
     <mat-drawer-content>
         @if (!sideNavOpened()) {
