@@ -6,10 +6,19 @@ import { MenuOutput } from '../../../../types/layouts/menu-output';
 import { RouterLink } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { ifVerticalAnimation } from '../../../../../shared/animations/if-vertical.animation';
+import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 @Component({
   selector: 'fin-side-nav-expanded',
-  imports: [FinIconComponent, FinTextComponent, RouterLink, NgTemplateOutlet],
+  imports: [
+    FinIconComponent,
+    FinTextComponent,
+    RouterLink,
+    NgTemplateOutlet,
+    FinButtonComponent,
+    CdkMenuModule,
+  ],
   templateUrl: './side-nav-expanded.component.html',
   styleUrl: './side-nav-expanded.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +31,17 @@ export class SideNavExpandedComponent {
 
   private readonly layoutService = inject(LayoutService);
 
+  public get isMobile(): boolean {
+    return window.innerWidth <= 768;
+  }
+
   public toggleSideNav(): void {
     this.layoutService.toggleSideNav();
+  }
+
+  public optionClicked(): void {
+    if (this.isMobile) {
+      this.toggleSideNav();
+    }
   }
 }

@@ -1,6 +1,6 @@
 
 .drawer-container {
-  width: 25rem;
+  width: 20rem;
   height: 100%;
   background-color: var(--p-toolbar-background);;
   padding: 0.8rem;
@@ -75,12 +75,53 @@
   justify-content: space-between;
 }
 
+.unpinned-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.unpinned-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+  padding: 0.3rem;
+  border-radius: 0.8rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  min-height: 3.5rem;
+
+  .spacer {
+    flex: 1;
+  }
+
+  .pin-icon {
+    display: none;
+  }
+
+  &:hover {
+    transform: scale(1.01);
+    background-color: var(--color-hover);
+
+    .pin-icon {
+      display: block;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .drawer-container {
     width: 100vw;
   }
 
-  .drawer-header button {
+  .drawer-header > button {
     display: none;
   }
+
+  .pin-icon {
+    display: block !important;
+  }
+
 }

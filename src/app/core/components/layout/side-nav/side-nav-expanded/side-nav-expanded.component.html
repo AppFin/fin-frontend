@@ -42,21 +42,32 @@
             </div>
 
             @if (unpinnedOpened()) {
-                <ng-content [@ifVertical]>
+                <div [@ifVertical] class="unpinned-container">
                     @for (menu of menus(); track menu.id) {
-                        <ng-container *ngTemplateOutlet="menuBtn; context: {menu: menu}"/>
+                        <ng-container *ngTemplateOutlet="unpinnedOption; context: {menu: menu}"/>
                     } @empty {
                         vazio
                     }
-                </ng-content>
+                </div>
             }
         </div>
 
     </div>
 </div>
 
+<ng-template #menu>
+    <div class="example-menu" cdkMenu>
+        <button class="example-menu-item" cdkMenuItem>Unpin</button>
+    </div>
+</ng-template>
+
 <ng-template #menuBtn let-menu="menu">
-    <button [routerLink]="menu.frontRoute" class="menu-option">
+    <button
+            [routerLink]="menu.frontRoute"
+            class="menu-option"
+            (click)="optionClicked()"
+            [cdkContextMenuTriggerFor]="menu"
+    >
         <fin-icon
                 class="drag-icon"
                 size="sm"
@@ -67,5 +78,20 @@
 
         <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
         <fin-text [text]="menu.name" type="paragraph"/>
+    </button>
+</ng-template>
+
+<ng-template #unpinnedOption let-menu="menu">
+    <button [routerLink]="menu.frontRoute" class="unpinned-btn" (click)="optionClicked()">
+        <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
+        <fin-text [text]="menu.name" type="paragraph"/>
+
+        <span class="spacer"></span>
+
+        <fin-button
+                class="pin-icon"
+                icon="plus"
+                iconTooltip="Pin"
+        />
     </button>
 </ng-template>
