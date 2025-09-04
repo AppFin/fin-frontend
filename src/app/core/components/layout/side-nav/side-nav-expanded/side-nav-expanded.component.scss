@@ -50,13 +50,23 @@
     position: absolute;
     top: 2px;
     left: 2px;
+    cursor: pointer;
+  }
+
+  .unpin-icon {
+    display: none;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
   }
 
   &:hover {
     transform: scale(1.05);
     background-color: var(--color-hover);
 
-    .drag-icon {
+    .drag-icon,
+    .unpin-icon {
       display: block;
     }
   }

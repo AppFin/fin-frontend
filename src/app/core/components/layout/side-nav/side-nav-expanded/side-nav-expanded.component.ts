@@ -7,7 +7,6 @@ import { RouterLink } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { ifVerticalAnimation } from '../../../../../shared/animations/if-vertical.animation';
 import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
-import { CdkMenuModule } from '@angular/cdk/menu';
 
 @Component({
   selector: 'fin-side-nav-expanded',
@@ -17,7 +16,6 @@ import { CdkMenuModule } from '@angular/cdk/menu';
     RouterLink,
     NgTemplateOutlet,
     FinButtonComponent,
-    CdkMenuModule,
   ],
   templateUrl: './side-nav-expanded.component.html',
   styleUrl: './side-nav-expanded.component.scss',

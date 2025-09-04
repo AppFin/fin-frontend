@@ -1,7 +1,7 @@
 <div class="drawer-container">
     <div class="drawer-header">
         <fin-text
-                text="Pinneds menus"
+                text="finCore.layout.pinnedMenus"
                 type="subtitle"
                 severity="primary"
         />
@@ -20,14 +20,14 @@
             @for (menu of menus(); track menu.id) {
                 <ng-container *ngTemplateOutlet="menuBtn; context: {menu: menu}"/>
             } @empty {
-                vazio
+                <fin-text text="finCore.layout.empty" type="paragraph"/>
             }
         </div>
 
         <div class="unpinned-menus">
             <div class="unpinned-menus-header">
                 <fin-text
-                        text="Unpinned menus"
+                        text="finCore.layout.unpinnedMenus"
                         type="subtitle"
                         severity="primary"
                 />
@@ -46,7 +46,7 @@
                     @for (menu of menus(); track menu.id) {
                         <ng-container *ngTemplateOutlet="unpinnedOption; context: {menu: menu}"/>
                     } @empty {
-                        vazio
+                        <fin-text text="finCore.layout.empty" type="paragraph"/>
                     }
                 </div>
             }
@@ -55,25 +55,26 @@
     </div>
 </div>
 
-<ng-template #menu>
-    <div class="example-menu" cdkMenu>
-        <button class="example-menu-item" cdkMenuItem>Unpin</button>
-    </div>
-</ng-template>
-
 <ng-template #menuBtn let-menu="menu">
     <button
             [routerLink]="menu.frontRoute"
             class="menu-option"
             (click)="optionClicked()"
-            [cdkContextMenuTriggerFor]="menu"
     >
         <fin-icon
                 class="drag-icon"
-                size="sm"
+                size="xs"
                 icon="bars"
                 severity="secondary"
-                tooltip="Alterar ordem"
+                tooltip="finCore.actions.changeOrder"
+        />
+
+        <fin-icon
+                class="unpin-icon"
+                size="xs"
+                icon="thumbtack-slash"
+                severity="secondary"
+                tooltip="finCore.actions.unpin"
         />
 
         <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
@@ -90,8 +91,8 @@
 
         <fin-button
                 class="pin-icon"
-                icon="plus"
-                iconTooltip="Pin"
+                icon="thumbtack"
+                iconTooltip="finCore.actions.pin"
         />
     </button>
 </ng-template>

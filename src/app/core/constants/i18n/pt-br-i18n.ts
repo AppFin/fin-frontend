@@ -10,6 +10,9 @@ export const PtBrI18n: ITranslate = {
       search: 'Pesquisar (Ctrl + K)',
       open: 'Abrir',
       close: 'Fechar',
+      changeOrder: 'Alterar ordem',
+      pin: 'Fixar',
+      unpin: 'Desafixar',
     },
     appName: 'App Fin',
     layout: {
@@ -21,6 +24,9 @@ export const PtBrI18n: ITranslate = {
       admin: 'Administrador',
       openMenu: 'Abrir menu',
       closeMenu: 'Fechar menu',
+      pinnedMenus: 'Menus fixados',
+      unpinnedMenus: 'Menus não fixados',
+      empty: 'Vazio',
     },
     auth: {
       confirmYourPassword: 'Confirme sua senha',

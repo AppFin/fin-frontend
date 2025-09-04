@@ -1,14 +1,5 @@
 export interface ITranslate {
   finCore: {
-    actions: {
-      loading: string;
-      save: string;
-      toggleToLightMode: string;
-      toggleToDarkMode: string;
-      search: string;
-      open: string;
-      close: string;
-    };
     appName: string;
     layout: {
       notifications: string;
@@ -19,6 +10,21 @@ export interface ITranslate {
       admin: string;
       openMenu: string;
       closeMenu: string;
+      pinnedMenus: string;
+      unpinnedMenus: string;
+      empty: string;
+    };
+    actions: {
+      loading: string;
+      save: string;
+      toggleToLightMode: string;
+      toggleToDarkMode: string;
+      search: string;
+      open: string;
+      close: string;
+      changeOrder: string;
+      pin: string;
+      unpin: string;
     };
     auth: {
       confirmYourPassword: string;
