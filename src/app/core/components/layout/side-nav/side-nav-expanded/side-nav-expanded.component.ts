@@ -60,12 +60,14 @@ export class SideNavExpandedComponent {
     }
   }
 
-  public pinMenu(menuId: string): void {
+  public pinMenu(ev: Event, menuId: string): void {
+    ev.stopPropagation();
     const menus = this.menuService.pinMenu(this.menuMetadata(), menuId);
     this.menuMetadata.set(menus);
   }
 
-  public unpinMenu(menuId: string): void {
+  public unpinMenu(ev: Event, menuId: string): void {
+    ev.stopPropagation();
     const menus = this.menuService.unpinMenu(this.menuMetadata(), menuId);
     this.menuMetadata.set(menus);
   }

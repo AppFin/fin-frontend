@@ -75,7 +75,7 @@
                 icon="thumbtack-slash"
                 severity="secondary"
                 tooltip="finCore.actions.unpin"
-                (click)="unpinMenu(menuMetadata.id)"
+                (click)="unpinMenu($event, menuMetadata.id)"
         />
 
         <fin-icon [tooltip]="menuMetadata.menu.name" [icon]="menuMetadata.menu.icon"
@@ -96,7 +96,7 @@
                 class="pin-icon"
                 icon="thumbtack"
                 iconTooltip="finCore.actions.pin"
-                (click)="pinMenu(menuMetadata.id)"
+                (click)="pinMenu($event, menuMetadata.id)"
         />
     </button>
 </ng-template>
