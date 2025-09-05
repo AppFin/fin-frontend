@@ -1,5 +1,17 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, Signal, signal, } from '@angular/core';
-import { MatDrawer, MatDrawerContainer, MatDrawerContent, } from '@angular/material/sidenav';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  Signal,
+  signal,
+} from '@angular/core';
+import {
+  MatDrawer,
+  MatDrawerContainer,
+  MatDrawerContent,
+} from '@angular/material/sidenav';
 import { MenuOutput } from '../../../types/layouts/menu-output';
 import { MenuService } from '../../../services/layout/menu.service';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
@@ -48,7 +60,7 @@ export class SideNavComponent implements OnInit {
   }
 
   public get isMobile(): boolean {
-    return window.innerWidth <= 768;
+    return this.layoutService.isMobile;
   }
 
   private async carregarMenus(): Promise<void> {

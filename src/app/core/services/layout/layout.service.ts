@@ -31,6 +31,10 @@ export class LayoutService {
     this._pageName.set(pageName);
   }
 
+  public get isMobile(): boolean {
+    return window.innerWidth <= 768;
+  }
+
   private loadFromStorage(): void {
     const opened = localStorage.getItem(this.sideavOpenedKey);
     this._sideNavOpened.set(opened === '1');

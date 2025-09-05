@@ -21,6 +21,7 @@ import { FinGridActionsRendererComponent } from './fin-grid-actions-renderer/fin
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FinTextComponent } from '../text/fin-text.component';
 import { FinButtonComponent } from '../button/fin-button.component';
+import { LayoutService } from '../../../core/services/layout/layout.service';
 
 @Component({
   selector: 'fin-grid',
@@ -50,6 +51,8 @@ export class FinGridComponent<T> implements OnInit {
   public readonly itens = signal<T[]>([]);
   public readonly totalItens = signal(0);
 
+  public readonly layoutService = inject(LayoutService);
+
   public readonly actionsColumnsWidth = computed(() =>
     this.calculateActionsColumnsWidth(this.actions())
   );
@@ -62,7 +65,7 @@ export class FinGridComponent<T> implements OnInit {
   public maxResultCount = this.maxResultCountOptions[0];
 
   public get isMobile(): boolean {
-    return window.innerWidth <= 768;
+    return this.layoutService.isMobile;
   }
 
   private readonly destroyRef = inject(DestroyRef);

@@ -3,6 +3,7 @@ import { MenuOutput } from '../../types/layouts/menu-output';
 import { MenuPosition } from '../../enums/layouts/menu-position';
 import { MenuMetadata } from '../../types/layouts/menu-metadata';
 import { Subject } from 'rxjs';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root',
@@ -131,5 +132,46 @@ export class MenuService {
   private saveMenuMetadata(menuOutputs: MenuMetadata[]): void {
     localStorage.setItem(this.menusMetadataKey, JSON.stringify(menuOutputs));
     this._menusMetadataChanged.next(menuOutputs);
+  }
+
+  public reorderMenu(
+    menuMetadata: MenuMetadata[],
+    menuMetadataPinned: MenuMetadata[],
+    menuDropped: CdkDragDrop<MenuMetadata[]>
+  ): MenuMetadata[] {
+    const all = [...menuMetadata];
+    if (menuDropped.previousIndex === menuDropped.currentIndex) return all;
+
+    const pinnedSorted = [...menuMetadataPinned].sort(
+      (a, b) => a.order - b.order
+    );
+    moveItemInArray(
+      pinnedSorted,
+      menuDropped.previousIndex,
+      menuDropped.currentIndex
+    );
+
+    pinnedSorted.forEach((pinnedItem, idx) => {
+      const indexInAll = all.findIndex((m) => m.id === pinnedItem.id);
+      if (indexInAll !== -1) {
+        all[indexInAll] = { ...all[indexInAll], order: idx };
+      }
+    });
+
+    let nextOrder = pinnedSorted.length;
+    const unpinnedSorted = all
+      .filter((m) => !m.pinned)
+      .sort((a, b) => a.order - b.order);
+
+    unpinnedSorted.forEach((item) => {
+      const indexInAll = all.findIndex((m) => m.id === item.id);
+      if (indexInAll !== -1) {
+        all[indexInAll] = { ...all[indexInAll], order: nextOrder++ };
+      }
+    });
+
+    const updated = all.sort((a, b) => a.order - b.order);
+    this.saveMenuMetadata(updated);
+    return updated;
   }
 }

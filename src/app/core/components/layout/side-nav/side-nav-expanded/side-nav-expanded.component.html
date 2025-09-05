@@ -16,9 +16,17 @@
     </div>
 
     <div class="menus-container">
-        <div class="pinned-menus">
+        <div
+                class="pinned-menus"
+                cdkDropList
+                cdkDropListOrientation="mixed"
+                (cdkDropListDropped)="menuDropped($event)"
+        >
             @for (menu of menusPinned(); track menu.id) {
-                <ng-container *ngTemplateOutlet="menuBtn; context: {menuMetadata: menu}"/>
+                <div cdkDrag>
+                    <ng-container *ngTemplateOutlet="menuBtn; context: {menuMetadata: menu}"/>
+                </div>
+
             } @empty {
                 <fin-text text="finCore.layout.empty" type="paragraph"/>
             }
@@ -67,6 +75,7 @@
                 icon="bars"
                 severity="secondary"
                 tooltip="finCore.actions.changeOrder"
+                cdkDragHandle
         />
 
         <fin-icon

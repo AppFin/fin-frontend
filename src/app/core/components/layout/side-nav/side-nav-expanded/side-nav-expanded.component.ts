@@ -9,6 +9,7 @@ import { ifVerticalAnimation } from '../../../../../shared/animations/if-vertica
 import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
 import { MenuService } from '../../../../services/layout/menu.service';
 import { MenuMetadata } from '../../../../types/layouts/menu-metadata';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'fin-side-nav-expanded',
@@ -18,6 +19,7 @@ import { MenuMetadata } from '../../../../types/layouts/menu-metadata';
     RouterLink,
     NgTemplateOutlet,
     FinButtonComponent,
+    DragDropModule,
   ],
   templateUrl: './side-nav-expanded.component.html',
   styleUrl: './side-nav-expanded.component.scss',
@@ -44,10 +46,14 @@ export class SideNavExpandedComponent {
       this.menus();
       this.loadMenusMetadata();
     });
+
+    effect(() => {
+      if (!this.layoutService.sideNavOpened()) this.unpinnedOpened.set(false);
+    });
   }
 
   public get isMobile(): boolean {
-    return window.innerWidth <= 768;
+    return this.layoutService.isMobile;
   }
 
   public toggleSideNav(): void {
@@ -69,6 +75,15 @@ export class SideNavExpandedComponent {
   public unpinMenu(ev: Event, menuId: string): void {
     ev.stopPropagation();
     const menus = this.menuService.unpinMenu(this.menuMetadata(), menuId);
+    this.menuMetadata.set(menus);
+  }
+
+  public menuDropped(menuDropped: CdkDragDrop<MenuMetadata[]>): void {
+    const menus = this.menuService.reorderMenu(
+      this.menuMetadata(),
+      this.menusPinned(),
+      menuDropped
+    );
     this.menuMetadata.set(menus);
   }
 
