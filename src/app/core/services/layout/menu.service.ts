@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import { MenuOutput } from '../../types/layouts/menu-output';
 import { MenuPosition } from '../../enums/layouts/menu-position';
+import { MenuMetadata } from '../../types/layouts/menu-metadata';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
+  public readonly menusMetadataKey = 'menusMetadata';
+
+  private readonly _menusMetadataChanged = new Subject<MenuMetadata[]>();
+  public readonly menusMetadataChanged =
+    this._menusMetadataChanged.asObservable();
+
   public getSideMenus(): Promise<MenuOutput[]> {
     return Promise.resolve([
       {
@@ -48,5 +56,80 @@ export class MenuService {
         id: '3',
       },
     ] as MenuOutput[]);
+  }
+
+  public loadMenuMetadata(menuOutputs: MenuOutput[]): MenuMetadata[] {
+    const savedMenuMetadataStr = localStorage.getItem(this.menusMetadataKey);
+    const savedMenuMetadata = savedMenuMetadataStr
+      ? JSON.parse(savedMenuMetadataStr)
+      : null;
+
+    if (Array.isArray(savedMenuMetadata) && savedMenuMetadata.length > 0) {
+      const existingSaved = savedMenuMetadata
+        .filter((m) => menuOutputs.some((mo) => mo.id === m.id))
+        .map((m) => {
+          const menu = menuOutputs.find((mo) => mo.id === m.id)!;
+          return {
+            ...m,
+            menu,
+          } as MenuMetadata;
+        })
+        .sort((a, b) => a.order - b.order);
+
+      const lastOrder = existingSaved.length
+        ? existingSaved[existingSaved.length - 1].order
+        : -1;
+
+      const existingIds = new Set(existingSaved.map((m) => m.id));
+      const newOnes = menuOutputs.filter((mo) => !existingIds.has(mo.id));
+      const appended = newOnes.map(
+        (menu, i) =>
+          ({
+            id: menu.id,
+            order: lastOrder + i + 1,
+            pinned: true,
+            menu,
+          }) as MenuMetadata
+      );
+
+      return [...existingSaved, ...appended].map((m) => ({
+        ...m,
+        menu: menuOutputs.find((mo) => mo.id === m.id)!,
+      }));
+    }
+
+    return menuOutputs.map(
+      (menu, i) =>
+        ({
+          id: menu.id,
+          order: i,
+          pinned: true,
+          menu,
+        }) as MenuMetadata
+    );
+  }
+
+  public unpinMenu(
+    menuOutputs: MenuMetadata[],
+    menuId: string
+  ): MenuMetadata[] {
+    const updated = menuOutputs.map((menu) =>
+      menu.id == menuId ? { ...menu, pinned: false } : menu
+    );
+    this.saveMenuMetadata(updated);
+    return updated;
+  }
+
+  public pinMenu(menuOutputs: MenuMetadata[], menuId: string): MenuMetadata[] {
+    const updated = menuOutputs.map((menu) =>
+      menu.id == menuId ? { ...menu, pinned: true } : menu
+    );
+    this.saveMenuMetadata(updated);
+    return updated;
+  }
+
+  private saveMenuMetadata(menuOutputs: MenuMetadata[]): void {
+    localStorage.setItem(this.menusMetadataKey, JSON.stringify(menuOutputs));
+    this._menusMetadataChanged.next(menuOutputs);
   }
 }

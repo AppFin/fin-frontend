@@ -17,8 +17,8 @@
 
     <div class="menus-container">
         <div class="pinned-menus">
-            @for (menu of menus(); track menu.id) {
-                <ng-container *ngTemplateOutlet="menuBtn; context: {menu: menu}"/>
+            @for (menu of menusPinned(); track menu.id) {
+                <ng-container *ngTemplateOutlet="menuBtn; context: {menuMetadata: menu}"/>
             } @empty {
                 <fin-text text="finCore.layout.empty" type="paragraph"/>
             }
@@ -43,8 +43,8 @@
 
             @if (unpinnedOpened()) {
                 <div [@ifVertical] class="unpinned-container">
-                    @for (menu of menus(); track menu.id) {
-                        <ng-container *ngTemplateOutlet="unpinnedOption; context: {menu: menu}"/>
+                    @for (menu of menusUnpinned(); track menu.id) {
+                        <ng-container *ngTemplateOutlet="unpinnedOption; context: {menuMetadata: menu}"/>
                     } @empty {
                         <fin-text text="finCore.layout.empty" type="paragraph"/>
                     }
@@ -55,9 +55,9 @@
     </div>
 </div>
 
-<ng-template #menuBtn let-menu="menu">
+<ng-template #menuBtn let-menuMetadata="menuMetadata">
     <button
-            [routerLink]="menu.frontRoute"
+            [routerLink]="menuMetadata.menu.frontRoute"
             class="menu-option"
             (click)="optionClicked()"
     >
@@ -75,17 +75,20 @@
                 icon="thumbtack-slash"
                 severity="secondary"
                 tooltip="finCore.actions.unpin"
+                (click)="unpinMenu(menuMetadata.id)"
         />
 
-        <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
-        <fin-text [text]="menu.name" type="paragraph"/>
+        <fin-icon [tooltip]="menuMetadata.menu.name" [icon]="menuMetadata.menu.icon"
+                  [iconColor]="menuMetadata.menu.color" size="md"/>
+        <fin-text [text]="menuMetadata.menu.name" type="paragraph"/>
     </button>
 </ng-template>
 
-<ng-template #unpinnedOption let-menu="menu">
-    <button [routerLink]="menu.frontRoute" class="unpinned-btn" (click)="optionClicked()">
-        <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
-        <fin-text [text]="menu.name" type="paragraph"/>
+<ng-template #unpinnedOption let-menuMetadata="menuMetadata">
+    <button [routerLink]="menuMetadata.menu.frontRoute" class="unpinned-btn" (click)="optionClicked()">
+        <fin-icon [tooltip]="menuMetadata.menu.name" [icon]="menuMetadata.menu.icon"
+                  [iconColor]="menuMetadata.menu.color" size="md"/>
+        <fin-text [text]="menuMetadata.menu.name" type="paragraph"/>
 
         <span class="spacer"></span>
 
@@ -93,6 +96,7 @@
                 class="pin-icon"
                 icon="thumbtack"
                 iconTooltip="finCore.actions.pin"
+                (click)="pinMenu(menuMetadata.id)"
         />
     </button>
 </ng-template>

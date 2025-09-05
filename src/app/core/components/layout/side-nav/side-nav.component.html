@@ -15,8 +15,8 @@
                             size="md"
                     />
                 </button>
-                @for (menu of menus(); track menu.id) {
-                    <ng-container *ngTemplateOutlet="btn; context: {menu: menu}"/>
+                @for (menuMetadata of menuMetadata(); track menuMetadata.id) {
+                    <ng-container *ngTemplateOutlet="btn; context: {menu: menuMetadata.menu}"/>
                 }
             </div>
         }

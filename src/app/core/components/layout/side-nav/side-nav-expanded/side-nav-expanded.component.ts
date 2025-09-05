@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, model, signal, } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, model, signal, } from '@angular/core';
 import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
 import { LayoutService } from '../../../../services/layout/layout.service';
@@ -7,6 +7,8 @@ import { RouterLink } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { ifVerticalAnimation } from '../../../../../shared/animations/if-vertical.animation';
 import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
+import { MenuService } from '../../../../services/layout/menu.service';
+import { MenuMetadata } from '../../../../types/layouts/menu-metadata';
 
 @Component({
   selector: 'fin-side-nav-expanded',
@@ -24,10 +26,25 @@ import { FinButtonComponent } from '../../../../../shared/components/button/fin-
 })
 export class SideNavExpandedComponent {
   public readonly menus = model<MenuOutput[]>([]);
-
   public readonly unpinnedOpened = signal(false);
 
+  public readonly menuMetadata = signal<MenuMetadata[]>([]);
+  public readonly menusPinned = computed(() => {
+    return this.menuMetadata().filter((m) => m.pinned);
+  });
+  public readonly menusUnpinned = computed(() => {
+    return this.menuMetadata().filter((m) => !m.pinned);
+  });
+
   private readonly layoutService = inject(LayoutService);
+  private readonly menuService = inject(MenuService);
+
+  constructor() {
+    effect(() => {
+      this.menus();
+      this.loadMenusMetadata();
+    });
+  }
 
   public get isMobile(): boolean {
     return window.innerWidth <= 768;
@@ -41,5 +58,19 @@ export class SideNavExpandedComponent {
     if (this.isMobile) {
       this.toggleSideNav();
     }
+  }
+
+  public pinMenu(menuId: string): void {
+    const menus = this.menuService.pinMenu(this.menuMetadata(), menuId);
+    this.menuMetadata.set(menus);
+  }
+
+  public unpinMenu(menuId: string): void {
+    const menus = this.menuService.unpinMenu(this.menuMetadata(), menuId);
+    this.menuMetadata.set(menus);
+  }
+
+  private loadMenusMetadata(): void {
+    this.menuMetadata.set(this.menuService.loadMenuMetadata(this.menus()));
   }
 }
