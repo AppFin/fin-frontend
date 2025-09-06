@@ -14,18 +14,28 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FinTranslatePipe } from '../../../pipes/translate/fin-translate.pipe';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { FilterResultsComponent } from './filter-results/filter-results.component';
 
 @Component({
   selector: 'fin-button-filter',
-  imports: [ReactiveFormsModule, FinIconComponent, FinTranslatePipe],
+  imports: [
+    ReactiveFormsModule,
+    FinIconComponent,
+    FinTranslatePipe,
+    OverlayModule,
+    FilterResultsComponent,
+  ],
   templateUrl: './button-filter.component.html',
   styleUrl: './button-filter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonFilterComponent implements OnInit {
   public readonly input = viewChild<ElementRef<HTMLInputElement>>('input');
-  public readonly isExpanded = signal(false);
+  public readonly isExpanded = signal(true);
   public readonly formControl = new FormControl('');
+
+  isOpen = false;
 
   private readonly onDestoy = inject(DestroyRef);
 
@@ -43,7 +53,7 @@ export class ButtonFilterComponent implements OnInit {
   }
 
   public toggleSearch(): void {
-    this.isExpanded.set(!this.isExpanded());
+    // this.isExpanded.set(!this.isExpanded());
 
     if (this.isExpanded()) {
       setTimeout(() => {

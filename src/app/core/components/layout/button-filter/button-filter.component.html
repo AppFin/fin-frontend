@@ -1,4 +1,4 @@
-<div class="search-container">
+<div class="search-container" cdkOverlayOrigin #trigger="cdkOverlayOrigin" #searchContainer>
     <div
             class="search-wrapper"
             [class.expanded]="isExpanded()"
@@ -6,8 +6,9 @@
         <button
                 class="search-button"
                 [class.expanded]="isExpanded()"
-                (click)="toggleSearch()"
+                (click)="isOpen = !isOpen"
                 type="button"
+
         >
             <fin-icon icon="search" size="sm"
                       [iconColor]="isExpanded() ? 'var(--text-light)' : 'var(--text-dark)'"
@@ -43,3 +44,20 @@
         }
     </div>
 </div>
+
+
+<ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="trigger"
+        [cdkConnectedOverlayOpen]="isOpen"
+        [cdkConnectedOverlayWidth]="searchContainer.offsetWidth + 'px'"
+        [cdkConnectedOverlayPositions]="[{
+            originX: 'start',
+            originY: 'bottom',
+            overlayX: 'start',
+            overlayY: 'top'
+        }]"
+        (detach)="isOpen = false"
+>
+    <fin-filter-results/>
+</ng-template>

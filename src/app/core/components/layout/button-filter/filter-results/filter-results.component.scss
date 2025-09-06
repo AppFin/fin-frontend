@@ -1,0 +1,22 @@
+:host {
+  background-color: var(--background-light);
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--color-secondary);
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  color: var(--text-light);
+
+  &:hover {
+    background-color: var(--color-hover);
+  }
+}
