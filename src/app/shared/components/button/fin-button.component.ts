@@ -44,7 +44,7 @@ export class FinButtonComponent {
   // icon
   public readonly icon = input<string>('');
   public readonly iconColor = input<string | undefined>(undefined);
-  public readonly iconFontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly iconFontAwesomeType = input<FinFontAwesomeType>('fa-solid');
   public readonly iconType = input<FinIconType>('fontAwesome');
   public readonly iconImageFolder = input<string>('icons/');
   public readonly iconImageExtension = input<string>('.png');
@@ -53,7 +53,8 @@ export class FinButtonComponent {
   // icon suffic
   public readonly iconSuffix = input<string>('');
   public readonly iconSuffixColor = input<string | undefined>(undefined);
-  public readonly iconSuffixFontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly iconSuffixFontAwesomeType =
+    input<FinFontAwesomeType>('fa-solid');
   public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');

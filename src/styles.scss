@@ -3,6 +3,8 @@
 @use 'styles/variables';
 @use 'styles/themes';
 
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 * {
   box-sizing: border-box;
@@ -17,17 +19,20 @@ html, body {
 
 html {
   @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
+          color: (
+                  theme-type: light,
+                  primary: mat.$azure-palette,
+                  tertiary: mat.$blue-palette,
+          ),
+          typography: Roboto,
+          density: 0,
   ));
 }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -48,21 +53,57 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 /* Utilities Classes */
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-center {
+  text-align: center;
+}
 
-.m-0 { margin: 0; }
-.m-1 { margin: 0.25rem; }
-.m-2 { margin: 0.5rem; }
-.m-3 { margin: 1rem; }
-.m-4 { margin: 1.5rem; }
+.text-left {
+  text-align: left;
+}
 
-.p-0 { padding: 0; }
-.p-1 { padding: 0.25rem; }
-.p-2 { padding: 0.5rem; }
-.p-3 { padding: 1rem; }
-.p-4 { padding: 1.5rem; }
+.text-right {
+  text-align: right;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.m-1 {
+  margin: 0.25rem;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.m-3 {
+  margin: 1rem;
+}
+
+.m-4 {
+  margin: 1.5rem;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-3 {
+  padding: 1rem;
+}
+
+.p-4 {
+  padding: 1.5rem;
+}
 
 
 // splash screen
@@ -95,7 +136,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     transform: scale(1.5) rotate(0deg); /* Zoom in */
   }
   50% {
-    transform: scale(0.8) rotate(0deg);   /* Back to normal */
+    transform: scale(0.8) rotate(0deg); /* Back to normal */
   }
   75% {
     transform: scale(1.1) rotate(720deg); /* Spin */

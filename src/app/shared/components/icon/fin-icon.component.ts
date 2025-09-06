@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
@@ -21,13 +16,7 @@ export type FinIconSize =
   | '3xl'
   | '10xl'
   | '15xl';
-export type FinFontAwesomeType =
-  | 'fas'
-  | 'far'
-  | 'fab'
-  | 'fal'
-  | 'fad'
-  | 'fa-brands';
+export type FinFontAwesomeType = 'fa-solid' | 'fa-regular' | 'fa-brands';
 export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 
 @Component({
@@ -45,7 +34,7 @@ export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 })
 export class FinIconComponent {
   public readonly icon = input<string>();
-  public readonly fontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly fontAwesomeType = input<FinFontAwesomeType>('fa-solid');
   public readonly type = input<FinIconType>('fontAwesome');
   public readonly imageFolder = input<string>('icons/');
   public readonly imageExtension = input<string>('.png');
