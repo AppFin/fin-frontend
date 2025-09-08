@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, model, signal, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  model,
+  Signal,
+  signal,
+} from '@angular/core';
 import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
 import { LayoutService } from '../../../../services/layout/layout.service';
@@ -27,10 +36,8 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
   animations: [ifVerticalAnimation],
 })
 export class SideNavExpandedComponent {
-  public readonly menus = model<MenuOutput[]>([]);
   public readonly unpinnedOpened = signal(false);
 
-  public readonly menuMetadata = signal<MenuMetadata[]>([]);
   public readonly menusPinned = computed(() => {
     return this.menuMetadata().filter((m) => m.pinned);
   });
@@ -43,13 +50,12 @@ export class SideNavExpandedComponent {
 
   constructor() {
     effect(() => {
-      this.menus();
-      this.loadMenusMetadata();
-    });
-
-    effect(() => {
       if (!this.layoutService.sideNavOpened()) this.unpinnedOpened.set(false);
     });
+  }
+
+  public get menuMetadata(): Signal<MenuMetadata[]> {
+    return this.menuService.menusMetadata
   }
 
   public get isMobile(): boolean {
@@ -68,26 +74,19 @@ export class SideNavExpandedComponent {
 
   public pinMenu(ev: Event, menuId: string): void {
     ev.stopPropagation();
-    const menus = this.menuService.pinMenu(this.menuMetadata(), menuId);
-    this.menuMetadata.set(menus);
+    this.menuService.pinMenu(this.menuMetadata(), menuId);
   }
 
   public unpinMenu(ev: Event, menuId: string): void {
     ev.stopPropagation();
-    const menus = this.menuService.unpinMenu(this.menuMetadata(), menuId);
-    this.menuMetadata.set(menus);
+    this.menuService.unpinMenu(this.menuMetadata(), menuId);
   }
 
   public menuDropped(menuDropped: CdkDragDrop<MenuMetadata[]>): void {
-    const menus = this.menuService.reorderMenu(
+    this.menuService.reorderMenu(
       this.menuMetadata(),
       this.menusPinned(),
       menuDropped
     );
-    this.menuMetadata.set(menus);
-  }
-
-  private loadMenusMetadata(): void {
-    this.menuMetadata.set(this.menuService.loadMenuMetadata(this.menus()));
   }
 }

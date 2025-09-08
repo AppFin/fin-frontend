@@ -1,6 +1,6 @@
 import {
   ChangeDetectionStrategy,
-  Component,
+  Component, computed,
   DestroyRef,
   inject,
   OnInit,
@@ -37,19 +37,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './side-nav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SideNavComponent implements OnInit {
-  public readonly menus = signal<MenuOutput[]>([]);
-  public readonly menuMetadata = signal<MenuMetadata[]>([]);
+export class SideNavComponent {
+  public readonly menuMetadataPinned = computed(() => {
+    return this.menuMetadata().filter((m) => m.pinned);
+  });
 
   private readonly menuService = inject(MenuService);
   private readonly layoutService = inject(LayoutService);
-  private readonly destroyRef = inject(DestroyRef);
-
-  public async ngOnInit(): Promise<void> {
-    await this.carregarMenus();
-    this.loadMenuMetadata();
-    this.startMenuChangeSub();
-  }
 
   public get sideNavOpened(): Signal<boolean> {
     return this.layoutService.sideNavOpened;
@@ -63,23 +57,7 @@ export class SideNavComponent implements OnInit {
     return this.layoutService.isMobile;
   }
 
-  private async carregarMenus(): Promise<void> {
-    const menus = await this.menuService.getSideMenus();
-    this.menus.set(menus);
-  }
-
-  private loadMenuMetadata(): void {
-    const menusMetadata = this.menuService.loadMenuMetadata(this.menus());
-    this.setMenuMetadata(menusMetadata);
-  }
-
-  private setMenuMetadata(menusMetadata: MenuMetadata[]): void {
-    this.menuMetadata.set(menusMetadata.filter((m) => m.pinned));
-  }
-
-  private startMenuChangeSub(): void {
-    this.menuService.menusMetadataChanged
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((menus) => this.setMenuMetadata(menus));
+  private get menuMetadata(): Signal<MenuMetadata[]> {
+    return this.menuService.menusMetadata;
   }
 }

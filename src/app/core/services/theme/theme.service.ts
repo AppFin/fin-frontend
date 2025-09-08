@@ -1,15 +1,21 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import {
   BACKGROUND_DARK,
   BACKGROUND_LIGHT,
 } from '../../../../styles/variables';
+import { StorageService } from '../app/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
+  private readonly storageService = inject(StorageService);
+
   private readonly darkModeSignal = signal(this.getInitialTheme());
   public readonly darkMode = this.darkModeSignal.asReadonly();
+
+  private readonly MANUALLY_SET_THEME_KEY = 'manually-set-theme';
+  private readonly THEME_KEY = 'theme';
 
   constructor() {
     effect(() => {
@@ -19,14 +25,14 @@ export class ThemeService {
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', (e) => {
-        if (!localStorage.getItem('manually-set-theme')) {
+        if (!this.storageService.loadFromLocalStorage<boolean>(this.MANUALLY_SET_THEME_KEY)) {
           this.setDarkMode(e.matches);
         }
       });
   }
 
   public toggleTheme(): void {
-    localStorage.setItem('manually-set-theme', '1');
+    this.storageService.saveToLocalStorage(this.MANUALLY_SET_THEME_KEY, '1');
     this.setDarkMode(!this.darkModeSignal());
   }
 
@@ -39,7 +45,7 @@ export class ThemeService {
   }
 
   private getInitialTheme(): boolean {
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = this.storageService.loadFromLocalStorage<string>(this.THEME_KEY);
     if (savedTheme) {
       return savedTheme === 'dark';
     }
@@ -58,7 +64,7 @@ export class ThemeService {
     document.body.classList.add(`${theme}-theme`);
     document.body.classList.remove(`${themeRemove}-theme`);
 
-    localStorage.setItem('theme', theme);
+    this.storageService.saveToLocalStorage(this.THEME_KEY, theme);
 
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {

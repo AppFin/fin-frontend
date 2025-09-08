@@ -5,6 +5,9 @@
   border: 2px solid var(--color-secondary);
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+
+  max-height: 20rem;
+  overflow-y: auto;
 }
 
 .result {
@@ -16,7 +19,15 @@
   cursor: pointer;
   color: var(--text-light);
 
-  &:hover {
+  &:hover:not(.empty, .loading ) {
     background-color: var(--color-hover);
+  }
+
+  &.loading {
+    justify-content: center;
+  }
+
+  &.empty, &.loading {
+    cursor: unset;
   }
 }

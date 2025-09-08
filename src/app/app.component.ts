@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme/theme.service';
 import { RouterOutlet } from '@angular/router';
+import { StorageService } from './core/services/app/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { RouterOutlet } from '@angular/router';
   imports: [CommonModule, TranslateModule, RouterOutlet],
 })
 export class AppComponent implements OnInit {
+  private readonly storageService = inject(StorageService);
   private readonly themeService = inject(ThemeService);
 
   public ngOnInit(): void {

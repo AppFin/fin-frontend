@@ -3,7 +3,7 @@
             [opened]="sideNavOpened()"
             [mode]="isMobile ? 'over' : 'side'"
     >
-        <fin-side-nav-expanded [(menus)]="menus"/>
+        <fin-side-nav-expanded />
     </mat-drawer>
     <mat-drawer-content>
         @if (!sideNavOpened()) {
@@ -15,7 +15,7 @@
                             size="md"
                     />
                 </button>
-                @for (menuMetadata of menuMetadata(); track menuMetadata.id) {
+                @for (menuMetadata of menuMetadataPinned(); track menuMetadata.id) {
                     <ng-container *ngTemplateOutlet="btn; context: {menu: menuMetadata.menu}"/>
                 }
             </div>

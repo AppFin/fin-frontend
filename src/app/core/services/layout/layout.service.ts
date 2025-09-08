@@ -1,4 +1,5 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
+import { StorageService } from '../app/storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,15 +11,16 @@ export class LayoutService {
   private _sideNavOpened = signal(false);
   public sideNavOpened = this._sideNavOpened.asReadonly();
 
-  private readonly sideavOpenedKey = 'sideNavOpened';
+  private readonly storageService = inject(StorageService);
+  private readonly sidenavOpenedKey = 'sidenav_opened';
 
   constructor() {
     this.loadFromStorage();
 
     effect(() => {
-      localStorage.setItem(
-        this.sideavOpenedKey,
-        this._sideNavOpened() ? '1' : '0'
+      this.storageService.saveToLocalStorage(
+        this.sidenavOpenedKey,
+        this._sideNavOpened()
       );
     });
   }
@@ -36,7 +38,7 @@ export class LayoutService {
   }
 
   private loadFromStorage(): void {
-    const opened = localStorage.getItem(this.sideavOpenedKey);
-    this._sideNavOpened.set(opened === '1');
+    const opened = this.storageService.loadFromLocalStorage<boolean>(this.sidenavOpenedKey);
+    this._sideNavOpened.set(!!opened);
   }
 }
