@@ -38,6 +38,7 @@ export class ButtonFilterComponent implements OnInit {
   public readonly input = viewChild<ElementRef<HTMLInputElement>>('input');
   public readonly overlay = viewChild<CdkConnectedOverlay>(CdkConnectedOverlay);
   public readonly searchWrapper = viewChild<ElementRef<HTMLDivElement>>('searchWrapper');
+  public readonly filterResults = viewChild<FilterResultsComponent>('filterResults');
 
   public readonly isExpanded = signal(false);
   public readonly loading = signal(false);
@@ -62,6 +63,7 @@ export class ButtonFilterComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   public onCtrlSlash(event: KeyboardEvent): void {
+    // Only handle Ctrl+K, let other keys pass through
     if (event.ctrlKey && event.key === 'k') {
       event.preventDefault();
       event.stopPropagation();
@@ -111,6 +113,20 @@ export class ButtonFilterComponent implements OnInit {
 
   public onInputBlur(): void {
     this.closeTimeout = setTimeout(() => this.closeSearch(), 1000);
+  }
+
+  public onInputEnter(event: Event): void {
+    // Check if the filter results component should intercept the Enter key
+    const shouldIntercept = this.filterResults()?.shouldInterceptEnter() ?? false;
+
+    if (shouldIntercept) {
+      // Let the FilterResultsComponent handle the Enter key
+      event.preventDefault();
+      return;
+    }
+
+    // If no results or no selection, proceed with normal search
+    this.onSearch();
   }
 
   public onOverlayMouseDown(event: Event): void {

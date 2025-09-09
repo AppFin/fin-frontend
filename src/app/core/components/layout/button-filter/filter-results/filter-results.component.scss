@@ -8,6 +8,13 @@
 
   max-height: 20rem;
   overflow-y: auto;
+  display: block;
+  outline: none;
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2);
+  }
 }
 
 .result {
@@ -19,7 +26,7 @@
   cursor: pointer;
   color: var(--text-light);
 
-  &:hover:not(.empty, .loading ) {
+  &:hover:not(.empty, .loading) {
     background-color: var(--color-hover);
   }
 
@@ -27,7 +34,13 @@
     justify-content: center;
   }
 
-  &.empty, &.loading {
+  &.empty,
+  &.loading {
     cursor: unset;
+  }
+
+  &.selected {
+    background-color: var(--color-primary);
+    color: var(--text-light);
   }
 }
