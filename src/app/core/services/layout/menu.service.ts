@@ -1,32 +1,34 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { MenuOutput } from '../../types/layouts/menu-output';
 import { MenuMetadata } from '../../types/layouts/menu-metadata';
-import { delay, firstValueFrom, of } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
-import { fakeMenus } from './fake-menus';
 import { StorageService } from '../app/storage.service';
+import { MenuApiService } from './menu-api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
   private readonly _menusMetadata = signal<MenuMetadata[]>([]);
-  public readonly menusMetadata =
-    this._menusMetadata.asReadonly();
+  public readonly menusMetadata = this._menusMetadata.asReadonly();
 
   private readonly storageService = inject(StorageService);
+  private readonly apiService = inject(MenuApiService);
   private readonly MENUS_METADATA_KEY = 'menus_metadata';
 
-  public filterMenus(filter: string, skipCount: number, totalCount: number): Promise<PagedOutput<MenuOutput>> {
-    return firstValueFrom(
-      of({
-        items: fakeMenus,
-        totalCount: 6,
-      } as PagedOutput<MenuOutput>).pipe(
-        delay(2000)
-      )
-    );
+  public filterMenus(
+    filter: string,
+    skipCount: number,
+    maxResultCount: number
+  ): Promise<PagedOutput<MenuOutput>> {
+    const request = this.apiService.getList({
+      filter: { filter, property: 'Name' },
+      skipCount,
+      maxResultCount,
+    });
+    return firstValueFrom(request);
   }
 
   public unpinMenu(menuOutputs: MenuMetadata[], menuId: string): void {
@@ -140,11 +142,15 @@ export class MenuService {
   }
 
   private saveMenuMetadata(menuMetadata: MenuMetadata[]): void {
-    this.storageService.saveToLocalStorage(this.MENUS_METADATA_KEY, menuMetadata);
+    this.storageService.saveToLocalStorage(
+      this.MENUS_METADATA_KEY,
+      menuMetadata
+    );
     this._menusMetadata.set(menuMetadata);
   }
 
   private async loadMenusFromApi(): Promise<MenuOutput[]> {
-    return firstValueFrom(of(fakeMenus));
+    const requests = this.apiService.getListForSideNav();
+    return firstValueFrom(requests);
   }
 }
