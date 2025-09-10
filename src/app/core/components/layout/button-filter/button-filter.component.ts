@@ -12,7 +12,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, first } from 'rxjs';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FinTranslatePipe } from '../../../pipes/translate/fin-translate.pipe';
@@ -20,6 +20,10 @@ import { CdkConnectedOverlay, OverlayModule } from '@angular/cdk/overlay';
 import { FilterResultsComponent } from './filter-results/filter-results.component';
 import { MenuService } from '../../../services/layout/menu.service';
 import { MenuOutput } from '../../../types/layouts/menu-output';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchDialogComponent } from './search-dialog/search-dialog.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { LayoutService } from '../../../services/layout/layout.service';
 
 @Component({
   selector: 'fin-button-filter',
@@ -52,6 +56,8 @@ export class ButtonFilterComponent implements OnInit {
   private readonly onDestroy = inject(DestroyRef);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly menuService = inject(MenuService);
+  private readonly layoutService = inject(LayoutService);
+  private readonly dialog = inject(MatDialog);
 
   private closeTimeout: any;
   private currentAbortController: AbortController | null = null;
@@ -63,7 +69,6 @@ export class ButtonFilterComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   public onCtrlSlash(event: KeyboardEvent): void {
-    // Only handle Ctrl+K, let other keys pass through
     if (event.ctrlKey && event.key === 'k') {
       event.preventDefault();
       event.stopPropagation();
@@ -72,29 +77,33 @@ export class ButtonFilterComponent implements OnInit {
   }
 
   public toggleSearch(): void {
-    this.isExpanded.set(!this.isExpanded());
-
-    if (this.isExpanded()) {
-      setTimeout(() => {
-        const inputEl = this.input()?.nativeElement;
-        const wrapperEl = this.searchWrapper()?.nativeElement;
-
-        if (inputEl && wrapperEl) {
-          inputEl.focus();
-
-          const updateOverlay = () => {
-            this.overlay()?.overlayRef?.updatePosition();
-            this.cdr.detectChanges();
-          };
-
-          wrapperEl.addEventListener('transitionend', updateOverlay, { once: true });
-          setTimeout(updateOverlay, 300); // Fallback
-        }
-      }, 100);
+    if (this.layoutService.isMobile) {
+      this.openSearchDialog();
     } else {
-      this.cancelCurrentRequest();
-      this.formControl.reset();
-      this.clearResults();
+      this.isExpanded.set(!this.isExpanded());
+
+      if (this.isExpanded()) {
+        setTimeout(() => {
+          const inputEl = this.input()?.nativeElement;
+          const wrapperEl = this.searchWrapper()?.nativeElement;
+
+          if (inputEl && wrapperEl) {
+            inputEl.focus();
+
+            const updateOverlay = () => {
+              this.overlay()?.overlayRef?.updatePosition();
+              this.cdr.detectChanges();
+            };
+
+            wrapperEl.addEventListener('transitionend', updateOverlay, { once: true });
+            setTimeout(updateOverlay, 300); // Fallback
+          }
+        }, 100);
+      } else {
+        this.cancelCurrentRequest();
+        this.formControl.reset();
+        this.clearResults();
+      }
     }
   }
   public closeSearch(): void {
@@ -116,16 +125,12 @@ export class ButtonFilterComponent implements OnInit {
   }
 
   public onInputEnter(event: Event): void {
-    // Check if the filter results component should intercept the Enter key
     const shouldIntercept = this.filterResults()?.shouldInterceptEnter() ?? false;
 
     if (shouldIntercept) {
-      // Let the FilterResultsComponent handle the Enter key
       event.preventDefault();
       return;
     }
-
-    // If no results or no selection, proceed with normal search
     this.onSearch();
   }
 
@@ -191,7 +196,6 @@ export class ButtonFilterComponent implements OnInit {
   }
 
   public async loadMoreResults(skipCount: number): Promise<void> {
-
     const value = this.currentSearchTerm || this.formControl.value || '';
 
     if (value.trim() && !this.loading()) {
@@ -236,5 +240,18 @@ export class ButtonFilterComponent implements OnInit {
     this.totalResults.set(0);
     this.filteredResults.set([]);
     this.currentSearchTerm = '';
+  }
+
+  private openSearchDialog(): void {
+    const dialogRef = this.dialog.open(SearchDialogComponent, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'search-dialog-panel',
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: 'search-dialog-backdrop'
+    });
   }
 }

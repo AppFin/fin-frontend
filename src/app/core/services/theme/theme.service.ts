@@ -11,11 +11,12 @@ import { StorageService } from '../app/storage.service';
 export class ThemeService {
   private readonly storageService = inject(StorageService);
 
+  private readonly MANUALLY_SET_THEME_KEY = 'manually-set-theme';
+  private readonly THEME_KEY = 'theme';
+
   private readonly darkModeSignal = signal(this.getInitialTheme());
   public readonly darkMode = this.darkModeSignal.asReadonly();
 
-  private readonly MANUALLY_SET_THEME_KEY = 'manually-set-theme';
-  private readonly THEME_KEY = 'theme';
 
   constructor() {
     effect(() => {

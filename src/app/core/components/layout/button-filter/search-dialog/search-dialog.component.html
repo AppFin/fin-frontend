@@ -1,0 +1,71 @@
+<div class="search-dialog">
+    <div class="dialog-header">
+      <fin-text
+        type="subtitle"
+        text="finCore.actions.search"
+      />
+      <fin-button
+        iconTooltip="finCore.actions.close"
+        (onClick)="closeDialog()"
+        icon="xmark"
+        severity="primary"
+      />
+    </div>
+
+    <div class="search-input-container">
+        <mat-form-field appearance="outline" class="search-field">
+            <mat-label>{{ 'finCore.actions.search' | finTranslate }}</mat-label>
+            <input #searchInput matInput type="text" [formControl]="formControl" (keydown.enter)="onInputEnter($event)"
+                class="search-input" />
+            @if (formControl.value) {
+            <button mat-icon-button matSuffix (click)="clearSearch()" type="button" class="clear-button">
+                <mat-icon>clear</mat-icon>
+            </button>
+            }
+        </mat-form-field>
+    </div>
+
+    <div class="results-container">
+        @if (loading()) {
+        <div class="loading-container">
+            <mat-spinner diameter="40" />
+            <fin-text text="{{ 'finCore.messages.searching' }}" type="info" />
+        </div>
+        } @else if (filteredResults().length > 0) {
+        <div class="results-list">
+            @for (item of filteredResults(); track item.id; let i = $index) {
+            <div class="result-item" [class.selected]="selectedIndex() === i" (click)="onItemClick(item)"
+                (mouseenter)="onMouseEnter(i)">
+                <fin-icon [icon]="item.icon" size="md" [iconColor]="item.color" />
+                <div class="result-content">
+                    <fin-text [text]="item.name" type="paragraph" />
+
+                </div>
+            </div>
+            }
+
+            @if (filteredResults().length < totalResults() && !loading()) { <div class="result-item load-more"
+                [class.selected]="selectedIndex() === filteredResults().length" (click)="loadMore()"
+                (mouseenter)="onLoadMoreMouseEnter()">
+                <mat-icon>expand_more</mat-icon>
+                <div class="result-content">
+                    <fin-text [text]="'finCore.actions.loadMore'" type="paragraph" />
+                </div>
+        </div>
+        }
+    </div>
+    } @else if (formControl.value && !loading()) {
+    <div class="empty-state">
+        <mat-icon class="empty-icon">search_off</mat-icon>
+        <fin-text text="{{ 'finCore.messages.noResults' }}" type="paragraph" />
+        <fin-text text="{{ 'finCore.messages.tryDifferentTerms' }}" type="info" />
+    </div>
+    } @else {
+    <div class="empty-state">
+        <mat-icon class="empty-icon">search</mat-icon>
+        <fin-text text="{{ 'finCore.messages.startTyping' }}" type="paragraph" />
+        <fin-text text="{{ 'finCore.messages.keyboardInstructions' }}" type="info" />
+    </div>
+    }
+</div>
+</div>
