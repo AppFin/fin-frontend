@@ -57,14 +57,13 @@
     } @else if (formControl.value && !loading()) {
     <div class="empty-state">
         <mat-icon class="empty-icon">search_off</mat-icon>
-        <fin-text text="{{ 'finCore.messages.noResults' }}" type="paragraph" />
-        <fin-text text="{{ 'finCore.messages.tryDifferentTerms' }}" type="info" />
+        <fin-text text="{{ 'finCore.actions.noResults' }}" type="paragraph" />
+        <fin-text text="{{ 'finCore.actions.tryDifferentTerms' }}" type="info" />
     </div>
     } @else {
     <div class="empty-state">
         <mat-icon class="empty-icon">search</mat-icon>
-        <fin-text text="{{ 'finCore.messages.startTyping' }}" type="paragraph" />
-        <fin-text text="{{ 'finCore.messages.keyboardInstructions' }}" type="info" />
+        <fin-text text="{{ 'finCore.actions.startTyping' }}" type="paragraph" />
     </div>
     }
 </div>

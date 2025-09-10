@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AUTH_ROUTES } from './features/authentication/authentication-routes';
 import { authenticatedGuard } from './core/guards/authentication/authenticated.guard';
+import { MENUS_ROUTES } from './features/menu/menus-routes';
 
 export const routes: Routes = [
   ...AUTH_ROUTES,
@@ -15,6 +16,9 @@ export const routes: Routes = [
           import('./core/components/layout/layout.component').then(
             (m) => m.LayoutComponent
           ),
+        children: [
+          ...MENUS_ROUTES
+        ]
       },
       {
         path: '**',

@@ -15,7 +15,7 @@
 } @empty {
   @if (!loading()) {
     <div class="result empty">
-      <fin-text text="Sem itens" type="info" />
+      <fin-text text="finCore.actions.noResults" type="info" />
     </div>
   }
 }
@@ -27,7 +27,7 @@
     (click)="loadMore()"
     (mouseenter)="onLoadMoreMouseEnter()"
   >
-    <fin-text [text]="'Carregar mais ' + pageSize() +' itens.'" type="info" />
+    <fin-text text="finCore.actions.loadMore" type="info" />
   </div>
 }
 

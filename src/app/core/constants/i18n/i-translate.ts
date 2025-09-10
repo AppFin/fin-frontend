@@ -20,6 +20,11 @@ export interface ITranslate {
       toggleToLightMode: string;
       toggleToDarkMode: string;
       search: string;
+      searching: string;
+      loadMore: string;
+      noResults: string;
+      tryDifferentTerms: string;
+      startTyping: string;
       open: string;
       close: string;
       changeOrder: string;

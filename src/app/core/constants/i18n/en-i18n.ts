@@ -13,6 +13,11 @@ export const EnI18n: ITranslate = {
       changeOrder: 'Change order',
       pin: 'Pin',
       unpin: 'Unpin',
+      searching: 'Searching',
+      loadMore: 'Load more',
+      noResults: 'No results',
+      tryDifferentTerms: 'Try different terms',
+      startTyping: 'Start typing',
     },
     appName: 'Fin App',
     layout: {

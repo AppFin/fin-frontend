@@ -13,6 +13,12 @@ export const EsI18n: ITranslate = {
       changeOrder: 'Cambiar orden',
       pin: 'Anclar',
       unpin: 'Desanclar',
+      searching: 'Buscando',
+      loadMore: 'Cargar más',
+      noResults: 'Sin resultados',
+      tryDifferentTerms: 'Prueba con otros términos',
+      startTyping: 'Empieza a escribir',
+
     },
     appName: 'Fin App',
     layout: {

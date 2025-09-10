@@ -12,7 +12,12 @@ export const PtBrI18n: ITranslate = {
       close: 'Fechar',
       changeOrder: 'Alterar ordem',
       pin: 'Fixar',
-      unpin: 'Desafixar',
+      unpin: 'Desfixar',
+      searching: 'Pesquisando',
+      loadMore: 'Carregar mais',
+      noResults: 'Sem resultados',
+      tryDifferentTerms: 'Tente outros termos',
+      startTyping: 'Comece a digitar',
     },
     appName: 'App Fin',
     layout: {
