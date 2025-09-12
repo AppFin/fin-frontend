@@ -1,0 +1,24 @@
+form {
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .form-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) {
+  form {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,23 @@
+<div class="input-container">
+  <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
+    <div class="color-input-wrapper">
+      <input #input
+             [formControl]="formControl"
+             [id]="id()"
+             [style.width]="width()"
+             [readOnly]="readonly()"
+             type="color"
+             autocomplete="off"
+             class="color-native-input"
+      />
+    </div>
+    <label [for]="id()">{{ label() | finTranslate }}</label>
+  </p-iftalabel>
+  <div class="sub-text">
+    @if (!hasError()) {
+      <fin-text [text]="helpText()" class="info-sub" type="info"/>
+    } @else {
+      <fin-text [text]="errorMessageEffective()" class="error-sub" type="info"/>
+    }
+  </div>
+</div>

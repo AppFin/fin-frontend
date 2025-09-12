@@ -15,6 +15,7 @@ export interface ITranslate {
       empty: string;
     };
     actions: {
+      creating: string;
       loading: string;
       save: string;
       toggleToLightMode: string;
@@ -108,6 +109,19 @@ export interface ITranslate {
       grid: {
         noData: string;
         reload: string;
+      };
+    };
+    features: {
+      menus: {
+        name: string;
+        frotRoute: string;
+        color: string;
+        icon: string;
+        keyWord: string;
+        onlyForAdmin: string;
+        leftTop: string;
+        hide: string;
+        position: string;
       };
     };
   };

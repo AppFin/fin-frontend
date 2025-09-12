@@ -4,3 +4,11 @@ export class FinSelectOption<T = null> {
   value: any;
   customValue?: T;
 }
+
+export class FinSelectOptionWithTranslation<T = null> {
+  label: string;
+  labelTranslated: string;
+  disabled?: boolean;
+  value: any;
+  customValue?: T;
+}

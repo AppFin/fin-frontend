@@ -18,6 +18,7 @@ export const EsI18n: ITranslate = {
       noResults: 'Sin resultados',
       tryDifferentTerms: 'Prueba con otros términos',
       startTyping: 'Empieza a escribir',
+      creating: 'Creando',
 
     },
     appName: 'Fin App',
@@ -116,6 +117,19 @@ export const EsI18n: ITranslate = {
       grid: {
         noData: 'No hay datos para mostrar',
         reload: 'Recargar',
+      },
+    },
+    features: {
+      menus: {
+        name: 'Nombre',
+        frotRoute: 'Ruta del front',
+        color: 'Color',
+        icon: 'Ícono',
+        keyWord: 'Palabra clave',
+        onlyForAdmin: 'Solo para administrador',
+        leftTop: 'Superior izquierda',
+        position: 'Posición',
+        hide: 'Esconder'
       },
     },
   },

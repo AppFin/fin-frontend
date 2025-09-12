@@ -1,0 +1,12 @@
+@if (!loading()) {
+  <div class="header">
+    <ng-content select="[header]" />
+  </div>
+  <div class="content">
+    <ng-content />
+  </div>
+} @else {
+  <div class="content">
+    <mat-spinner [diameter]="50" />
+  </div>
+}

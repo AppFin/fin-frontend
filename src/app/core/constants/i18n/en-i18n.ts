@@ -17,6 +17,7 @@ export const EnI18n: ITranslate = {
       loadMore: 'Load more',
       noResults: 'No results',
       tryDifferentTerms: 'Try different terms',
+      creating: 'Creating menu',
       startTyping: 'Start typing',
     },
     appName: 'Fin App',
@@ -114,6 +115,19 @@ export const EnI18n: ITranslate = {
       grid: {
         noData: 'No data to display',
         reload: 'Reload',
+      },
+    },
+    features: {
+      menus: {
+        name: 'Name',
+        frotRoute: 'Front route',
+        color: 'Color',
+        icon: 'Icon',
+        keyWord: 'Keyword',
+        onlyForAdmin: 'Only for admin',
+        leftTop: 'Left top',
+        position: 'Position',
+        hide: 'Hide'
       },
     },
   },

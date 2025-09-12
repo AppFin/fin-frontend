@@ -4,6 +4,7 @@ export const PtBrI18n: ITranslate = {
   finCore: {
     actions: {
       loading: 'Carregando...',
+      creating: 'Criando',
       save: 'Salvar',
       toggleToLightMode: 'Mudar para modo claro',
       toggleToDarkMode: 'Mudar para modo escuro',
@@ -111,6 +112,19 @@ export const PtBrI18n: ITranslate = {
       grid: {
         noData: 'Nenhum item para visualizar',
         reload: 'Recarregar',
+      },
+    },
+    features: {
+      menus: {
+        name: 'Nome',
+        frotRoute: 'Rota do front',
+        color: 'Cor',
+        icon: 'Ícone',
+        keyWord: 'Palavra-chave',
+        onlyForAdmin: 'Apenas para administrador',
+        leftTop: 'Superior esquerdo',
+        position: 'Posição',
+        hide: 'Oculto'
       },
     },
   },

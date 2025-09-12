@@ -1,0 +1,20 @@
+<fin-page-layout [title]="title()">
+  <div class="form-container">
+    <div class="form-header">
+      <fin-text
+        type="title"
+        [text]="title()"
+      />
+    </div>
+
+    <form [formGroup]="formGroup()">
+      <ng-content />
+    </form>
+
+    <fin-save-button
+      [canSave]="canSave()"
+      [saving]="isSaving()"
+      (onSave)="onSave.emit()"
+    />
+  </div>
+</fin-page-layout>
