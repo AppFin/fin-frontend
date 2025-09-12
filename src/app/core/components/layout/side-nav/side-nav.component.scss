@@ -24,13 +24,20 @@ mat-drawer {
 
 
 .app-container {
-  flex: 1;
   height: 100%;
   background-color: var(--background-color);
   border-start-start-radius: 1.5rem;
   padding: 1rem;
   border-top: 0.5px solid var(--color-secondary);
   box-shadow: rgba(0, 0, 0, 0.12) 3px 3px 6px 0px inset;
+  flex: 1 1 auto;
+  transition: flex-basis 0.3s ease;
+
+  &.opened {
+    flex-basis: calc(100% - 20rem);
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
 }
 
 .menus-container {
@@ -61,5 +68,6 @@ mat-drawer {
 
   .app-container {
     border-start-end-radius: 1.5rem;
+
   }
 }

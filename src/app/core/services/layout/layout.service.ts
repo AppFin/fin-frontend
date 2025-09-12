@@ -1,5 +1,7 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { StorageService } from '../app/storage.service';
+import { Title } from '@angular/platform-browser';
+import { FinTranslateService } from '../translate/fin-translate.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +15,9 @@ export class LayoutService {
 
   private readonly storageService = inject(StorageService);
   private readonly sidenavOpenedKey = 'sidenav_opened';
+
+  private readonly title = inject(Title);
+  private readonly translateService = inject(FinTranslateService);
 
   constructor() {
     this.loadFromStorage();
@@ -31,6 +36,10 @@ export class LayoutService {
 
   public setPageName(pageName: string): void {
     this._pageName.set(pageName);
+
+    const translatedName = this.translateService.translate(pageName);
+    const appName = this.translateService.translate('finCore.appName');
+    this.title.setTitle(`${appName} - ${translatedName}`);
   }
 
   public get isMobile(): boolean {

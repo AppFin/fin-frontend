@@ -13,7 +13,7 @@ import { MenuInput } from '../../types/layouts/menu-input';
   providedIn: 'root',
 })
 export class MenuApiService {
-  private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'menus';
+  private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'menus/';
   private readonly http = inject(HttpClient);
 
   public getList(
@@ -24,7 +24,7 @@ export class MenuApiService {
   }
 
   public getListForSideNav(): Observable<MenuOutput[]> {
-    return this.http.get<MenuOutput[]>(this.API_URL + '/side-nav');
+    return this.http.get<MenuOutput[]>(this.API_URL + 'side-nav');
   }
 
   public get(id: string): Observable<MenuOutput> {

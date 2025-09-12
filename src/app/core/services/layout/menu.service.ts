@@ -6,6 +6,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { StorageService } from '../app/storage.service';
 import { MenuApiService } from './menu-api.service';
+import { AuthService } from '../authentication/auth.service';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +18,7 @@ export class MenuService {
 
   private readonly storageService = inject(StorageService);
   private readonly apiService = inject(MenuApiService);
+  private readonly authService = inject(AuthService);
   private readonly MENUS_METADATA_KEY = 'menus_metadata';
 
   public filterMenus(
@@ -85,7 +88,15 @@ export class MenuService {
     this.saveMenuMetadata(updated);
   }
 
-  public async loadMenuMetadata(): Promise<void> {
+  public startLoadMenuMetadataSub(): void {
+    toObservable(this.authService.isAuthenticated).subscribe(
+      async (isAuthenticated) => {
+        if (isAuthenticated) await this.loadMenuMetadata();
+      }
+    );
+  }
+
+  private async loadMenuMetadata(): Promise<void> {
     const menuOutputs: MenuOutput[] = await this.loadMenusFromApi();
 
     const savedMenuMetadata = this.storageService.loadFromLocalStorage<

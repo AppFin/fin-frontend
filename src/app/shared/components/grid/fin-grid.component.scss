@@ -73,8 +73,7 @@ fin-grid {
       background: $background-color;
       border: 1px solid var(--p-content-border-color);
       border-radius: $border-radius-large;
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
       @media (max-width: $mobile) {
         border-radius: $border-radius-default;

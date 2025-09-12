@@ -21,7 +21,7 @@
             </div>
         }
 
-        <div class="app-container">
+        <div class="app-container" [class.opened]="sideNavOpened() && !isMobile">
             <ng-content/>
         </div>
     </mat-drawer-content>
