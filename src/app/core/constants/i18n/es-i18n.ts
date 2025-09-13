@@ -3,7 +3,9 @@ import { ITranslate } from './i-translate';
 export const EsI18n: ITranslate = {
   finCore: {
     actions: {
+      new: 'Nuevo',
       loading: 'Cargando...',
+      cancel: 'Cancelar',
       save: 'Guardar',
       toggleToLightMode: 'Cambiar a modo claro',
       toggleToDarkMode: 'Cambiar a modo oscuro',
@@ -20,6 +22,8 @@ export const EsI18n: ITranslate = {
       startTyping: 'Empieza a escribir',
       creating: 'Creando',
       editing: 'Edición',
+      edit: 'Editar',
+      delete: 'Eliminar',
 
     },
     appName: 'Fin App',
@@ -121,7 +125,11 @@ export const EsI18n: ITranslate = {
       },
     },
     features: {
+      shared: {
+        name: 'Nombre',
+      },
       menus: {
+        title: 'Menús',
         name: 'Nombre',
         frontRoute: 'Ruta del front',
         color: 'Color',
@@ -130,7 +138,8 @@ export const EsI18n: ITranslate = {
         onlyForAdmin: 'Solo para administrador',
         leftTop: 'Superior izquierda',
         position: 'Posición',
-        hide: 'Esconder'
+        hide: 'Esconder',
+        showOnSideNav: 'Mostrar en la barra lateral',
       },
     },
   },

@@ -5,6 +5,7 @@
   [canSave]="canSave"
   [isSaving]="saving()"
   (onSave)="save()"
+  (onCancel)="fechar()"
 >
   @if (!loading()) {
     <fin-input label="finCore.features.menus.name" [formControl]="formGroup.controls.name" />

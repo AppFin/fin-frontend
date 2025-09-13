@@ -8,6 +8,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FinPageLayoutComponent } from '../fin-page-layout.component';
 import { FinSaveButtonComponent } from '../../save-button/fin-save-button.component';
 import { FinTextComponent } from '../../text/fin-text.component';
+import { FinButtonComponent } from '../../button/fin-button.component';
 
 @Component({
   selector: 'fin-editor-layout',
@@ -16,6 +17,7 @@ import { FinTextComponent } from '../../text/fin-text.component';
     FinSaveButtonComponent,
     FinTextComponent,
     ReactiveFormsModule,
+    FinButtonComponent,
   ],
   templateUrl: './editor-layout.component.html',
   styleUrl: './editor-layout.component.scss',
@@ -28,4 +30,5 @@ export class EditorLayoutComponent {
   public readonly isSaving = input(false);
   public readonly loading = input(false);
   public readonly onSave = output();
+  public readonly onCancel = output();
 }

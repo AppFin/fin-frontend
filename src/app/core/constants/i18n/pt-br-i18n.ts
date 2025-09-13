@@ -3,23 +3,27 @@ import { ITranslate } from './i-translate';
 export const PtBrI18n: ITranslate = {
   finCore: {
     actions: {
-      loading: 'Carregando...',
-      creating: 'Criando',
-      editing: 'Editando',
-      save: 'Salvar',
-      toggleToLightMode: 'Mudar para modo claro',
-      toggleToDarkMode: 'Mudar para modo escuro',
-      search: 'Pesquisar (Ctrl + K)',
-      open: 'Abrir',
-      close: 'Fechar',
       changeOrder: 'Alterar ordem',
-      pin: 'Fixar',
-      unpin: 'Desfixar',
-      searching: 'Pesquisando',
+      close: 'Fechar',
+      creating: 'Criando',
+      delete: 'Excluir',
+      edit: 'Editar',
+      editing: 'Editando',
       loadMore: 'Carregar mais',
+      loading: 'Carregando...',
       noResults: 'Sem resultados',
-      tryDifferentTerms: 'Tente outros termos',
+      open: 'Abrir',
+      pin: 'Fixar',
+      save: 'Salvar',
+      search: 'Pesquisar (Ctrl + K)',
+      searching: 'Pesquisando',
       startTyping: 'Comece a digitar',
+      toggleToDarkMode: 'Mudar para modo escuro',
+      toggleToLightMode: 'Mudar para modo claro',
+      tryDifferentTerms: 'Tente outros termos',
+      unpin: 'Desfixar',
+      new: 'Novo',
+      cancel: 'Cancelar',
     },
     appName: 'App Fin',
     layout: {
@@ -116,7 +120,11 @@ export const PtBrI18n: ITranslate = {
       },
     },
     features: {
+      shared: {
+        name: 'Nome',
+      },
       menus: {
+        title: 'Menus',
         name: 'Nome',
         frontRoute: 'Rota do front',
         color: 'Cor',
@@ -125,8 +133,9 @@ export const PtBrI18n: ITranslate = {
         onlyForAdmin: 'Apenas para administrador',
         leftTop: 'Superior esquerdo',
         position: 'Posição',
-        hide: 'Oculto'
+        hide: 'Oculto',
+        showOnSideNav: 'Mostrar na navegação lateral',
       },
-    },
+    }
   },
 };

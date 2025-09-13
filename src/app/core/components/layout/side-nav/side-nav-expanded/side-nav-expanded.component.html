@@ -87,17 +87,17 @@
                 (click)="unpinMenu($event, menuMetadata.id)"
         />
 
-        <fin-icon [tooltip]="menuMetadata.menu.name" [icon]="menuMetadata.menu.icon"
+        <fin-icon [tooltip]="menuMetadata.menu.name | finTranslate" [icon]="menuMetadata.menu.icon"
                   [iconColor]="menuMetadata.menu.color" size="md"/>
-        <fin-text [text]="menuMetadata.menu.name" type="paragraph"/>
+        <fin-text [text]="menuMetadata.menu.name | finTranslate" type="paragraph"/>
     </button>
 </ng-template>
 
 <ng-template #unpinnedOption let-menuMetadata="menuMetadata">
     <button [routerLink]="menuMetadata.menu.frontRoute" class="unpinned-btn" (click)="optionClicked()">
-        <fin-icon [tooltip]="menuMetadata.menu.name" [icon]="menuMetadata.menu.icon"
+        <fin-icon [tooltip]="menuMetadata.menu.name | finTranslate" [icon]="menuMetadata.menu.icon"
                   [iconColor]="menuMetadata.menu.color" size="md"/>
-        <fin-text [text]="menuMetadata.menu.name" type="paragraph"/>
+        <fin-text [text]="menuMetadata.menu.name | finTranslate" type="paragraph"/>
 
         <span class="spacer"></span>
 

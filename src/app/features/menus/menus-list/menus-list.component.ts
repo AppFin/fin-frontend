@@ -97,6 +97,22 @@ export class MenusListComponent implements OnInit {
         header: 'finCore.features.menus.showOnSideNav',
         width: '50px',
       }),
+      new FinGridIconColumnOption<MenuOutput>({
+        getValue: (item) => {
+          if (!item.onlyForAdmin) {
+            return new FinIconOptions({
+              icon: 'times',
+              color: 'var(--color-disabled)',
+            });
+          }
+          return new FinIconOptions({
+            icon: 'check',
+            color: 'var(--color-success)',
+          });
+        },
+        header: 'finCore.features.menus.onlyForAdmin',
+        width: '50px',
+      }),
     ];
   }
 

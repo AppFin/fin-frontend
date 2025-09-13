@@ -1,18 +1,15 @@
 import {
   ChangeDetectionStrategy,
-  Component, computed,
-  DestroyRef,
+  Component,
+  computed,
   inject,
-  OnInit,
   Signal,
-  signal,
 } from '@angular/core';
 import {
   MatDrawer,
   MatDrawerContainer,
   MatDrawerContent,
 } from '@angular/material/sidenav';
-import { MenuOutput } from '../../../types/layouts/menu-output';
 import { MenuService } from '../../../services/layout/menu.service';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { RouterLink } from '@angular/router';
@@ -20,7 +17,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { LayoutService } from '../../../services/layout/layout.service';
 import { SideNavExpandedComponent } from './side-nav-expanded/side-nav-expanded.component';
 import { MenuMetadata } from '../../../types/layouts/menu-metadata';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FinTranslatePipe } from '../../../pipes/translate/fin-translate.pipe';
 
 @Component({
   selector: 'fin-side-nav',
@@ -32,6 +29,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     RouterLink,
     NgTemplateOutlet,
     SideNavExpandedComponent,
+    FinTranslatePipe,
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss',

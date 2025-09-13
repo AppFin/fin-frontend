@@ -27,7 +27,7 @@ export class MenuService {
     maxResultCount: number
   ): Promise<PagedOutput<MenuOutput>> {
     const request = this.apiService.getList({
-      filter: { filter, property: 'Name' },
+      filter: { filter, property: 'KeyWords' },
       skipCount,
       maxResultCount,
     });

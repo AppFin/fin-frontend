@@ -13,10 +13,19 @@
       </form>
     }
 
+    <div class="form-footer">
+      <fin-button
+        severity="secondary"
+        variant="outlined"
+        text="finCore.actions.cancel"
+        (onClick)="onCancel.emit()"
+      />
+
     <fin-save-button
       [canSave]="canSave()"
       [saving]="isSaving()"
       (onSave)="onSave.emit()"
     />
+    </div>
   </div>
 </fin-page-layout>

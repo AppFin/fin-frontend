@@ -30,6 +30,6 @@
 
 <ng-template #btn let-menu="menu">
     <button [routerLink]="menu.frontRoute" class="menu-item">
-        <fin-icon [tooltip]="menu.name" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
+        <fin-icon [tooltip]="menu.name | finTranslate" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
     </button>
 </ng-template>

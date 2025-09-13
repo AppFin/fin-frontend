@@ -85,9 +85,11 @@ export class MenusEditorComponent implements OnInit {
         first(),
         finalize(() => this.saving.set(false))
       )
-      .subscribe(() => {
-        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-      });
+      .subscribe(() => this.fechar());
+  }
+
+  public fechar(): void {
+    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
 
   private getMenuPositionOptions(): Observable<
@@ -121,7 +123,7 @@ export class MenusEditorComponent implements OnInit {
       }),
       name: new FormControl(menuEditing?.name ?? '', {
         nonNullable: true,
-        validators: [Validators.required, Validators.maxLength(20)],
+        validators: [Validators.required, Validators.maxLength(100)],
       }),
       position: new FormControl(menuEditing?.position ?? null, {
         validators: Validators.required,

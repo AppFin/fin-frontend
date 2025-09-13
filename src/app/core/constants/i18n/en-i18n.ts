@@ -5,6 +5,7 @@ export const EnI18n: ITranslate = {
     actions: {
       loading: 'Loading...',
       save: 'Save',
+      cancel: 'Cancel',
       toggleToLightMode: 'Toggle to light mode',
       toggleToDarkMode: 'Toggle to dark mode',
       search: 'Search (Ctrl + K)',
@@ -19,7 +20,10 @@ export const EnI18n: ITranslate = {
       tryDifferentTerms: 'Try different terms',
       creating: 'Creating',
       editing: 'Editing',
+      edit: 'Edit',
+      delete: 'Delete',
       startTyping: 'Start typing',
+      new: 'New'
     },
     appName: 'Fin App',
     layout: {
@@ -119,7 +123,11 @@ export const EnI18n: ITranslate = {
       },
     },
     features: {
+      shared: {
+        name: 'Name',
+      },
       menus: {
+        title: 'Menus',
         name: 'Name',
         frontRoute: 'Front route',
         color: 'Color',
@@ -128,8 +136,9 @@ export const EnI18n: ITranslate = {
         onlyForAdmin: 'Only for admin',
         leftTop: 'Left top',
         position: 'Position',
-        hide: 'Hide'
+        hide: 'Hide',
+        showOnSideNav: 'Show on side navigation',
       },
-    },
+    }
   },
 };

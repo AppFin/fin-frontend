@@ -15,6 +15,10 @@ export interface ITranslate {
       empty: string;
     };
     actions: {
+      new: string;
+      cancel: string;
+      edit: string;
+      delete: string;
       creating: string;
       editing: string;
       loading: string;
@@ -113,7 +117,12 @@ export interface ITranslate {
       };
     };
     features: {
+      shared: {
+        name: string,
+      },
       menus: {
+        title: string,
+        showOnSideNav: string,
         name: string;
         frontRoute: string;
         color: string;

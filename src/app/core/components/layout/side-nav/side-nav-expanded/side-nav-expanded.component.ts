@@ -4,14 +4,12 @@ import {
   computed,
   effect,
   inject,
-  model,
   Signal,
   signal,
 } from '@angular/core';
 import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
 import { LayoutService } from '../../../../services/layout/layout.service';
-import { MenuOutput } from '../../../../types/layouts/menu-output';
 import { RouterLink } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { ifVerticalAnimation } from '../../../../../shared/animations/if-vertical.animation';
@@ -19,6 +17,7 @@ import { FinButtonComponent } from '../../../../../shared/components/button/fin-
 import { MenuService } from '../../../../services/layout/menu.service';
 import { MenuMetadata } from '../../../../types/layouts/menu-metadata';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import { FinTranslatePipe } from '../../../../pipes/translate/fin-translate.pipe';
 
 @Component({
   selector: 'fin-side-nav-expanded',
@@ -29,6 +28,7 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
     NgTemplateOutlet,
     FinButtonComponent,
     DragDropModule,
+    FinTranslatePipe,
   ],
   templateUrl: './side-nav-expanded.component.html',
   styleUrl: './side-nav-expanded.component.scss',
@@ -55,7 +55,7 @@ export class SideNavExpandedComponent {
   }
 
   public get menuMetadata(): Signal<MenuMetadata[]> {
-    return this.menuService.menusMetadata
+    return this.menuService.menusMetadata;
   }
 
   public get isMobile(): boolean {
