@@ -1,9 +1,28 @@
-<fin-editor-layout title="finCore.actions.creating">
-  <fin-input label="finCore.features.menus.name" [formControl]="mockFOrm" />
-  <fin-input label="finCore.features.menus.frotRoute" [formControl]="mockFOrm" />
-  <fin-color-picker label="finCore.features.menus.color" [formControl]="mockFOrm2" />
-  <fin-input label="finCore.features.menus.icon" [formControl]="mockFOrm" />
-  <fin-input label="finCore.features.menus.keyWord" [formControl]="mockFOrm" />
-  <fin-input label="finCore.features.menus.onlyForAdmin" [formControl]="mockFOrm" />
-  <fin-select label="finCore.features.menus.position" [formControl]="mockFOrm" [options]="selectOptions" />
+<fin-editor-layout
+  title="finCore.actions.creating"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+>
+  <fin-input label="finCore.features.menus.name" [formControl]="formGroup.controls.name" />
+  <fin-input
+    label="finCore.features.menus.frotRoute"
+    [formControl]="formGroup.controls.frontRoute"
+    helpText="https://fontawesome.com/search"
+  />
+  <fin-color-picker label="finCore.features.menus.color" [formControl]="formGroup.controls.color" />
+  <fin-input
+    label="finCore.features.menus.icon"
+    [formControl]="formGroup.controls.icon"
+    [iconSuffix]="formGroup.controls.icon.value"
+    [iconSuffixColor]="formGroup.controls.color.value"
+  />
+  <fin-input label="finCore.features.menus.keyWord" [formControl]="formGroup.controls.keyWords" />
+  <fin-select label="finCore.features.menus.position" [formControl]="formGroup.controls.position"
+              [options]="selectOptions" />
+  <fin-toggle-switch
+    label="finCore.features.menus.onlyForAdmin"
+    [formControl]="formGroup.controls.onlyForAdmin"
+  />
 </fin-editor-layout>

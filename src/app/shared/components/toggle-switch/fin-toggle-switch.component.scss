@@ -5,13 +5,8 @@
   }
 }
 
-.disabled input {
+.disabled {
   filter: brightness(0.9);
-}
-
-.p-inputtext.ng-invalid.ng-touched,
-.p-inputtext.ng-invalid.ng-dirty {
-  border-color: var(--p-inputtext-invalid-border-color);
 }
 
 .p-iftalabel:has(.ng-invalid.ng-touched) label,
@@ -30,14 +25,19 @@
   }
 }
 
-
 .input-container {
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 6px;
   color: var(--text-color);
 
-  .p-inputicon {
-    top: 20%;
+  p-iftalabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    label {
+      position: initial;
+    }
   }
 }
