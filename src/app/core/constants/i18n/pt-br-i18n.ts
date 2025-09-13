@@ -3,6 +3,7 @@ import { ITranslate } from './i-translate';
 export const PtBrI18n: ITranslate = {
   finCore: {
     actions: {
+      cancel: 'Cancelar',
       changeOrder: 'Alterar ordem',
       close: 'Fechar',
       creating: 'Criando',
@@ -11,6 +12,7 @@ export const PtBrI18n: ITranslate = {
       editing: 'Editando',
       loadMore: 'Carregar mais',
       loading: 'Carregando...',
+      new: 'Novo',
       noResults: 'Sem resultados',
       open: 'Abrir',
       pin: 'Fixar',
@@ -22,24 +24,10 @@ export const PtBrI18n: ITranslate = {
       toggleToLightMode: 'Mudar para modo claro',
       tryDifferentTerms: 'Tente outros termos',
       unpin: 'Desfixar',
-      new: 'Novo',
-      cancel: 'Cancelar',
     },
     appName: 'App Fin',
-    layout: {
-      notifications: 'Notificações',
-      xNotifications: '({{notificationCount}})  notificações',
-      settings: 'Configurações',
-      exit: 'Sair',
-      termsAndPolicies: 'Termos e políticas',
-      admin: 'Administrador',
-      openMenu: 'Abrir menus',
-      closeMenu: 'Fechar menus',
-      pinnedMenus: 'Menus fixados',
-      unpinnedMenus: 'Menus não fixados',
-      empty: 'Vazio',
-    },
     auth: {
+      comeBackLogin: 'Voltar para o login',
       confirmYourPassword: 'Confirme sua senha',
       email: 'E-mail',
       erros: {
@@ -52,16 +40,19 @@ export const PtBrI18n: ITranslate = {
       },
       pages: {
         createAccount: {
-          subtitle: 'Preencha os dados abaixo para começar',
-          title: 'Criar sua conta',
+          next: 'Próximo',
           steps: {
             credentials: {
               invalidCode: 'Código é obrigatório',
+              resendCode: 'Reenviar código',
               resendConde: 'Reenviar código',
               title: 'Credenciais',
               typeCodeSentOnEmail: 'Digite o código enviado no seu e-mail',
-              resendCode: 'Reenviar código',
               youCanResendCodeIn: 'Você pode reenviar o código em {{resendIn}}',
+            },
+            finished: {
+              goToFin: 'Acessar o Fin!',
+              title: 'Pronto!',
             },
             personal: {
               displayName: 'Como quer ser chamado?',
@@ -69,12 +60,9 @@ export const PtBrI18n: ITranslate = {
               lastName: 'Segundo nome',
               title: 'Você',
             },
-            finished: {
-              goToFin: 'Acessar o Fin!',
-              title: 'Pronto!',
-            },
           },
-          next: 'Próximo',
+          subtitle: 'Preencha os dados abaixo para começar',
+          title: 'Criar sua conta',
         },
         login: {
           createAccount: 'Criar conta',
@@ -88,20 +76,18 @@ export const PtBrI18n: ITranslate = {
         resetPassword: {
           resetPassword: 'Redefinir sua senha',
           subtitle: 'Informe confirme sua nova senha',
-          title: 'Redefinir senha',
           success: 'Sucesso!',
+          title: 'Redefinir senha',
         },
         sendResetEmail: {
-          emailSent:
-            'Se o e-email existir na plataforma ele  foi enviado agora',
+          emailSent: 'Se o e-email existir na plataforma ele  foi enviado agora',
           sendLink: 'Enviar link',
           subtitle: 'Digite seu email para receber o link de recuperação',
           title: 'Esqueceu sua senha?',
         },
       },
-      comeBackLogin: 'Voltar para o login',
-      talkWithSupport: 'Falar com o Suporte',
       password: 'Senha',
+      talkWithSupport: 'Falar com o Suporte',
     },
     connectors: {
       or: 'ou',
@@ -113,29 +99,42 @@ export const PtBrI18n: ITranslate = {
       pattern: 'Formato inválido',
       required: 'Este campo é obrigatório',
     },
+    features: {
+      menus: {
+        color: 'Cor',
+        frontRoute: 'Rota do front',
+        hide: 'Oculto',
+        icon: 'Ícone',
+        keyWord: 'Palavra-chave',
+        leftTop: 'Superior esquerdo',
+        name: 'Nome',
+        onlyForAdmin: 'Apenas para administrador',
+        position: 'Posição',
+        showOnSideNav: 'Mostrar na navegação lateral',
+        title: 'Menus',
+      },
+      shared: {
+        name: 'Nome',
+      },
+    },
+    layout: {
+      admin: 'Administrador',
+      closeMenu: 'Fechar menus',
+      empty: 'Vazio',
+      exit: 'Sair',
+      notifications: 'Notificações',
+      openMenu: 'Abrir menus',
+      pinnedMenus: 'Menus fixados',
+      settings: 'Configurações',
+      termsAndPolicies: 'Termos e políticas',
+      unpinnedMenus: 'Menus não fixados',
+      xNotifications: '({{notificationCount}})  notificações',
+    },
     sharedComponents: {
       grid: {
         noData: 'Nenhum item para visualizar',
         reload: 'Recarregar',
       },
     },
-    features: {
-      shared: {
-        name: 'Nome',
-      },
-      menus: {
-        title: 'Menus',
-        name: 'Nome',
-        frontRoute: 'Rota do front',
-        color: 'Cor',
-        icon: 'Ícone',
-        keyWord: 'Palavra-chave',
-        onlyForAdmin: 'Apenas para administrador',
-        leftTop: 'Superior esquerdo',
-        position: 'Posição',
-        hide: 'Oculto',
-        showOnSideNav: 'Mostrar na navegação lateral',
-      },
-    }
   },
 };
