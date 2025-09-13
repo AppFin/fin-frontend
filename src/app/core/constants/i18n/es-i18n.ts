@@ -3,38 +3,56 @@ import { ITranslate } from './i-translate';
 export const EsI18n: ITranslate = {
   finCore: {
     actions: {
+      cancel: 'Cancelar',
+      changeOrder: 'Cambiar orden',
+      close: 'Cerrar',
+      creating: 'Creando',
+      delete: 'Eliminar',
+      edit: 'Editar',
+      editing: 'Edición',
+      loadMore: 'Cargar más',
       loading: 'Cargando...',
+      new: 'Nuevo',
+      noResults: 'Sin resultados',
+      open: 'Abrir',
+      pin: 'Anclar',
       save: 'Guardar',
-      toggleToLightMode: 'Cambiar a modo claro',
+      search: 'Buscar (Ctrl + K)',
+      searching: 'Buscando',
+      startTyping: 'Empieza a escribir',
       toggleToDarkMode: 'Cambiar a modo oscuro',
+      toggleToLightMode: 'Cambiar a modo claro',
+      tryDifferentTerms: 'Prueba con otros términos',
+      unpin: 'Desanclar',
     },
     appName: 'Fin App',
     auth: {
+      comeBackLogin: 'Volver al inicio de sesión',
       confirmYourPassword: 'Confirma tu contraseña',
       email: 'Correo electrónico',
       erros: {
         passwordMinLength: 'La contraseña debe tener al menos 5 caracteres',
-        passwordMustHasLowercase:
-          'La contraseña debe contener una letra minúscula',
+        passwordMustHasLowercase: 'La contraseña debe contener una letra minúscula',
         passwordMustHasNumber: 'La contraseña debe contener un número',
-        passwordMustHasSpecial:
-          'La contraseña debe contener un carácter especial',
-        passwordMustHasUppercase:
-          'La contraseña debe contener una letra mayúscula',
+        passwordMustHasSpecial: 'La contraseña debe contener un carácter especial',
+        passwordMustHasUppercase: 'La contraseña debe contener una letra mayúscula',
         passwordsMustBeEquals: 'Las contraseñas deben ser iguales',
       },
       pages: {
         createAccount: {
-          subtitle: 'Completa la información a continuación para comenzar',
-          title: 'Crea tu cuenta',
+          next: 'Siguiente',
           steps: {
             credentials: {
               invalidCode: 'El código no es válido',
+              resendCode: 'Reenviar código',
               resendConde: 'Reenviar código',
               title: 'Credenciales',
               typeCodeSentOnEmail: 'Introduce el código enviado a tu correo',
-              resendCode: 'Reenviar código',
               youCanResendCodeIn: 'Puedes reenviar el código en {{resendIn}}',
+            },
+            finished: {
+              goToFin: 'Ir a Fin',
+              title: '¡Listo!',
             },
             personal: {
               displayName: '¿Cómo quieres que te llamen?',
@@ -42,12 +60,9 @@ export const EsI18n: ITranslate = {
               lastName: 'Apellido',
               title: 'Tú',
             },
-            finished: {
-              goToFin: 'Ir a Fin',
-              title: '¡Listo!',
-            },
           },
-          next: 'Siguiente',
+          subtitle: 'Completa la información a continuación para comenzar',
+          title: 'Crea tu cuenta',
         },
         login: {
           createAccount: 'Crear cuenta',
@@ -61,19 +76,16 @@ export const EsI18n: ITranslate = {
         resetPassword: {
           resetPassword: 'Restablecer tu contraseña',
           subtitle: 'Escribe tu nueva contraseña y confírmala',
-          title: 'Restablecer contraseña',
           success: '¡Éxito!',
+          title: 'Restablecer contraseña',
         },
         sendResetEmail: {
-          emailSent:
-            'Te hemos enviado un correo si tu dirección existe en nuestro sistema',
+          emailSent: 'Te hemos enviado un correo si tu dirección existe en nuestro sistema',
           sendLink: 'Enviar enlace',
-          subtitle:
-            'Introduce tu correo para recibir el enlace de recuperación',
+          subtitle: 'Introduce tu correo para recibir el enlace de recuperación',
           title: '¿Olvidaste tu contraseña?',
         },
       },
-      comeBackLogin: 'Volver al inicio de sesión',
       password: 'Contraseña',
       talkWithSupport: 'Hablar con el Soporte',
     },
@@ -86,6 +98,37 @@ export const EsI18n: ITranslate = {
       minLength: 'Mínimo de {{minLength}} caracteres',
       pattern: 'Formato inválido',
       required: 'Este campo es obligatorio',
+    },
+    features: {
+      menus: {
+        color: 'Color',
+        frontRoute: 'Ruta del front',
+        hide: 'Esconder',
+        icon: 'Ícono',
+        keyWord: 'Palabra clave',
+        leftTop: 'Superior izquierda',
+        name: 'Nombre',
+        onlyForAdmin: 'Solo para administrador',
+        position: 'Posición',
+        showOnSideNav: 'Mostrar en la barra lateral',
+        title: 'Menús',
+      },
+      shared: {
+        name: 'Nombre',
+      },
+    },
+    layout: {
+      admin: 'Administrador',
+      closeMenu: 'Cerrar menú',
+      empty: 'Vacío',
+      exit: 'Salir',
+      notifications: 'Notificaciones',
+      openMenu: 'Abrir menú',
+      pinnedMenus: 'Menús fijados',
+      settings: 'Configuración',
+      termsAndPolicies: 'Términos y políticas',
+      unpinnedMenus: 'Menús no fijados',
+      xNotifications: '({{notificationCount}}) notificaciones',
     },
     sharedComponents: {
       grid: {

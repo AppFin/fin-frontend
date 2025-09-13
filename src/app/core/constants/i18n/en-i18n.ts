@@ -3,37 +3,56 @@ import { ITranslate } from './i-translate';
 export const EnI18n: ITranslate = {
   finCore: {
     actions: {
+      cancel: 'Cancel',
+      changeOrder: 'Change order',
+      close: 'Close',
+      creating: 'Creating',
+      delete: 'Delete',
+      edit: 'Edit',
+      editing: 'Editing',
+      loadMore: 'Load more',
       loading: 'Loading...',
+      new: 'New',
+      noResults: 'No results',
+      open: 'Open',
+      pin: 'Pin',
       save: 'Save',
-      toggleToLightMode: 'Toggle to light mode',
+      search: 'Search (Ctrl + K)',
+      searching: 'Searching',
+      startTyping: 'Start typing',
       toggleToDarkMode: 'Toggle to dark mode',
+      toggleToLightMode: 'Toggle to light mode',
+      tryDifferentTerms: 'Try different terms',
+      unpin: 'Unpin',
     },
     appName: 'Fin App',
     auth: {
+      comeBackLogin: 'Back to login',
       confirmYourPassword: 'Confirm Your password',
       email: 'Email',
       erros: {
         passwordMinLength: 'The password must have at least 5 characters',
-        passwordMustHasLowercase:
-          'The password must contain a lowercase letter',
+        passwordMustHasLowercase: 'The password must contain a lowercase letter',
         passwordMustHasNumber: 'The password must contain a number',
         passwordMustHasSpecial: 'The password must contain a special character',
-        passwordMustHasUppercase:
-          'The password must contain an uppercase letter',
+        passwordMustHasUppercase: 'The password must contain an uppercase letter',
         passwordsMustBeEquals: 'Passwords must be the same',
       },
       pages: {
         createAccount: {
-          subtitle: 'Fill in the information below to get started',
-          title: 'Create your account',
+          next: 'Next',
           steps: {
             credentials: {
               invalidCode: 'Code is invalid',
+              resendCode: 'Resend code',
               resendConde: 'Resend code',
               title: 'Credentials',
               typeCodeSentOnEmail: 'Enter the code sent to your email',
-              resendCode: 'Resend code',
               youCanResendCodeIn: 'You can resend the code in {{resendIn}}',
+            },
+            finished: {
+              goToFin: 'Go to Fin',
+              title: 'Done!',
             },
             personal: {
               displayName: 'How would you like to be called?',
@@ -41,12 +60,9 @@ export const EnI18n: ITranslate = {
               lastName: 'Last name',
               title: 'You',
             },
-            finished: {
-              goToFin: 'Go to Fin',
-              title: 'Done!',
-            },
           },
-          next: 'Next',
+          subtitle: 'Fill in the information below to get started',
+          title: 'Create your account',
         },
         login: {
           createAccount: 'Create account',
@@ -60,20 +76,18 @@ export const EnI18n: ITranslate = {
         resetPassword: {
           resetPassword: 'Reset your password',
           subtitle: 'Type your new password and confirm it',
-          title: 'Reset password',
           success: 'Success!',
+          title: 'Reset password',
         },
         sendResetEmail: {
-          emailSent:
-            'We’ve sent you an email if your address exists in our system',
+          emailSent: 'We’ve sent you an email if your address exists in our system',
           sendLink: 'Send link',
           subtitle: 'Enter your email to receive the recovery link',
           title: 'Forgot your password?',
         },
       },
-      comeBackLogin: 'Back to login',
-      talkWithSupport: 'Talk with support',
       password: 'Password',
+      talkWithSupport: 'Talk with support',
     },
     connectors: {
       or: 'or',
@@ -84,6 +98,37 @@ export const EnI18n: ITranslate = {
       minLength: 'Minimum of {{minLength}} characters',
       pattern: 'Invalid format',
       required: 'This field is required',
+    },
+    features: {
+      menus: {
+        color: 'Color',
+        frontRoute: 'Front route',
+        hide: 'Hide',
+        icon: 'Icon',
+        keyWord: 'Keyword',
+        leftTop: 'Left top',
+        name: 'Name',
+        onlyForAdmin: 'Only for admin',
+        position: 'Position',
+        showOnSideNav: 'Show on side navigation',
+        title: 'Menus',
+      },
+      shared: {
+        name: 'Name',
+      },
+    },
+    layout: {
+      admin: 'Admin',
+      closeMenu: 'Close menus',
+      empty: 'Empty',
+      exit: 'Exit',
+      notifications: 'Notifications',
+      openMenu: 'Open menus',
+      pinnedMenus: 'Pinned menus',
+      settings: 'Settings',
+      termsAndPolicies: 'Terms and policies',
+      unpinnedMenus: 'Unpinned menus',
+      xNotifications: '({{notificationCount}}) notifications',
     },
     sharedComponents: {
       grid: {

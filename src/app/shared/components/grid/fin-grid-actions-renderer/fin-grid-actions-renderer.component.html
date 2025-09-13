@@ -3,7 +3,7 @@
 @if(i) {
     @for (action of effectiveActions(); track action) {
         <fin-button
-                (onClick)="action.onClick(i)"
+                (onClick)="onActionClick(action)"
                 [disabled]="action.disabled"
                 [icon]="action.icon.icon"
                 [iconColor]="action.icon.color"

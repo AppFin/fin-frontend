@@ -1,0 +1,111 @@
+<div class="drawer-container">
+    <div class="drawer-header">
+        <fin-text
+                text="finCore.layout.pinnedMenus"
+                type="subtitle"
+                severity="primary"
+        />
+
+        <button class="action-btn" (click)="toggleSideNav()">
+            <fin-icon
+                    tooltip="finCore.layout.closeMenu"
+                    icon="chevron-left"
+                    size="md"
+            />
+        </button>
+    </div>
+
+    <div class="menus-container">
+        <div
+                class="pinned-menus"
+                cdkDropList
+                cdkDropListOrientation="mixed"
+                (cdkDropListDropped)="menuDropped($event)"
+        >
+            @for (menu of menusPinned(); track menu.id) {
+                <div cdkDrag>
+                    <ng-container *ngTemplateOutlet="menuBtn; context: {menuMetadata: menu}"/>
+                </div>
+
+            } @empty {
+                <fin-text text="finCore.layout.empty" type="paragraph"/>
+            }
+        </div>
+
+        <div class="unpinned-menus">
+            <div class="unpinned-menus-header">
+                <fin-text
+                        text="finCore.layout.unpinnedMenus"
+                        type="subtitle"
+                        severity="primary"
+                />
+
+                <button class="action-btn" (click)="unpinnedOpened.set(!unpinnedOpened())">
+                    <fin-icon
+                            [tooltip]="unpinnedOpened() ? 'finCore.actions.close' : 'finCore.actions.open'"
+                            [icon]="unpinnedOpened() ? 'chevron-down' : 'chevron-up'"
+                            size="md"
+                    />
+                </button>
+            </div>
+
+            @if (unpinnedOpened()) {
+                <div [@ifVertical] class="unpinned-container">
+                    @for (menu of menusUnpinned(); track menu.id) {
+                        <ng-container *ngTemplateOutlet="unpinnedOption; context: {menuMetadata: menu}"/>
+                    } @empty {
+                        <fin-text text="finCore.layout.empty" type="paragraph"/>
+                    }
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+<ng-template #menuBtn let-menuMetadata="menuMetadata">
+    <button
+            [routerLink]="menuMetadata.menu.frontRoute"
+            class="menu-option"
+            (click)="optionClicked()"
+    >
+        <fin-icon
+                class="drag-icon"
+                size="xs"
+                icon="bars"
+                severity="secondary"
+                tooltip="finCore.actions.changeOrder"
+                cdkDragHandle
+        />
+
+        <fin-icon
+                class="unpin-icon"
+                size="xs"
+                icon="thumbtack-slash"
+                severity="secondary"
+                tooltip="finCore.actions.unpin"
+                (click)="unpinMenu($event, menuMetadata.id)"
+        />
+
+        <fin-icon [tooltip]="menuMetadata.menu.name | finTranslate" [icon]="menuMetadata.menu.icon"
+                  [iconColor]="menuMetadata.menu.color" size="md"/>
+        <fin-text [text]="menuMetadata.menu.name | finTranslate" type="paragraph"/>
+    </button>
+</ng-template>
+
+<ng-template #unpinnedOption let-menuMetadata="menuMetadata">
+    <button [routerLink]="menuMetadata.menu.frontRoute" class="unpinned-btn" (click)="optionClicked()">
+        <fin-icon [tooltip]="menuMetadata.menu.name | finTranslate" [icon]="menuMetadata.menu.icon"
+                  [iconColor]="menuMetadata.menu.color" size="md"/>
+        <fin-text [text]="menuMetadata.menu.name | finTranslate" type="paragraph"/>
+
+        <span class="spacer"></span>
+
+        <fin-button
+                class="pin-icon"
+                icon="thumbtack"
+                iconTooltip="finCore.actions.pin"
+                (click)="pinMenu($event, menuMetadata.id)"
+        />
+    </button>
+</ng-template>

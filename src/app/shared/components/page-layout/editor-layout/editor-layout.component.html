@@ -1,0 +1,31 @@
+<fin-page-layout [title]="title()" [loading]="loading()">
+  <div class="form-container">
+    <div class="form-header">
+      <fin-text
+        type="title"
+        [text]="title()"
+      />
+    </div>
+
+    @if (formGroup()) {
+      <form [formGroup]="formGroup()">
+        <ng-content />
+      </form>
+    }
+
+    <div class="form-footer">
+      <fin-button
+        severity="secondary"
+        variant="outlined"
+        text="finCore.actions.cancel"
+        (onClick)="onCancel.emit()"
+      />
+
+    <fin-save-button
+      [canSave]="canSave()"
+      [saving]="isSaving()"
+      (onSave)="onSave.emit()"
+    />
+    </div>
+  </div>
+</fin-page-layout>

@@ -1,12 +1,42 @@
 export interface ITranslate {
   finCore: {
+    appName: string;
+    layout: {
+      notifications: string;
+      xNotifications: string;
+      settings: string;
+      exit: string;
+      termsAndPolicies: string;
+      admin: string;
+      openMenu: string;
+      closeMenu: string;
+      pinnedMenus: string;
+      unpinnedMenus: string;
+      empty: string;
+    };
     actions: {
+      new: string;
+      cancel: string;
+      edit: string;
+      delete: string;
+      creating: string;
+      editing: string;
       loading: string;
       save: string;
       toggleToLightMode: string;
       toggleToDarkMode: string;
+      search: string;
+      searching: string;
+      loadMore: string;
+      noResults: string;
+      tryDifferentTerms: string;
+      startTyping: string;
+      open: string;
+      close: string;
+      changeOrder: string;
+      pin: string;
+      unpin: string;
     };
-    appName: string;
     auth: {
       confirmYourPassword: string;
       email: string;
@@ -84,6 +114,24 @@ export interface ITranslate {
       grid: {
         noData: string;
         reload: string;
+      };
+    };
+    features: {
+      shared: {
+        name: string,
+      },
+      menus: {
+        title: string,
+        showOnSideNav: string,
+        name: string;
+        frontRoute: string;
+        color: string;
+        icon: string;
+        keyWord: string;
+        onlyForAdmin: string;
+        leftTop: string;
+        hide: string;
+        position: string;
       };
     };
   };

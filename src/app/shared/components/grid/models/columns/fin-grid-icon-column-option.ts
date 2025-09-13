@@ -26,7 +26,7 @@ export class FinIconOptions {
   public icon: string;
   public tooltip?: string;
   public color?: string;
-  public fontAwesomeType: FinFontAwesomeType = 'fas';
+  public fontAwesomeType: FinFontAwesomeType = 'fa-solid';
   public type: FinIconType = 'fontAwesome';
   public imageFolder: string = 'icons/';
   public imageExtension: string = '.png';

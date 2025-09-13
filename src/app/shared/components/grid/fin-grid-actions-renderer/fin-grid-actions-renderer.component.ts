@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { IFinGridActionOption } from '../models/i-fin-grid-action-option';
-import { filter, firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom, Observable, take } from 'rxjs';
 import { FinIconOptions } from '../models/columns/fin-grid-icon-column-option';
 import { FinButtonComponent } from '../../button/fin-button.component';
 
@@ -39,8 +39,10 @@ export class FinGridActionsRendererComponent<T> implements OnInit {
     const actionsRequest = this.actions()?.map(async (a) => {
       return {
         action: a,
-        canShow: a.canShow == null ? true : await firstValueFrom(a.canShow(item)),
-        disabled: a.disabled == null ? false : await firstValueFrom(a.disabled(item)),
+        canShow:
+          a.canShow == null ? true : await firstValueFrom(a.canShow(item)),
+        disabled:
+          a.disabled == null ? false : await firstValueFrom(a.disabled(item)),
       };
     });
     if (!actionsRequest) return;
@@ -55,5 +57,14 @@ export class FinGridActionsRendererComponent<T> implements OnInit {
         } as IFinGridEffectiveAction<T>;
       });
     this.effectiveActions.set(actions);
+  }
+
+  public onActionClick(action: IFinGridEffectiveAction<T>): void {
+    const item = this.item();
+    if (!item) return;
+    action
+      .onClick(item)
+      .pipe(take(1))
+      .subscribe(() => {});
   }
 }

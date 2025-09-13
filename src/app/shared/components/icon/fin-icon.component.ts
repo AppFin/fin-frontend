@@ -8,6 +8,8 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
+import { FinSeverity } from '../../../core/types/themes/fin-severity';
+import { finSeverityConverter } from '../../../core/functions/fin-severity-converter';
 
 export type FinIconSize =
   | 'xs'
@@ -16,15 +18,10 @@ export type FinIconSize =
   | 'lg'
   | 'xl'
   | '2xl'
+  | '3xl'
   | '10xl'
   | '15xl';
-export type FinFontAwesomeType =
-  | 'fas'
-  | 'far'
-  | 'fab'
-  | 'fal'
-  | 'fad'
-  | 'fa-brands';
+export type FinFontAwesomeType = 'fa-solid' | 'fa-regular' | 'fa-brands';
 export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 
 @Component({
@@ -42,7 +39,7 @@ export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
 })
 export class FinIconComponent {
   public readonly icon = input<string>();
-  public readonly fontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly fontAwesomeType = input<FinFontAwesomeType>('fa-solid');
   public readonly type = input<FinIconType>('fontAwesome');
   public readonly imageFolder = input<string>('icons/');
   public readonly imageExtension = input<string>('.png');
@@ -53,6 +50,7 @@ export class FinIconComponent {
   public readonly boxRadius = input<number>(6);
   public readonly padding = input<number>(4);
   public readonly tooltip = input<string>('');
+  public readonly severity = input<FinSeverity | null>(null);
   public readonly imagePath = computed(() => {
     if (!this.icon() || this.type() === 'fontAwesome') return '';
 
@@ -78,6 +76,7 @@ export class FinIconComponent {
     lg: 24,
     xl: 32,
     '2xl': 40,
+    '3xl': 48,
     '10xl': 120,
     '15xl': 180,
   };
@@ -86,5 +85,11 @@ export class FinIconComponent {
   });
   public readonly containerSize = computed(() => {
     return this.iconSize() + this.padding() * 2;
+  });
+  public readonly iconEffectiveColor = computed(() => {
+    if (this.iconColor()) return this.iconColor();
+    const severity = this.severity();
+    if (severity !== null) return finSeverityConverter(severity);
+    return '';
   });
 }

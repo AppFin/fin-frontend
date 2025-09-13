@@ -1,7 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment';
 import { catchError, firstValueFrom, of, tap, throwError } from 'rxjs';
 import { UserProps } from '../../models/authentication/user-props';
 import { LoginOutput } from '../../models/authentication/login-output';
@@ -10,6 +9,8 @@ import { AuthGoogleService } from './auth-google.service';
 import { ResetPasswordInput } from '../../models/authentication/reset-password-input';
 import { ResetPasswordErrorCode } from '../../enums/authentication/reset-password-error-code';
 import { AuthApiService } from './auth-api.service';
+import { jwtDecode } from 'jwt-decode';
+import { StorageService } from '../app/storage.service';
 
 export type ExternalLoginProvider = 'Google';
 
@@ -26,6 +27,7 @@ export class AuthService {
 
   private readonly api = inject(AuthApiService);
   private readonly router = inject(Router);
+  private readonly storageService = inject(StorageService);
   private readonly googleAuthService = inject(AuthGoogleService);
 
   private readonly TOKEN_KEY = 'auth_token';
@@ -98,7 +100,7 @@ export class AuthService {
   }
 
   public getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return this.storageService.loadFromLocalStorage<string>(this.TOKEN_KEY);
   }
 
   private startTokenRefreshTimer(): void {
@@ -169,29 +171,29 @@ export class AuthService {
 
   private clearAuth(): void {
     this.clearTokenRefreshTimer();
-    localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
+    this.storageService.removeFromLocalStorage(this.TOKEN_KEY);
+    this.storageService.removeFromLocalStorage(this.REFRESH_TOKEN_KEY);
     this.currentUserSubject.set(null);
     this.isAuthenticatedSubject.set(false);
   }
 
   private setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
+    this.storageService.saveToLocalStorage(this.TOKEN_KEY, token);
   }
 
   private setRefreshToken(refreshToken: string): void {
-    localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
+    this.storageService.saveToLocalStorage(this.REFRESH_TOKEN_KEY, refreshToken);
   }
 
   private getRefreshToken(): string | null {
-    return localStorage.getItem(this.REFRESH_TOKEN_KEY);
+    return this.storageService.loadFromLocalStorage<string>(this.REFRESH_TOKEN_KEY);
   }
 
   private setCurrentUser(): void {
     const token = this.getToken();
     if (!token) return;
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+      const payload = jwtDecode(token) as any;
 
       const user = new UserProps({
         userId: payload.userId || '',

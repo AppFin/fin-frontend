@@ -29,7 +29,7 @@
         @case ('title') {
             <h1
                     class="fin-text fin-text-title"
-                    [style.color]="textColor()"
+                    [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
                     [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
@@ -40,7 +40,7 @@
         @case ('subtitle') {
             <h2
                     class="fin-text fin-text-subtitle"
-                    [style.color]="textColor()"
+                    [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
                     [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
@@ -51,7 +51,7 @@
         @case ('paragraph') {
             <p
                     class="fin-text fin-text-paragraph"
-                    [style.color]="textColor()"
+                    [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
                     [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
@@ -62,7 +62,7 @@
         @case ('info') {
             <small
                     class="fin-text fin-text-info"
-                    [style.color]="textColor()"
+                    [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
                     [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
@@ -75,7 +75,7 @@
             <label
                     class="fin-text fin-text-label"
                     [for]="for()"
-                    [style.color]="textColor()"
+                    [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
                     [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"

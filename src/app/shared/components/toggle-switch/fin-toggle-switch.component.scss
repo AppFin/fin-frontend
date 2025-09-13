@@ -1,0 +1,43 @@
+.required {
+  label::after {
+    color: red;
+    content: ' *';
+  }
+}
+
+.disabled {
+  filter: brightness(0.9);
+}
+
+.p-iftalabel:has(.ng-invalid.ng-touched) label,
+.p-iftalabel:has(.ng-invalid.ng-dirty) label {
+  color: var(--p-iftalabel-invalid-color)
+}
+
+.sub-text {
+  height: 30px;
+  max-width: 100%;
+  width: 100%;
+
+  .error-sub {
+    color: var(--color-error);
+    display: flex;
+  }
+}
+
+.input-container {
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 6px;
+  color: var(--text-color);
+
+  p-iftalabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    label {
+      position: initial;
+    }
+  }
+}

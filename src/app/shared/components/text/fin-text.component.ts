@@ -1,7 +1,14 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
+import { FinSeverity } from '../../../core/types/themes/fin-severity';
+import { finSeverityConverter } from '../../../core/functions/fin-severity-converter';
 
 export type FinTextType = 'label' | 'title' | 'subtitle' | 'paragraph' | 'info';
 export type FinLinkTarget = '_self' | '_blank' | '_parent' | '_top';
@@ -15,9 +22,10 @@ export type FinLinkTarget = '_self' | '_blank' | '_parent' | '_top';
 })
 export class FinTextComponent {
   public readonly type = input<FinTextType>('paragraph');
-  public readonly textColor = input('inherit');
+  public readonly textColor = input('');
   public readonly backgroundColor = input('transparent');
   public readonly text = input('');
+  public readonly severity = input<FinSeverity | null>(null);
 
   // Link Props
   public readonly href = input<string>();
@@ -31,6 +39,13 @@ export class FinTextComponent {
 
   // Label props
   public readonly for = input<string>();
+
+  public readonly textEffectiveColor = computed(() => {
+    if (this.textColor()) return this.textColor();
+    const severity = this.severity();
+    if (severity !== null) return finSeverityConverter(severity);
+    return 'inherit';
+  });
 
   public clicked(ev: MouseEvent): void {
     if (!this.onClick() || this.disabledClick()) return;

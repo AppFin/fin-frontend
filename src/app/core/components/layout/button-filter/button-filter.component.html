@@ -1,0 +1,35 @@
+<div class="search-container" cdkOverlayOrigin #trigger="cdkOverlayOrigin" #searchContainer>
+  <div class="search-wrapper" #searchWrapper [class.expanded]="isExpanded()">
+    <button class="search-button" [class.expanded]="isExpanded()" (click)="toggleSearch()" type="button">
+      <fin-icon icon="search" size="sm" [iconColor]="isExpanded() ? 'var(--text-light)' : 'var(--text-dark)'"
+        tooltip="finCore.actions.search" />
+    </button>
+
+    @if (isExpanded()) {
+    <div class="input-container">
+      <input #input type="text" [placeholder]="'finCore.actions.search' | finTranslate" [formControl]="formControl"
+        (blur)="onInputBlur()" (keydown.enter)="onInputEnter($event)" (keyup.escape)="closeSearch()"
+        class="search-input" />
+      @if (formControl.value) {
+      <button class="clear-button" (click)="clearSearch()" type="button">
+        <fin-icon icon="xmark" iconColor="var(--text-light)" />
+      </button>
+      }
+    </div>
+    }
+  </div>
+</div>
+
+
+<ng-template cdkConnectedOverlay #overlay="cdkConnectedOverlay" [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isExpanded()" [cdkConnectedOverlayWidth]="searchContainer.offsetWidth + 'px'"
+  [cdkConnectedOverlayPositions]="[{
+            originX: 'start',
+            originY: 'bottom',
+            overlayX: 'start',
+            overlayY: 'top'
+        }]">
+  <fin-filter-results #filterResults (mousedown)="onOverlayMouseDown($event)" [loading]="loading()"
+    [menus]="filteredResults()" [totalResult]="totalResults()" [pageSize]="PAGE_SIZE"
+    (loadMoreItens)="loadMoreResults($event)" />
+</ng-template>

@@ -75,7 +75,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
 
-  public readonly width = input('250px');
+  public readonly width = input('284px');
 
   public readonly readonly = input(false);
   public readonly id = input(
@@ -102,7 +102,8 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   public readonly iconPrefix = input('');
   public readonly iconPrefixTooltip = input<string>('');
   public readonly iconPrefixColor = input<string | undefined>(undefined);
-  public readonly iconPrefixFontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly iconPrefixFontAwesomeType =
+    input<FinFontAwesomeType>('fa-solid');
   public readonly iconPrefixType = input<FinIconType>('fontAwesome');
   public readonly iconPrefixImageFolder = input<string>('icons/');
   public readonly iconPrefixImageExtension = input<string>('.png');
@@ -111,7 +112,8 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   public readonly iconSuffix = input('');
   public readonly iconSuffixTooltip = input<string>('');
   public readonly iconSuffixColor = input<string | undefined>(undefined);
-  public readonly iconSuffixFontAwesomeType = input<FinFontAwesomeType>('fas');
+  public readonly iconSuffixFontAwesomeType =
+    input<FinFontAwesomeType>('fa-solid');
   public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');

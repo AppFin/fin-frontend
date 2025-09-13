@@ -22,11 +22,12 @@ import { Select } from 'primeng/select';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 import { FinSelectComponentOptions } from './fin-select-component-options';
 import { PagedFilteredAndSortedInput } from '../../models/paginations/paged-filtered-and-sorted-input';
-import { FinSelectOption } from './fin-select-option';
+import { FinSelectOptionWithTranslation } from './fin-select-option';
 import { IftaLabel } from 'primeng/iftalabel';
 import { FinIconComponent } from '../icon/fin-icon.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FinTextComponent } from '../text/fin-text.component';
+import { FinTranslateService } from '../../../core/services/translate/fin-translate.service';
 
 @Component({
   selector: 'fin-select',
@@ -62,7 +63,7 @@ export class FinSelectComponent implements OnInit {
   );
 
   public readonly loading = signal(true);
-  public readonly options = signal<FinSelectOption[]>([]);
+  public readonly options = signal<FinSelectOptionWithTranslation[]>([]);
 
   private readonly _hasError = signal(false);
   public readonly hasError = this._hasError.asReadonly();
@@ -79,6 +80,7 @@ export class FinSelectComponent implements OnInit {
   });
 
   private readonly destroyRef = inject(DestroyRef);
+  private readonly translationService = inject(FinTranslateService);
 
   public ngOnInit(): void {
     this.startRequiredSub();
@@ -136,7 +138,14 @@ export class FinSelectComponent implements OnInit {
     this.loading.set(true);
     const input = new PagedFilteredAndSortedInput();
     const options = await firstValueFrom(getOptions(input));
-    this.options.set(options.items);
+    this.options.set(
+      options.items.map((e) => {
+        return {
+          labelTranslated: this.translationService.translate(e.label),
+          ...e,
+        } as FinSelectOptionWithTranslation;
+      })
+    );
     this.loading.set(false);
   }
 

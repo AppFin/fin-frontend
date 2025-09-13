@@ -1,0 +1,38 @@
+@for (item of menus(); track item.id; let i = $index) {
+  <div
+    class="result"
+    [class.selected]="selectedIndex() === i"
+    [routerLink]="item.frontRoute"
+    (mouseenter)="onMouseEnter(i)"
+  >
+    <fin-icon
+      [icon]="item.icon"
+      size="sm"
+      [iconColor]="item.color"
+    />
+    <fin-text [text]="item.name" type="info" />
+  </div>
+} @empty {
+  @if (!loading()) {
+    <div class="result empty">
+      <fin-text text="finCore.actions.noResults" type="info" />
+    </div>
+  }
+}
+
+@if (menus().length < totalResult() && !loading()) {
+  <div
+    class="result load-more"
+    [class.selected]="selectedIndex() === menus().length"
+    (click)="loadMore()"
+    (mouseenter)="onLoadMoreMouseEnter()"
+  >
+    <fin-text text="finCore.actions.loadMore" type="info" />
+  </div>
+}
+
+@if (loading()) {
+  <div class="result loading">
+    <mat-spinner diameter="20" />
+  </div>
+}
