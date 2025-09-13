@@ -20,7 +20,7 @@ export const MENUS_ROUTES: Routes = [
         loadComponent: () => import('./menus-editor/menus-editor.component').then(m => m.MenusEditorComponent),
       },
       {
-        path: '{menuId}',
+        path: ':menuId',
         loadComponent: () => import('./menus-editor/menus-editor.component').then(m => m.MenusEditorComponent),
       },
       {

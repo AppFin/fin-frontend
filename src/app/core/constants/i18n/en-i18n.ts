@@ -17,7 +17,8 @@ export const EnI18n: ITranslate = {
       loadMore: 'Load more',
       noResults: 'No results',
       tryDifferentTerms: 'Try different terms',
-      creating: 'Creating menu',
+      creating: 'Creating',
+      editing: 'Editing',
       startTyping: 'Start typing',
     },
     appName: 'Fin App',
@@ -120,7 +121,7 @@ export const EnI18n: ITranslate = {
     features: {
       menus: {
         name: 'Name',
-        frotRoute: 'Front route',
+        frontRoute: 'Front route',
         color: 'Color',
         icon: 'Icon',
         keyWord: 'Keyword',

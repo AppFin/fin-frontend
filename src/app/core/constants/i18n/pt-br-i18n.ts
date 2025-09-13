@@ -5,6 +5,7 @@ export const PtBrI18n: ITranslate = {
     actions: {
       loading: 'Carregando...',
       creating: 'Criando',
+      editing: 'Editando',
       save: 'Salvar',
       toggleToLightMode: 'Mudar para modo claro',
       toggleToDarkMode: 'Mudar para modo escuro',
@@ -117,7 +118,7 @@ export const PtBrI18n: ITranslate = {
     features: {
       menus: {
         name: 'Nome',
-        frotRoute: 'Rota do front',
+        frontRoute: 'Rota do front',
         color: 'Cor',
         icon: 'Ícone',
         keyWord: 'Palavra-chave',

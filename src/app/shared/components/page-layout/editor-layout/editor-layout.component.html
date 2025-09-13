@@ -7,9 +7,11 @@
       />
     </div>
 
-    <form [formGroup]="formGroup()">
-      <ng-content />
-    </form>
+    @if (formGroup()) {
+      <form [formGroup]="formGroup()">
+        <ng-content />
+      </form>
+    }
 
     <fin-save-button
       [canSave]="canSave()"

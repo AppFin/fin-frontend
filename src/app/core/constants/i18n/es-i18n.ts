@@ -19,6 +19,7 @@ export const EsI18n: ITranslate = {
       tryDifferentTerms: 'Prueba con otros términos',
       startTyping: 'Empieza a escribir',
       creating: 'Creando',
+      editing: 'Edición',
 
     },
     appName: 'Fin App',
@@ -122,7 +123,7 @@ export const EsI18n: ITranslate = {
     features: {
       menus: {
         name: 'Nombre',
-        frotRoute: 'Ruta del front',
+        frontRoute: 'Ruta del front',
         color: 'Color',
         icon: 'Ícono',
         keyWord: 'Palabra clave',

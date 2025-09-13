@@ -16,6 +16,7 @@ export interface ITranslate {
     };
     actions: {
       creating: string;
+      editing: string;
       loading: string;
       save: string;
       toggleToLightMode: string;
@@ -114,7 +115,7 @@ export interface ITranslate {
     features: {
       menus: {
         name: string;
-        frotRoute: string;
+        frontRoute: string;
         color: string;
         icon: string;
         keyWord: string;

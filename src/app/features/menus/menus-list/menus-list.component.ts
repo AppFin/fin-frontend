@@ -66,11 +66,11 @@ export class MenusListComponent implements OnInit {
     return [
       new FinGridSimpleColumnOption<MenuOutput>({
         getValue: (item) => item.name,
-        header: 'finCore.feature.menus.name',
+        header: 'finCore.features.shared.name',
       }),
       new FinGridSimpleColumnOption<MenuOutput>({
         getValue: (item) => item.frontRoute,
-        header: 'finCore.feature.menus.frontRoute',
+        header: 'finCore.features.menus.frontRoute',
       }),
       new FinGridIconColumnOption<MenuOutput>({
         getValue: (item) =>
@@ -78,7 +78,7 @@ export class MenusListComponent implements OnInit {
             color: item.color,
             icon: item.icon,
           }),
-        header: 'finCore.feature.menus.icon',
+        header: 'finCore.features.menus.icon',
         width: '50px',
       }),
       new FinGridIconColumnOption<MenuOutput>({
@@ -94,7 +94,7 @@ export class MenusListComponent implements OnInit {
             color: 'var(--color-success)',
           });
         },
-        header: 'finCore.feature.menus.showOnSideNav',
+        header: 'finCore.features.menus.showOnSideNav',
         width: '50px',
       }),
     ];
