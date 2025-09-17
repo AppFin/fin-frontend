@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.snack-container {
+  position: relative;
+  background: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  min-width: 320px;
+  max-width: 500px;
+  margin: 0 !important;
+
+  .snack-content {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+
+    .snack-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+
+      i {
+        font-size: 20px;
+        line-height: 1;
+      }
+    }
+
+    .snack-message {
+      flex: 1;
+      min-width: 0;
+
+      ::ng-deep fin-text {
+        color: var(--text-primary-color, #333333);
+        margin: 0;
+
+        p {
+          margin: 0;
+          line-height: 1.4;
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+    }
+
+  }
+
+  .snack-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    animation: progress linear forwards;
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+.snack-bar-container > div,
+.snack-bar-container > div > div {
+  padding: 0;
+}

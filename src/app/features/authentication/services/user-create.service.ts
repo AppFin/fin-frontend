@@ -117,10 +117,10 @@ export class UserCreateService {
   }
 
   private emitStaertCreateErrorMessage(code: UserStartCreateErrorCode): void {
-    // TODO here we notify user via snack ou dialog.
+    // TODO here we notify user via push ou dialog.
   }
 
   private emitErrorMessage(erromessagehere: string): void {
-    // TODO here we notify user via snack ou dialog.
+    // TODO here we notify user via push ou dialog.
   }
 }

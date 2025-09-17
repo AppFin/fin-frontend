@@ -1,0 +1,17 @@
+<div class="snack-container">
+  <div class="snack-content">
+    <div class="snack-icon">
+      <fin-icon [icon]="icon()" [iconColor]="color()" size="md" />
+    </div>
+    <div class="snack-message">
+      <fin-text [text]="data.title" type="subtitle" />
+      <fin-text [text]="data.bodyTextOrHtml" type="paragraph" />
+    </div>
+    <fin-button
+      (onClick)="close()"
+      icon="times"
+      severity="secondary"
+    />
+  </div>
+  <div class="snack-indicator" [style.backgroundColor]="color()" [style.animation-duration]="data.durationInMs + 'ms'"></div>
+</div>

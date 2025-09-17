@@ -9,7 +9,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { ThemeService } from './core/services/theme/theme.service';
 import { RouterOutlet } from '@angular/router';
-import { StorageService } from './core/services/app/storage.service';
+import { NotifyService } from './core/services/notifications/notify.service';
+import { NotificationWay } from './core/enums/notifications/notification-way';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,24 @@ import { StorageService } from './core/services/app/storage.service';
   imports: [CommonModule, TranslateModule, RouterOutlet],
 })
 export class AppComponent implements OnInit {
-  private readonly storageService = inject(StorageService);
   private readonly themeService = inject(ThemeService);
+  private readonly notifyService = inject(NotifyService);
 
   public ngOnInit(): void {
     this.removeSplashScreen();
+
+    setTimeout(() => {
+      this.notifyService.notify(
+        '',
+        'Teste Gustavo tomando agua',
+        NotificationWay.Snack
+      );
+      this.notifyService.notify(
+        'Outros',
+        'Teste Gustavo tomanasdsdo agua',
+        NotificationWay.Push
+      );
+    }, 100);
   }
 
   public get isDarkMode(): boolean {

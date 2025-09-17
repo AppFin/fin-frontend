@@ -101,6 +101,6 @@ export class AuthGoogleService {
   }
 
   private emmitPopupErrorMessage(): void {
-    // TODO here we notify user via snack ou dialog.
+    // TODO here we notify user via push ou dialog.
   }
 }

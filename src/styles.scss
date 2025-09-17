@@ -2,8 +2,10 @@
 
 @use 'styles/variables';
 @use 'styles/themes';
+@use 'ngx-toastr/toastr' as toastr;
 
 @import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 * {
   box-sizing: border-box;

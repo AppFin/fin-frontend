@@ -233,15 +233,15 @@ export class AuthService {
   }
 
   private emmitLoginErrorMessage(error: LoginOutput) {
-    // TODO here we notify user via snack ou dialog.
+    // TODO here we notify user via push ou dialog.
   }
 
   private emmitResetErrorMessage(errorCode: ResetPasswordErrorCode) {
-    // TODO here we notify user via snack ou dialog.
+    // TODO here we notify user via push ou dialog.
     // If error codeis invalid token bring user to login page.
   }
 
   private emmitSendResetErrorMessage() {
-    // TODO here we notify user via snack ou dialog.
+    // TODO here we notify user via push ou dialog.
   }
 }

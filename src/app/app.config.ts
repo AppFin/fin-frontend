@@ -21,6 +21,7 @@ import { finAppInitializer } from './core/functions/app-initializer';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { appInterceptor } from './core/interceptors/app.interceptor';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,6 +30,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([authInterceptor, appInterceptor])),
     provideHttpClient(),
     provideAnimationsAsync(),
+    provideToastr({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    }),
     provideEnvironmentNgxMask(),
     providePrimeNG({
       theme: {
