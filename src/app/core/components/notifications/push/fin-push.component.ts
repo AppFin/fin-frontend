@@ -16,6 +16,7 @@ import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.co
 import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
 import { isHtml } from '../../../../shared/functions/is-html';
 import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html/safe-html.pipe';
+import { FinSeverity } from '../../../types/themes/fin-severity';
 
 export type FinPushData = {
   bodyTextOrHtml: string;
@@ -40,13 +41,15 @@ export type FinPushData = {
 export class FinPushComponent implements OnInit {
   public readonly data = inject<FinPushData>(MAT_SNACK_BAR_DATA);
   public readonly snackBarRef = inject(MatSnackBarRef);
-  public readonly color = signal('');
-  public readonly icon = signal('');
   public readonly duration = signal(5000);
   public readonly isHtml = signal(false);
 
+  public readonly finSeverity = signal<FinSeverity | null>(null);
+  public readonly icon = signal('');
+  public readonly color = signal('');
+
   public ngOnInit(): void {
-    this.setStyleBySeverity();
+    this.setTextSeverities();
     this.isHtml.set(isHtml(this.data.bodyTextOrHtml));
     if (this.data.durationInMs) {
       this.duration.set(this.data.durationInMs);
@@ -57,27 +60,40 @@ export class FinPushComponent implements OnInit {
     this.snackBarRef.dismiss();
   }
 
-  private setStyleBySeverity(): void {
+  private setTextSeverities(): void {
+    let severity: FinSeverity | null = null;
+    let icon: string;
+    let color: string;
+
     switch (this.data.severity) {
       case NotificationSeverity.Success:
-        this.color.set('var(--color-success)');
-        this.icon.set('circle-check');
+        severity = 'success';
+        icon = 'circle-check';
+        color = 'var(--primary-success)';
         break;
       case NotificationSeverity.Error:
-        this.color.set('var(--color-error)');
-        this.icon.set('circle-exclamation');
+        severity = 'danger';
+        icon = 'circle-exclamation';
+        color = 'var(--primary-error)';
         break;
       case NotificationSeverity.Warning:
-        this.color.set('var(--color-warning)');
-        this.icon.set('triangle-exclamation');
+        severity = 'warn';
+        icon = 'triangle-exclamation';
+        color = 'var(--primary-warning)';
         break;
       case NotificationSeverity.Info:
-        this.color.set('var(--color-info)');
-        this.icon.set('circle-info');
+        severity = 'info';
+        icon = 'circle-info';
+        color = 'var(--primary-info)';
         break;
       default:
-        this.color.set('var(--color-primary)');
-        this.icon.set('bell');
+        icon = 'bell';
+        color = 'var(--primary-color)';
+        break;
     }
+
+    this.finSeverity.set(severity);
+    this.icon.set(icon);
+    this.color.set(color);
   }
 }

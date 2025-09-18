@@ -8,6 +8,10 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import {
+  FinMessageComponent,
+  FinMessageData,
+} from '../../components/notifications/message/fin-message.component';
 
 export type NotifyWays =
   | NotificationWay.Snack
@@ -29,7 +33,8 @@ export class NotifyService {
     severity = NotificationSeverity.Default,
     durationInMs = 5000,
     bodyTemplate: TemplateRef<any> | null = null,
-    footerTemplate: TemplateRef<any> | null = null
+    footerTemplate: TemplateRef<any> | null = null,
+    showCloseButton = true
   ): void {
     switch (type) {
       case NotificationWay.Snack:
@@ -41,7 +46,8 @@ export class NotifyService {
           bodyTextOrHtml,
           severity,
           bodyTemplate,
-          footerTemplate
+          footerTemplate,
+          showCloseButton
         );
         break;
       case NotificationWay.Push:
@@ -89,7 +95,7 @@ export class NotifyService {
         title,
         severity,
         bodyTextOrHtml,
-        durationInMs: durationInMs,
+        durationInMs
       } as FinPushData,
     });
   }
@@ -99,8 +105,24 @@ export class NotifyService {
     bodyTextOrHtml: string,
     severity: NotificationSeverity,
     bodyTemplate: TemplateRef<any> | null,
-    footerTemplate: TemplateRef<any> | null
+    footerTemplate: TemplateRef<any> | null,
+    showCloseButton: boolean
   ) {
-
+    this.matDialog.open(FinMessageComponent, {
+      hasBackdrop: true,
+      closeOnNavigation: false,
+      disableClose: false,
+      maxWidth: '95vw',
+      width: '900px',
+      maxHeight: '80vh',
+      data: {
+        title,
+        severity,
+        bodyTextOrHtml,
+        bodyTemplate,
+        footerTemplate,
+        showCloseButton
+      } as FinMessageData,
+    });
   }
 }

@@ -1,1 +1,41 @@
-<p>message works!</p>
+<div class="dialog-container">
+  <div class="dialog-header">
+    <div class="dialog-title">
+      <fin-icon [icon]="icon()" [severity]="finSeverity()" size="md" />
+      <fin-text
+        [text]="data.title"
+        [severity]="finSeverity()"
+        type="subtitle"
+      />
+    </div>
+
+    @if (data.showCloseButton) {
+      <fin-button
+        icon="times"
+        severity="danger"
+        (onClick)="close()"
+        iconTooltip="finCore.actions.close"
+      />
+    } @else {
+      <span></span>
+    }
+  </div>
+
+  <div class="dialog-content">
+    @if (data.bodyTemplate) {
+      <ng-container *ngTemplateOutlet="data.bodyTemplate" />
+    } @else if (isHtml()) {
+      <fin-text type="paragraph">
+        <div [innerHTML]="data.bodyTextOrHtml | safeHtml"></div>
+      </fin-text>
+    } @else {
+      <fin-text [text]="data.bodyTextOrHtml" type="paragraph" />
+    }
+  </div>
+
+  @if (data.footerTemplate) {
+      <ng-container *ngTemplateOutlet="data.footerTemplate; context: { closeFn: close.bind(this) }" />
+  }
+
+</div>
+<span class="color-bar" [style.backgroundColor]="color()"></span>
