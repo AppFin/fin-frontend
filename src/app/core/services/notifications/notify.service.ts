@@ -7,6 +7,7 @@ import {
 } from '../../components/notifications/push/fin-push.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 export type NotifyWays =
   | NotificationWay.Snack
@@ -19,21 +20,29 @@ export type NotifyWays =
 export class NotifyService {
   private toastr = inject(ToastrService);
   private matSnackBar = inject(MatSnackBar);
+  private matDialog = inject(MatDialog);
 
   public notify(
     title: string,
     bodyTextOrHtml: string,
     type: NotifyWays = NotificationWay.Push,
     severity = NotificationSeverity.Default,
-    durationInMs = 50000,
+    durationInMs = 5000,
     bodyTemplate: TemplateRef<any> | null = null,
     footerTemplate: TemplateRef<any> | null = null
   ): void {
     switch (type) {
       case NotificationWay.Snack:
-        this.notifSnack(bodyTextOrHtml, severity, durationInMs);
+        this.notifySnack(bodyTextOrHtml, severity, durationInMs);
         break;
       case NotificationWay.Message:
+        this.notifyMessage(
+          title,
+          bodyTextOrHtml,
+          severity,
+          bodyTemplate,
+          footerTemplate
+        );
         break;
       case NotificationWay.Push:
         this.notifyPush(title, bodyTextOrHtml, severity, durationInMs);
@@ -41,7 +50,7 @@ export class NotifyService {
     }
   }
 
-  public notifSnack(
+  public notifySnack(
     message: string,
     severity: NotificationSeverity,
     durationInMs: number
@@ -83,5 +92,15 @@ export class NotifyService {
         durationInMs: durationInMs,
       } as FinPushData,
     });
+  }
+
+  private notifyMessage(
+    title: string,
+    bodyTextOrHtml: string,
+    severity: NotificationSeverity,
+    bodyTemplate: TemplateRef<any> | null,
+    footerTemplate: TemplateRef<any> | null
+  ) {
+
   }
 }

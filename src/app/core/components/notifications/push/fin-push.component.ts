@@ -14,6 +14,8 @@ import {
 import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
+import { isHtml } from '../../../../shared/functions/is-html';
+import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html/safe-html.pipe';
 
 export type FinPushData = {
   bodyTextOrHtml: string;
@@ -24,7 +26,12 @@ export type FinPushData = {
 
 @Component({
   selector: 'fin-push',
-  imports: [FinTextComponent, FinIconComponent, FinButtonComponent],
+  imports: [
+    FinTextComponent,
+    FinIconComponent,
+    FinButtonComponent,
+    SafeHtmlPipe,
+  ],
   templateUrl: './fin-push.component.html',
   styleUrl: './fin-push.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,9 +43,11 @@ export class FinPushComponent implements OnInit {
   public readonly color = signal('');
   public readonly icon = signal('');
   public readonly duration = signal(5000);
+  public readonly isHtml = signal(false);
 
   public ngOnInit(): void {
     this.setStyleBySeverity();
+    this.isHtml.set(isHtml(this.data.bodyTextOrHtml));
     if (this.data.durationInMs) {
       this.duration.set(this.data.durationInMs);
     }

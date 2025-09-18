@@ -34,7 +34,13 @@ export class AppComponent implements OnInit {
       );
       this.notifyService.notify(
         'Outros',
-        'Teste Gustavo tomanasdsdo agua',
+          '<span style="font-size: 18px; font-weight: bold; color: #333;">\n'+
+        '            🧪 Teste \n'+
+        '            <span style="color: #ff6b6b; background: #fff3cd; padding: 2px 6px; border-radius: 4px;">Gustavo</span> \n'+
+        '            <span style="color: #4ecdc4;">tomando</span> \n'+
+        '            <span style="color: #2196F3;">💧 água</span> \n'+
+        '            ✨\n'+
+        '        </span>',
         NotificationWay.Push
       );
     }, 100);
