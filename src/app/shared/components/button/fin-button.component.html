@@ -12,15 +12,29 @@
         [class.has-icon]="!!icon()"
 >
     @if (!!icon() && !spinner()) {
+      @if (iconBadge()) {
+        <p-overlaybadge [value]="iconBadge()" badgeSize="small"  [severity]="iconBadgeSeverity()">
+          <fin-icon
+            [icon]="icon()"
+            [iconColor]="iconColor()"
+            [fontAwesomeType]="iconFontAwesomeType()"
+            [type]="iconType()"
+            [imageFolder]="iconImageFolder()"
+            [imageExtension]="iconImageExtension()"
+            [tooltip]="iconTooltip()"
+          />
+        </p-overlaybadge>
+      } @else {
         <fin-icon
-                [icon]="icon()"
-                [iconColor]="iconColor()"
-                [fontAwesomeType]="iconFontAwesomeType()"
-                [type]="iconType()"
-                [imageFolder]="iconImageFolder()"
-                [imageExtension]="iconImageExtension()"
-                [tooltip]="iconTooltip()"
+          [icon]="icon()"
+          [iconColor]="iconColor()"
+          [fontAwesomeType]="iconFontAwesomeType()"
+          [type]="iconType()"
+          [imageFolder]="iconImageFolder()"
+          [imageExtension]="iconImageExtension()"
+          [tooltip]="iconTooltip()"
         />
+      }
     }
     @if (spinner()) {
         <mat-spinner class="spinner" [diameter]="isIconOnly() ? 28 : 20" [strokeWidth]="isIconOnly() ? 5 : 3"/>

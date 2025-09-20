@@ -128,7 +128,7 @@ export const EnI18n: ITranslate = {
       settings: 'Settings',
       termsAndPolicies: 'Terms and policies',
       unpinnedMenus: 'Unpinned menus',
-      xNotifications: '({{notificationCount}}) notifications',
+      xNotifications: '{{notificationCount}} notification(s)',
     },
     sharedComponents: {
       grid: {

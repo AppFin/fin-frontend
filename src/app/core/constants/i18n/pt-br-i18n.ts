@@ -128,7 +128,7 @@ export const PtBrI18n: ITranslate = {
       settings: 'Configurações',
       termsAndPolicies: 'Termos e políticas',
       unpinnedMenus: 'Menus não fixados',
-      xNotifications: '({{notificationCount}})  notificações',
+      xNotifications: '{{notificationCount}}  notificação(ões)',
     },
     sharedComponents: {
       grid: {

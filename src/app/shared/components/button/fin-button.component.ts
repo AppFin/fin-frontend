@@ -15,8 +15,17 @@ import {
 } from '../icon/fin-icon.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FinSeverity } from '../../../core/types/themes/fin-severity';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
 export type FinButtonVariant = 'text' | 'outlined' | undefined;
+
+type BadgeSeverity =
+  | null
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warn'
+  | 'danger';
 
 @Component({
   selector: 'fin-button',
@@ -26,6 +35,7 @@ export type FinButtonVariant = 'text' | 'outlined' | undefined;
     ButtonLabel,
     FinIconComponent,
     MatProgressSpinnerModule,
+    OverlayBadgeModule,
   ],
   templateUrl: './fin-button.component.html',
   styleUrl: './fin-button.component.scss',
@@ -58,6 +68,9 @@ export class FinButtonComponent {
   public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');
+
+  public readonly iconBadge = input<string | null>(null);
+  public readonly iconBadgeSeverity = input<BadgeSeverity>(null);
 
   public readonly maybeHasSpin = computed(
     () => this.spinner() !== undefined && this.spinner() !== null
