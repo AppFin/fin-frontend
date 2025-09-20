@@ -59,6 +59,17 @@
                 <ng-container *ngTemplateOutlet="textContent"/>
             </p>
         }
+      @case ('subparagraph') {
+        <p
+          class="fin-text fin-text-subparagraph"
+          [style.color]="textEffectiveColor()"
+          [style.background-color]="backgroundColor()"
+          [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
+          [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+        >
+          <ng-container *ngTemplateOutlet="textContent"/>
+        </p>
+      }
         @case ('info') {
             <small
                     class="fin-text fin-text-info"

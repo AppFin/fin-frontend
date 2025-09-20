@@ -10,7 +10,7 @@ import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pi
 import { FinSeverity } from '../../../core/types/themes/fin-severity';
 import { finSeverityConverter } from '../../../core/functions/fin-severity-converter';
 
-export type FinTextType = 'label' | 'title' | 'subtitle' | 'paragraph' | 'info';
+export type FinTextType = 'label' | 'title' | 'subtitle' | 'paragraph' | 'subparagraph' | 'info';
 export type FinLinkTarget = '_self' | '_blank' | '_parent' | '_top';
 
 @Component({

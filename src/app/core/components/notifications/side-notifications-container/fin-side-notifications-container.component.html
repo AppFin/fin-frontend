@@ -1,0 +1,21 @@
+<div class="drawer-container">
+  @if (unreadNotifications().length > 0) {
+    <div class="clear-container">
+      <fin-button
+        variant="text"
+        (onClick)="markAllAsRead()"
+        text="finCore.layout.clearNotifications"
+      />
+    </div>
+  }
+  @for (notification of unreadNotifications(); track notification.notificationId; let first = $first) {
+    <fin-side-notification-item [@slideOut] [notification]="notification" [class.first-item]="first" />
+  } @empty {
+    <div class="empty-placeholder">
+      <fin-text
+        text="finCore.layout.noNotifications"
+        type="paragraph"
+      />
+    </div>
+  }
+</div>

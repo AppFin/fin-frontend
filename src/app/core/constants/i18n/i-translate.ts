@@ -3,6 +3,8 @@ export interface ITranslate {
     appName: string;
     layout: {
       notifications: string;
+      noNotifications: string;
+      clearNotifications: string;
       xNotifications: string;
       settings: string;
       exit: string;

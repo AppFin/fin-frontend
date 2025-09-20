@@ -51,6 +51,7 @@ export class FinMessageComponent implements OnInit {
   public ngOnInit(): void {
     this.setTextSeverities();
     this.isHtml.set(isHtml(this.data.bodyTextOrHtml));
+    console.log(this.data.bodyTextOrHtml);
   }
 
   public close(): void {

@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-disabled);
+  min-height: 100px;
+  max-height: 100px;
+  height: 100px;
+  padding: 0.5rem;
+  gap: 0.5rem;
+
+  &:hover {
+    &.has-hover {
+      cursor: pointer;
+      background-color: var(--color-hover);
+    }
+
+    .trash-container {
+      display: flex;
+    }
+  }
+}
+
+.content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+.icon-container {
+  height: 100%;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.color-bar {
+  display: flex;
+  height: 100%;
+  width: 5px;
+  border-radius: 0 5px 5px 0;
+}
+
+.trash-container {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

@@ -129,6 +129,8 @@ export const EsI18n: ITranslate = {
       termsAndPolicies: 'Términos y políticas',
       unpinnedMenus: 'Menús no fijados',
       xNotifications: '{{notificationCount}} notificacion(es)',
+      clearNotifications: '-',
+      noNotifications: '-'
     },
     sharedComponents: {
       grid: {

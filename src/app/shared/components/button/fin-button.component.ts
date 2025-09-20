@@ -11,6 +11,7 @@ import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pi
 import {
   FinFontAwesomeType,
   FinIconComponent,
+  FinIconSize,
   FinIconType,
 } from '../icon/fin-icon.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -59,8 +60,9 @@ export class FinButtonComponent {
   public readonly iconImageFolder = input<string>('icons/');
   public readonly iconImageExtension = input<string>('.png');
   public readonly iconTooltip = input<string>('');
+  public readonly iconSize = input<FinIconSize>('md');
 
-  // icon suffic
+  // icon suffix
   public readonly iconSuffix = input<string>('');
   public readonly iconSuffixColor = input<string | undefined>(undefined);
   public readonly iconSuffixFontAwesomeType =
@@ -68,6 +70,7 @@ export class FinButtonComponent {
   public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');
+  public readonly iconSuffixSize = input<FinIconSize>('md');
 
   public readonly iconBadge = input<string | null>(null);
   public readonly iconBadgeSeverity = input<BadgeSeverity>(null);

@@ -100,7 +100,7 @@ export class NotifyService {
     });
   }
 
-  private notifyMessage(
+  public notifyMessage(
     title: string,
     bodyTextOrHtml: string,
     severity: NotificationSeverity,

@@ -1,0 +1,16 @@
+<div class="icon-container">
+  <span class="color-bar" [style.backgroundColor]="color()"></span>
+  <fin-icon [severity]="finSeverity()" [icon]="icon()" />
+</div>
+<div class="content-container">
+  <fin-text type="paragraph" [text]="notification().title" [severity]="finSeverity()" />
+  <fin-text [text]="notification().textBody" class="notification-text" type="subparagraph" />
+</div>
+<div class="trash-container">
+  <fin-button
+    severity="danger"
+    (onClick)="markAsRead($event)"
+    icon="trash"
+    iconSize="sm"
+  />
+</div>
