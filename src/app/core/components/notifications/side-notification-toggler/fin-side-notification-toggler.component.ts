@@ -19,9 +19,9 @@ export class FinSideNotificationTogglerComponent {
   private readonly layoutService = inject(LayoutService);
   private readonly notificationService = inject(NotificationService);
 
-  public readonly unreadNotificationsCount = computed(() => this.notificationService.unreadNotifications().length);
+  public readonly unreadNotificationsCount = computed(() => this.notificationService.unreadMessagesAndPushsNotifications().length);
   public readonly hasUnreadNotification = computed(() => {
-    return this.notificationService.unreadNotifications().length > 0;
+    return this.notificationService.unreadMessagesAndPushsNotifications().length > 0;
   });
 
   public toggleSideNotifications(): void {

@@ -1,153 +1,97 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { NotifyUserDTO } from '../../types/notify-user-dto';
+import { NotifyUserDto } from '../../types/notifications/notify-user-dto';
 import { NotificationWay } from '../../enums/notifications/notification-way';
-import { NotificationSeverity } from '../../enums/notifications/notification-severity';
 import { NotifyService } from './notify.service';
+import { NotificationApiService } from './notification-api.service';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
   public notifyService = inject(NotifyService);
+  public apiService = inject(NotificationApiService);
 
-  public readonly unreadNotifications = signal([
-    {
-      htmlBody: '<h6>Notifications <b>TRUETHDasdksaj</b></h6>',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'das423d',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-    },
-    {
-      htmlBody: '<h6>Notifications <b>TRUETHDasdksaj</b></h6>',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'd234asd',
-      title: 'Cool',
-      ways: [NotificationWay.Snack],
-      severity: NotificationSeverity.Default,
-    },
-    {
-      htmlBody: '<span>Notifications <b>TRUETHDasdksaj</b></span>',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'da22sd',
-      title: 'Cool',
-      ways: [NotificationWay.Message],
-      severity: NotificationSeverity.Info,
-    },
-    {
-      htmlBody: '<span>Notifications <b>TRUETHDasdksaj</b></span>',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: '23423dasd',
-      title: 'Cool',
-      ways: [NotificationWay.Message],
-      severity: NotificationSeverity.Success,
-    },
-    {
-      htmlBody: '<span>Notifications <b>TRUETHDasdksaj</b></span>',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'd4324asd',
-      title: 'Cool',
-      ways: [NotificationWay.Message],
-      severity: NotificationSeverity.Error,
-    },
-    {
-      htmlBody: '',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'da323sd',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-      severity: NotificationSeverity.Warning,
-      link: 'https://www.google.com/',
-    },
-    {
-      htmlBody: '',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'd12asd',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-      link: '/admin/menus',
-    },
-    {
-      htmlBody: '',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'da32313sd',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-      severity: NotificationSeverity.Warning,
-      link: 'https://www.google.com/',
-    },
-    {
-      htmlBody: '',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'd12a123sd',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-      link: '/admin/menus',
-    },
-    {
-      htmlBody: '',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'da323123sd',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-      severity: NotificationSeverity.Warning,
-      link: 'https://www.google.com/',
-    },
-    {
-      htmlBody: '',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'd12a22sd',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-      link: '/admin/menus',
-    },
-    {
-      htmlBody: '',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'da32dds3sd',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-      severity: NotificationSeverity.Warning,
-      link: 'https://www.google.com/',
-    },
-    {
-      htmlBody: '',
-      textBody: 'Notifications TRUETHDasdksaj',
-      notificationId: 'd12as887878d',
-      title: 'Cool',
-      ways: [NotificationWay.Push],
-      link: '/admin/menus',
-    },
-  ] as NotifyUserDTO[]);
+  public readonly unreadMessagesAndPushsNotifications = signal<NotifyUserDto[]>(
+    []
+  );
 
-  public readNotification(notificationId: string): void {
-    this.unreadNotifications.update((a) => {
-      let newA = [...a];
+  constructor() {
+    this.loadUnreadNotifications();
+  }
 
-      newA = newA.filter((n) => n.notificationId !== notificationId);
+  public async loadUnreadNotifications(): Promise<void> {
+    const notifications = await firstValueFrom(
+      this.apiService.getUnvisualizedNotifications()
+    );
 
-      return newA;
+    this.unreadMessagesAndPushsNotifications.set(
+      notifications.filter(
+        (n) =>
+          n.ways.includes(NotificationWay.Message) ||
+          n.ways.includes(NotificationWay.Push)
+      )
+    );
+
+    await this.processNotifications(notifications);
+  }
+
+  public async readNotification(notificationId: string): Promise<void> {
+    await firstValueFrom(this.apiService.markVisualized(notificationId));
+
+    this.unreadMessagesAndPushsNotifications.update((notifications) => {
+      return [...notifications].filter(
+        (n) => n.notificationId !== notificationId
+      );
     });
   }
 
-  public realAllotifications(): void {
-    this.unreadNotifications.set([]);
+  public async readAllNotifications(): Promise<void> {
+    const promises = this.unreadMessagesAndPushsNotifications().map((n) =>
+      this.readNotification(n.notificationId)
+    );
+    await Promise.all(promises);
+    this.unreadMessagesAndPushsNotifications.set([]);
   }
 
-  public notify(notifyUserDTO: NotifyUserDTO): void {
-    notifyUserDTO.ways.forEach(way => {
-      if (way === NotificationWay.Email) return
+  public async notify(
+    notifyUserDTO: NotifyUserDto,
+    justWays: NotificationWay[] | null = null
+  ): Promise<void> {
+    const promises = notifyUserDTO.ways.map(async (way) => {
+      if (way === NotificationWay.Email || justWays?.includes(way)) return;
 
-      const body = way == NotificationWay.Snack
-        ? notifyUserDTO.textBody
-        : notifyUserDTO.htmlBody ?? notifyUserDTO.textBody;
+      const body =
+        way == NotificationWay.Snack
+          ? notifyUserDTO.textBody
+          : (notifyUserDTO.htmlBody ?? notifyUserDTO.textBody);
 
-      this.notifyService.notify(
+      await this.notifyService.notify(
         notifyUserDTO.title,
         body,
         way,
         notifyUserDTO.severity
-      )
-    })
+      );
+    });
+    await Promise.all(promises);
+    if (!notifyUserDTO.continuous)
+      this.readNotification(notifyUserDTO.notificationId);
+  }
+
+  private async processNotifications(notifications: NotifyUserDto[]) {
+    const messages = notifications.filter((n) =>
+      n.ways.includes(NotificationWay.Message)
+    );
+    const messagePromises = messages.map(
+      async (n) => await this.notify(n, [NotificationWay.Message])
+    );
+    await Promise.all(messagePromises);
+
+    const justSnacks = notifications.filter(
+      (n) =>
+        n.ways.includes(NotificationWay.Snack)! &&
+        n.ways.includes(NotificationWay.Message)
+    );
+    justSnacks.forEach((n) => this.notify(n, [NotificationWay.Snack]));
   }
 }

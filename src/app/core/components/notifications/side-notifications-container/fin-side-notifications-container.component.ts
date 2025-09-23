@@ -21,9 +21,9 @@ export class FinSideNotificationsContainerComponent {
   private readonly notificationsService = inject(NotificationService);
 
   public readonly unreadNotifications =
-    this.notificationsService.unreadNotifications;
+    this.notificationsService.unreadMessagesAndPushsNotifications;
 
-  public markAllAsRead(): void {
-    this.notificationsService.realAllotifications();
+  public async markAllAsRead(): Promise<void> {
+    await this.notificationsService.readAllNotifications();
   }
 }

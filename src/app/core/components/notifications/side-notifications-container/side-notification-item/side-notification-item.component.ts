@@ -8,7 +8,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { NotifyUserDTO } from '../../../../types/notify-user-dto';
+import { NotifyUserDto } from '../../../../types/notifications/notify-user-dto';
 import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
 import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
@@ -29,7 +29,7 @@ import { NotificationWay } from '../../../../enums/notifications/notification-wa
   },
 })
 export class SideNotificationItemComponent implements OnInit {
-  public readonly notification = input<NotifyUserDTO>({} as NotifyUserDTO);
+  public readonly notification = input<NotifyUserDto>({} as NotifyUserDto);
 
   public readonly finSeverity = signal<FinSeverity | null>(null);
   public readonly icon = signal('');
@@ -56,24 +56,24 @@ export class SideNotificationItemComponent implements OnInit {
   }
 
   @HostListener('click', ['$event'])
-  public onClick(event: Event): void {
+  public async onClick(event: Event): Promise<void> {
+    if (this.notification().ways.includes(NotificationWay.Message)) {
+      await this.notificationService.notify(this.notification());
+    }
+
     if (this.hasLink()) {
       if (this.isExternalLink()) {
         event.preventDefault();
         window.open(this.notification().link, '_blank', 'noopener,noreferrer');
       } else {
-        this.router.navigate([this.notification().link]);
+        await this.router.navigate([this.notification().link]);
       }
-    }
-
-    if (this.notification().ways.includes(NotificationWay.Message)) {
-      this.notificationService.notify(this.notification());
     }
   }
 
-  public markAsRead(event: Event): void {
+  public async markAsRead(event: Event): Promise<void> {
     event.stopPropagation();
-    this.notificationService.readNotification(
+    await this.notificationService.readNotification(
       this.notification().notificationId
     );
   }

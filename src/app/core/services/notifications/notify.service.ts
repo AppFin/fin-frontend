@@ -5,13 +5,14 @@ import {
   FinPushComponent,
   FinPushData,
 } from '../../components/notifications/push/fin-push.component';
-import { ToastrService } from 'ngx-toastr';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { ActiveToast, ToastrService } from 'ngx-toastr';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   FinMessageComponent,
   FinMessageData,
 } from '../../components/notifications/message/fin-message.component';
+import { firstValueFrom } from 'rxjs';
 
 export type NotifyWays =
   | NotificationWay.Snack
@@ -26,7 +27,7 @@ export class NotifyService {
   private matSnackBar = inject(MatSnackBar);
   private matDialog = inject(MatDialog);
 
-  public notify(
+  public async notify(
     title: string,
     bodyTextOrHtml: string,
     type: NotifyWays = NotificationWay.Push,
@@ -35,23 +36,34 @@ export class NotifyService {
     bodyTemplate: TemplateRef<any> | null = null,
     footerTemplate: TemplateRef<any> | null = null,
     showCloseButton = true
-  ): void {
+  ): Promise<void> {
     switch (type) {
       case NotificationWay.Snack:
-        this.notifySnack(bodyTextOrHtml, severity, durationInMs);
+        await firstValueFrom(
+          this.notifySnack(bodyTextOrHtml, severity, durationInMs).onHidden
+        );
         break;
       case NotificationWay.Message:
-        this.notifyMessage(
-          title,
-          bodyTextOrHtml,
-          severity,
-          bodyTemplate,
-          footerTemplate,
-          showCloseButton
+        await firstValueFrom(
+          this.notifyMessage(
+            title,
+            bodyTextOrHtml,
+            severity,
+            bodyTemplate,
+            footerTemplate,
+            showCloseButton
+          ).afterClosed()
         );
         break;
       case NotificationWay.Push:
-        this.notifyPush(title, bodyTextOrHtml, severity, durationInMs);
+        await firstValueFrom(
+          this.notifyPush(
+            title,
+            bodyTextOrHtml,
+            severity,
+            durationInMs
+          ).afterDismissed()
+        );
         break;
     }
   }
@@ -60,22 +72,18 @@ export class NotifyService {
     message: string,
     severity: NotificationSeverity,
     durationInMs: number
-  ): void {
+  ): ActiveToast<any> {
     const options = { timeOut: durationInMs };
 
     switch (severity) {
       case NotificationSeverity.Success:
-        this.toastr.success(message, '', options);
-        break;
+        return this.toastr.success(message, '', options);
       case NotificationSeverity.Error:
-        this.toastr.error(message, '', options);
-        break;
+        return this.toastr.error(message, '', options);
       case NotificationSeverity.Warning:
-        this.toastr.warning(message, '', options);
-        break;
+        return this.toastr.warning(message, '', options);
       default:
-        this.toastr.info(message, '', options);
-        break;
+        return this.toastr.info(message, '', options);
     }
   }
 
@@ -84,8 +92,8 @@ export class NotifyService {
     bodyTextOrHtml: string,
     severity: NotificationSeverity,
     durationInMs: number
-  ): void {
-    this.matSnackBar.openFromComponent(FinPushComponent, {
+  ): MatSnackBarRef<FinPushComponent> {
+    return this.matSnackBar.openFromComponent(FinPushComponent, {
       duration: durationInMs,
       verticalPosition: 'top',
       horizontalPosition: 'right',
@@ -95,7 +103,7 @@ export class NotifyService {
         title,
         severity,
         bodyTextOrHtml,
-        durationInMs
+        durationInMs,
       } as FinPushData,
     });
   }
@@ -107,8 +115,8 @@ export class NotifyService {
     bodyTemplate: TemplateRef<any> | null,
     footerTemplate: TemplateRef<any> | null,
     showCloseButton: boolean
-  ) {
-    this.matDialog.open(FinMessageComponent, {
+  ): MatDialogRef<FinMessageComponent, void> {
+    return this.matDialog.open(FinMessageComponent, {
       hasBackdrop: true,
       closeOnNavigation: false,
       disableClose: false,
@@ -121,7 +129,7 @@ export class NotifyService {
         bodyTextOrHtml,
         bodyTemplate,
         footerTemplate,
-        showCloseButton
+        showCloseButton,
       } as FinMessageData,
     });
   }
