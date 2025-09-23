@@ -59,7 +59,7 @@ export class NotificationService {
     justWays: NotificationWay[] | null = null
   ): Promise<void> {
     const promises = notifyUserDTO.ways.map(async (way) => {
-      if (way === NotificationWay.Email || justWays?.includes(way)) return;
+      if (way === NotificationWay.Email || (!!justWays &&  !justWays.includes(way))) return;
 
       const body =
         way == NotificationWay.Snack
@@ -82,15 +82,14 @@ export class NotificationService {
     const messages = notifications.filter((n) =>
       n.ways.includes(NotificationWay.Message)
     );
-    const messagePromises = messages.map(
-      async (n) => await this.notify(n, [NotificationWay.Message])
-    );
-    await Promise.all(messagePromises);
+    for (const notification of messages) {
+      await this.notify(notification, [NotificationWay.Message]);
+    }
 
     const justSnacks = notifications.filter(
       (n) =>
-        n.ways.includes(NotificationWay.Snack)! &&
-        n.ways.includes(NotificationWay.Message)
+        n.ways.includes(NotificationWay.Snack) &&
+        !n.ways.includes(NotificationWay.Message)
     );
     justSnacks.forEach((n) => this.notify(n, [NotificationWay.Snack]));
   }
