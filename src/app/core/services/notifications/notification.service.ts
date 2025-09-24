@@ -54,12 +54,31 @@ export class NotificationService {
     this.unreadMessagesAndPushsNotifications.set([]);
   }
 
+  public async addNotificationFromWebSocket(
+    notifyUserDTO: NotifyUserDto
+  ): Promise<void> {
+    if (
+      notifyUserDTO.ways.includes(NotificationWay.Message) ||
+      notifyUserDTO.ways.includes(NotificationWay.Push)
+    ) {
+      this.unreadMessagesAndPushsNotifications.update((ns) => {
+        return [...ns, notifyUserDTO];
+      });
+    }
+
+    return await this.notify(notifyUserDTO)
+  }
+
   public async notify(
     notifyUserDTO: NotifyUserDto,
     justWays: NotificationWay[] | null = null
   ): Promise<void> {
-    const promises = notifyUserDTO.ways.map(async (way) => {
-      if (way === NotificationWay.Email || (!!justWays &&  !justWays.includes(way))) return;
+    for (const way of notifyUserDTO.ways) {
+      if (
+        way === NotificationWay.Email ||
+        (!!justWays && !justWays.includes(way))
+      )
+        continue;
 
       const body =
         way == NotificationWay.Snack
@@ -72,8 +91,8 @@ export class NotificationService {
         way,
         notifyUserDTO.severity
       );
-    });
-    await Promise.all(promises);
+    }
+
     if (!notifyUserDTO.continuous)
       this.readNotification(notifyUserDTO.notificationId);
   }

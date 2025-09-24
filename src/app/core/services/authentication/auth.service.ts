@@ -1,7 +1,14 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, firstValueFrom, of, tap, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  firstValueFrom,
+  of,
+  tap,
+  throwError,
+} from 'rxjs';
 import { UserProps } from '../../models/authentication/user-props';
 import { LoginOutput } from '../../models/authentication/login-output';
 import { LoginInput } from '../../models/authentication/login-input';
@@ -22,8 +29,11 @@ const ONE_HOUR_IN_SECONDS = 60 * 60;
 export class AuthService {
   private readonly currentUserSubject = signal<UserProps | null>(null);
   public readonly currentUser = this.currentUserSubject.asReadonly();
-  private readonly isAuthenticatedSubject = signal<boolean>(false);
-  public readonly isAuthenticated = this.isAuthenticatedSubject.asReadonly();
+  private readonly isAuthenticatedSubject = new BehaviorSubject(false);
+  public readonly isAuthenticatedSub = this.isAuthenticatedSubject.asObservable();
+  public get isAuthenticated(): boolean {
+    return this.isAuthenticatedSubject.value;
+  }
 
   private readonly api = inject(AuthApiService);
   private readonly router = inject(Router);
@@ -174,7 +184,7 @@ export class AuthService {
     this.storageService.removeFromLocalStorage(this.TOKEN_KEY);
     this.storageService.removeFromLocalStorage(this.REFRESH_TOKEN_KEY);
     this.currentUserSubject.set(null);
-    this.isAuthenticatedSubject.set(false);
+    this.isAuthenticatedSubject.next(false);
   }
 
   private setToken(token: string): void {
@@ -204,7 +214,7 @@ export class AuthService {
       });
 
       this.currentUserSubject.set(user);
-      this.isAuthenticatedSubject.set(true);
+      this.isAuthenticatedSubject.next(true);
     } catch (error) {
       console.error('Error parsing token:', error);
       this.clearAuth();
