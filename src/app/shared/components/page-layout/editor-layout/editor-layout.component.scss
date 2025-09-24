@@ -1,14 +1,8 @@
-form {
-  padding-top: 2rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  width: 50%;
 
   .form-header {
     width: 100%;
@@ -25,8 +19,12 @@ form {
   }
 }
 
-@media (min-width: 768px) {
-  form {
-    grid-template-columns: 1fr 1fr;
+form {
+  padding-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 100%;
   }
 }

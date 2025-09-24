@@ -25,7 +25,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   public async ngOnDestroy(): Promise<void> {
-    await this.notificationWebsocketService.ngOnInit()
+    await this.notificationWebsocketService.ngOnDestroy()
   }
 }
 
