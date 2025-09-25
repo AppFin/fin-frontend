@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   importProvidersFrom,
+  LOCALE_ID,
   provideAppInitializer,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -22,6 +23,7 @@ import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { appInterceptor } from './core/interceptors/app.interceptor';
 import { provideToastr } from 'ngx-toastr';
+import { localeIdFactory } from './core/functions/locale-factory';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -52,6 +54,10 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
+    {
+      provide: LOCALE_ID,
+      useFactory: localeIdFactory
+    },
     provideAppInitializer(finAppInitializer),
   ],
 };

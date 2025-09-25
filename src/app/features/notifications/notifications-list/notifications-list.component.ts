@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  LOCALE_ID,
   OnInit,
   signal,
 } from '@angular/core';
@@ -24,10 +25,14 @@ import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
 import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
 import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
+import { FinSeverity } from '../../../core/types/themes/fin-severity';
+import { DatePipe } from '@angular/common';
+import { LocalizationService } from '../../../core/services/localization/localization.service';
 
 @Component({
   selector: 'fin-notifications-list',
   imports: [FinPageLayoutComponent, FinGridComponent, FinButtonComponent],
+  providers: [DatePipe],
   templateUrl: './notifications-list.component.html',
   styleUrl: './notifications-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,6 +42,9 @@ export class NotificationsListComponent implements OnInit {
   public readonly loading = signal(true);
 
   private readonly apiService = inject(NotificationApiService);
+  private readonly localizationService = inject(LocalizationService);
+  private readonly dataPipe = inject(DatePipe);
+  private readonly locale = inject(LOCALE_ID);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
 
@@ -44,6 +52,7 @@ export class NotificationsListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setOptions();
+    console.log(this.locale)
   }
 
   public createNotification(): void {
@@ -116,16 +125,6 @@ export class NotificationsListComponent implements OnInit {
     return [
       {
         icon: new FinIconOptions({
-          icon: 'eye',
-          tooltip: 'finCore.actions.view',
-          color: 'var(--color-primary)',
-        }),
-        canShow: () => of(true),
-        disabled: () => of(false),
-        onClick: (item) => this.view(item),
-      },
-      {
-        icon: new FinIconOptions({
           icon: 'pen',
           tooltip: 'finCore.actions.edit',
           color: 'var(--color-disabled)',
@@ -148,33 +147,37 @@ export class NotificationsListComponent implements OnInit {
   }
 
   private getSeverityIcon(severity: NotificationSeverity): FinIconOptions {
+    let icon: string;
+    let finSeverity: FinSeverity;
+
+
     switch (severity) {
-      case NotificationSeverity.Info:
-        return new FinIconOptions({
-          icon: 'info-circle',
-          color: 'var(--color-info)',
-        });
-      case NotificationSeverity.Warning:
-        return new FinIconOptions({
-          icon: 'exclamation-triangle',
-          color: 'var(--color-warning)',
-        });
-      case NotificationSeverity.Error:
-        return new FinIconOptions({
-          icon: 'times-circle',
-          color: 'var(--color-error)',
-        });
       case NotificationSeverity.Success:
-        return new FinIconOptions({
-          icon: 'check-circle',
-          color: 'var(--color-success)',
-        });
+        finSeverity = 'success';
+        icon = 'circle-check';
+        break;
+      case NotificationSeverity.Error:
+        finSeverity = 'danger';
+        icon = 'circle-exclamation';
+        break;
+      case NotificationSeverity.Warning:
+        finSeverity = 'warn';
+        icon = 'triangle-exclamation';
+        break;
+      case NotificationSeverity.Info:
+        finSeverity = 'info';
+        icon = 'circle-info';
+        break;
       default:
-        return new FinIconOptions({
-          icon: 'circle',
-          color: 'var(--color-disabled)',
-        });
+        finSeverity = 'primary';
+        icon = 'bell';
+        break;
     }
+
+    return new FinIconOptions({
+      icon,
+      severity: finSeverity,
+    });
   }
 
   private formatWays(ways: NotificationWay[]): string {
@@ -198,12 +201,7 @@ export class NotificationsListComponent implements OnInit {
 
   private formatDate(date: Date): string {
     if (!date) return '-';
-    return new Date(date).toLocaleDateString();
-  }
-
-  private view(item: NotificationOutput): Observable<void> {
-    this.router.navigate([`./${item.id}/view`], { relativeTo: this.activatedRoute });
-    return of();
+    return this.dataPipe.transform(new Date(date), this.localizationService.getDefaultDatetimeFormat()) ?? '-';
   }
 
   private edit(item: NotificationOutput): Observable<void> {

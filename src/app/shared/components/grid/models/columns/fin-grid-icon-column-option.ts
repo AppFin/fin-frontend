@@ -4,6 +4,7 @@ import {
   FinFontAwesomeType,
   FinIconType,
 } from '../../../icon/fin-icon.component';
+import { FinSeverity } from '../../../../../core/types/themes/fin-severity';
 
 export class FinGridIconColumnOption<T> implements IFinGridColumnOption<T> {
   public header: string;
@@ -30,6 +31,7 @@ export class FinIconOptions {
   public type: FinIconType = 'fontAwesome';
   public imageFolder: string = 'icons/';
   public imageExtension: string = '.png';
+  public severity: FinSeverity = 'primary';
 
   constructor(op: Partial<FinIconOptions> = {}) {
     Object.assign(this, op);
