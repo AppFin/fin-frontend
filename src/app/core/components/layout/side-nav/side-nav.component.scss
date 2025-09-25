@@ -1,5 +1,6 @@
 :host {
-  max-height: 100%;
+  overflow: hidden;
+  height: auto;
   flex: 1;
 }
 
@@ -27,9 +28,10 @@ mat-drawer {
   height: 100%;
   background-color: var(--background-color);
   border-start-start-radius: 1.5rem;
-  padding: 1rem;
+  padding: 2rem;
+  overflow: hidden;
   border-top: 0.5px solid var(--color-secondary);
-  box-shadow: rgba(0, 0, 0, 0.12) 3px 3px 6px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.12) 3px 3px 6px 0 inset;
   flex: 1 1 auto;
   transition: flex-basis 0.3s ease;
 
