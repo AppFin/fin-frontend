@@ -20,6 +20,8 @@ export interface ITranslate {
       new: string;
       cancel: string;
       edit: string;
+      ok: string;
+      confirmation: string;
       delete: string;
       creating: string;
       editing: string;
@@ -39,6 +41,9 @@ export interface ITranslate {
       pin: string;
       unpin: string;
     };
+    grid: {
+      confirmDelete: string;
+    }
     auth: {
       confirmYourPassword: string;
       email: string;

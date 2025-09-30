@@ -12,7 +12,12 @@ import {
   FinMessageComponent,
   FinMessageData,
 } from '../../components/notifications/message/fin-message.component';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
+import { FinSeverity } from '../../types/themes/fin-severity';
+import {
+  FinConfirmationComponent,
+  FinConfirmationData,
+} from '../../components/notifications/confirmation/fin-confirmation.component';
 
 export type NotifyWays =
   | NotificationWay.Snack
@@ -132,5 +137,33 @@ export class NotifyService {
         showCloseButton,
       } as FinMessageData,
     });
+  }
+
+  public confirm(
+    text: string,
+    severity: FinSeverity = 'primary',
+    icon: string | null = null,
+    title = 'finCore.actions.confirmation',
+  ): Observable<boolean> {
+    const dialogRef = this.matDialog.open<
+      FinConfirmationComponent,
+      FinConfirmationData,
+      boolean
+    >(FinConfirmationComponent, {
+      hasBackdrop: true,
+      closeOnNavigation: false,
+      disableClose: false,
+      maxWidth: '95vw',
+      width: '900px',
+      maxHeight: '80vh',
+      data: {
+        title,
+        severity,
+        text,
+        icon
+      } as FinConfirmationData,
+    });
+
+    return dialogRef.afterClosed().pipe(map((confirmation) => !!confirmation));
   }
 }

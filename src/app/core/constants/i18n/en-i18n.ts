@@ -24,6 +24,8 @@ export const EnI18n: ITranslate = {
       toggleToLightMode: 'Toggle to light mode',
       tryDifferentTerms: 'Try different terms',
       unpin: 'Unpin',
+      ok: 'Ok',
+      confirmation: 'Confirmation',
     },
     appName: 'Fin App',
     auth: {
@@ -32,10 +34,12 @@ export const EnI18n: ITranslate = {
       email: 'Email',
       erros: {
         passwordMinLength: 'The password must have at least 5 characters',
-        passwordMustHasLowercase: 'The password must contain a lowercase letter',
+        passwordMustHasLowercase:
+          'The password must contain a lowercase letter',
         passwordMustHasNumber: 'The password must contain a number',
         passwordMustHasSpecial: 'The password must contain a special character',
-        passwordMustHasUppercase: 'The password must contain an uppercase letter',
+        passwordMustHasUppercase:
+          'The password must contain an uppercase letter',
         passwordsMustBeEquals: 'Passwords must be the same',
       },
       pages: {
@@ -80,7 +84,8 @@ export const EnI18n: ITranslate = {
           title: 'Reset password',
         },
         sendResetEmail: {
-          emailSent: 'We’ve sent you an email if your address exists in our system',
+          emailSent:
+            'We’ve sent you an email if your address exists in our system',
           sendLink: 'Send link',
           subtitle: 'Enter your email to receive the recovery link',
           title: 'Forgot your password?',
@@ -137,6 +142,9 @@ export const EnI18n: ITranslate = {
         noData: 'No data to display',
         reload: 'Reload',
       },
+    },
+    grid: {
+      confirmDelete: 'Are ou sure you want to delete?',
     },
   },
 };

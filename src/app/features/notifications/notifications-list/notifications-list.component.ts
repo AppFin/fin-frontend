@@ -63,9 +63,10 @@ export class NotificationsListComponent implements OnInit {
     const gridOptions = new FinGridOptions({
       id: 'NOTIFICATIONS_LIST',
       getColumns: () => of(this.getColumns()),
-      getActions: () => of(this.getActions()),
       getList: (input) => this.getNotifications(input),
       reloadItens: this.reloadItens,
+      onDelete: this.delete.bind(this),
+      onEdit: this.edit.bind(this),
     });
 
     this.gridOptions.set(gridOptions);
@@ -121,62 +122,44 @@ export class NotificationsListComponent implements OnInit {
     ];
   }
 
-  private getActions(): IFinGridActionOption<NotificationOutput>[] {
-    return [
-      {
-        icon: new FinIconOptions({
-          icon: 'pen',
-          tooltip: 'finCore.actions.edit',
-          color: 'var(--color-disabled)',
-        }),
-        canShow: () => of(true),
-        disabled: () => of(false),
-        onClick: (item) => this.edit(item),
-      },
-      {
-        icon: new FinIconOptions({
-          icon: 'trash',
-          color: 'var(--color-error)',
-          tooltip: 'finCore.actions.delete',
-        }),
-        canShow: () => of(true),
-        disabled: () => of(false),
-        onClick: (item) => this.delete(item),
-      },
-    ];
-  }
-
   private getSeverityIcon(severity: NotificationSeverity): FinIconOptions {
     let icon: string;
     let finSeverity: FinSeverity;
+    let tooltip: string;
 
 
     switch (severity) {
       case NotificationSeverity.Success:
         finSeverity = 'success';
         icon = 'circle-check';
+        tooltip = 'finCore.features.notifications.severity.success';
         break;
       case NotificationSeverity.Error:
         finSeverity = 'danger';
         icon = 'circle-exclamation';
+        tooltip = 'finCore.features.notifications.severity.error';
         break;
       case NotificationSeverity.Warning:
         finSeverity = 'warn';
         icon = 'triangle-exclamation';
+        tooltip = 'finCore.features.notifications.severity.waning';
         break;
       case NotificationSeverity.Info:
         finSeverity = 'info';
         icon = 'circle-info';
+        tooltip = 'finCore.features.notifications.severity.information.';
         break;
       default:
         finSeverity = 'primary';
         icon = 'bell';
+        tooltip = 'finCore.features.notifications.severity.normal';
         break;
     }
 
     return new FinIconOptions({
       icon,
       severity: finSeverity,
+      tooltip: tooltip
     });
   }
 

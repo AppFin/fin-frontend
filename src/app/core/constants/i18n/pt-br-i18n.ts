@@ -24,6 +24,8 @@ export const PtBrI18n: ITranslate = {
       toggleToLightMode: 'Mudar para modo claro',
       tryDifferentTerms: 'Tente outros termos',
       unpin: 'Desfixar',
+      ok: 'Ok',
+      confirmation: 'Confirmation',
     },
     appName: 'App Fin',
     auth: {
@@ -80,7 +82,8 @@ export const PtBrI18n: ITranslate = {
           title: 'Redefinir senha',
         },
         sendResetEmail: {
-          emailSent: 'Se o e-email existir na plataforma ele  foi enviado agora',
+          emailSent:
+            'Se o e-email existir na plataforma ele  foi enviado agora',
           sendLink: 'Enviar link',
           subtitle: 'Digite seu email para receber o link de recuperação',
           title: 'Esqueceu sua senha?',
@@ -130,13 +133,16 @@ export const PtBrI18n: ITranslate = {
       unpinnedMenus: 'Menus não fixados',
       xNotifications: '{{notificationCount}}  notificação(ões)',
       clearNotifications: 'Limpar',
-      noNotifications: 'Sem novas notificações'
+      noNotifications: 'Sem novas notificações',
     },
     sharedComponents: {
       grid: {
         noData: 'Nenhum item para visualizar',
         reload: 'Recarregar',
       },
+    },
+    grid: {
+      confirmDelete: 'Tem certeza que deseja deletar esse item?',
     },
   },
 };

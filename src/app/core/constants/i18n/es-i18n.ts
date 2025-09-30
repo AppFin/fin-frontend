@@ -24,6 +24,8 @@ export const EsI18n: ITranslate = {
       toggleToLightMode: 'Cambiar a modo claro',
       tryDifferentTerms: 'Prueba con otros términos',
       unpin: 'Desanclar',
+      ok: 'Ok',
+      confirmation: '',
     },
     appName: 'Fin App',
     auth: {
@@ -32,10 +34,13 @@ export const EsI18n: ITranslate = {
       email: 'Correo electrónico',
       erros: {
         passwordMinLength: 'La contraseña debe tener al menos 5 caracteres',
-        passwordMustHasLowercase: 'La contraseña debe contener una letra minúscula',
+        passwordMustHasLowercase:
+          'La contraseña debe contener una letra minúscula',
         passwordMustHasNumber: 'La contraseña debe contener un número',
-        passwordMustHasSpecial: 'La contraseña debe contener un carácter especial',
-        passwordMustHasUppercase: 'La contraseña debe contener una letra mayúscula',
+        passwordMustHasSpecial:
+          'La contraseña debe contener un carácter especial',
+        passwordMustHasUppercase:
+          'La contraseña debe contener una letra mayúscula',
         passwordsMustBeEquals: 'Las contraseñas deben ser iguales',
       },
       pages: {
@@ -80,9 +85,11 @@ export const EsI18n: ITranslate = {
           title: 'Restablecer contraseña',
         },
         sendResetEmail: {
-          emailSent: 'Te hemos enviado un correo si tu dirección existe en nuestro sistema',
+          emailSent:
+            'Te hemos enviado un correo si tu dirección existe en nuestro sistema',
           sendLink: 'Enviar enlace',
-          subtitle: 'Introduce tu correo para recibir el enlace de recuperación',
+          subtitle:
+            'Introduce tu correo para recibir el enlace de recuperación',
           title: '¿Olvidaste tu contraseña?',
         },
       },
@@ -130,13 +137,16 @@ export const EsI18n: ITranslate = {
       unpinnedMenus: 'Menús no fijados',
       xNotifications: '{{notificationCount}} notificacion(es)',
       clearNotifications: '-',
-      noNotifications: '-'
+      noNotifications: '-',
     },
     sharedComponents: {
       grid: {
         noData: 'No hay datos para mostrar',
         reload: 'Recargar',
       },
+    },
+    grid: {
+      confirmDelete: '',
     },
   },
 };
