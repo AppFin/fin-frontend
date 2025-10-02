@@ -1,0 +1,28 @@
+<div class="input-container" [style.width]="width()">
+  <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
+      <textarea
+        #textarea
+        pTextarea
+        [autoResize]="autoResize()"
+        (blur)="validStatesChange()"
+        [formControl]="formControl"
+        [id]="id()"
+        [rows]="rows()"
+        [cols]="cols()"
+        [readonly]="readonly()"
+        [style.width]="'100%'"
+      ></textarea>
+    <label [for]="id()">{{ label() | finTranslate }}</label>
+  </p-iftalabel>
+  <div class="sub-text">
+    @if (!hasError()) {
+      <fin-text [text]="helpText()" class="info-sub" type="info" />
+    } @else {
+      <fin-text
+        [text]="errorMessageEffective() ?? ''"
+        class="error-sub"
+        type="info"
+      />
+    }
+  </div>
+</div>

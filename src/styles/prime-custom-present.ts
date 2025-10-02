@@ -387,6 +387,40 @@ export const PrimeCustomPreset = definePreset(Aura, {
         },
       },
     },
+    textarea: {
+      colorScheme: {
+        light: {
+          root: {
+            background: '#ffffff', // Padrão light
+            disabledBackground: '#f8f9fa',
+            filledBackground: '#f8f9fa',
+            filledFocusBackground: '#ffffff',
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            focusBorderColor: '#f87b07',
+            invalidBorderColor: '#f21b3f',
+            color: '#212529',
+          }
+        },
+        dark: {
+          root: {
+            // Aplicando o fundo mais escuro para o modo escuro
+            background: '#1e2228',
+            disabledBackground: '#1e2228',
+            filledBackground: '#1e2228',
+            filledHoverBackground: '#262b33',
+            filledFocusBackground: '#1e2228',
+
+            // Outras cores importantes
+            borderColor: '#5e6671',
+            hoverBorderColor: '#fdc570',
+            focusBorderColor: '#fdc570',
+            invalidBorderColor: '#f21b3f',
+            color: '#f8f9fa',
+          }
+        }
+      }
+    },
     inputtext: {
       colorScheme: {
         light: {
