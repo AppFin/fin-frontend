@@ -100,6 +100,26 @@ export const EnI18n: ITranslate = {
       required: 'This field is required',
     },
     features: {
+      financialInstitutions: {
+        active: 'Active',
+        code: 'Code',
+        bankName: 'Bank Name',
+        codeAndType: 'Code and Type',
+        codeHelp: 'Select the bank COMPE code (auto-completes when typing the name)',
+        bankNameAndCode: 'Bank',
+        icon: 'Icon',
+        list: {
+          title: 'Financial Institutions',
+        },
+        logo: 'Logo',
+        logoPreview: 'Logo Preview',
+        logoUrl: 'Logo URL',
+        logoUrlHelp: 'Custom logo URL (optional, auto-filled when selecting the bank)',
+        name: 'Institution Name',
+        nameHelp: 'Full name of the financial institution (e.g., type "inter" to auto-complete)',
+        title: 'Financial Institutions',
+        type: 'Institution Type',
+      },
       menus: {
         color: 'Color',
         frontRoute: 'Front route',
@@ -114,6 +134,7 @@ export const EnI18n: ITranslate = {
         title: 'Menus',
       },
       shared: {
+        active: 'Active',
         name: 'Name',
       },
     },

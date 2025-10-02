@@ -1,0 +1,60 @@
+<fin-editor-layout
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editing'"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="fechar()"
+>
+  @if (!loading()) {
+    <fin-input 
+      label="finCore.features.financialInstitutions.name" 
+      helpText="finCore.features.financialInstitutions.nameHelp"
+      [formControl]="formGroup.controls.name" 
+    />
+    
+    <fin-select
+      label="finCore.features.financialInstitutions.type"
+      [formControl]="formGroup.controls.type"
+      [options]="institutionTypeOptions"
+    />
+    
+    <fin-select
+      label="finCore.features.financialInstitutions.code"
+      helpText="finCore.features.financialInstitutions.codeHelp"
+      [formControl]="formGroup.controls.code"
+      [options]="bankCodeOptions()"
+    />
+    
+    <fin-input 
+      label="finCore.features.financialInstitutions.logoUrl" 
+      helpText="finCore.features.financialInstitutions.logoUrlHelp"
+      [formControl]="formGroup.controls.logoUrl" 
+    />
+    
+    <fin-toggle-switch
+      label="finCore.features.shared.active"
+      [formControl]="formGroup.controls.active"
+    />
+    
+    @if (logoPreviewPath()) {
+      <div class="logo-preview-container">
+        <label class="logo-preview-label">{{ 'finCore.features.financialInstitutions.logoPreview' | finTranslate }}</label>
+        <fin-bank-logo 
+          [bankCode]="selectedBankCode()!"
+          [width]="120"
+          [height]="120"
+        />
+      </div>
+    } @else if (formGroup.controls.code.value && !logoPreviewPath()) {
+      <div class="logo-preview-container">
+        <label class="logo-preview-label">{{ 'finCore.features.financialInstitutions.logoPreview' | finTranslate }}</label>
+        <div class="logo-not-found">
+          <i class="pi pi-image" style="font-size: 3rem; color: var(--color-disabled);"></i>
+          <p style="color: var(--color-disabled); margin-top: 8px;">Logo não encontrada</p>
+        </div>
+      </div>
+    }
+  }
+</fin-editor-layout>

@@ -100,6 +100,26 @@ export const EsI18n: ITranslate = {
       required: 'Este campo es obligatorio',
     },
     features: {
+      financialInstitutions: {
+        active: 'Activo',
+        code: 'Código',
+        bankName: 'Nombre del Banco',
+        codeAndType: 'Código y Tipo',
+        codeHelp: 'Seleccione el código COMPE del banco (autocompletar al escribir el nombre)',
+        bankNameAndCode: 'Banco',
+        icon: 'Ícono',
+        list: {
+          title: 'Instituciones Financieras',
+        },
+        logo: 'Logo',
+        logoPreview: 'Vista Previa del Logo',
+        logoUrl: 'URL del Logo',
+        logoUrlHelp: 'URL personalizada del logo (opcional, se llena automáticamente al seleccionar el banco)',
+        name: 'Nombre de la Institución',
+        nameHelp: 'Nombre completo de la institución financiera (ej: escribir "inter" auto-completa todo)',
+        title: 'Instituciones Financieras',
+        type: 'Tipo de Institución',
+      },
       menus: {
         color: 'Color',
         frontRoute: 'Ruta del front',
@@ -114,6 +134,7 @@ export const EsI18n: ITranslate = {
         title: 'Menús',
       },
       shared: {
+        active: 'Activo',
         name: 'Nombre',
       },
     },

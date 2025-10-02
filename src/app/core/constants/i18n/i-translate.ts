@@ -118,11 +118,32 @@ export interface ITranslate {
     };
     features: {
       shared: {
-        name: string,
-      },
+        active: string;
+        name: string;
+      };
+      financialInstitutions: {
+        active: string;
+        code: string;
+        bankName: string;
+        codeAndType: string;
+        codeHelp: string;
+        bankNameAndCode: string;
+        icon: string;
+        list: {
+          title: string;
+        };
+        logo: string;
+        logoPreview: string;
+        logoUrl: string;
+        logoUrlHelp: string;
+        name: string;
+        nameHelp: string;
+        title: string;
+        type: string;
+      };
       menus: {
-        title: string,
-        showOnSideNav: string,
+        title: string;
+        showOnSideNav: string;
         name: string;
         frontRoute: string;
         color: string;

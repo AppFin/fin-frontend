@@ -3,6 +3,7 @@ import { AUTH_ROUTES } from './features/authentication/authentication-routes';
 import { authenticatedGuard } from './core/guards/authentication/authenticated.guard';
 import { MENUS_ROUTES } from './features/menus/menus-routes';
 import { adminGuard } from './core/guards/authentication/admin.guard';
+import { FINANCIAL_INSTITUTIONS_ROUTES } from './features/financial-institutions/financial-institutions-routes';
 
 export const routes: Routes = [
   ...AUTH_ROUTES,
@@ -22,7 +23,8 @@ export const routes: Routes = [
             path: 'admin',
             canActivate: [adminGuard],
             children: [
-              ...MENUS_ROUTES
+              ...MENUS_ROUTES,
+              ...FINANCIAL_INSTITUTIONS_ROUTES
             ]
           }
         ]

@@ -100,6 +100,26 @@ export const PtBrI18n: ITranslate = {
       required: 'Este campo é obrigatório',
     },
     features: {
+      financialInstitutions: {
+        active: 'Ativo',
+        code: 'Código',
+        bankName: 'Nome do Banco',
+        codeAndType: 'Código e Tipo',
+        codeHelp: 'Selecione o código COMPE do banco (auto-completa ao digitar o nome)',
+        bankNameAndCode: 'Banco',
+        icon: 'Ícone',
+        list: {
+          title: 'Instituições Financeiras',
+        },
+        logo: 'Logo',
+        logoPreview: 'Prévia do Logo',
+        logoUrl: 'URL do Logo',
+        logoUrlHelp: 'URL customizada do logo (opcional, auto-preenchida ao selecionar o banco)',
+        name: 'Nome da Instituição',
+        nameHelp: 'Nome completo da instituição financeira (ex: digitar "inter" auto-completa tudo)',
+        title: 'Instituições Financeiras',
+        type: 'Tipo de Instituição',
+      },
       menus: {
         color: 'Cor',
         frontRoute: 'Rota do front',
@@ -114,6 +134,7 @@ export const PtBrI18n: ITranslate = {
         title: 'Menus',
       },
       shared: {
+        active: 'Ativo',
         name: 'Nome',
       },
     },
