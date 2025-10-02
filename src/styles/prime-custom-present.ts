@@ -404,14 +404,12 @@ export const PrimeCustomPreset = definePreset(Aura, {
         },
         dark: {
           root: {
-            // Aplicando o fundo mais escuro para o modo escuro
             background: '#1e2228',
             disabledBackground: '#1e2228',
             filledBackground: '#1e2228',
             filledHoverBackground: '#262b33',
             filledFocusBackground: '#1e2228',
 
-            // Outras cores importantes
             borderColor: '#5e6671',
             hoverBorderColor: '#fdc570',
             focusBorderColor: '#fdc570',
@@ -420,6 +418,78 @@ export const PrimeCustomPreset = definePreset(Aura, {
           }
         }
       }
+    },
+    editor: {
+      colorScheme: {
+        light: {
+          root: {
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            focusBorderColor: '#f87b07',
+            invalidBorderColor: '#f21b3f',
+            color: '#212529',
+          },
+          toolbar: {
+            background: '#f8f9fa',
+            borderColor: '#adb5bd',
+            itemColor: '#6c757d',
+            itemHoverColor: '#f87b07',
+            itemActiveColor: '#f87b07',
+            itemPadding: '0.5rem',
+          },
+          content: {
+            background: '#ffffff',
+            borderColor: '#adb5bd',
+            color: '#212529',
+          },
+          overlay: {
+            background: '#ffffff',
+            borderColor: '#e9ecef',
+
+            color: '#212529',
+            shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            padding: '0.25rem 0',
+            optionFocusBackground: '#fdc570',
+            optionColor: '#212529',
+            optionFocusColor: '#212529',
+            optionPadding: '0.5rem 0.75rem',
+          },
+        },
+        dark: {
+          root: {
+            borderColor: '#5e6671',
+            hoverBorderColor: '#fdc570',
+            focusBorderColor: '#fdc570',
+            invalidBorderColor: '#f21b3f',
+            color: '#f8f9fa',
+          },
+          toolbar: {
+            background: '#1a1d23',
+            borderColor: '#5e6671',
+            itemColor: '#adb5bd',
+            itemHoverColor: '#fdc570',
+            itemActiveColor: '#fdc570',
+            itemPadding: '0.5rem',
+          },
+          content: {
+            background: '#1e2228',
+            borderColor: '#5e6671',
+            color: '#f8f9fa',
+          },
+          overlay: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#e9ecef',
+            shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+            padding: '0.25rem 0',
+            optionFocusBackground: '#212529',
+            optionColor: '#e9ecef',
+            optionFocusColor: '#e9ecef',
+            optionPadding: '0.5rem 0.75rem',
+            optionBorderRadius: '0.25rem',
+          },
+        },
+      },
     },
     inputtext: {
       colorScheme: {
