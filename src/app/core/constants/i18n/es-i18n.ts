@@ -6,6 +6,7 @@ export const EsI18n: ITranslate = {
       cancel: 'Cancelar',
       changeOrder: 'Cambiar orden',
       close: 'Cerrar',
+      confirmation: 'Confirmación',
       creating: 'Creando',
       delete: 'Eliminar',
       edit: 'Editar',
@@ -14,6 +15,7 @@ export const EsI18n: ITranslate = {
       loading: 'Cargando...',
       new: 'Nuevo',
       noResults: 'Sin resultados',
+      ok: 'Ok',
       open: 'Abrir',
       pin: 'Anclar',
       save: 'Guardar',
@@ -24,8 +26,6 @@ export const EsI18n: ITranslate = {
       toggleToLightMode: 'Cambiar a modo claro',
       tryDifferentTerms: 'Prueba con otros términos',
       unpin: 'Desanclar',
-      ok: 'Ok',
-      confirmation: '',
     },
     appName: 'Fin App',
     auth: {
@@ -33,6 +33,23 @@ export const EsI18n: ITranslate = {
       confirmYourPassword: 'Confirma tu contraseña',
       email: 'Correo electrónico',
       erros: {
+        cantCreateUser: 'No se pudo crear el usuario',
+        differentGoogleAccountLinked:
+          'Ya hay vinculada una cuenta diferente de Google',
+        doNotHasPassword: 'El usuario no tiene una contraseña registrada',
+        emailAlreadyInUse: 'El correo electrónico ya está en uso',
+        emailNotFound: 'Correo electrónico no encontrado',
+        errorOnCreateUser: 'Error al crear el usuario',
+        errorOnResend: 'Error al reenviar',
+        errorOnValidEmail: 'Error al validar el correo electrónico',
+        expiredToken: 'Token expirado',
+        inactivatedUser: 'Usuario inactivado',
+        invalidPassword: 'Contraseña inválida',
+        invalidRefreshToken: 'Token de actualización inválido',
+        invalidToken: 'Token inválido',
+        loginError: 'Error al iniciar sesión',
+        maxAttemptsReached: 'Número máximo de intentos alcanzado',
+        notSamePassword: 'Las contraseñas no coinciden',
         passwordMinLength: 'La contraseña debe tener al menos 5 caracteres',
         passwordMustHasLowercase:
           'La contraseña debe contener una letra minúscula',
@@ -42,6 +59,9 @@ export const EsI18n: ITranslate = {
         passwordMustHasUppercase:
           'La contraseña debe contener una letra mayúscula',
         passwordsMustBeEquals: 'Las contraseñas deben ser iguales',
+        resetPasswordError: 'Error al restablecer la contraseña',
+        sendResetError: 'Error al enviar correo de restablecimiento',
+        title: 'Error',
       },
       pages: {
         createAccount: {
@@ -101,10 +121,14 @@ export const EsI18n: ITranslate = {
     },
     errors: {
       email: 'Correo electrónico inválido',
+      forbidden: 'No tiene permiso para acceder a esta página',
+      googleLoginError: 'Error al iniciar sesión con Google',
+      internalError: 'Error interno del servidor, inténtelo de nuevo o contacte con el soporte. Código de error 500.',
       maxLength: 'Máximo de {{maxLength}} caracteres',
       minLength: 'Mínimo de {{minLength}} caracteres',
       pattern: 'Formato inválido',
       required: 'Este campo es obligatorio',
+      serverError: 'Error en el servidor',
     },
     features: {
       menus: {
@@ -124,11 +148,16 @@ export const EsI18n: ITranslate = {
         name: 'Nombre',
       },
     },
+    grid: {
+      confirmDelete: '¿Está seguro de que desea eliminar?',
+    },
     layout: {
       admin: 'Administrador',
+      clearNotifications: 'Limpiar',
       closeMenu: 'Cerrar menú',
       empty: 'Vacío',
       exit: 'Salir',
+      noNotifications: 'Sin notificaciones nuevas',
       notifications: 'Notificaciones',
       openMenu: 'Abrir menú',
       pinnedMenus: 'Menús fijados',
@@ -136,17 +165,12 @@ export const EsI18n: ITranslate = {
       termsAndPolicies: 'Términos y políticas',
       unpinnedMenus: 'Menús no fijados',
       xNotifications: '{{notificationCount}} notificacion(es)',
-      clearNotifications: '-',
-      noNotifications: '-',
     },
     sharedComponents: {
       grid: {
         noData: 'No hay datos para mostrar',
         reload: 'Recargar',
       },
-    },
-    grid: {
-      confirmDelete: '',
     },
   },
 };

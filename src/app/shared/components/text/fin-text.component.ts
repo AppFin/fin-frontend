@@ -18,7 +18,7 @@ export type FinLinkTarget = '_self' | '_blank' | '_parent' | '_top';
   templateUrl: './fin-text.component.html',
   styleUrl: './fin-text.component.scss',
   imports: [CommonModule, RouterLink, FinTranslatePipe],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FinTextComponent {
   public readonly type = input<FinTextType>('paragraph');
@@ -26,6 +26,7 @@ export class FinTextComponent {
   public readonly backgroundColor = input('transparent');
   public readonly text = input('');
   public readonly severity = input<FinSeverity | null>(null);
+  public readonly fixedSize = input(true);
 
   // Link Props
   public readonly href = input<string>();

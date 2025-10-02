@@ -29,6 +29,7 @@
         @case ('title') {
             <h1
                     class="fin-text fin-text-title"
+                    [class.fixed-size]="fixedSize()"
                     [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
@@ -40,6 +41,7 @@
         @case ('subtitle') {
             <h2
                     class="fin-text fin-text-subtitle"
+                    [class.fixed-size]="fixedSize()"
                     [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
@@ -51,6 +53,7 @@
         @case ('paragraph') {
             <p
                     class="fin-text fin-text-paragraph"
+                    [class.fixed-size]="fixedSize()"
                     [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
@@ -62,6 +65,7 @@
       @case ('subparagraph') {
         <p
           class="fin-text fin-text-subparagraph"
+          [class.fixed-size]="fixedSize()"
           [style.color]="textEffectiveColor()"
           [style.background-color]="backgroundColor()"
           [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
@@ -73,6 +77,7 @@
         @case ('info') {
             <small
                     class="fin-text fin-text-info"
+                    [class.fixed-size]="fixedSize()"
                     [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"
                     [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
@@ -85,6 +90,7 @@
         @case ('label') {
             <label
                     class="fin-text fin-text-label"
+                    [class.fixed-size]="fixedSize()"
                     [for]="for()"
                     [style.color]="textEffectiveColor()"
                     [style.background-color]="backgroundColor()"

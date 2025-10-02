@@ -6,6 +6,7 @@ export const PtBrI18n: ITranslate = {
       cancel: 'Cancelar',
       changeOrder: 'Alterar ordem',
       close: 'Fechar',
+      confirmation: 'Confirmation',
       creating: 'Criando',
       delete: 'Excluir',
       edit: 'Editar',
@@ -14,6 +15,7 @@ export const PtBrI18n: ITranslate = {
       loading: 'Carregando...',
       new: 'Novo',
       noResults: 'Sem resultados',
+      ok: 'Ok',
       open: 'Abrir',
       pin: 'Fixar',
       save: 'Salvar',
@@ -24,8 +26,6 @@ export const PtBrI18n: ITranslate = {
       toggleToLightMode: 'Mudar para modo claro',
       tryDifferentTerms: 'Tente outros termos',
       unpin: 'Desfixar',
-      ok: 'Ok',
-      confirmation: 'Confirmation',
     },
     appName: 'App Fin',
     auth: {
@@ -33,12 +33,32 @@ export const PtBrI18n: ITranslate = {
       confirmYourPassword: 'Confirme sua senha',
       email: 'E-mail',
       erros: {
+        cantCreateUser: 'Não foi possível criar o usuário',
+        differentGoogleAccountLinked:
+          'Uma conta diferente do Google já está vinculada',
+        doNotHasPassword: 'Usuário não possui senha cadastrada',
+        emailAlreadyInUse: 'E-mail já está em uso',
+        emailNotFound: 'E-mail não encontrado',
+        errorOnCreateUser: 'Erro ao criar o usuário',
+        errorOnResend: 'Erro ao reenviar',
+        errorOnValidEmail: 'Erro ao validar o e-mail',
+        expiredToken: 'Token expirado',
+        inactivatedUser: 'Usuário inativado',
+        invalidPassword: 'Senha inválida',
+        invalidRefreshToken: 'Token de atualização inválido',
+        invalidToken: 'Token inválido',
+        loginError: 'Erro ao realizar login',
+        maxAttemptsReached: 'Número máximo de tentativas atingido',
+        notSamePassword: 'As senhas não coincidem',
         passwordMinLength: 'A senha deve ter no mínimo 5 caracteres',
         passwordMustHasLowercase: 'A senha deve conter uma letra minúscula',
         passwordMustHasNumber: 'A senha deve conter um número',
         passwordMustHasSpecial: 'A senha deve conter um caractere especial',
         passwordMustHasUppercase: 'A senha deve conter uma letra maiúscula',
         passwordsMustBeEquals: 'As senhas devem ser iguais',
+        resetPasswordError: 'Erro ao redefinir a senha',
+        sendResetError: 'Erro ao enviar E-mail de redefinição',
+        title: 'Erro',
       },
       pages: {
         createAccount: {
@@ -97,10 +117,14 @@ export const PtBrI18n: ITranslate = {
     },
     errors: {
       email: 'Email inválido',
+      forbidden: 'Você não ter permissão de acessar essas página',
+      googleLoginError: 'Erro ao logar com o Google',
+      internalError: 'Erro interno no servidor, tente novamente ou contate o suporte. Erro código 500.',
       maxLength: 'Máximo de {{maxLength}} caracteres',
       minLength: 'Mínimo de {{minLength}} caracteres',
       pattern: 'Formato inválido',
       required: 'Este campo é obrigatório',
+      serverError: 'Erro no servidor',
     },
     features: {
       menus: {
@@ -120,11 +144,16 @@ export const PtBrI18n: ITranslate = {
         name: 'Nome',
       },
     },
+    grid: {
+      confirmDelete: 'Tem certeza que deseja deletar esse item?',
+    },
     layout: {
       admin: 'Administrador',
+      clearNotifications: 'Limpar',
       closeMenu: 'Fechar menus',
       empty: 'Vazio',
       exit: 'Sair',
+      noNotifications: 'Sem novas notificações',
       notifications: 'Notificações',
       openMenu: 'Abrir menus',
       pinnedMenus: 'Menus fixados',
@@ -132,17 +161,12 @@ export const PtBrI18n: ITranslate = {
       termsAndPolicies: 'Termos e políticas',
       unpinnedMenus: 'Menus não fixados',
       xNotifications: '{{notificationCount}}  notificação(ões)',
-      clearNotifications: 'Limpar',
-      noNotifications: 'Sem novas notificações',
     },
     sharedComponents: {
       grid: {
         noData: 'Nenhum item para visualizar',
         reload: 'Recarregar',
       },
-    },
-    grid: {
-      confirmDelete: 'Tem certeza que deseja deletar esse item?',
     },
   },
 };

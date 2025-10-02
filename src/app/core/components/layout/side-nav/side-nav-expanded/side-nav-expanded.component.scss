@@ -50,7 +50,7 @@
   background-color: var(--p-toolbar-background);
   border: 1px solid var(--color-primary);
   border-radius: 0.8rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   position: relative;
 
   .drag-icon {
@@ -70,7 +70,6 @@
   }
 
   &:hover {
-    transform: scale(1.05);
     background-color: var(--color-hover);
 
     .drag-icon,
@@ -108,7 +107,7 @@
   border: 1px solid var(--color-primary);
   padding: 0.3rem;
   border-radius: 0.8rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   min-height: 3.5rem;
 
   .spacer {

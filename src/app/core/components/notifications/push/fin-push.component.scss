@@ -37,6 +37,8 @@
     .snack-message {
       flex: 1;
       min-width: 0;
+      max-height: 16rem;
+      overflow: hidden;
 
       ::ng-deep fin-text {
         color: var(--text-primary-color, #333333);

@@ -18,6 +18,9 @@ import { ResetPasswordErrorCode } from '../../enums/authentication/reset-passwor
 import { AuthApiService } from './auth-api.service';
 import { jwtDecode } from 'jwt-decode';
 import { StorageService } from '../app/storage.service';
+import { NotifyService } from '../notifications/notify.service';
+import { NotificationSeverity } from '../../enums/notifications/notification-severity';
+import { LoginErrorCode } from '../../enums/authentication/login-error-code';
 
 export type ExternalLoginProvider = 'Google';
 
@@ -30,7 +33,8 @@ export class AuthService {
   private readonly currentUserSubject = signal<UserProps | null>(null);
   public readonly currentUser = this.currentUserSubject.asReadonly();
   private readonly isAuthenticatedSubject = new BehaviorSubject(false);
-  public readonly isAuthenticatedSub = this.isAuthenticatedSubject.asObservable();
+  public readonly isAuthenticatedSub =
+    this.isAuthenticatedSubject.asObservable();
   public get isAuthenticated(): boolean {
     return this.isAuthenticatedSubject.value;
   }
@@ -39,6 +43,7 @@ export class AuthService {
   private readonly router = inject(Router);
   private readonly storageService = inject(StorageService);
   private readonly googleAuthService = inject(AuthGoogleService);
+  private readonly notifyService = inject(NotifyService);
 
   private readonly TOKEN_KEY = 'auth_token';
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';
@@ -56,6 +61,7 @@ export class AuthService {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 422) {
           this.handleLogin(error.error);
+          return of(true);
         }
         return throwError(() => error);
       })
@@ -192,11 +198,16 @@ export class AuthService {
   }
 
   private setRefreshToken(refreshToken: string): void {
-    this.storageService.saveToLocalStorage(this.REFRESH_TOKEN_KEY, refreshToken);
+    this.storageService.saveToLocalStorage(
+      this.REFRESH_TOKEN_KEY,
+      refreshToken
+    );
   }
 
   private getRefreshToken(): string | null {
-    return this.storageService.loadFromLocalStorage<string>(this.REFRESH_TOKEN_KEY);
+    return this.storageService.loadFromLocalStorage<string>(
+      this.REFRESH_TOKEN_KEY
+    );
   }
 
   private setCurrentUser(): void {
@@ -243,15 +254,76 @@ export class AuthService {
   }
 
   private emmitLoginErrorMessage(error: LoginOutput) {
-    // TODO here we notify user via push ou dialog.
+    let errorMsg: string;
+
+    switch (error.errorCode) {
+      case LoginErrorCode.EmailNotFound:
+        errorMsg = 'emailNotFound';
+        break;
+      case LoginErrorCode.DoNotHasPassword:
+        errorMsg = 'doNotHasPassword';
+        break;
+      case LoginErrorCode.MaxAttemptsReached:
+        errorMsg = 'maxAttemptsReached';
+        break;
+      case LoginErrorCode.InactivatedUser:
+        errorMsg = 'inactivatedUser';
+        break;
+      case LoginErrorCode.InvalidPassword:
+        errorMsg = 'invalidPassword';
+        break;
+      case LoginErrorCode.InvalidRefreshToken:
+        errorMsg = 'invalidRefreshToken';
+        break;
+      case LoginErrorCode.DifferentGoogleAccountLinked:
+        errorMsg = 'differentGoogleAccountLinked';
+        break;
+      case LoginErrorCode.CantCreateUser:
+        errorMsg = 'cantCreateUser';
+        break;
+      default:
+        errorMsg = 'loginError';
+    }
+
+    this.notifyService.notifyMessage(
+      'finCore.auth.erros.title',
+      `finCore.auth.erros.${errorMsg}`,
+      NotificationSeverity.Error
+    );
   }
 
   private emmitResetErrorMessage(errorCode: ResetPasswordErrorCode) {
-    // TODO here we notify user via push ou dialog.
-    // If error codeis invalid token bring user to login page.
+    let errorMsg: string;
+
+    switch (errorCode) {
+      case ResetPasswordErrorCode.InvalidPassword:
+        errorMsg = 'invalidPassword';
+        break;
+      case ResetPasswordErrorCode.NotSamePassword:
+        errorMsg = 'notSamePassword';
+        break;
+      case ResetPasswordErrorCode.InvalidToken:
+        errorMsg = 'invalidToken';
+        break;
+      case ResetPasswordErrorCode.ExpiredToken:
+        errorMsg = 'expiredToken';
+        break;
+      default:
+        errorMsg = 'resetPasswordError';
+    }
+
+    this.notifyService.notifyMessage(
+      'finCore.auth.erros.title',
+      `finCore.auth.erros.${errorMsg}`,
+      NotificationSeverity.Error
+    );
   }
 
   private emmitSendResetErrorMessage() {
-    // TODO here we notify user via push ou dialog.
+    this.notifyService.notifyMessage(
+      'finCore.auth.erros.title',
+      'finCore.auth.erros.sendResetError',
+      NotificationSeverity.Error
+    );
   }
 }

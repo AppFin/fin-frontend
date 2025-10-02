@@ -9,6 +9,8 @@ import { catchError, firstValueFrom, map, of, throwError } from 'rxjs';
 import { UserStartCreateErrorCode } from '../enums/user-start-create-error-code';
 import { UserUpdateOrCreateInput } from '../../../shared/models/users/user-update-or-create-input';
 import { UserDto } from '../../../shared/models/users/user-dto';
+import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
+import { NotifyService } from '../../../core/services/notifications/notify.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +19,7 @@ export class UserCreateService {
   private readonly API_URL =
     ensureTrailingSlash(environment.apiUrl) + 'users/create/';
   private readonly http = inject(HttpClient);
+  private readonly notifyService = inject(NotifyService);
 
   public async start(
     input: UserStartCreateInput
@@ -64,7 +67,7 @@ export class UserCreateService {
     const result = await firstValueFrom(request);
 
     if (result instanceof Date) return result;
-    this.emitErrorMessage('ERRO MESSAGE HERE');
+    this.emitErrorMessage('errorOnResend');
     return result.data;
   }
 
@@ -87,7 +90,7 @@ export class UserCreateService {
     const result = await firstValueFrom(request);
 
     if (typeof result === 'boolean') return result;
-    this.emitErrorMessage('ERRO MESSAGE HERE');
+    this.emitErrorMessage('errorOnValidEmail');
     return result.data ?? false;
   }
 
@@ -111,16 +114,40 @@ export class UserCreateService {
     const result = await firstValueFrom(request);
 
     if (result instanceof UserDto) return true;
-    this.emitErrorMessage('ERRO MESSAGE HERE');
+    this.emitErrorMessage('errorOnCreateUser');
 
     return false;
   }
 
   private emitStaertCreateErrorMessage(code: UserStartCreateErrorCode): void {
-    // TODO here we notify user via push ou dialog.
+    let errorMsg: string;
+
+    switch (code) {
+      case UserStartCreateErrorCode.InvalidPassword:
+        errorMsg = 'invalidPassword';
+        break;
+      case UserStartCreateErrorCode.NotSamePassword:
+        errorMsg = 'notSamePassword';
+        break;
+      case UserStartCreateErrorCode.EmailAlreadyInUse:
+        errorMsg = 'emailAlreadyInUse';
+        break;
+      default:
+        errorMsg = 'resetPasswordError';
+    }
+
+    this.notifyService.notifyMessage(
+      'finCore.auth.erros.title',
+      `finCore.auth.erros.${errorMsg}`,
+      NotificationSeverity.Error
+    );
   }
 
-  private emitErrorMessage(erromessagehere: string): void {
-    // TODO here we notify user via push ou dialog.
+  private emitErrorMessage(errorMsg: string): void {
+    this.notifyService.notifyMessage(
+      'finCore.auth.erros.title',
+      `finCore.auth.erros.${errorMsg}`,
+      NotificationSeverity.Error
+    );
   }
 }

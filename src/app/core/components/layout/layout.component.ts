@@ -18,14 +18,16 @@ import { NotificationWebsocketService } from '../../services/notifications/notif
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent implements OnInit, OnDestroy {
-  private readonly notificationWebsocketService = inject(NotificationWebsocketService);
+  private readonly notificationWebsocketService = inject(
+    NotificationWebsocketService
+  );
 
   public ngOnInit(): void {
-    this.notificationWebsocketService.ngOnInit()
+    this.notificationWebsocketService.ngOnInit();
   }
 
   public async ngOnDestroy(): Promise<void> {
-    await this.notificationWebsocketService.ngOnDestroy()
+    await this.notificationWebsocketService.ngOnDestroy();
   }
 }
 

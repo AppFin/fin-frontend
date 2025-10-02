@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { LoginOutput } from '../../models/authentication/login-output';
 import { ensureTrailingSlash } from '../../functions/ensure-trailing-slash';
 import { environment } from '../../../../environments/environment';
+import { NotificationSeverity } from '../../enums/notifications/notification-severity';
+import { NotifyService } from '../notifications/notify.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +12,8 @@ export class AuthGoogleService {
   private readonly LOGIN_URL =
     ensureTrailingSlash(environment.apiUrl) +
     'authentications/login-google?state=';
+
+  private readonly notifyService = inject(NotifyService);
 
   public async loginWithGoogle(): Promise<LoginOutput> {
     return new Promise((resolve, reject) => {
@@ -101,6 +105,10 @@ export class AuthGoogleService {
   }
 
   private emmitPopupErrorMessage(): void {
-    // TODO here we notify user via push ou dialog.
+    this.notifyService.notifyMessage(
+      'finCore.auth.erros.title',
+      'finCore.auth.erros.googleLoginError',
+      NotificationSeverity.Error
+    );
   }
 }

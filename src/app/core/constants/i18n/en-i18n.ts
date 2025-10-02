@@ -6,6 +6,7 @@ export const EnI18n: ITranslate = {
       cancel: 'Cancel',
       changeOrder: 'Change order',
       close: 'Close',
+      confirmation: 'Confirmation',
       creating: 'Creating',
       delete: 'Delete',
       edit: 'Edit',
@@ -14,6 +15,7 @@ export const EnI18n: ITranslate = {
       loading: 'Loading...',
       new: 'New',
       noResults: 'No results',
+      ok: 'Ok',
       open: 'Open',
       pin: 'Pin',
       save: 'Save',
@@ -24,8 +26,6 @@ export const EnI18n: ITranslate = {
       toggleToLightMode: 'Toggle to light mode',
       tryDifferentTerms: 'Try different terms',
       unpin: 'Unpin',
-      ok: 'Ok',
-      confirmation: 'Confirmation',
     },
     appName: 'Fin App',
     auth: {
@@ -33,6 +33,23 @@ export const EnI18n: ITranslate = {
       confirmYourPassword: 'Confirm Your password',
       email: 'Email',
       erros: {
+        cantCreateUser: 'Unable to create user',
+        differentGoogleAccountLinked:
+          'A different Google account is already linked',
+        doNotHasPassword: 'User does not have a password set',
+        emailAlreadyInUse: 'Email is already in use',
+        emailNotFound: 'Email not found',
+        errorOnCreateUser: 'Error creating user',
+        errorOnResend: 'Error resending',
+        errorOnValidEmail: 'Error validating email',
+        expiredToken: 'Expired token',
+        inactivatedUser: 'User is deactivated',
+        invalidPassword: 'Invalid password',
+        invalidRefreshToken: 'Invalid refresh token',
+        invalidToken: 'Invalid token',
+        loginError: 'Login error',
+        maxAttemptsReached: 'Maximum number of attempts reached',
+        notSamePassword: 'Passwords do not match',
         passwordMinLength: 'The password must have at least 5 characters',
         passwordMustHasLowercase:
           'The password must contain a lowercase letter',
@@ -41,6 +58,9 @@ export const EnI18n: ITranslate = {
         passwordMustHasUppercase:
           'The password must contain an uppercase letter',
         passwordsMustBeEquals: 'Passwords must be the same',
+        resetPasswordError: 'Error resetting password',
+        sendResetError: 'Erro on send reset email',
+        title: 'Error',
       },
       pages: {
         createAccount: {
@@ -74,7 +94,7 @@ export const EnI18n: ITranslate = {
           loginWithGoogle: 'Continue with Google',
           singIn: 'Sign in',
           subtitle: 'Log in to your account',
-          thereIsNoAccount: "Don't have an account?",
+          thereIsNoAccount: 'Don\'t have an account?',
           title: 'Welcome back!',
         },
         resetPassword: {
@@ -85,7 +105,7 @@ export const EnI18n: ITranslate = {
         },
         sendResetEmail: {
           emailSent:
-            'We’ve sent you an email if your address exists in our system',
+            'We\'ve sent you an email if your address exists in our system',
           sendLink: 'Send link',
           subtitle: 'Enter your email to receive the recovery link',
           title: 'Forgot your password?',
@@ -99,10 +119,14 @@ export const EnI18n: ITranslate = {
     },
     errors: {
       email: 'Invalid email',
+      forbidden: 'You do not have permission to access this page',
+      googleLoginError: 'Error on Google Login',
+      internalError: 'Internal server error, please try again or contact support. Error code 500.',
       maxLength: 'Maximum of {{maxLength}} characters',
       minLength: 'Minimum of {{minLength}} characters',
       pattern: 'Invalid format',
       required: 'This field is required',
+      serverError: 'Error on server',
     },
     features: {
       menus: {
@@ -122,11 +146,16 @@ export const EnI18n: ITranslate = {
         name: 'Name',
       },
     },
+    grid: {
+      confirmDelete: 'Are ou sure you want to delete?',
+    },
     layout: {
       admin: 'Admin',
+      clearNotifications: 'Clear',
       closeMenu: 'Close menus',
       empty: 'Empty',
       exit: 'Exit',
+      noNotifications: 'No new notification',
       notifications: 'Notifications',
       openMenu: 'Open menus',
       pinnedMenus: 'Pinned menus',
@@ -134,17 +163,12 @@ export const EnI18n: ITranslate = {
       termsAndPolicies: 'Terms and policies',
       unpinnedMenus: 'Unpinned menus',
       xNotifications: '{{notificationCount}} notification(s)',
-      clearNotifications: 'Clear',
-      noNotifications: 'No new notification',
     },
     sharedComponents: {
       grid: {
         noData: 'No data to display',
         reload: 'Reload',
       },
-    },
-    grid: {
-      confirmDelete: 'Are ou sure you want to delete?',
     },
   },
 };

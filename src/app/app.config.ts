@@ -24,12 +24,13 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { appInterceptor } from './core/interceptors/app.interceptor';
 import { provideToastr } from 'ngx-toastr';
 import { localeIdFactory } from './core/functions/locale-factory';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor, appInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, appInterceptor, errorInterceptor])),
     provideHttpClient(),
     provideAnimationsAsync(),
     provideToastr({

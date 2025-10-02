@@ -6,8 +6,8 @@
     <div class="snack-message">
       <fin-text [text]="data.title" type="subtitle" />
 
-      @if (isHtml()) {
-        <fin-text [text]="data.bodyTextOrHtml" type="paragraph" />
+      @if (!isHtml()) {
+        <fin-text [text]="data.bodyTextOrHtml" type="paragraph" [fixedSize]="false" />
       } @else {
         <fin-text type="paragraph" >
           <div [innerHTML]="data.bodyTextOrHtml | safeHtml"></div>

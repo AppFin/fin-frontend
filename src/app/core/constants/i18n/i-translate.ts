@@ -54,6 +54,25 @@ export interface ITranslate {
         passwordMustHasSpecial: string;
         passwordMustHasUppercase: string;
         passwordsMustBeEquals: string;
+        emailNotFound: string;
+        doNotHasPassword: string;
+        maxAttemptsReached: string;
+        inactivatedUser: string;
+        invalidPassword: string;
+        invalidRefreshToken: string;
+        differentGoogleAccountLinked: string;
+        cantCreateUser: string;
+        loginError: string;
+        sendResetError: string;
+        title: string;
+        notSamePassword: string;
+        invalidToken: string;
+        expiredToken: string;
+        resetPasswordError: string;
+        emailAlreadyInUse: string;
+        errorOnResend: string;
+        errorOnValidEmail: string;
+        errorOnCreateUser: string;
       };
       pages: {
         createAccount: {
@@ -116,6 +135,10 @@ export interface ITranslate {
       minLength: string;
       pattern: string;
       required: string;
+      serverError: string;
+      internalError: string;
+      googleLoginError: string;
+      forbidden: string;
     };
     sharedComponents: {
       grid: {

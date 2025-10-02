@@ -18,6 +18,7 @@ import {
   FinConfirmationComponent,
   FinConfirmationData,
 } from '../../components/notifications/confirmation/fin-confirmation.component';
+import { FinTranslateService } from '../translate/fin-translate.service';
 
 export type NotifyWays =
   | NotificationWay.Snack
@@ -31,6 +32,7 @@ export class NotifyService {
   private toastr = inject(ToastrService);
   private matSnackBar = inject(MatSnackBar);
   private matDialog = inject(MatDialog);
+  private translateService = inject(FinTranslateService);
 
   public async notify(
     title: string,
@@ -76,9 +78,11 @@ export class NotifyService {
   public notifySnack(
     message: string,
     severity: NotificationSeverity,
-    durationInMs: number
+    durationInMs = 5000
   ): ActiveToast<any> {
     const options = { timeOut: durationInMs };
+
+    message = this.translateService.translate(message);
 
     switch (severity) {
       case NotificationSeverity.Success:
@@ -96,7 +100,7 @@ export class NotifyService {
     title: string,
     bodyTextOrHtml: string,
     severity: NotificationSeverity,
-    durationInMs: number
+    durationInMs = 5000
   ): MatSnackBarRef<FinPushComponent> {
     return this.matSnackBar.openFromComponent(FinPushComponent, {
       duration: durationInMs,
@@ -117,9 +121,9 @@ export class NotifyService {
     title: string,
     bodyTextOrHtml: string,
     severity: NotificationSeverity,
-    bodyTemplate: TemplateRef<any> | null,
-    footerTemplate: TemplateRef<any> | null,
-    showCloseButton: boolean
+    bodyTemplate: TemplateRef<any> | null = null,
+    footerTemplate: TemplateRef<any> | null = null,
+    showCloseButton: boolean = true
   ): MatDialogRef<FinMessageComponent, void> {
     return this.matDialog.open(FinMessageComponent, {
       hasBackdrop: true,
