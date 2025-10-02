@@ -19,7 +19,6 @@ import {
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
 import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
 import { NotificationWay } from '../../../core/enums/notifications/notification-way';
-import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
@@ -52,7 +51,7 @@ export class NotificationsListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setOptions();
-    console.log(this.locale)
+    console.log(this.locale);
   }
 
   public createNotification(): void {
@@ -115,7 +114,8 @@ export class NotificationsListComponent implements OnInit {
         width: '150px',
       }),
       new FinGridSimpleColumnOption<NotificationOutput>({
-        getValue: (item) => item.stopToDelivery ? this.formatDate(item.stopToDelivery) : '-',
+        getValue: (item) =>
+          item.stopToDelivery ? this.formatDate(item.stopToDelivery) : '-',
         header: 'finCore.features.notifications.stopToDelivery',
         width: '150px',
       }),
@@ -126,7 +126,6 @@ export class NotificationsListComponent implements OnInit {
     let icon: string;
     let finSeverity: FinSeverity;
     let tooltip: string;
-
 
     switch (severity) {
       case NotificationSeverity.Success:
@@ -159,32 +158,39 @@ export class NotificationsListComponent implements OnInit {
     return new FinIconOptions({
       icon,
       severity: finSeverity,
-      tooltip: tooltip
+      tooltip: tooltip,
     });
   }
 
   private formatWays(ways: NotificationWay[]): string {
     if (!ways || ways.length === 0) return '-';
 
-    return ways.map(way => {
-      switch (way) {
-        case NotificationWay.Email:
-          return 'Email';
-        case NotificationWay.Push:
-          return 'Push';
-        case NotificationWay.Snack:
-          return 'Snack';
-        case NotificationWay.Message:
-          return 'Message';
-        default:
-          return '-';
-      }
-    }).join(', ');
+    return ways
+      .map((way) => {
+        switch (way) {
+          case NotificationWay.Email:
+            return 'Email';
+          case NotificationWay.Push:
+            return 'Push';
+          case NotificationWay.Snack:
+            return 'Snack';
+          case NotificationWay.Message:
+            return 'Message';
+          default:
+            return '-';
+        }
+      })
+      .join(', ');
   }
 
   private formatDate(date: Date): string {
     if (!date) return '-';
-    return this.dataPipe.transform(new Date(date), this.localizationService.getDefaultDatetimeFormat()) ?? '-';
+    return (
+      this.dataPipe.transform(
+        new Date(date),
+        this.localizationService.getDefaultDatetimeFormat()
+      ) ?? '-'
+    );
   }
 
   private edit(item: NotificationOutput): Observable<void> {

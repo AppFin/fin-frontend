@@ -11,5 +11,6 @@ export type NotificationOutput = {
   startToDelivery: Date;
   stopToDelivery: Date | null;
   link: string;
+  userIds: string[];
   severity: NotificationSeverity;
 }

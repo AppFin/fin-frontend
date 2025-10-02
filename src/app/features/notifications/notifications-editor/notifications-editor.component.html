@@ -1,0 +1,25 @@
+<fin-editor-layout
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editing'"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="fechar()"
+>
+  @if (!loading()) {
+    <fin-input class="col-12" label="finCore.features.notifications.title" [formControl]="formGroup.controls.title" />
+
+    <fin-input class="col-6" label="finCore.features.notifications.link" [formControl]="formGroup.controls.link" />
+
+    <fin-select class="col-6" label="finCore.features.notifications.severity"
+                [formControl]="formGroup.controls.severity"
+                [options]="selectOptions" />
+
+    <fin-toggle-switch
+      class="col-4"
+      label="finCore.features.menus.continuous"
+      [formControl]="formGroup.controls.continuous"
+    />
+  }
+</fin-editor-layout>

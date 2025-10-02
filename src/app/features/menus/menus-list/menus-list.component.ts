@@ -17,7 +17,6 @@ import {
   FinIconOptions,
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
 import { MenuPosition } from '../../../core/enums/layouts/menu-position';
-import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';

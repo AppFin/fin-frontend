@@ -15,14 +15,14 @@ export const NOTIFICATIONS_ROUTES: Routes = [
             (m) => m.NotificationsListComponent
           ),
       },
-      // {
-      //   path: 'new',
-      //   loadComponent: () => import('./menus-editor/menus-editor.component').then(m => m.MenusEditorComponent),
-      // },
-      // {
-      //   path: ':notificationId',
-      //   loadComponent: () => import('./menus-editor/menus-editor.component').then(m => m.MenusEditorComponent),
-      // },
+      {
+        path: 'new',
+        loadComponent: () => import('./notifications-editor/notifications-editor.component').then(m => m.NotificationsEditorComponent),
+      },
+      {
+        path: ':notificationId',
+        loadComponent: () => import('./notifications-editor/notifications-editor.component').then(m => m.NotificationsEditorComponent),
+      },
       {
         path: '**',
         redirectTo: ''
