@@ -24,6 +24,9 @@ import { FinToggleSwitchComponent } from '../../../shared/components/toggle-swit
 import { FinTextareaComponent } from '../../../shared/components/textarea/fin-textarea.component';
 import { FinTextEditorComponent } from '../../../shared/components/text-editor/fin-text-editor.component';
 import { FinMultiSelectComponent } from '../../../shared/components/multi-select/fin-multi-select.component';
+import { FinDatetimeComponent } from '../../../shared/components/datetime/fin-date-time.component';
+import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
+import { UserApiService } from '../../authentication/services/user-api.service';
 
 type NotificationInputForm = {
   ways: FormControl<NotificationWay[]>;
@@ -48,6 +51,7 @@ type NotificationInputForm = {
     FinTextareaComponent,
     FinTextEditorComponent,
     FinMultiSelectComponent,
+    FinDatetimeComponent,
   ],
   templateUrl: './notifications-editor.component.html',
   styleUrl: './notifications-editor.component.scss',
@@ -69,9 +73,14 @@ export class NotificationsEditorComponent implements OnInit {
     getOptions: this.getNotificationWaysOptions.bind(this),
   });
 
+  public readonly userSelectOptions = new FinSelectComponentOptions({
+    getOptions: this.getUsersOptions.bind(this),
+  });
+
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private apiService = inject(NotificationApiService);
+  private userApiService = inject(UserApiService);
   private notificationEditingId: string;
 
   public async ngOnInit(): Promise<void> {
@@ -141,6 +150,21 @@ export class NotificationsEditorComponent implements OnInit {
           };
         }),
     } as PagedOutput<FinSelectOption<NotificationWay>>);
+  }
+
+  private getUsersOptions(input: PagedFilteredAndSortedInput): Observable<PagedOutput<FinSelectOption<string>>> {
+    return this.userApiService.getList(input)
+      .pipe(map(result => {
+        return {
+          totalCount: result.totalCount,
+          items: result.items.map(user => {
+            return {
+              value: user.id,
+              label: user.displayName,
+            } as FinSelectOption<string>
+          }),
+        }
+      }));
   }
 
   private setFormGroup(notificationsEditing: NotificationOutput | null): void {

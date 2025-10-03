@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { toHttpParams } from '../../functions/to-http-params';
 import { NotifyUserDto } from '../../types/notifications/notify-user-dto';
 import { NotificationOutput } from '../../types/notifications/notification-output';
@@ -28,7 +28,13 @@ export class NotificationApiService {
   }
 
   public get(id: string): Observable<NotificationOutput> {
-    return this.http.get<NotificationOutput>(this.API_URL + id);
+    return this.http.get<NotificationOutput>(this.API_URL + id).pipe(
+      map((result) => {
+        result.stopToDelivery = result.stopToDelivery ? new Date(result.stopToDelivery) : null;
+        result.startToDelivery = new Date(result.startToDelivery);
+        return result;
+      })
+    );
   }
 
   public create(input: NotificationInput): Observable<NotificationOutput> {

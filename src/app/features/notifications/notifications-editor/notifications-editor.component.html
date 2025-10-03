@@ -22,14 +22,26 @@
 
     <fin-multi-select class="col-6" label="finCore.features.notifications.users"
                       [formControl]="formGroup.controls.userIds"
-                      [options]="waysSelectOptions" />
+                      [options]="userSelectOptions" />
+
+    <fin-datetime
+      class="col-4"
+      label="finCore.features.menus.startToDelivery"
+      [formControl]="formGroup.controls.startToDelivery"
+    />
+
+    <fin-datetime
+      class="col-4"
+      label="finCore.features.menus.stopToDelivery"
+      [formControl]="formGroup.controls.stopToDelivery"
+
+    />
 
     <fin-toggle-switch
       class="col-4"
       label="finCore.features.menus.continuous"
       [formControl]="formGroup.controls.continuous"
     />
-    <span class="col-8"></span>
 
     <fin-textarea class="col-12" label="finCore.features.notifications.textBody" [formControl]="formGroup.controls.textBody" />
 
