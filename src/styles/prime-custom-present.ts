@@ -387,6 +387,100 @@ export const PrimeCustomPreset = definePreset(Aura, {
         },
       },
     },
+    datepicker: {
+      colorScheme: {
+        light: {
+          panel: {
+            background: '#ffffff',
+            borderColor: '#e9ecef',
+            color: '#212529',
+            borderRadius: '0.375rem',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            padding: '1rem',
+          },
+          header: {
+            background: '#ffffff',
+            color: '#212529',
+            padding: '0 0 1rem 0',
+          },
+          date: {
+            hoverBackground: '#fdc570',
+            selectedBackground: '#f87b07',
+            rangeSelectedBackground: '#fdc570',
+            color: '#212529',
+            hoverColor: '#212529',
+            selectedColor: '#ffffff',
+            rangeSelectedColor: '#212529',
+            borderRadius: '50%',
+            width: '2.25rem',
+            height: '2.25rem',
+          },
+          today: {
+            background: '#e9ecef',
+            color: '#212529',
+          },
+          dropdown: {
+            background: 'transparent',
+            hoverBackground: '#fdc570',
+            activeBackground: '#f87b07',
+            color: '#212529',
+            hoverColor: '#212529',
+            activeColor: '#ffffff',
+            borderRadius: '0.25rem',
+          },
+          timePicker: {
+            padding: '1rem 0 0 0',
+            borderColor: '#e9ecef',
+          },
+        },
+        dark: {
+          panel: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#e9ecef',
+            borderRadius: '0.375rem',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+            padding: '1rem',
+          },
+          header: {
+            background: '#1a1d23',
+            color: '#e9ecef',
+            padding: '0 0 1rem 0',
+          },
+          date: {
+            hoverBackground: '#212529',
+            selectedBackground: '#fdc570',
+            rangeSelectedBackground: '#212529',
+            color: '#e9ecef',
+            hoverColor: '#e9ecef',
+            selectedColor: '#000000',
+            rangeSelectedColor: '#e9ecef',
+            borderRadius: '50%',
+            width: '2.25rem',
+            height: '2.25rem',
+          },
+          today: {
+            background: '#212529',
+            color: '#fdc570',
+          },
+          dropdown: {
+            background: 'transparent',
+            hoverBackground: '#212529',
+            activeBackground: '#fdc570',
+            color: '#e9ecef',
+            hoverColor: '#e9ecef',
+            activeColor: '#000000',
+            borderRadius: '0.25rem',
+          },
+          timePicker: {
+            padding: '1rem 0 0 0',
+            borderColor: '#212529',
+          },
+        },
+      },
+    },
     textarea: {
       colorScheme: {
         light: {
