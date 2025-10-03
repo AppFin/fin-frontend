@@ -1,4 +1,4 @@
-<div class="input-container" [style.width]="width()">
+<div class="input-container" [style.width]="width()" [style.max-width]="width()">
   <div class="editor-container" [class.disabled]="disabled()" [class.required]="required()">
 
     <label [for]="id()" class="fin-editor-label">{{ label() | finTranslate }}</label>

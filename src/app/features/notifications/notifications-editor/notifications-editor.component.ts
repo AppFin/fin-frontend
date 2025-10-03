@@ -21,6 +21,9 @@ import { EditorLayoutComponent } from '../../../shared/components/page-layout/ed
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
 import { FinToggleSwitchComponent } from '../../../shared/components/toggle-switch/fin-toggle-switch.component';
+import { FinTextareaComponent } from '../../../shared/components/textarea/fin-textarea.component';
+import { FinTextEditorComponent } from '../../../shared/components/text-editor/fin-text-editor.component';
+import { FinMultiSelectComponent } from '../../../shared/components/multi-select/fin-multi-select.component';
 
 type NotificationInputForm = {
   ways: FormControl<NotificationWay[]>;
@@ -42,6 +45,9 @@ type NotificationInputForm = {
     FinInputComponent,
     FinSelectComponent,
     FinToggleSwitchComponent,
+    FinTextareaComponent,
+    FinTextEditorComponent,
+    FinMultiSelectComponent,
   ],
   templateUrl: './notifications-editor.component.html',
   styleUrl: './notifications-editor.component.scss',
@@ -55,8 +61,12 @@ export class NotificationsEditorComponent implements OnInit {
 
   public readonly editorTypes = EditorType;
 
-  public readonly selectOptions = new FinSelectComponentOptions({
+  public readonly severitySelectOptions = new FinSelectComponentOptions({
     getOptions: this.getNotificationSeverityOptions.bind(this),
+  });
+
+  public readonly waysSelectOptions = new FinSelectComponentOptions({
+    getOptions: this.getNotificationWaysOptions.bind(this),
   });
 
   private activatedRoute = inject(ActivatedRoute);
@@ -115,6 +125,22 @@ export class NotificationsEditorComponent implements OnInit {
           };
         }),
     } as PagedOutput<FinSelectOption<NotificationSeverity>>);
+  }
+
+  private getNotificationWaysOptions(): Observable<
+    PagedOutput<FinSelectOption<NotificationWay>>
+  > {
+    return of({
+      totalCount: 2,
+      items: Object.values(NotificationWay)
+        .filter((e) => typeof e !== 'string')
+        .map((e) => {
+          return {
+            value: e,
+            label: `finCore.features.notifications.ways.${NotificationWay[e].toLowerCase()}`,
+          };
+        }),
+    } as PagedOutput<FinSelectOption<NotificationWay>>);
   }
 
   private setFormGroup(notificationsEditing: NotificationOutput | null): void {

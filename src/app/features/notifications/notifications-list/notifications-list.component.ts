@@ -84,12 +84,12 @@ export class NotificationsListComponent implements OnInit {
       }),
       new FinGridIconColumnOption<NotificationOutput>({
         getValue: (item) => this.getSeverityIcon(item.severity),
-        header: 'finCore.features.notifications.severity',
+        header: 'finCore.features.notifications.severity.title',
         width: '50px',
       }),
       new FinGridSimpleColumnOption<NotificationOutput>({
         getValue: (item) => this.formatWays(item.ways),
-        header: 'finCore.features.notifications.ways',
+        header: 'finCore.features.notifications.ways.title',
         width: '120px',
       }),
       new FinGridIconColumnOption<NotificationOutput>({

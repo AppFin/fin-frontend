@@ -12,14 +12,27 @@
 
     <fin-input class="col-6" label="finCore.features.notifications.link" [formControl]="formGroup.controls.link" />
 
-    <fin-select class="col-6" label="finCore.features.notifications.severity"
+    <fin-select class="col-6" label="finCore.features.notifications.severity.title"
                 [formControl]="formGroup.controls.severity"
-                [options]="selectOptions" />
+                [options]="severitySelectOptions" />
+
+    <fin-multi-select class="col-6" label="finCore.features.notifications.ways.title"
+                [formControl]="formGroup.controls.ways"
+                [options]="waysSelectOptions" />
+
+    <fin-multi-select class="col-6" label="finCore.features.notifications.users"
+                      [formControl]="formGroup.controls.userIds"
+                      [options]="waysSelectOptions" />
 
     <fin-toggle-switch
       class="col-4"
       label="finCore.features.menus.continuous"
       [formControl]="formGroup.controls.continuous"
     />
+    <span class="col-8"></span>
+
+    <fin-textarea class="col-12" label="finCore.features.notifications.textBody" [formControl]="formGroup.controls.textBody" />
+
+    <fin-text-editor class="col-12" label="finCore.features.notifications.htmlBody" [formControl]="formGroup.controls.htmlBody" />
   }
 </fin-editor-layout>

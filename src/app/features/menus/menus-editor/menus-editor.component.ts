@@ -8,13 +8,13 @@ import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
 import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
-import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
 import { FinToggleSwitchComponent } from '../../../shared/components/toggle-switch/fin-toggle-switch.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { MenuOutput } from '../../../core/types/layouts/menu-output';
 import { MenuApiService } from '../../../core/services/layout/menu-api.service';
 import { MenuInput } from '../../../core/types/layouts/menu-input';
+import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
 
 type MenuInputForm = {
   frontRoute: FormControl<string>;
@@ -32,8 +32,8 @@ type MenuInputForm = {
     FinInputComponent,
     FinSelectComponent,
     FinColorPickerComponent,
-    EditorLayoutComponent,
     FinToggleSwitchComponent,
+    EditorLayoutComponent,
   ],
   templateUrl: './menus-editor.component.html',
   styleUrl: './menus-editor.component.scss',

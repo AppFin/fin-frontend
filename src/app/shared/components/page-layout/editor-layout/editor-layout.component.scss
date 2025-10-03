@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: flex-end;
   width: 50%;
+  max-height: 100%;
 
   .form-header {
     width: 100%;
@@ -16,11 +17,14 @@
     justify-content: flex-end;
     align-items: center;
     gap: 1rem;
+    margin-top: 1rem;
   }
 }
 
 form {
   padding-top: 2rem;
+  overflow-y: auto;
+  max-width: 100%;
 }
 
 @media (max-width: 768px) {
