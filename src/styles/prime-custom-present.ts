@@ -391,7 +391,7 @@ export const PrimeCustomPreset = definePreset(Aura, {
       colorScheme: {
         light: {
           root: {
-            background: '#ffffff', // Padrão light
+            background: '#ffffff',
             disabledBackground: '#f8f9fa',
             filledBackground: '#f8f9fa',
             filledFocusBackground: '#ffffff',
@@ -418,6 +418,108 @@ export const PrimeCustomPreset = definePreset(Aura, {
           }
         }
       }
+    },
+    multiselect: {
+      colorScheme: {
+        light: {
+          root: {
+            background: '#ffffff',
+            disabledBackground: '#f8f9fa',
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            focusBorderColor: '#f87b07',
+            invalidBorderColor: '#f21b3f',
+            color: '#212529',
+            disabledColor: '#6c757d',
+            placeholderColor: '#6c757d',
+            borderRadius: '0.375rem',
+          },
+          dropdown: {
+            width: '2.5rem',
+            color: '#6c757d',
+          },
+          overlay: {
+            background: '#f8f9fa',
+            borderColor: '#e9ecef',
+            borderRadius: '0.375rem',
+            color: '#212529',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          },
+          list: {
+            padding: '0.25rem 0',
+            gap: '2px',
+          },
+          option: {
+            focusBackground: '#fdc570',
+            selectedBackground: '#f87b07',
+            selectedFocusBackground: 'rgb(46, 38, 26)',
+            color: '#212529',
+            focusColor: '#212529',
+            selectedColor: '#ffffff',
+            selectedFocusColor: '#ffffff',
+            padding: '0.5rem 0.75rem',
+            borderRadius: '0.25rem',
+          },
+          chip: {
+            borderRadius: '0.25rem',
+          },
+          clearIcon: {
+            color: '#6c757d',
+          },
+        },
+        dark: {
+          root: {
+            background: '#1a1d23',
+            disabledBackground: '#1a1d23',
+            filledBackground: '#1e2228',
+            filledHoverBackground: '#22262d',
+            filledFocusBackground: '#1e2228',
+
+            borderColor: '#404751',
+            hoverBorderColor: '#fdc570',
+            focusBorderColor: '#fdc570',
+            invalidBorderColor: '#f21b3f',
+            color: '#f8f9fa',
+            disabledColor: '#6c757d',
+            placeholderColor: '#adb5bd',
+            borderRadius: '0.375rem',
+          },
+          dropdown: {
+            width: '2.5rem',
+            color: '#adb5bd',
+          },
+          overlay: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            borderRadius: '0.375rem',
+            color: '#e9ecef',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+          },
+          list: {
+            padding: '0.25rem 0',
+            gap: '2px',
+          },
+          option: {
+            focusBackground: '#212529',
+            selectedBackground: '#fdc570',
+            selectedFocusBackground: '#f87b07',
+            color: '#e9ecef',
+            focusColor: '#e9ecef',
+            selectedColor: '#000000',
+            selectedFocusColor: '#000000',
+            padding: '0.5rem 0.75rem',
+            borderRadius: '0.25rem',
+          },
+          chip: {
+            borderRadius: '0.25rem',
+          },
+          clearIcon: {
+            color: '#adb5bd',
+          },
+        },
+      },
     },
     editor: {
       colorScheme: {
