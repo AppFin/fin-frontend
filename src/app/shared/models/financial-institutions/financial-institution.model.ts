@@ -1,4 +1,4 @@
-import { BankCode } from '../../enums/financial-institutions/bank-code.enum';
+﻿import { BankCode } from '../../enums/financial-institutions/bank-code.enum';
 import { InstitutionType } from '../../enums/financial-institutions/institution-type.enum';
 
 export interface FinancialInstitutionOutput {
@@ -6,7 +6,7 @@ export interface FinancialInstitutionOutput {
   name: string;
   code: BankCode;
   type: InstitutionType;
-  logoUrl?: string;
+  icon?: string;
   active: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -16,6 +16,6 @@ export interface FinancialInstitutionInput {
   name: string;
   code: BankCode;
   type: number;
-  logoUrl?: string;
+  icon?: string;
   active: boolean;
 }

@@ -16,8 +16,6 @@ import {
   FinGridIconColumnOption,
   FinIconOptions,
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
-import { FinGridImageColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-image-column-option';
-import { FinImageOptions } from '../../../shared/components/grid/models/custom-columns/fin-grid-image-column/fin-grid-image-column.component';
 import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
@@ -25,8 +23,6 @@ import { FinPageLayoutComponent } from '../../../shared/components/page-layout/f
 import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
 import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
 import { INSTITUTION_TYPE_LABELS } from '../../../shared/enums/financial-institutions/institution-type.enum';
-import { getBankLogoPath } from '../../../shared/models/financial-institutions/bank-logo.map';
-import { BankCode } from '../../../shared/enums/financial-institutions/bank-code.enum';
 
 @Component({
   selector: 'fin-financial-institutions-list',
@@ -73,24 +69,36 @@ export class FinancialInstitutionsListComponent implements OnInit {
 
   private getColumns(): IFinGridColumnOption<FinancialInstitutionOutput>[] {
     return [
-      new FinGridImageColumnOption<FinancialInstitutionOutput>({
-        getValue: (item) => new FinImageOptions({
-          imageUrl: item.logoUrl || '',
-          altText: `${item.name} Logo`,
-          width: '40px',
-          height: '40px',
-        }),
-        header: 'finCore.features.financialInstitutions.logo',
-        width: '60px',
+      new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
+        getValue: (item) => item.name,
+        header: 'finCore.features.financialInstitutions.bankName',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => item.code || '-',
         header: 'finCore.features.financialInstitutions.code',
         width: '100px',
       }),
-      new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
-        getValue: (item) => item.name,
-        header: 'finCore.features.financialInstitutions.bankName',
+      new FinGridIconColumnOption<FinancialInstitutionOutput>({
+        getValue: (item) => {
+          if (!item.icon) {
+            return new FinIconOptions({
+              icon: 'image',
+              type: 'fontAwesome',
+              tooltip: 'Sem ícone',
+            });
+          }
+          
+          const iconName = item.icon.replace('.png', '');
+          return new FinIconOptions({
+            icon: iconName,
+            type: 'image',
+            imageFolder: 'icons/bank/',
+            imageExtension: '.png',
+            tooltip: item.name,
+          });
+        },
+        header: 'finCore.features.financialInstitutions.icon',
+        width: '80px',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => INSTITUTION_TYPE_LABELS[item.type],
@@ -114,23 +122,6 @@ export class FinancialInstitutionsListComponent implements OnInit {
         width: '80px',
       }),
     ];
-  }
-
-  private getTypeLabel(type: string): string {
-    const typeLabels: Record<string, string> = {
-      COMMERCIAL_BANK: 'Banco Comercial',
-      INVESTMENT_BANK: 'Banco de Investimento',
-      MULTIPLE_BANK: 'Banco Múltiplo',
-      DEVELOPMENT_BANK: 'Banco de Desenvolvimento',
-      COOPERATIVE: 'Cooperativa',
-      CREDIT_UNION: 'Cooperativa de Crédito',
-      FINANCIAL_INSTITUTION: 'Instituição Financeira',
-      PAYMENT_INSTITUTION: 'Instituição de Pagamento',
-      DIGITAL_BANK: 'Banco Digital',
-      FINTECH: 'Fintech',
-      OTHER: 'Outro',
-    };
-    return typeLabels[type] || type;
   }
 
   private getActions(): IFinGridActionOption<FinancialInstitutionOutput>[] {
@@ -167,14 +158,6 @@ export class FinancialInstitutionsListComponent implements OnInit {
     return this.apiService
       .delete(item.id.toString())
       .pipe(tap(() => this.reloadItens.next()));
-  }
-
-  private getBankLogoHtml(code: BankCode): string {
-    const logoPath = getBankLogoPath(code);
-    if (!logoPath) {
-      return '<div style="display:flex;justify-content:center;align-items:center;width:40px;height:40px;">-</div>';
-    }
-    return `<div style="display:flex;justify-content:center;align-items:center;width:100%;"><img src="${logoPath}" alt="Logo" style="width:40px;height:40px;object-fit:contain;" loading="lazy" /></div>`;
   }
 
   private getInstitutions(

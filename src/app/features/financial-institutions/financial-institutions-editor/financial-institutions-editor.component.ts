@@ -24,8 +24,7 @@ import { FinSelectComponent } from '../../../shared/components/select/fin-select
 import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
 import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
-import { getBankLogoPath } from '../../../shared/models/financial-institutions/bank-logo.map';
-import { FinBankLogoComponent } from '../../../shared/components/bank-logo/fin-bank-logo.component';
+import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 import { 
   searchBankByName,
@@ -40,7 +39,7 @@ type FinancialInstitutionInputForm = {
   name: FormControl<string>;
   code: FormControl<BankCode | null>;
   type: FormControl<InstitutionType | null>;
-  logoUrl: FormControl<string>;
+  icon: FormControl<string>;
   active: FormControl<boolean>;
 };
 
@@ -51,7 +50,6 @@ type FinancialInstitutionInputForm = {
     EditorLayoutComponent,
     FinToggleSwitchComponent,
     FinSelectComponent,
-    FinBankLogoComponent,
     FinTranslatePipe,
   ],
   templateUrl: './financial-institutions-editor.component.html',
@@ -65,28 +63,16 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   public readonly selectedBankCode = signal<BankCode | null>(null);
 
   public readonly editorTypes = EditorType;
+  public readonly iconPreview = signal<string | null>(null);
 
-  public readonly logoPreviewPath = computed(() => {
-    const code = this.selectedBankCode();
-    return code ? getBankLogoPath(code) : null;
+  public readonly iconPreviewPath = computed(() => {
+    return this.iconPreview();
   });
 
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private apiService = inject(FinancialInstitutionService);
   private institutionEditingId: string;
-
-  constructor() {
-    effect(() => {
-      const code = this.selectedBankCode();
-      if (code && this.formGroup) {
-        const logoPath = getBankLogoPath(code);
-        if (logoPath) {
-          this.formGroup.controls.logoUrl.setValue(logoPath, { emitEvent: false });
-        }
-      }
-    });
-  }
 
   public readonly selectedType = signal<InstitutionType | null>(null);
 
@@ -96,17 +82,30 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     const institutions = type 
       ? getInstitutionsByType(type) 
       : GLOBAL_INSTITUTIONS;
-    
-    const options = institutions.map((inst) => ({
-      value: inst.code,
-      label: `${inst.code} - ${inst.name} (${inst.country})`,
-    }));
 
     return new FinSelectComponentOptions({
-      getOptions: () => of({
-        totalCount: options.length,
-        items: options,
-      } as PagedOutput<FinSelectOption<BankCode>>),
+      getOptions: (input: PagedFilteredAndSortedInput) => {
+        let filteredInstitutions = institutions;
+        
+        if (input.filter?.filter && input.filter.filter.trim()) {
+          const searchTerm = input.filter.filter.toLowerCase();
+          filteredInstitutions = institutions.filter(inst => 
+            inst.name.toLowerCase().includes(searchTerm) ||
+            inst.code.toLowerCase().includes(searchTerm) ||
+            inst.country.toLowerCase().includes(searchTerm)
+          );
+        }
+        
+        const options = filteredInstitutions.map((inst) => ({
+          value: inst.code,
+          label: `${inst.code} - ${inst.name} (${inst.country})`,
+        }));
+
+        return of({
+          totalCount: options.length,
+          items: options,
+        } as PagedOutput<FinSelectOption<BankCode>>);
+      },
     });
   });
 
@@ -136,16 +135,45 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     
     this.formGroup.controls.code.valueChanges.subscribe((code) => {
       this.selectedBankCode.set(code);
+      
+      if (code) {
+        const institution = GLOBAL_INSTITUTIONS.find(inst => inst.code === code);
+        if (institution) {
+          const iconValue = `${institution.icon}.png`;
+          this.formGroup.controls.icon.setValue(iconValue, { emitEvent: false });
+          this.iconPreview.set(`/icons/bank/${iconValue}`);
+        }
+      } else {
+        this.iconPreview.set(null);
+      }
     });
     
     this.formGroup.controls.name.valueChanges.subscribe((name) => {
-      if (!name || name.length < 2) return;
+      if (!name || name.length < 3) return;
       
-      const bankMetadata = searchBankByName(name);
-      if (bankMetadata && !this.formGroup.controls.code.value) {
+      const term = name.toLowerCase().trim();
+      const matches = BANK_METADATA.filter(bank => 
+        bank.name.toLowerCase().startsWith(term) ||
+        bank.aliases.some(alias => alias.startsWith(term))
+      );
+      
+      if (matches.length === 1 && !this.formGroup.controls.code.value) {
+        const bankMetadata = matches[0];
         this.formGroup.controls.code.setValue(bankMetadata.code, { emitEvent: true });
         this.formGroup.controls.type.setValue(bankMetadata.type);
         this.formGroup.controls.name.setValue(bankMetadata.name, { emitEvent: false });
+        const iconValue = `${bankMetadata.icon}.png`;
+        this.formGroup.controls.icon.setValue(iconValue, { emitEvent: false });
+        this.iconPreview.set(`/icons/bank/${iconValue}`);
+      }
+    });
+    
+    this.formGroup.controls.icon.valueChanges.subscribe((iconValue) => {
+      if (iconValue) {
+        const iconName = iconValue.endsWith('.png') ? iconValue : `${iconValue}.png`;
+        this.iconPreview.set(`/icons/bank/${iconName}`);
+      } else {
+        this.iconPreview.set(null);
       }
     });
     
@@ -173,11 +201,17 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
 
     const formValue = this.formGroup.getRawValue();
     
+    // Remover .png do icon para salvar só o nome base
+    let iconValue = formValue.icon || '';
+    if (iconValue.endsWith('.png')) {
+      iconValue = iconValue.replace('.png', '');
+    }
+    
     const input: FinancialInstitutionInput = {
       name: formValue.name,
       code: formValue.code!,
       type: formValue.type ? INSTITUTION_TYPE_TO_NUMBER[formValue.type] : 7,
-      logoUrl: formValue.logoUrl || undefined,
+      icon: iconValue || undefined,
       active: formValue.active,
     };
 
@@ -231,6 +265,13 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   private setFormGroup(
     institutionEditing: FinancialInstitutionOutput | null
   ): void {
+    // Se está editando e não tem icon, buscar pelo código
+    let iconValue = institutionEditing?.icon ?? '';
+    if (!iconValue && institutionEditing?.code) {
+      const institution = GLOBAL_INSTITUTIONS.find(inst => inst.code === institutionEditing.code);
+      iconValue = institution ? `${institution.icon}.png` : '';
+    }
+    
     this.formGroup = new FormGroup<FinancialInstitutionInputForm>({
       name: new FormControl(institutionEditing?.name ?? '', {
         nonNullable: true,
@@ -242,14 +283,21 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
       type: new FormControl<InstitutionType | null>(institutionEditing?.type ?? null, {
         validators: [Validators.required],
       }),
-      logoUrl: new FormControl(institutionEditing?.logoUrl ?? '', {
+      icon: new FormControl(iconValue, {
         nonNullable: true,
-        validators: [Validators.maxLength(500)],
+        validators: [Validators.maxLength(50)],
       }),
       active: new FormControl(institutionEditing?.active ?? true, {
         nonNullable: true,
       }),
     });
+    
+    // Definir preview inicial se tem icon
+    if (iconValue) {
+      const iconName = iconValue.endsWith('.png') ? iconValue : `${iconValue}.png`;
+      this.iconPreview.set(`/icons/bank/${iconName}`);
+    }
+    
     this.loading.set(false);
   }
 

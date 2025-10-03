@@ -20,7 +20,6 @@ import { FinGridDateTimeColumnOption } from '../models/columns/fin-grid-date-tim
 import { DatePipe } from '@angular/common';
 import { IFinGridCustomColumn } from '../interface/i-fin-grid-custom-column';
 import { FinGridIconColumnOption } from '../models/columns/fin-grid-icon-column-option';
-import { FinGridImageColumnOption } from '../models/columns/fin-grid-image-column-option';
 
 @Component({
   selector: 'fin-grid-column-renderer',
@@ -83,9 +82,6 @@ export class FinGridColumnRendererComponent<T> implements OnDestroy {
       return columnOption?.customColumn ? columnOption?.customColumn() : null;
     }
     if (columnOption instanceof FinGridIconColumnOption) {
-      return columnOption?.customColumn;
-    }
-    if (columnOption instanceof FinGridImageColumnOption) {
       return columnOption?.customColumn;
     }
     return null;
