@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
 import { FinSeverity } from '../../../core/types/themes/fin-severity';
 import { finSeverityConverter } from '../../../core/functions/fin-severity-converter';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export type FinTextType = 'label' | 'title' | 'subtitle' | 'paragraph' | 'subparagraph' | 'info';
 export type FinLinkTarget = '_self' | '_blank' | '_parent' | '_top';
@@ -17,8 +18,8 @@ export type FinLinkTarget = '_self' | '_blank' | '_parent' | '_top';
   selector: 'fin-text',
   templateUrl: './fin-text.component.html',
   styleUrl: './fin-text.component.scss',
-  imports: [CommonModule, RouterLink, FinTranslatePipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [CommonModule, RouterLink, FinTranslatePipe, MatTooltipModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FinTextComponent {
   public readonly type = input<FinTextType>('paragraph');
@@ -27,6 +28,7 @@ export class FinTextComponent {
   public readonly text = input('');
   public readonly severity = input<FinSeverity | null>(null);
   public readonly fixedSize = input(true);
+  public readonly tooltip = input('');
 
   // Link Props
   public readonly href = input<string>();

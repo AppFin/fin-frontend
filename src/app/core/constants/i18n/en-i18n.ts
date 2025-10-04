@@ -94,7 +94,7 @@ export const EnI18n: ITranslate = {
           loginWithGoogle: 'Continue with Google',
           singIn: 'Sign in',
           subtitle: 'Log in to your account',
-          thereIsNoAccount: 'Don\'t have an account?',
+          thereIsNoAccount: "Don't have an account?",
           title: 'Welcome back!',
         },
         resetPassword: {
@@ -105,7 +105,7 @@ export const EnI18n: ITranslate = {
         },
         sendResetEmail: {
           emailSent:
-            'We\'ve sent you an email if your address exists in our system',
+            "We've sent you an email if your address exists in our system",
           sendLink: 'Send link',
           subtitle: 'Enter your email to receive the recovery link',
           title: 'Forgot your password?',
@@ -121,7 +121,8 @@ export const EnI18n: ITranslate = {
       email: 'Invalid email',
       forbidden: 'You do not have permission to access this page',
       googleLoginError: 'Error on Google Login',
-      internalError: 'Internal server error, please try again or contact support. Error code 500.',
+      internalError:
+        'Internal server error, please try again or contact support. Error code 500.',
       maxLength: 'Maximum of {{maxLength}} characters',
       minLength: 'Minimum of {{minLength}} characters',
       pattern: 'Invalid format',
@@ -141,6 +142,31 @@ export const EnI18n: ITranslate = {
         position: 'Position',
         showOnSideNav: 'Show on side navigation',
         title: 'Menus',
+      },
+      notifications: {
+        title: 'Notifications',
+        textBody: 'Message',
+        continuous: 'Continuous',
+        startToDelivery: 'Start Delivery',
+        stopToDelivery: 'Stop Delivery',
+        severity: {
+          title: 'Severity',
+          success: 'Success',
+          error: 'Error',
+          warning: 'Warning',
+          info: 'Information',
+          default: 'Normal',
+        },
+        ways: {
+          email: 'Email',
+          message: 'Message',
+          push: 'Push',
+          snack: 'Snack',
+          title: 'Delivery Methods',
+        },
+        htmlBody: 'HTML Message',
+        link: 'Link',
+        users: 'Users',
       },
       shared: {
         name: 'Name',

@@ -160,7 +160,7 @@ export class NotificationsEditorComponent implements OnInit {
           items: result.items.map(user => {
             return {
               value: user.id,
-              label: user.displayName,
+              label: `${user.displayName} (${user.firstName} ${user.lastName})`,
             } as FinSelectOption<string>
           }),
         }

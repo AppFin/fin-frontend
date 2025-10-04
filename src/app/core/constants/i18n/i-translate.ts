@@ -1,89 +1,77 @@
 export interface ITranslate {
   finCore: {
-    appName: string;
-    layout: {
-      notifications: string;
-      noNotifications: string;
-      clearNotifications: string;
-      xNotifications: string;
-      settings: string;
-      exit: string;
-      termsAndPolicies: string;
-      admin: string;
-      openMenu: string;
-      closeMenu: string;
-      pinnedMenus: string;
-      unpinnedMenus: string;
-      empty: string;
-    };
     actions: {
-      new: string;
       cancel: string;
-      edit: string;
-      ok: string;
+      changeOrder: string;
+      close: string;
       confirmation: string;
-      delete: string;
       creating: string;
+      delete: string;
+      edit: string;
       editing: string;
+      loadMore: string;
       loading: string;
+      new: string;
+      noResults: string;
+      ok: string;
+      open: string;
+      pin: string;
       save: string;
-      toggleToLightMode: string;
-      toggleToDarkMode: string;
       search: string;
       searching: string;
-      loadMore: string;
-      noResults: string;
-      tryDifferentTerms: string;
       startTyping: string;
-      open: string;
-      close: string;
-      changeOrder: string;
-      pin: string;
+      toggleToDarkMode: string;
+      toggleToLightMode: string;
+      tryDifferentTerms: string;
       unpin: string;
     };
-    grid: {
-      confirmDelete: string;
-    }
+    appName: string;
     auth: {
+      comeBackLogin: string;
       confirmYourPassword: string;
       email: string;
       erros: {
+        cantCreateUser: string;
+        differentGoogleAccountLinked: string;
+        doNotHasPassword: string;
+        emailAlreadyInUse: string;
+        emailNotFound: string;
+        errorOnCreateUser: string;
+        errorOnResend: string;
+        errorOnValidEmail: string;
+        expiredToken: string;
+        inactivatedUser: string;
+        invalidPassword: string;
+        invalidRefreshToken: string;
+        invalidToken: string;
+        loginError: string;
+        maxAttemptsReached: string;
+        notSamePassword: string;
         passwordMinLength: string;
         passwordMustHasLowercase: string;
         passwordMustHasNumber: string;
         passwordMustHasSpecial: string;
         passwordMustHasUppercase: string;
         passwordsMustBeEquals: string;
-        emailNotFound: string;
-        doNotHasPassword: string;
-        maxAttemptsReached: string;
-        inactivatedUser: string;
-        invalidPassword: string;
-        invalidRefreshToken: string;
-        differentGoogleAccountLinked: string;
-        cantCreateUser: string;
-        loginError: string;
+        resetPasswordError: string;
         sendResetError: string;
         title: string;
-        notSamePassword: string;
-        invalidToken: string;
-        expiredToken: string;
-        resetPasswordError: string;
-        emailAlreadyInUse: string;
-        errorOnResend: string;
-        errorOnValidEmail: string;
-        errorOnCreateUser: string;
       };
       pages: {
         createAccount: {
+          next: string;
           steps: {
             credentials: {
               invalidCode: string;
+              resendCode: string;
               resendConde: string;
               title: string;
               typeCodeSentOnEmail: string;
-              resendCode: string;
               youCanResendCodeIn: string;
+            };
+            finished: {
+              goToFin: string;
+              title: string;
             };
             personal: {
               displayName: string;
@@ -91,12 +79,7 @@ export interface ITranslate {
               lastName: string;
               title: string;
             };
-            finished: {
-              title: string;
-              goToFin: string;
-            };
           };
-          next: string;
           subtitle: string;
           title: string;
         };
@@ -122,7 +105,6 @@ export interface ITranslate {
           title: string;
         };
       };
-      comeBackLogin: string;
       password: string;
       talkWithSupport: string;
     };
@@ -131,37 +113,80 @@ export interface ITranslate {
     };
     errors: {
       email: string;
+      forbidden: string;
+      googleLoginError: string;
+      internalError: string;
       maxLength: string;
       minLength: string;
       pattern: string;
       required: string;
       serverError: string;
-      internalError: string;
-      googleLoginError: string;
-      forbidden: string;
+    };
+    features: {
+      menus: {
+        color: string;
+        frontRoute: string;
+        hide: string;
+        icon: string;
+        keyWord: string;
+        leftTop: string;
+        name: string;
+        onlyForAdmin: string;
+        position: string;
+        showOnSideNav: string;
+        title: string;
+      };
+      notifications: {
+        continuous: string;
+        htmlBody: string;
+        link: string;
+        severity: {
+          error: string;
+          info: string;
+          default: string;
+          success: string;
+          title: string;
+          warning: string;
+        };
+        startToDelivery: string;
+        stopToDelivery: string;
+        textBody: string;
+        title: string;
+        users: string;
+        ways: {
+          email: string;
+          message: string;
+          push: string;
+          snack: string;
+          title: string;
+        };
+      };
+      shared: {
+        name: string;
+      };
+    };
+    grid: {
+      confirmDelete: string;
+    };
+    layout: {
+      admin: string;
+      clearNotifications: string;
+      closeMenu: string;
+      empty: string;
+      exit: string;
+      noNotifications: string;
+      notifications: string;
+      openMenu: string;
+      pinnedMenus: string;
+      settings: string;
+      termsAndPolicies: string;
+      unpinnedMenus: string;
+      xNotifications: string;
     };
     sharedComponents: {
       grid: {
         noData: string;
         reload: string;
-      };
-    };
-    features: {
-      shared: {
-        name: string,
-      },
-      menus: {
-        title: string,
-        showOnSideNav: string,
-        name: string;
-        frontRoute: string;
-        color: string;
-        icon: string;
-        keyWord: string;
-        onlyForAdmin: string;
-        leftTop: string;
-        hide: string;
-        position: string;
       };
     };
   };

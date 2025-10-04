@@ -169,7 +169,7 @@ export class FinGridComponent<T> implements OnInit {
           ...actions,
           {
             icon: new FinIconOptions({
-              icon: 'pen',
+              icon: 'edit',
               tooltip: 'finCore.actions.edit',
               color: 'var(--color-disabled)',
             }),

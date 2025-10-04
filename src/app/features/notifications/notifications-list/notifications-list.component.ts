@@ -27,6 +27,7 @@ import { FinButtonComponent } from '../../../shared/components/button/fin-button
 import { FinSeverity } from '../../../core/types/themes/fin-severity';
 import { DatePipe } from '@angular/common';
 import { LocalizationService } from '../../../core/services/localization/localization.service';
+import { FinTranslateService } from '../../../core/services/translate/fin-translate.service';
 
 @Component({
   selector: 'fin-notifications-list',
@@ -46,6 +47,7 @@ export class NotificationsListComponent implements OnInit {
   private readonly locale = inject(LOCALE_ID);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly translateService = inject(FinTranslateService);
 
   private readonly reloadItens = new Subject<void>();
 
@@ -77,6 +79,7 @@ export class NotificationsListComponent implements OnInit {
       new FinGridSimpleColumnOption<NotificationOutput>({
         getValue: (item) => item.title,
         header: 'finCore.features.notifications.title',
+        width: '10%'
       }),
       new FinGridSimpleColumnOption<NotificationOutput>({
         getValue: (item) => item.textBody,
@@ -141,17 +144,17 @@ export class NotificationsListComponent implements OnInit {
       case NotificationSeverity.Warning:
         finSeverity = 'warn';
         icon = 'triangle-exclamation';
-        tooltip = 'finCore.features.notifications.severity.waning';
+        tooltip = 'finCore.features.notifications.severity.warning';
         break;
       case NotificationSeverity.Info:
         finSeverity = 'info';
         icon = 'circle-info';
-        tooltip = 'finCore.features.notifications.severity.information.';
+        tooltip = 'finCore.features.notifications.severity.info.';
         break;
       default:
         finSeverity = 'primary';
         icon = 'bell';
-        tooltip = 'finCore.features.notifications.severity.normal';
+        tooltip = 'finCore.features.notifications.severity.default';
         break;
     }
 
@@ -167,18 +170,9 @@ export class NotificationsListComponent implements OnInit {
 
     return ways
       .map((way) => {
-        switch (way) {
-          case NotificationWay.Email:
-            return 'Email';
-          case NotificationWay.Push:
-            return 'Push';
-          case NotificationWay.Snack:
-            return 'Snack';
-          case NotificationWay.Message:
-            return 'Message';
-          default:
-            return '-';
-        }
+        return this.translateService.translate(
+          `finCore.features.notifications.ways.${NotificationWay[way].toLowerCase()}`
+        );
       })
       .join(', ');
   }

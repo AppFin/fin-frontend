@@ -17,7 +17,6 @@ import { FinButtonComponent } from '../../../../../shared/components/button/fin-
 import { MenuService } from '../../../../services/layout/menu.service';
 import { MenuMetadata } from '../../../../types/layouts/menu-metadata';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
-import { FinTranslatePipe } from '../../../../pipes/translate/fin-translate.pipe';
 
 @Component({
   selector: 'fin-side-nav-expanded',
@@ -28,7 +27,6 @@ import { FinTranslatePipe } from '../../../../pipes/translate/fin-translate.pipe
     NgTemplateOutlet,
     FinButtonComponent,
     DragDropModule,
-    FinTranslatePipe,
   ],
   templateUrl: './side-nav-expanded.component.html',
   styleUrl: './side-nav-expanded.component.scss',
