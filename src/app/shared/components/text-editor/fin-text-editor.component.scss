@@ -1,0 +1,62 @@
+.required {
+  .fin-editor-label::after {
+    color: var(--color-error);
+    content: ' *';
+  }
+}
+
+.fin-editor-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: color 0.2s;
+}
+
+.editor-container:has(.ng-invalid.ng-touched) .fin-editor-label,
+.editor-container:has(.ng-invalid.ng-dirty) .fin-editor-label {
+  color: var(--p-iftalabel-invalid-color);
+}
+
+
+.disabled {
+  .p-editor {
+    opacity: 0.8;
+    pointer-events: none;
+  }
+  .fin-editor-label {
+    opacity: 0.6;
+  }
+}
+
+:host ::ng-deep {
+  .p-editor:has(.ng-invalid.ng-touched) .p-editor-container,
+  .p-editor:has(.ng-invalid.ng-dirty) .p-editor-container {
+    border-color: var(--p-editor-invalid-border-color);
+  }
+}
+
+
+.sub-text {
+  min-height: 30px;
+  max-width: 100%;
+  width: 100%;
+  margin-top: 4px;
+
+  .error-sub {
+    color: var(--color-error);
+    display: flex;
+  }
+}
+
+.input-container {
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 6px;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.p-editor {
+  width: 100%;
+}

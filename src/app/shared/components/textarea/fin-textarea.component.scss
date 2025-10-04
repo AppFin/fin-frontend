@@ -1,0 +1,46 @@
+.required {
+  label::after {
+    color: var(--color-error);
+    content: ' *';
+  }
+}
+
+.disabled textarea {
+  filter: brightness(0.9);
+}
+
+.p-iftalabel:has(.ng-invalid.ng-touched) label,
+.p-iftalabel:has(.ng-invalid.ng-dirty) label {
+  color: var(--p-iftalabel-invalid-color);
+}
+
+.sub-text {
+  min-height: 30px;
+  max-width: 100%;
+  width: 100%;
+  margin-top: 4px;
+
+  .error-sub {
+    color: var(--color-error);
+    display: flex;
+  }
+}
+
+.input-container {
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 6px;
+  color: var(--text-color);
+  width: 100%;
+}
+
+p-floatlabel {
+  width: 100%;
+  display: block;
+}
+
+textarea {
+  width: 100% !important;
+  min-height: 3rem;
+  resize: vertical;
+}

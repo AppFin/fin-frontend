@@ -75,7 +75,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
 
-  public readonly width = input('284px');
+  public readonly width = input('100%');
 
   public readonly readonly = input(false);
   public readonly id = input(

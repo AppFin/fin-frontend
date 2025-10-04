@@ -1,0 +1,30 @@
+<div class="input-container">
+  <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
+    <p-calendar
+      [style.width]="width()"
+      [style.max-width]="width()"
+      (onBlur)="validStatesChange()"
+      (onSelect)="validStatesChange()"
+      [formControl]="formControl"
+      [inputId]="id()"
+      [readonlyInput]="readonly()"
+      [showTime]="showTime()"
+      [hourFormat]="hourFormat()"
+      [dateFormat]="dateFormat()"
+      [placeholder]="placeholder()"
+      [showClear]="!required()"
+      [minDate]="minDate()"
+      [maxDate]="maxDate()"
+      appendTo="body"
+    />
+    <label [for]="id()">{{ label() | finTranslate }}</label>
+  </p-iftalabel>
+
+  <div class="sub-text">
+    @if (!hasError()) {
+      <fin-text [text]="helpText()" class="info-sub" type="info" />
+    } @else {
+      <fin-text [text]="errorMessageEffective()" class="error-sub" type="info" />
+    }
+  </div>
+</div>

@@ -17,7 +17,6 @@ import {
   FinIconOptions,
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
 import { MenuPosition } from '../../../core/enums/layouts/menu-position';
-import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
@@ -53,9 +52,10 @@ export class MenusListComponent implements OnInit {
     const gridOptions = new FinGridOptions({
       id: 'MEUS_LIST',
       getColumns: () => of(this.getColumns()),
-      getActions: () => of(this.getActions()),
       getList: (input) => this.getMenus(input),
       reloadItens: this.reloadItens,
+      onDelete: this.delete.bind(this),
+      onEdit: this.edit.bind(this),
     });
 
     this.gridOptions.set(gridOptions);
@@ -113,31 +113,6 @@ export class MenusListComponent implements OnInit {
         header: 'finCore.features.menus.onlyForAdmin',
         width: '50px',
       }),
-    ];
-  }
-
-  private getActions(): IFinGridActionOption<MenuOutput>[] {
-    return [
-      {
-        icon: new FinIconOptions({
-          icon: 'pen',
-          tooltip: 'finCore.actions.edit',
-          color: 'var(--color-disabled)',
-        }),
-        canShow: () => of(true),
-        disabled: () => of(false),
-        onClick: (item) => this.edit(item),
-      },
-      {
-        icon: new FinIconOptions({
-          icon: 'trash',
-          color: 'var(--color-error)',
-          tooltip: 'finCore.actions.delete',
-        }),
-        canShow: () => of(true),
-        disabled: () => of(false),
-        onClick: (item) => this.delete(item),
-      },
     ];
   }
 

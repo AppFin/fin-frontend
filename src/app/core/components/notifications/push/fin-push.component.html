@@ -1,0 +1,25 @@
+<div class="snack-container">
+  <div class="snack-content">
+    <div class="snack-icon">
+      <fin-icon [icon]="icon()" [severity]="finSeverity()" size="md" />
+    </div>
+    <div class="snack-message">
+      <fin-text [text]="data.title" type="subtitle" />
+
+      @if (!isHtml()) {
+        <fin-text [text]="data.bodyTextOrHtml" type="paragraph" [fixedSize]="false" />
+      } @else {
+        <fin-text type="paragraph" >
+          <div [innerHTML]="data.bodyTextOrHtml | safeHtml"></div>
+        </fin-text>
+      }
+    </div>
+    <fin-button
+      (onClick)="close()"
+      icon="times"
+      severity="secondary"
+    />
+  </div>
+  <div class="snack-indicator" [style.backgroundColor]="color()"
+       [style.animation-duration]="data.durationInMs + 'ms'"></div>
+</div>

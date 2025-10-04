@@ -3,6 +3,7 @@ import { AUTH_ROUTES } from './features/authentication/authentication-routes';
 import { authenticatedGuard } from './core/guards/authentication/authenticated.guard';
 import { MENUS_ROUTES } from './features/menus/menus-routes';
 import { adminGuard } from './core/guards/authentication/admin.guard';
+import { NOTIFICATIONS_ROUTES } from './features/notifications/notifications-routes';
 
 export const routes: Routes = [
   ...AUTH_ROUTES,
@@ -22,7 +23,8 @@ export const routes: Routes = [
             path: 'admin',
             canActivate: [adminGuard],
             children: [
-              ...MENUS_ROUTES
+              ...MENUS_ROUTES,
+              ...NOTIFICATIONS_ROUTES
             ]
           }
         ]

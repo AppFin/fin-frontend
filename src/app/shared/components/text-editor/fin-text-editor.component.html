@@ -1,0 +1,31 @@
+<div class="input-container" [style.width]="width()" [style.max-width]="width()">
+  <div class="editor-container" [class.disabled]="disabled()" [class.required]="required()">
+
+    <label [for]="id()" class="fin-editor-label">{{ label() | finTranslate }}</label>
+
+    <p-editor
+      [formControl]="formControl"
+      (onTextChange)="validStatesChange()"
+      [readonly]="readOnly()"
+      [style]="editorStyle()"
+      [formats]="formats()"
+      [placeholder]="placeholder()"
+      [id]="id()"
+
+      [ngClass]="{'ng-invalid': formControl.invalid && (formControl.touched || formControl.dirty), 'ng-dirty': formControl.dirty, 'ng-touched': formControl.touched }"
+    ></p-editor>
+
+  </div>
+
+  <div class="sub-text">
+    @if (!hasError()) {
+      <fin-text [text]="helpText()" class="info-sub" type="info" />
+    } @else {
+      <fin-text
+        [text]="errorMessageEffective() ?? ''"
+        class="error-sub"
+        type="info"
+      />
+    }
+  </div>
+</div>

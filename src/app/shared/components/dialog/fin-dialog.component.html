@@ -1,0 +1,44 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <div class="dialog-title">
+      @if (icon()) {
+        <fin-icon
+          [icon]="icon() ?? ''"
+          [iconColor]="iconColor()"
+          [fontAwesomeType]="iconFontAwesomeType()"
+          [type]="iconType()"
+          [imageFolder]="iconImageFolder()"
+          [imageExtension]="iconImageExtension()"
+          [tooltip]="iconTooltip()"
+          [size]="iconSize()"
+          [severity]="severity()"
+        />
+      }
+
+      <fin-text
+        [text]="title()"
+        [severity]="severity()"
+        type="subtitle"
+      />
+    </div>
+
+    @if (canClose()) {
+      <fin-button
+        icon="times"
+        severity="danger"
+        (onClick)="close($event)"
+        iconTooltip="finCore.actions.close"
+      />
+    } @else {
+      <span></span>
+    }
+  </div>
+
+  <div class="dialog-content">
+    <ng-content />
+  </div>
+
+  <ng-content select="[footer]"/>
+
+</div>
+<span class="color-bar" [style.backgroundColor]="color()"></span>

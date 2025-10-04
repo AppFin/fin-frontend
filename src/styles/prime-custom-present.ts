@@ -387,6 +387,306 @@ export const PrimeCustomPreset = definePreset(Aura, {
         },
       },
     },
+    datepicker: {
+      colorScheme: {
+        light: {
+          panel: {
+            background: '#ffffff',
+            borderColor: '#e9ecef',
+            color: '#212529',
+            borderRadius: '0.375rem',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            padding: '1rem',
+          },
+          header: {
+            background: '#ffffff',
+            color: '#212529',
+            padding: '0 0 1rem 0',
+          },
+          date: {
+            hoverBackground: '#fdc570',
+            selectedBackground: '#f87b07',
+            rangeSelectedBackground: '#fdc570',
+            color: '#212529',
+            hoverColor: '#212529',
+            selectedColor: '#ffffff',
+            rangeSelectedColor: '#212529',
+            borderRadius: '50%',
+            width: '2.25rem',
+            height: '2.25rem',
+          },
+          today: {
+            background: '#e9ecef',
+            color: '#212529',
+          },
+          dropdown: {
+            background: 'transparent',
+            hoverBackground: '#fdc570',
+            activeBackground: '#f87b07',
+            color: '#212529',
+            hoverColor: '#212529',
+            activeColor: '#ffffff',
+            borderRadius: '0.25rem',
+          },
+          timePicker: {
+            padding: '1rem 0 0 0',
+            borderColor: '#e9ecef',
+          },
+        },
+        dark: {
+          panel: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#e9ecef',
+            borderRadius: '0.375rem',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+            padding: '1rem',
+          },
+          header: {
+            background: '#1a1d23',
+            color: '#e9ecef',
+            padding: '0 0 1rem 0',
+          },
+          date: {
+            hoverBackground: '#212529',
+            selectedBackground: '#fdc570',
+            rangeSelectedBackground: '#212529',
+            color: '#e9ecef',
+            hoverColor: '#e9ecef',
+            selectedColor: '#000000',
+            rangeSelectedColor: '#e9ecef',
+            borderRadius: '50%',
+            width: '2.25rem',
+            height: '2.25rem',
+          },
+          today: {
+            background: '#212529',
+            color: '#fdc570',
+          },
+          dropdown: {
+            background: 'transparent',
+            hoverBackground: '#212529',
+            activeBackground: '#fdc570',
+            color: '#e9ecef',
+            hoverColor: '#e9ecef',
+            activeColor: '#000000',
+            borderRadius: '0.25rem',
+          },
+          timePicker: {
+            padding: '1rem 0 0 0',
+            borderColor: '#212529',
+          },
+        },
+      },
+    },
+    textarea: {
+      colorScheme: {
+        light: {
+          root: {
+            background: '#ffffff',
+            disabledBackground: '#f8f9fa',
+            filledBackground: '#f8f9fa',
+            filledFocusBackground: '#ffffff',
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            focusBorderColor: '#f87b07',
+            invalidBorderColor: '#f21b3f',
+            color: '#212529',
+          }
+        },
+        dark: {
+          root: {
+            background: '#1e2228',
+            disabledBackground: '#1e2228',
+            filledBackground: '#1e2228',
+            filledHoverBackground: '#262b33',
+            filledFocusBackground: '#1e2228',
+
+            borderColor: '#5e6671',
+            hoverBorderColor: '#fdc570',
+            focusBorderColor: '#fdc570',
+            invalidBorderColor: '#f21b3f',
+            color: '#f8f9fa',
+          }
+        }
+      }
+    },
+    multiselect: {
+      colorScheme: {
+        light: {
+          root: {
+            background: '#ffffff',
+            disabledBackground: '#f8f9fa',
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            focusBorderColor: '#f87b07',
+            invalidBorderColor: '#f21b3f',
+            color: '#212529',
+            disabledColor: '#6c757d',
+            placeholderColor: '#6c757d',
+            borderRadius: '0.375rem',
+          },
+          dropdown: {
+            width: '2.5rem',
+            color: '#6c757d',
+          },
+          overlay: {
+            background: '#f8f9fa',
+            borderColor: '#e9ecef',
+            borderRadius: '0.375rem',
+            color: '#212529',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          },
+          list: {
+            padding: '0.25rem 0',
+            gap: '2px',
+          },
+          option: {
+            focusBackground: '#fdc570',
+            selectedBackground: '#f87b07',
+            selectedFocusBackground: 'rgb(46, 38, 26)',
+            color: '#212529',
+            focusColor: '#212529',
+            selectedColor: '#ffffff',
+            selectedFocusColor: '#ffffff',
+            padding: '0.5rem 0.75rem',
+            borderRadius: '0.25rem',
+          },
+          chip: {
+            borderRadius: '0.25rem',
+          },
+          clearIcon: {
+            color: '#6c757d',
+          },
+        },
+        dark: {
+          root: {
+            background: '#1a1d23',
+            disabledBackground: '#1a1d23',
+            filledBackground: '#1e2228',
+            filledHoverBackground: '#22262d',
+            filledFocusBackground: '#1e2228',
+
+            borderColor: '#404751',
+            hoverBorderColor: '#fdc570',
+            focusBorderColor: '#fdc570',
+            invalidBorderColor: '#f21b3f',
+            color: '#f8f9fa',
+            disabledColor: '#6c757d',
+            placeholderColor: '#adb5bd',
+            borderRadius: '0.375rem',
+          },
+          dropdown: {
+            width: '2.5rem',
+            color: '#adb5bd',
+          },
+          overlay: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            borderRadius: '0.375rem',
+            color: '#e9ecef',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+          },
+          list: {
+            padding: '0.25rem 0',
+            gap: '2px',
+          },
+          option: {
+            focusBackground: '#212529',
+            selectedBackground: '#fdc570',
+            selectedFocusBackground: '#f87b07',
+            color: '#e9ecef',
+            focusColor: '#e9ecef',
+            selectedColor: '#000000',
+            selectedFocusColor: '#000000',
+            padding: '0.5rem 0.75rem',
+            borderRadius: '0.25rem',
+          },
+          chip: {
+            borderRadius: '0.25rem',
+          },
+          clearIcon: {
+            color: '#adb5bd',
+          },
+        },
+      },
+    },
+    editor: {
+      colorScheme: {
+        light: {
+          root: {
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            focusBorderColor: '#f87b07',
+            invalidBorderColor: '#f21b3f',
+            color: '#212529',
+          },
+          toolbar: {
+            background: '#f8f9fa',
+            borderColor: '#adb5bd',
+            itemColor: '#6c757d',
+            itemHoverColor: '#f87b07',
+            itemActiveColor: '#f87b07',
+            itemPadding: '0.5rem',
+          },
+          content: {
+            background: '#ffffff',
+            borderColor: '#adb5bd',
+            color: '#212529',
+          },
+          overlay: {
+            background: '#ffffff',
+            borderColor: '#e9ecef',
+
+            color: '#212529',
+            shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            padding: '0.25rem 0',
+            optionFocusBackground: '#fdc570',
+            optionColor: '#212529',
+            optionFocusColor: '#212529',
+            optionPadding: '0.5rem 0.75rem',
+          },
+        },
+        dark: {
+          root: {
+            borderColor: '#5e6671',
+            hoverBorderColor: '#fdc570',
+            focusBorderColor: '#fdc570',
+            invalidBorderColor: '#f21b3f',
+            color: '#f8f9fa',
+          },
+          toolbar: {
+            background: '#1a1d23',
+            borderColor: '#5e6671',
+            itemColor: '#adb5bd',
+            itemHoverColor: '#fdc570',
+            itemActiveColor: '#fdc570',
+            itemPadding: '0.5rem',
+          },
+          content: {
+            background: '#1e2228',
+            borderColor: '#5e6671',
+            color: '#f8f9fa',
+          },
+          overlay: {
+            background: '#1a1d23',
+            borderColor: '#212529',
+            color: '#e9ecef',
+            shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+            padding: '0.25rem 0',
+            optionFocusBackground: '#212529',
+            optionColor: '#e9ecef',
+            optionFocusColor: '#e9ecef',
+            optionPadding: '0.5rem 0.75rem',
+            optionBorderRadius: '0.25rem',
+          },
+        },
+      },
+    },
     inputtext: {
       colorScheme: {
         light: {

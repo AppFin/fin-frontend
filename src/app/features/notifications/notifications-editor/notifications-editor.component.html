@@ -1,0 +1,50 @@
+<fin-editor-layout
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editing'"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="fechar()"
+>
+  @if (!loading()) {
+    <fin-input class="col-12" label="finCore.features.notifications.title" [formControl]="formGroup.controls.title" />
+
+    <fin-input class="col-6" label="finCore.features.notifications.link" [formControl]="formGroup.controls.link" />
+
+    <fin-select class="col-6" label="finCore.features.notifications.severity.title"
+                [formControl]="formGroup.controls.severity"
+                [options]="severitySelectOptions" />
+
+    <fin-multi-select class="col-6" label="finCore.features.notifications.ways.title"
+                [formControl]="formGroup.controls.ways"
+                [options]="waysSelectOptions" />
+
+    <fin-multi-select class="col-6" label="finCore.features.notifications.users"
+                      [formControl]="formGroup.controls.userIds"
+                      [options]="userSelectOptions" />
+
+    <fin-datetime
+      class="col-4"
+      label="finCore.features.notifications.startToDelivery"
+      [formControl]="formGroup.controls.startToDelivery"
+    />
+
+    <fin-datetime
+      class="col-4"
+      label="finCore.features.notifications.stopToDelivery"
+      [formControl]="formGroup.controls.stopToDelivery"
+
+    />
+
+    <fin-toggle-switch
+      class="col-4"
+      label="finCore.features.notifications.continuous"
+      [formControl]="formGroup.controls.continuous"
+    />
+
+    <fin-textarea class="col-12" label="finCore.features.notifications.textBody" [formControl]="formGroup.controls.textBody" />
+
+    <fin-text-editor class="col-12" label="finCore.features.notifications.htmlBody" [formControl]="formGroup.controls.htmlBody" />
+  }
+</fin-editor-layout>

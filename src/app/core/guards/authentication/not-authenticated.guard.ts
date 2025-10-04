@@ -6,7 +6,7 @@ export const notAuthenticatedGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isAuthenticated()) {
+  if (authService.isAuthenticated) {
     router.navigate(['/']);
     return false;
   }

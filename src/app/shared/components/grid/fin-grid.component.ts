@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { FinGridOptions } from './models/fin-grid-options';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable, of, switchMap } from 'rxjs';
 import { FinGridColumnRendererComponent } from './fin-grid-column-renderer/fin-grid-column-renderer.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PagedFilteredAndSortedInput } from '../../models/paginations/paged-filtered-and-sorted-input';
@@ -22,6 +22,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FinTextComponent } from '../text/fin-text.component';
 import { FinButtonComponent } from '../button/fin-button.component';
 import { LayoutService } from '../../../core/services/layout/layout.service';
+import { FinIconOptions } from './models/columns/fin-grid-icon-column-option';
+import { NotifyService } from '../../../core/services/notifications/notify.service';
 
 @Component({
   selector: 'fin-grid',
@@ -52,6 +54,7 @@ export class FinGridComponent<T> implements OnInit {
   public readonly totalItens = signal(0);
 
   public readonly layoutService = inject(LayoutService);
+  public readonly notifyService = inject(NotifyService);
 
   public readonly actionsColumnsWidth = computed(() =>
     this.calculateActionsColumnsWidth(this.actions())
@@ -107,6 +110,8 @@ export class FinGridComponent<T> implements OnInit {
       const actions = await firstValueFrom(this.options().getRightActions());
       this.rightActions.set(actions);
     }
+
+    this.setDefaultActions();
   }
 
   private async loadItens(skipCount = 0): Promise<void> {
@@ -154,5 +159,54 @@ export class FinGridComponent<T> implements OnInit {
       ?.subscribe(async () => {
         await this.loadItens();
       });
+  }
+
+  private setDefaultActions(): void {
+    const onEditAction = this.options().onEdit;
+    if (onEditAction) {
+      this.actions.update(actions => {
+        return [
+          ...actions,
+          {
+            icon: new FinIconOptions({
+              icon: 'edit',
+              tooltip: 'finCore.actions.edit',
+              color: 'var(--color-disabled)',
+            }),
+            canShow: () => of(true),
+            disabled: () => of(false),
+            onClick: (item) => onEditAction(item),
+          },
+        ];
+      });
+    }
+
+    if (this.options().onDelete) {
+      this.actions.update(actions => {
+        return [
+          ...actions,
+          {
+            icon: new FinIconOptions({
+              icon: 'trash',
+              color: 'var(--color-error)',
+              tooltip: 'finCore.actions.delete',
+            }),
+            canShow: () => of(true),
+            disabled: () => of(false),
+            onClick:  (item) => this.deleteWithConfirmation(item),
+          },
+        ];
+      });
+    }
+  }
+
+  private deleteWithConfirmation(item: T): Observable<void> {
+    return this.notifyService.confirm('finCore.grid.confirmDelete', 'danger', 'trash')
+      .pipe(
+        switchMap(confirmation => {
+          if (!confirmation) return of();
+          return this.options().onDelete?.(item) ?? of();
+        }),
+      );
   }
 }
