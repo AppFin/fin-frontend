@@ -214,11 +214,17 @@ export class AuthService {
     const token = this.getToken();
     if (!token) return;
     try {
-      const payload = jwtDecode(token) as any;
+      const payload = jwtDecode(token) as {
+        userId?: string,
+        role?: 'Admin' | 'User',
+        imageUrl?: string,
+        tenantId?: string,
+        unique_name?: string,
+      };
 
       const user = new UserProps({
         userId: payload.userId || '',
-        name: payload['unique_name'] || '',
+        name: payload.unique_name || '',
         role: payload.role || 'User',
         imageUrl: payload.imageUrl || '',
         tenantId: payload.tenantId || '',
