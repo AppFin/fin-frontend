@@ -85,10 +85,10 @@ export class MenusEditorComponent implements OnInit {
         first(),
         finalize(() => this.saving.set(false))
       )
-      .subscribe(() => this.fechar());
+      .subscribe(() => this.close());
   }
 
-  public fechar(): void {
+  public close(): void {
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
 

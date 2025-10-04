@@ -5,7 +5,7 @@
   [canSave]="canSave"
   [isSaving]="saving()"
   (onSave)="save()"
-  (onCancel)="fechar()"
+  (onCancel)="close()"
 >
   @if (!loading()) {
     <fin-input class="col-12" label="finCore.features.notifications.title" [formControl]="formGroup.controls.title" />
