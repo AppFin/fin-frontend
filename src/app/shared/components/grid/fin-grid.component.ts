@@ -24,6 +24,7 @@ import { FinButtonComponent } from '../button/fin-button.component';
 import { LayoutService } from '../../../core/services/layout/layout.service';
 import { FinIconOptions } from './models/columns/fin-grid-icon-column-option';
 import { NotifyService } from '../../../core/services/notifications/notify.service';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'fin-grid',
@@ -35,6 +36,7 @@ import { NotifyService } from '../../../core/services/notifications/notify.servi
     FinGridActionsRendererComponent,
     FinTextComponent,
     FinButtonComponent,
+    NgStyle,
   ],
   templateUrl: './fin-grid.component.html',
   styleUrl: './fin-grid.component.scss',
@@ -91,6 +93,12 @@ export class FinGridComponent<T> implements OnInit {
   public async gridLoadItens($event: TableLazyLoadEvent): Promise<void> {
     this.maxResultCount = $event.rows ?? this.maxResultCountOptions[0];
     await this.loadItens($event.first);
+  }
+
+  public rowStyle(item: T): {[p: string]: any} | null | undefined {
+    const rowStyleFn = this.options()?.rowStyle;
+    if (!rowStyleFn) return null;
+    return rowStyleFn(item)
   }
 
   private async loadColumns(): Promise<void> {
@@ -168,11 +176,12 @@ export class FinGridComponent<T> implements OnInit {
         return [
           ...actions,
           {
-            icon: () => new FinIconOptions({
-              icon: 'edit',
-              tooltip: 'finCore.actions.edit',
-              color: 'var(--color-disabled)',
-            }),
+            icon: () =>
+              new FinIconOptions({
+                icon: 'edit',
+                tooltip: 'finCore.actions.edit',
+                color: 'var(--color-disabled)',
+              }),
             canShow: () => of(true),
             disabled: () => of(false),
             onClick: (item) => onEditAction(item),
@@ -186,11 +195,12 @@ export class FinGridComponent<T> implements OnInit {
         return [
           ...actions,
           {
-            icon: () => new FinIconOptions({
-              icon: 'trash',
-              color: 'var(--color-error)',
-              tooltip: 'finCore.actions.delete',
-            }),
+            icon: () =>
+              new FinIconOptions({
+                icon: 'trash',
+                color: 'var(--color-error)',
+                tooltip: 'finCore.actions.delete',
+              }),
             canShow: () => of(true),
             disabled: () => of(false),
             onClick: (item) => this.deleteWithConfirmation(item),

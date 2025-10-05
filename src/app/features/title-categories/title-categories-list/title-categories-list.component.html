@@ -1,5 +1,17 @@
 <fin-page-layout title="finCore.features.titleCategory.title" [loading]="loading()">
-  <fin-button (onClick)="createTitleCategory()" iconSuffix="plus" text="finCore.actions.new" header />
+  <div header >
+    <fin-button (onClick)="createTitleCategory()" iconSuffix="plus" text="finCore.actions.new"  />
+
+    <form>
+      <fin-title-category-inactivated-filter-selector
+        [formControl]="filterForm.controls.inactivated"
+      />
+
+      <fin-title-category-type-selector
+        [formControl]="filterForm.controls.type"
+      />
+    </form>
+  </div>
 
   <fin-grid [options]="gridOptions()" />
 </fin-page-layout>

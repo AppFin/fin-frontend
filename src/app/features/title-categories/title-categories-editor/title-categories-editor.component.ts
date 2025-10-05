@@ -3,17 +3,16 @@ import { EditorLayoutComponent } from '../../../shared/components/page-layout/ed
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { TitleCategoryType } from '../../../shared/enums/title-categories/title-category-type';
-import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TitleCategoryApiService } from '../../../shared/services/title-categories/title-category-api.service';
-import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
+import { finalize, first, firstValueFrom, map } from 'rxjs';
 import { TitleCategoryInput } from '../../../shared/types/title-categories/title-category-input';
-import { PagedOutput } from '../../../shared/models/paginations/paged-output';
-import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
-import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
+import {
+  TitleCategoryTypeSelectorComponent
+} from '../components/title-category-type-selector/title-category-type-selector.component';
 
 type TitleCategoryInputForm = {
   name: FormControl<string>;
@@ -27,8 +26,8 @@ type TitleCategoryInputForm = {
   imports: [
     EditorLayoutComponent,
     FinInputComponent,
-    FinSelectComponent,
     FinColorPickerComponent,
+    TitleCategoryTypeSelectorComponent,
   ],
   templateUrl: './title-categories-editor.component.html',
   styleUrl: './title-categories-editor.component.scss',
@@ -42,10 +41,6 @@ export class TitleCategoriesEditorComponent implements OnInit {
   public readonly titleCategoryEditingName = signal('');
 
   public readonly editorTypes = EditorType;
-
-  public readonly titleCategorySelectOptions = new FinSelectComponentOptions({
-    getOptions: this.getTitleCategoryOptions.bind(this),
-  });
 
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
@@ -89,22 +84,6 @@ export class TitleCategoriesEditorComponent implements OnInit {
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
 
-  private getTitleCategoryOptions(): Observable<
-    PagedOutput<FinSelectOption<TitleCategoryType>>
-  > {
-    return of({
-      totalCount: 2,
-      items: Object.values(TitleCategoryType)
-        .filter((e) => typeof e !== 'string')
-        .map((e) => {
-          return {
-            value: e,
-            label: `finCore.features.titleCategory.type.${TitleCategoryType[e].toLowerCase()}`,
-          };
-        }),
-    } as PagedOutput<FinSelectOption<TitleCategoryType>>);
-  }
-
   private async setEditingTitleCategory(): Promise<TitleCategoryOutput | null> {
     const id = this.activatedRoute.snapshot.paramMap.get('titleCategoryId');
     if (!id) return null;
@@ -130,10 +109,13 @@ export class TitleCategoriesEditorComponent implements OnInit {
         nonNullable: true,
         validators: [Validators.required, Validators.maxLength(20)],
       }),
-      type: new FormControl(titleCategoryEditing?.type ?? TitleCategoryType.Both, {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
+      type: new FormControl(
+        titleCategoryEditing?.type ?? TitleCategoryType.Both,
+        {
+          nonNullable: true,
+          validators: Validators.required,
+        }
+      ),
     });
     this.loading.set(false);
   }

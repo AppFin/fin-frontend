@@ -10,9 +10,11 @@
   @if (!loading()) {
 
     <fin-input class="col-6" label="finCore.features.titleCategory.name" [formControl]="formGroup.controls.name" />
-    <fin-select class="col-6" label="finCore.features.titleCategory.type.title"
-                      [formControl]="formGroup.controls.type"
-                      [options]="titleCategorySelectOptions" />
+
+    <fin-title-category-type-selector
+      class="col-6"
+      [formControl]="formGroup.controls.type"
+    />
 
     <fin-color-picker class="col-6" label="finCore.features.titleCategory.color" [formControl]="formGroup.controls.color" />
     <fin-input
