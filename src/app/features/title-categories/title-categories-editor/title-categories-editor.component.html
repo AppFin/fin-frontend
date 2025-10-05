@@ -1,0 +1,28 @@
+<fin-editor-layout
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  titleCategoryEditingName"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="close()"
+>
+  @if (!loading()) {
+
+    <fin-input class="col-6" label="finCore.features.titleCategory.name" [formControl]="formGroup.controls.name" />
+    <fin-select class="col-6" label="finCore.features.titleCategory.type.title"
+                      [formControl]="formGroup.controls.type"
+                      [options]="titleCategorySelectOptions" />
+
+    <fin-color-picker class="col-6" label="finCore.features.titleCategory.color" [formControl]="formGroup.controls.color" />
+    <fin-input
+      class="col-6"
+      label="finCore.features.titleCategory.icon"
+      helpText="https://fontawesome.com/search"
+      [formControl]="formGroup.controls.icon"
+      [iconSuffix]="formGroup.controls.icon.value"
+      [iconSuffixColor]="formGroup.controls.color.value"
+    />
+
+  }
+</fin-editor-layout>

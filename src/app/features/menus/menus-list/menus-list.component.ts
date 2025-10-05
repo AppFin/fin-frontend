@@ -54,8 +54,10 @@ export class MenusListComponent implements OnInit {
       getColumns: () => of(this.getColumns()),
       getList: (input) => this.getMenus(input),
       reloadItens: this.reloadItens,
-      onDelete: this.delete.bind(this),
       onEdit: this.edit.bind(this),
+      deleteOptions: {
+        onDelete: this.delete.bind(this)
+      }
     });
 
     this.gridOptions.set(gridOptions);

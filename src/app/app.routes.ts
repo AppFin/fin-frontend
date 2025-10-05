@@ -4,6 +4,7 @@ import { authenticatedGuard } from './core/guards/authentication/authenticated.g
 import { MENUS_ROUTES } from './features/menus/menus-routes';
 import { adminGuard } from './core/guards/authentication/admin.guard';
 import { NOTIFICATIONS_ROUTES } from './features/notifications/notifications-routes';
+import { TITLE_CATEGORIES_ROUTES } from './features/title-categories/title-categories-routes';
 
 export const routes: Routes = [
   ...AUTH_ROUTES,
@@ -26,7 +27,8 @@ export const routes: Routes = [
               ...MENUS_ROUTES,
               ...NOTIFICATIONS_ROUTES
             ]
-          }
+          },
+          ...TITLE_CATEGORIES_ROUTES,
         ]
       },
       {

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { FinGridOptions } from './models/fin-grid-options';
-import { firstValueFrom, Observable, of, switchMap } from 'rxjs';
+import { firstValueFrom, Observable, of, switchMap, tap } from 'rxjs';
 import { FinGridColumnRendererComponent } from './fin-grid-column-renderer/fin-grid-column-renderer.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PagedFilteredAndSortedInput } from '../../models/paginations/paged-filtered-and-sorted-input';
@@ -164,11 +164,11 @@ export class FinGridComponent<T> implements OnInit {
   private setDefaultActions(): void {
     const onEditAction = this.options().onEdit;
     if (onEditAction) {
-      this.actions.update(actions => {
+      this.actions.update((actions) => {
         return [
           ...actions,
           {
-            icon: new FinIconOptions({
+            icon: () => new FinIconOptions({
               icon: 'edit',
               tooltip: 'finCore.actions.edit',
               color: 'var(--color-disabled)',
@@ -181,19 +181,19 @@ export class FinGridComponent<T> implements OnInit {
       });
     }
 
-    if (this.options().onDelete) {
-      this.actions.update(actions => {
+    if (this.options().deleteOptions?.onDelete) {
+      this.actions.update((actions) => {
         return [
           ...actions,
           {
-            icon: new FinIconOptions({
+            icon: () => new FinIconOptions({
               icon: 'trash',
               color: 'var(--color-error)',
               tooltip: 'finCore.actions.delete',
             }),
             canShow: () => of(true),
             disabled: () => of(false),
-            onClick:  (item) => this.deleteWithConfirmation(item),
+            onClick: (item) => this.deleteWithConfirmation(item),
           },
         ];
       });
@@ -201,12 +201,19 @@ export class FinGridComponent<T> implements OnInit {
   }
 
   private deleteWithConfirmation(item: T): Observable<void> {
-    return this.notifyService.confirm('finCore.grid.confirmDelete', 'danger', 'trash')
+    return this.notifyService
+      .confirm(
+        this.options().deleteOptions?.confirmDeleteMessage ??
+          'finCore.grid.confirmDelete',
+        'danger',
+        'trash'
+      )
       .pipe(
-        switchMap(confirmation => {
+        switchMap((confirmation) => {
           if (!confirmation) return of();
-          return this.options().onDelete?.(item) ?? of();
+          return this.options().deleteOptions?.onDelete?.(item) ?? of();
         }),
+        tap(() => this.reloadTable())
       );
   }
 }
