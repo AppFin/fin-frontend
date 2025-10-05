@@ -29,11 +29,11 @@ export class TitleCategoryInactivatedFilterSelectorComponent {
       items: [
         {
           value: true,
-          label: `finCore.features.titleCategory.type.inactivatedFilter.inactivated`,
+          label: `finCore.features.titleCategory.inactivatedFilter.inactivated`,
         },
         {
           value: false,
-          label: `finCore.features.titleCategory.type.inactivatedFilter.activated`,
+          label: `finCore.features.titleCategory.inactivatedFilter.activated`,
         },
       ],
     } as PagedOutput<FinSelectOption<boolean | null>>);

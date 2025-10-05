@@ -11,6 +11,7 @@ export const EsI18n: ITranslate = {
       delete: 'Eliminar',
       edit: 'Editar',
       editing: 'Edición',
+      editingName: 'Edición {{name}}',
       loadMore: 'Cargar más',
       loading: 'Cargando...',
       new: 'Nuevo',
@@ -132,6 +133,26 @@ export const EsI18n: ITranslate = {
       serverError: 'Error en el servidor',
     },
     features: {
+      titleCategory: {
+        active: 'Activar',
+        color: 'Color',
+        deleteMessage: 'Al eliminar esta categoría será removida de todos los títulos.',
+        icon: 'Ícono',
+        inactivatedFilter: {
+          activated: 'Activados',
+          inactivated: 'Inactivados',
+          title: 'Inactivación',
+        },
+        inactive: 'Inactivar',
+        name: 'Nombre',
+        title: 'Categorías de títulos',
+        type: {
+          both: 'Ambos',
+          expense: 'Gasto',
+          income: 'Ingresos',
+          title: 'Tipo',
+        },
+      },
       menus: {
         color: 'Color',
         frontRoute: 'Ruta del front',

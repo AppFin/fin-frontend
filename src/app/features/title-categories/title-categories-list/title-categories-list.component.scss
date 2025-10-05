@@ -3,7 +3,7 @@ div[header] {
   align-items: center;
   justify-content: space-between;
 
-  form {
+  > form {
     display: flex;
     align-items: center;
     width: 50%;

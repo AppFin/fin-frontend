@@ -1,5 +1,5 @@
 <fin-editor-layout
-  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  titleCategoryEditingName"
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  titleCategoryEditingName()"
   [loading]="loading()"
   [formGroup]="formGroup"
   [canSave]="canSave"

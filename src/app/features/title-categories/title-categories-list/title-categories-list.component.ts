@@ -135,7 +135,7 @@ export class TitleCategoriesListComponent implements OnInit {
     return [
       new FinGridIconColumnOption<TitleCategoryOutput>({
         header: 'finCore.features.titleCategory.icon',
-        width: '10%',
+        width: '5%',
         getValue: (item) =>
           new FinIconOptions({
             icon: item.icon,
