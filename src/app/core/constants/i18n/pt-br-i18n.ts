@@ -11,6 +11,7 @@ export const PtBrI18n: ITranslate = {
       delete: 'Excluir',
       edit: 'Editar',
       editing: 'Editando',
+      editingName: 'Editando {{name}}',
       loadMore: 'Carregar mais',
       loading: 'Carregando...',
       new: 'Novo',
@@ -128,6 +129,26 @@ export const PtBrI18n: ITranslate = {
       serverError: 'Erro no servidor',
     },
     features: {
+      titleCategory: {
+        active: 'Ativar',
+        color: 'Cor',
+        deleteMessage: 'Ao remover essa categória ela será removida de todos os títulos.',
+        icon: 'Ícone',
+        inactivatedFilter: {
+          activated: 'Ativados',
+          inactivated: 'Inativados',
+          title: 'Inativação',
+        },
+        inactive: 'Inativar',
+        name: 'Nome',
+        title: 'Categórias de títulos',
+        type: {
+          both: 'Ambos',
+          expense: 'Gasto',
+          income: 'Receitas',
+          title: 'Tipo',
+        },
+      },
       menus: {
         color: 'Cor',
         frontRoute: 'Rota do front',

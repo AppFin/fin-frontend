@@ -52,7 +52,7 @@ export class FinGridActionsRendererComponent<T> implements OnInit {
       .map((action) => {
         return {
           disabled: action.disabled,
-          icon: action.action.icon,
+          icon: action.action.icon(this.item() ?? {} as T),
           onClick: action.action.onClick,
         } as IFinGridEffectiveAction<T>;
       });

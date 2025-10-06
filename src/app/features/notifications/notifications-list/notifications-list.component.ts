@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  LOCALE_ID,
   OnInit,
   signal,
 } from '@angular/core';
@@ -44,7 +43,6 @@ export class NotificationsListComponent implements OnInit {
   private readonly apiService = inject(NotificationApiService);
   private readonly localizationService = inject(LocalizationService);
   private readonly dataPipe = inject(DatePipe);
-  private readonly locale = inject(LOCALE_ID);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly translateService = inject(FinTranslateService);
@@ -53,7 +51,6 @@ export class NotificationsListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setOptions();
-    console.log(this.locale);
   }
 
   public createNotification(): void {
@@ -66,8 +63,10 @@ export class NotificationsListComponent implements OnInit {
       getColumns: () => of(this.getColumns()),
       getList: (input) => this.getNotifications(input),
       reloadItens: this.reloadItens,
-      onDelete: this.delete.bind(this),
       onEdit: this.edit.bind(this),
+      deleteOptions: {
+        onDelete: this.delete.bind(this),
+      },
     });
 
     this.gridOptions.set(gridOptions);
@@ -79,7 +78,7 @@ export class NotificationsListComponent implements OnInit {
       new FinGridSimpleColumnOption<NotificationOutput>({
         getValue: (item) => item.title,
         header: 'finCore.features.notifications.title',
-        width: '10%'
+        width: '10%',
       }),
       new FinGridSimpleColumnOption<NotificationOutput>({
         getValue: (item) => item.textBody,

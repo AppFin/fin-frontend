@@ -26,13 +26,13 @@
             </tr>
         </ng-template>
         <ng-template #body let-value>
-            <tr>
+            <tr [ngStyle]="rowStyle(value)" >
                 @if (rightActions().length > 0) {
                     <td>
                         <fin-grid-actions-renderer [actions]="rightActions()" [item]="value"/>
                     </td>
                 }
-                @for (column of columns(); track column; let i = $index) {
+                @for (column of columns(); track column; ) {
                     <td [attr.data-label]="column.header | translate">
                         <fin-grid-column-renderer [columnOption]="column" [item]="value"/>
                     </td>

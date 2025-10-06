@@ -11,6 +11,7 @@ export const EnI18n: ITranslate = {
       delete: 'Delete',
       edit: 'Edit',
       editing: 'Editing',
+      editingName: 'Editing {{name}}',
       loadMore: 'Load more',
       loading: 'Loading...',
       new: 'New',
@@ -130,6 +131,26 @@ export const EnI18n: ITranslate = {
       serverError: 'Error on server',
     },
     features: {
+      titleCategory: {
+        active: 'Activate',
+        color: 'Color',
+        deleteMessage: 'When removing this category it will be removed from all titles.',
+        icon: 'Icon',
+        inactivatedFilter: {
+          activated: 'Activated',
+          inactivated: 'Inactivated',
+          title: 'Inactivation',
+        },
+        inactive: 'Inactivate',
+        name: 'Name',
+        title: 'Title Categories',
+        type: {
+          both: 'Both',
+          expense: 'Expense',
+          income: 'Income',
+          title: 'Type',
+        },
+      },
       menus: {
         color: 'Color',
         frontRoute: 'Front route',

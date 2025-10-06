@@ -9,6 +9,7 @@ export interface ITranslate {
       delete: string;
       edit: string;
       editing: string;
+      editingName: string;
       loadMore: string;
       loading: string;
       new: string;
@@ -123,6 +124,26 @@ export interface ITranslate {
       serverError: string;
     };
     features: {
+      titleCategory: {
+        active: string;
+        color: string;
+        deleteMessage: string;
+        icon: string;
+        inactivatedFilter: {
+          activated: string
+          inactivated: string,
+          title: string,
+        };
+        inactive: string;
+        name: string;
+        title: string;
+        type: {
+          both: string,
+          expense: string,
+          income: string,
+          title: string
+        };
+      };
       menus: {
         color: string;
         frontRoute: string;

@@ -55,7 +55,7 @@ type NotificationInputForm = {
   ],
   templateUrl: './notifications-editor.component.html',
   styleUrl: './notifications-editor.component.scss',
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationsEditorComponent implements OnInit {
   public formGroup: FormGroup<NotificationInputForm>;
@@ -213,9 +213,9 @@ export class NotificationsEditorComponent implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('notificationId');
     if (!id) return null;
 
-    const menu = await firstValueFrom(this.apiService.get(id));
+    const notification = await firstValueFrom(this.apiService.get(id));
     this.editorType.set(EditorType.Edit);
     this.notificationEditingId = id;
-    return menu;
+    return notification;
   }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FinGridComponent } from './fin-grid.component';
+import { TitleCategoriesComponent } from './title-categories.component';
 
-describe('GridComponent', () => {
-  let component: FinGridComponent<any>;
-  let fixture: ComponentFixture<FinGridComponent<any>>;
+describe('TitleCategoriesComponent', () => {
+  let component: TitleCategoriesComponent;
+  let fixture: ComponentFixture<TitleCategoriesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinGridComponent]
+      imports: [TitleCategoriesComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FinGridComponent);
+    fixture = TestBed.createComponent(TitleCategoriesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
