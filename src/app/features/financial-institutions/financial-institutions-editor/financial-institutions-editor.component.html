@@ -38,12 +38,12 @@
       [formControl]="formGroup.controls.active"
     />
     
-    @if (iconPreviewPath()) {
+    @if (iconPreview()) {
       <div class="icon-preview-container">
         <label class="icon-preview-label">{{ 'finCore.features.financialInstitutions.iconPreview' | finTranslate }}</label>
-        <img [src]="iconPreviewPath()" alt="Bank Icon" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px;" />
+        <img [src]="iconPreview()" alt="Bank Icon" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px;" />
       </div>
-    } @else if (formGroup.controls.code.value && !iconPreviewPath()) {
+    } @else if (formGroup.controls.code.value && !iconPreview()) {
       <div class="icon-preview-container">
         <label class="icon-preview-label">{{ 'finCore.features.financialInstitutions.iconPreview' | finTranslate }}</label>
         <div class="icon-not-found">

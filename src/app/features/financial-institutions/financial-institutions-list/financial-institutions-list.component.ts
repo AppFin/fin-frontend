@@ -9,7 +9,7 @@ import { FinancialInstitutionService } from '../../../core/services/financial-in
 import { ActivatedRoute, Router } from '@angular/router';
 import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
 import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
-import { Observable, of, Subject, tap } from 'rxjs';
+import { of, Subject, tap } from 'rxjs';
 import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution.model';
 import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
 import {
@@ -17,12 +17,11 @@ import {
   FinIconOptions,
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
 import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
-import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
-import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
+import { InstitutionType, INSTITUTION_TYPE_LABELS } from '../../../shared/enums/financial-institutions/institution-type.enum';
 import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
 import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
-import { INSTITUTION_TYPE_LABELS } from '../../../shared/enums/financial-institutions/institution-type.enum';
+import { getInstitutionByCode } from '../../../shared/models/financial-institutions/global-institutions';
 
 @Component({
   selector: 'fin-financial-institutions-list',
@@ -38,7 +37,6 @@ import { INSTITUTION_TYPE_LABELS } from '../../../shared/enums/financial-institu
 export class FinancialInstitutionsListComponent implements OnInit {
   public readonly gridOptions = signal<FinGridOptions>(new FinGridOptions());
   public readonly loading = signal(true);
-  public readonly institutions = signal<FinancialInstitutionOutput[]>([]);
 
   private readonly apiService = inject(FinancialInstitutionService);
   private readonly router = inject(Router);
@@ -59,7 +57,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
       id: 'FINANCIAL_INSTITUTIONS_LIST',
       getColumns: () => of(this.getColumns()),
       getActions: () => of(this.getActions()),
-      getList: (input) => this.getInstitutions(input),
+      getList: (input) => this.apiService.getAll(input),
       reloadItens: this.reloadItens,
     });
 
@@ -80,7 +78,9 @@ export class FinancialInstitutionsListComponent implements OnInit {
       }),
       new FinGridIconColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => {
-          if (!item.icon) {
+          const institution = getInstitutionByCode(item.code);
+          
+          if (!institution) {
             return new FinIconOptions({
               icon: 'image',
               type: 'fontAwesome',
@@ -88,9 +88,8 @@ export class FinancialInstitutionsListComponent implements OnInit {
             });
           }
           
-          const iconName = item.icon.replace('.png', '');
           return new FinIconOptions({
-            icon: iconName,
+            icon: institution.icon,
             type: 'image',
             imageFolder: 'icons/bank/',
             imageExtension: '.png',
@@ -101,7 +100,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
         width: '80px',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
-        getValue: (item) => INSTITUTION_TYPE_LABELS[item.type],
+        getValue: (item) => INSTITUTION_TYPE_LABELS[item.type as InstitutionType] || 'Desconhecido',
         header: 'finCore.features.financialInstitutions.type',
         width: '200px',
       }),
@@ -134,7 +133,10 @@ export class FinancialInstitutionsListComponent implements OnInit {
         }),
         canShow: () => of(true),
         disabled: () => of(false),
-        onClick: (item) => this.edit(item),
+        onClick: (item) => {
+          this.router.navigate([`./${item.id}`], { relativeTo: this.activatedRoute });
+          return of();
+        },
       },
       {
         icon: new FinIconOptions({
@@ -144,25 +146,8 @@ export class FinancialInstitutionsListComponent implements OnInit {
         }),
         canShow: () => of(true),
         disabled: () => of(false),
-        onClick: (item) => this.delete(item),
+        onClick: (item) => this.apiService.delete(item.id.toString()).pipe(tap(() => this.reloadItens.next())),
       },
     ];
-  }
-
-  private edit(item: FinancialInstitutionOutput): Observable<void> {
-    this.router.navigate([`./${item.id}`], { relativeTo: this.activatedRoute });
-    return of();
-  }
-
-  private delete(item: FinancialInstitutionOutput): Observable<void> {
-    return this.apiService
-      .delete(item.id.toString())
-      .pipe(tap(() => this.reloadItens.next()));
-  }
-
-  private getInstitutions(
-    input: PagedFilteredAndSortedInput
-  ): Observable<PagedOutput<FinancialInstitutionOutput>> {
-    return this.apiService.getAll(input);
   }
 }

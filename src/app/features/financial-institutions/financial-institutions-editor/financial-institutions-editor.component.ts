@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
@@ -7,39 +7,24 @@ import { FinToggleSwitchComponent } from '../../../shared/components/toggle-swit
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { FinancialInstitutionService } from '../../../core/services/financial-institutions/financial-institution.service';
-import {
-  FinancialInstitutionInput,
-  FinancialInstitutionOutput,
-} from '../../../shared/models/financial-institutions/financial-institution.model';
-import {
-  BankCode,
-  BANK_CODE_LABELS,
-} from '../../../shared/enums/financial-institutions/bank-code.enum';
-import {
-  InstitutionType,
-  INSTITUTION_TYPE_LABELS,
-  INSTITUTION_TYPE_TO_NUMBER,
-} from '../../../shared/enums/financial-institutions/institution-type.enum';
+import { FinancialInstitutionInput,FinancialInstitutionOutput,} from '../../../shared/models/financial-institutions/financial-institution.model';
+import { BankCode} from '../../../shared/enums/financial-institutions/bank-code.enum';
+import { InstitutionType, INSTITUTION_TYPE_LABELS} from '../../../shared/enums/financial-institutions/institution-type.enum';
 import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
 import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
 import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { FinTranslatePipe } from '../../../core/pipes/translate/fin-translate.pipe';
-import { 
-  searchBankByName,
-  BANK_METADATA 
-} from '../../../shared/models/financial-institutions/bank-metadata';
-import { 
-  GLOBAL_INSTITUTIONS,
-  getInstitutionsByType 
-} from '../../../shared/models/financial-institutions/global-institutions';
+import { findUniqueBank } from '../../../shared/models/financial-institutions/bank-autocomplete';
+import { GLOBAL_INSTITUTIONS, getInstitutionsByType } from '../../../shared/models/financial-institutions/global-institutions';
 
 type FinancialInstitutionInputForm = {
   name: FormControl<string>;
   code: FormControl<BankCode | null>;
   type: FormControl<InstitutionType | null>;
   icon: FormControl<string>;
+  color: FormControl<string>;
   active: FormControl<boolean>;
 };
 
@@ -60,21 +45,17 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   public readonly loading = signal(true);
   public readonly saving = signal(false);
   public readonly editorType = signal<EditorType>(EditorType.Create);
-  public readonly selectedBankCode = signal<BankCode | null>(null);
 
   public readonly editorTypes = EditorType;
+  public readonly selectedType = signal<InstitutionType | null>(null);
+  public readonly selectedBankCode = signal<BankCode | null>(null);
   public readonly iconPreview = signal<string | null>(null);
-
-  public readonly iconPreviewPath = computed(() => {
-    return this.iconPreview();
-  });
+  public readonly colorPreview = signal<string | null>(null);
 
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private apiService = inject(FinancialInstitutionService);
   private institutionEditingId: string;
-
-  public readonly selectedType = signal<InstitutionType | null>(null);
 
   public readonly bankCodeOptions = computed(() => {
     const type = this.selectedType();
@@ -139,38 +120,29 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
       if (code) {
         const institution = GLOBAL_INSTITUTIONS.find(inst => inst.code === code);
         if (institution) {
-          const iconValue = `${institution.icon}.png`;
-          this.formGroup.controls.icon.setValue(iconValue, { emitEvent: false });
-          this.iconPreview.set(`/icons/bank/${iconValue}`);
+          this.updateIconAndColorPreview(institution);
         }
       } else {
         this.iconPreview.set(null);
+        this.colorPreview.set(null);
       }
     });
     
     this.formGroup.controls.name.valueChanges.subscribe((name) => {
-      if (!name || name.length < 3) return;
+      if (!name || name.length < 3 || this.formGroup.controls.code.value) return;
+    
+      const uniqueMatch = findUniqueBank(name);
       
-      const term = name.toLowerCase().trim();
-      const matches = BANK_METADATA.filter(bank => 
-        bank.name.toLowerCase().startsWith(term) ||
-        bank.aliases.some(alias => alias.startsWith(term))
-      );
-      
-      if (matches.length === 1 && !this.formGroup.controls.code.value) {
-        const bankMetadata = matches[0];
-        this.formGroup.controls.code.setValue(bankMetadata.code, { emitEvent: true });
-        this.formGroup.controls.type.setValue(bankMetadata.type);
-        this.formGroup.controls.name.setValue(bankMetadata.name, { emitEvent: false });
-        const iconValue = `${bankMetadata.icon}.png`;
-        this.formGroup.controls.icon.setValue(iconValue, { emitEvent: false });
-        this.iconPreview.set(`/icons/bank/${iconValue}`);
+      if (uniqueMatch) {
+        this.formGroup.controls.code.setValue(uniqueMatch.code, { emitEvent: true });
+        this.formGroup.controls.type.setValue(uniqueMatch.type);
+        this.formGroup.controls.name.setValue(uniqueMatch.name, { emitEvent: false });
       }
     });
     
     this.formGroup.controls.icon.valueChanges.subscribe((iconValue) => {
       if (iconValue) {
-        const iconName = iconValue.endsWith('.png') ? iconValue : `${iconValue}.png`;
+        const iconName = this.normalizeIconName(iconValue);
         this.iconPreview.set(`/icons/bank/${iconName}`);
       } else {
         this.iconPreview.set(null);
@@ -201,17 +173,12 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
 
     const formValue = this.formGroup.getRawValue();
     
-    // Remover .png do icon para salvar só o nome base
-    let iconValue = formValue.icon || '';
-    if (iconValue.endsWith('.png')) {
-      iconValue = iconValue.replace('.png', '');
-    }
-    
     const input: FinancialInstitutionInput = {
       name: formValue.name,
       code: formValue.code!,
-      type: formValue.type ? INSTITUTION_TYPE_TO_NUMBER[formValue.type] : 7,
-      icon: iconValue || undefined,
+      type: formValue.type || InstitutionType.Other,
+      icon: this.removeIconExtension(formValue.icon),
+      color: formValue.color,
       active: formValue.active,
     };
 
@@ -232,18 +199,20 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
 
-  private getBankCodeOptions(): Observable<
-    PagedOutput<FinSelectOption<BankCode>>
-  > {
-    const options = BANK_METADATA.map((bank) => ({
-      value: bank.code,
-      label: `${bank.code} - ${bank.name}`,
-    }));
+  private normalizeIconName(icon: string): string {
+    return icon.endsWith('.png') ? icon : `${icon}.png`;
+  }
 
-    return of({
-      totalCount: options.length,
-      items: options,
-    } as PagedOutput<FinSelectOption<BankCode>>);
+  private removeIconExtension(icon: string): string {
+    return icon.endsWith('.png') ? icon.replace('.png', '') : icon;
+  }
+
+  private updateIconAndColorPreview(institution: typeof GLOBAL_INSTITUTIONS[0]): void {
+    const iconWithExtension = this.normalizeIconName(institution.icon);
+    this.formGroup.controls.icon.setValue(iconWithExtension, { emitEvent: false });
+    this.formGroup.controls.color.setValue(institution.color, { emitEvent: false });
+    this.iconPreview.set(`/icons/bank/${iconWithExtension}`);
+    this.colorPreview.set(institution.color);
   }
 
   private getInstitutionTypeOptions(): Observable<
@@ -251,7 +220,7 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   > {
     const options = Object.entries(INSTITUTION_TYPE_LABELS).map(
       ([type, label]) => ({
-        value: type as InstitutionType,
+        value: Number(type) as InstitutionType,
         label: label,
       })
     );
@@ -265,11 +234,15 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   private setFormGroup(
     institutionEditing: FinancialInstitutionOutput | null
   ): void {
-    // Se está editando e não tem icon, buscar pelo código
     let iconValue = institutionEditing?.icon ?? '';
+    let colorValue = institutionEditing?.color ?? '';
+    
     if (!iconValue && institutionEditing?.code) {
       const institution = GLOBAL_INSTITUTIONS.find(inst => inst.code === institutionEditing.code);
-      iconValue = institution ? `${institution.icon}.png` : '';
+      if (institution) {
+        iconValue = `${institution.icon}.png`;
+        colorValue = institution.color;
+      }
     }
     
     this.formGroup = new FormGroup<FinancialInstitutionInputForm>({
@@ -287,15 +260,21 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
         nonNullable: true,
         validators: [Validators.maxLength(50)],
       }),
+      color: new FormControl(colorValue, {
+        nonNullable: true,
+        validators: [Validators.maxLength(20)],
+      }),
       active: new FormControl(institutionEditing?.active ?? true, {
         nonNullable: true,
       }),
     });
     
-    // Definir preview inicial se tem icon
     if (iconValue) {
-      const iconName = iconValue.endsWith('.png') ? iconValue : `${iconValue}.png`;
-      this.iconPreview.set(`/icons/bank/${iconName}`);
+      this.iconPreview.set(`/icons/bank/${this.normalizeIconName(iconValue)}`);
+    }
+    
+    if (colorValue) {
+      this.colorPreview.set(colorValue);
     }
     
     this.loading.set(false);

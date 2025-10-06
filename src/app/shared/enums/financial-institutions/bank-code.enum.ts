@@ -7,6 +7,8 @@
   Safra = '422',
   BancoInter = '077',
   Nubank = '260',
+  Caju = '301',
+  Pluxee = '369',
   C6Bank = '336',
   Original = '212',
   Neon = '655',
@@ -17,8 +19,12 @@
   Banrisul = '041',
   BTGPactual = '208',
   Sicoob = '756',
+  Sicredi = '748',
   PineBank = '643',
   BancoBS2 = '218',
+  IfoodPago = '435',
+  Alelo = '373',
+  Ticket = '374',
 }
 
 export const BANK_CODE_LABELS: Record<BankCode, string> = {
@@ -30,6 +36,7 @@ export const BANK_CODE_LABELS: Record<BankCode, string> = {
   [BankCode.Safra]: 'Safra',
   [BankCode.BancoInter]: 'Inter',
   [BankCode.Nubank]: 'Nubank',
+  [BankCode.Caju]: 'Caju',
   [BankCode.C6Bank]: 'C6',
   [BankCode.Original]: 'Original',
   [BankCode.Neon]: 'Neon',
@@ -40,10 +47,14 @@ export const BANK_CODE_LABELS: Record<BankCode, string> = {
   [BankCode.Banrisul]: 'Banrisul',
   [BankCode.BTGPactual]: 'BTG Pactual',
   [BankCode.Sicoob]: 'Sicoob',
+  [BankCode.Sicredi]: 'Sicredi',
   [BankCode.PineBank]: 'Pine',
   [BankCode.BancoBS2]: 'BS2',
+  [BankCode.IfoodPago]: 'iFood Pago',
+  [BankCode.Alelo]: 'Alelo',
+  [BankCode.Ticket]: 'Ticket',
+  [BankCode.Pluxee]: 'Pluxee',
 };
-
 export const BANK_ICON_MAP: Record<BankCode, string> = {
   [BankCode.BancoDoBrasil]: 'bancodobrasil',
   [BankCode.Santander]: 'santander',
@@ -53,6 +64,7 @@ export const BANK_ICON_MAP: Record<BankCode, string> = {
   [BankCode.Safra]: 'safra',
   [BankCode.BancoInter]: 'inter',
   [BankCode.Nubank]: 'nubank',
+  [BankCode.Caju]: 'caju',
   [BankCode.C6Bank]: 'c6',
   [BankCode.Original]: 'original',
   [BankCode.Neon]: 'neon',
@@ -63,6 +75,11 @@ export const BANK_ICON_MAP: Record<BankCode, string> = {
   [BankCode.Banrisul]: 'banrisul',
   [BankCode.BTGPactual]: 'btg',
   [BankCode.Sicoob]: 'sicoob',
+  [BankCode.Sicredi]: 'sicredi',
   [BankCode.PineBank]: 'pine',
   [BankCode.BancoBS2]: 'bs2',
+  [BankCode.IfoodPago]: 'ifood',
+  [BankCode.Alelo]: 'alelo',
+  [BankCode.Ticket]: 'ticket',
+  [BankCode.Pluxee]: 'pluxee',
 };

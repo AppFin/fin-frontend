@@ -128,14 +128,13 @@ export interface ITranslate {
         codeAndType: string;
         codeHelp: string;
         bankNameAndCode: string;
+        color: string;
+        colorHelp: string;
         icon: string;
+        iconHelp: string;
         list: {
           title: string;
         };
-        logo: string;
-        logoPreview: string;
-        logoUrl: string;
-        logoUrlHelp: string;
         name: string;
         nameHelp: string;
         title: string;
