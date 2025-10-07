@@ -1,98 +1,120 @@
 @if (!href() && !routerLink() && !onClick()) {
-    <ng-container *ngTemplateOutlet="textElement"/>
+  <ng-container *ngTemplateOutlet="textElement" />
 } @else if (!!routerLink()) {
-    <a
-            class="link"
-            [target]="target()"
-            [routerLink]="routerLink()"
-            [rel]="target() === '_blank' ? (rel() || 'noopener noreferrer') : rel()"
-    >
-        <ng-container *ngTemplateOutlet="textElement"/>
-    </a>
+  <a
+    class="link"
+    [target]="target()"
+    [routerLink]="routerLink()"
+    [rel]="target() === '_blank' ? (rel() || 'noopener noreferrer') : rel()"
+  >
+    <ng-container *ngTemplateOutlet="textElement" />
+  </a>
 } @else if (!!href()) {
-    <a
-            class="link"
-            [target]="target()"
-            [rel]="target() === '_blank' ? (rel() || 'noopener noreferrer') : rel()"
-            [href]="href()"
-    >
-        <ng-container *ngTemplateOutlet="textElement"/>
-    </a>
+  <a
+    class="link"
+    [target]="target()"
+    [rel]="target() === '_blank' ? (rel() || 'noopener noreferrer') : rel()"
+    [href]="href()"
+  >
+    <ng-container *ngTemplateOutlet="textElement" />
+  </a>
 } @else {
-    <div class="link" [class.link-disabled]="disabledClick()" (click)="clicked($event)">
-        <ng-container *ngTemplateOutlet="textElement"/>
-    </div>
+  <div class="link" [class.link-disabled]="disabledClick()" (click)="clicked($event)">
+    <ng-container *ngTemplateOutlet="textElement" />
+  </div>
 }
 
 <ng-template #textElement>
-    @switch (type()) {
-        @case ('title') {
-            <h1
-                    class="fin-text fin-text-title"
-                    [style.color]="textEffectiveColor()"
-                    [style.background-color]="backgroundColor()"
-                    [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-                    [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
-            >
-                <ng-container *ngTemplateOutlet="textContent"/>
-            </h1>
-        }
-        @case ('subtitle') {
-            <h2
-                    class="fin-text fin-text-subtitle"
-                    [style.color]="textEffectiveColor()"
-                    [style.background-color]="backgroundColor()"
-                    [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-                    [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
-            >
-                <ng-container *ngTemplateOutlet="textContent"/>
-            </h2>
-        }
-        @case ('paragraph') {
-            <p
-                    class="fin-text fin-text-paragraph"
-                    [style.color]="textEffectiveColor()"
-                    [style.background-color]="backgroundColor()"
-                    [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-                    [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
-            >
-                <ng-container *ngTemplateOutlet="textContent"/>
-            </p>
-        }
-        @case ('info') {
-            <small
-                    class="fin-text fin-text-info"
-                    [style.color]="textEffectiveColor()"
-                    [style.background-color]="backgroundColor()"
-                    [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-                    [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
-                    [style.display]="backgroundColor() && backgroundColor() !== 'transparent' ? 'inline-block' : 'inline'"
-            >
-                <ng-container *ngTemplateOutlet="textContent"/>
-            </small>
-        }
-        @case ('label') {
-            <label
-                    class="fin-text fin-text-label"
-                    [for]="for()"
-                    [style.color]="textEffectiveColor()"
-                    [style.background-color]="backgroundColor()"
-                    [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-                    [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
-                    [style.display]="backgroundColor() && backgroundColor() !== 'transparent' ? 'inline-block' : 'inline'"
-            >
-                <ng-container *ngTemplateOutlet="textContent"/>
-            </label>
-        }
+  @switch (type()) {
+    @case ('title') {
+      <h1
+        class="fin-text fin-text-title"
+        [matTooltip]="tooltip() | finTranslate"
+        [class.fixed-size]="fixedSize()"
+        [style.color]="textEffectiveColor()"
+        [style.background-color]="backgroundColor()"
+        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
+        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+      >
+        <ng-container *ngTemplateOutlet="textContent" />
+      </h1>
     }
+    @case ('subtitle') {
+      <h2
+        class="fin-text fin-text-subtitle"
+        [matTooltip]="tooltip() | finTranslate"
+        [class.fixed-size]="fixedSize()"
+        [style.color]="textEffectiveColor()"
+        [style.background-color]="backgroundColor()"
+        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
+        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+      >
+        <ng-container *ngTemplateOutlet="textContent" />
+      </h2>
+    }
+    @case ('paragraph') {
+      <p
+        class="fin-text fin-text-paragraph"
+        [matTooltip]="tooltip() | finTranslate"
+        [class.fixed-size]="fixedSize()"
+        [style.color]="textEffectiveColor()"
+        [style.background-color]="backgroundColor()"
+        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
+        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+      >
+        <ng-container *ngTemplateOutlet="textContent" />
+      </p>
+    }
+    @case ('subparagraph') {
+      <p
+        class="fin-text fin-text-subparagraph"
+        [matTooltip]="tooltip() | finTranslate"
+        [class.fixed-size]="fixedSize()"
+        [style.color]="textEffectiveColor()"
+        [style.background-color]="backgroundColor()"
+        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
+        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+      >
+        <ng-container *ngTemplateOutlet="textContent" />
+      </p>
+    }
+    @case ('info') {
+      <small
+        class="fin-text fin-text-info"
+        [matTooltip]="tooltip() | finTranslate"
+        [class.fixed-size]="fixedSize()"
+        [style.color]="textEffectiveColor()"
+        [style.background-color]="backgroundColor()"
+        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
+        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+        [style.display]="backgroundColor() && backgroundColor() !== 'transparent' ? 'inline-block' : 'inline'"
+      >
+        <ng-container *ngTemplateOutlet="textContent" />
+      </small>
+    }
+    @case ('label') {
+      <label
+        class="fin-text fin-text-label"
+        [matTooltip]="tooltip() | finTranslate"
+        [class.fixed-size]="fixedSize()"
+        [for]="for()"
+        [style.color]="textEffectiveColor()"
+        [style.background-color]="backgroundColor()"
+        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
+        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+        [style.display]="backgroundColor() && backgroundColor() !== 'transparent' ? 'inline-block' : 'inline'"
+      >
+        <ng-container *ngTemplateOutlet="textContent" />
+      </label>
+    }
+  }
 
 
-    <ng-template #textContent>
-        @if (!!text()) {
-            {{ text() | finTranslate }}
-
-        } @else {
-            <ng-content/>
-        }
-    </ng-template>
+  <ng-template #textContent>
+    @if (!!text()) {
+      {{ text() | finTranslate }}
+    } @else {
+      <ng-content />
+    }
+  </ng-template>
 </ng-template>

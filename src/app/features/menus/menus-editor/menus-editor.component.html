@@ -5,26 +5,29 @@
   [canSave]="canSave"
   [isSaving]="saving()"
   (onSave)="save()"
-  (onCancel)="fechar()"
+  (onCancel)="close()"
 >
   @if (!loading()) {
-    <fin-input label="finCore.features.menus.name" [formControl]="formGroup.controls.name" />
+    <fin-input class="col-6" label="finCore.features.menus.name" [formControl]="formGroup.controls.name" />
     <fin-input
+      class="col-6"
       label="finCore.features.menus.frontRoute"
       [formControl]="formGroup.controls.frontRoute"
     />
-    <fin-color-picker label="finCore.features.menus.color" [formControl]="formGroup.controls.color" />
+    <fin-color-picker class="col-6" label="finCore.features.menus.color" [formControl]="formGroup.controls.color" />
     <fin-input
+      class="col-6"
       label="finCore.features.menus.icon"
       helpText="https://fontawesome.com/search"
       [formControl]="formGroup.controls.icon"
       [iconSuffix]="formGroup.controls.icon.value"
       [iconSuffixColor]="formGroup.controls.color.value"
     />
-    <fin-input label="finCore.features.menus.keyWord" [formControl]="formGroup.controls.keyWords" />
-    <fin-select label="finCore.features.menus.position" [formControl]="formGroup.controls.position"
+    <fin-input class="col-6" label="finCore.features.menus.keyWord" [formControl]="formGroup.controls.keyWords" />
+    <fin-select class="col-3" label="finCore.features.menus.position" [formControl]="formGroup.controls.position"
                 [options]="selectOptions" />
     <fin-toggle-switch
+      class="col-3"
       label="finCore.features.menus.onlyForAdmin"
       [formControl]="formGroup.controls.onlyForAdmin"
     />

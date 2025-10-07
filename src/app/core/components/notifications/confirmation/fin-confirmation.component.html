@@ -1,0 +1,25 @@
+<fin-dialog
+  [icon]="data.icon"
+  [severity]="data.severity"
+  iconSize="md"
+  [title]="data.title"
+>
+  <fin-text [text]="data.text" type="paragraph" />
+
+  <div footer>
+    <fin-button
+      severity="secondary"
+      variant="outlined"
+      text="finCore.actions.cancel"
+      (onClick)="confirm(false)"
+    />
+
+    <fin-button
+      [severity]="data.severity"
+      text="finCore.actions.ok"
+      (onClick)="confirm(true)"
+    />
+  </div>
+
+</fin-dialog>
+

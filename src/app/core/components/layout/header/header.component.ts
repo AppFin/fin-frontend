@@ -1,12 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal,
-  Signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, Signal, } from '@angular/core';
 import { ButtonFilterComponent } from '../button-filter/button-filter.component';
-import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
 import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
 import { FinUserImageComponent } from '../../../../shared/components/user-image/fin-user-image.component';
@@ -18,12 +11,14 @@ import { AuthService } from '../../../services/authentication/auth.service';
 import { UserProps } from '../../../models/authentication/user-props';
 import { Divider } from 'primeng/divider';
 import { RouterModule } from '@angular/router';
+import {
+  FinSideNotificationTogglerComponent
+} from '../../notifications/side-notification-toggler/fin-side-notification-toggler.component';
 
 @Component({
   selector: 'fin-header',
   imports: [
     ButtonFilterComponent,
-    FinButtonComponent,
     FinIconComponent,
     FinTextComponent,
     FinUserImageComponent,
@@ -32,6 +27,7 @@ import { RouterModule } from '@angular/router';
     Menu,
     Divider,
     RouterModule,
+    FinSideNotificationTogglerComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

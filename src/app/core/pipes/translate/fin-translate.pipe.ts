@@ -9,7 +9,7 @@ import { FinTranslateService } from '../../services/translate/fin-translate.serv
 export class FinTranslatePipe implements PipeTransform {
   private readonly translateService = inject(FinTranslateService);
 
-  public transform(keyAndProps: string): string {
-    return this.translateService.translate(keyAndProps);
+  public transform(keyAndProps: string|undefined): string {
+    return this.translateService.translate(keyAndProps ?? '');
   }
 }

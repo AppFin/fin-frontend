@@ -13,6 +13,9 @@ export class LayoutService {
   private _sideNavOpened = signal(false);
   public sideNavOpened = this._sideNavOpened.asReadonly();
 
+  private _sideNotificationsOpened = signal(false);
+  public sideNotificationsOpened = this._sideNotificationsOpened.asReadonly();
+
   private readonly storageService = inject(StorageService);
   private readonly sidenavOpenedKey = 'sidenav_opened';
 
@@ -33,6 +36,11 @@ export class LayoutService {
   public toggleSideNav(): void {
     this._sideNavOpened.set(!this._sideNavOpened());
   }
+
+  public toggleSideNotifications(): void {
+    this._sideNotificationsOpened.set(!this._sideNotificationsOpened());
+  }
+
 
   public setPageName(pageName: string): void {
     this._pageName.set(pageName);

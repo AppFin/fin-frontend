@@ -16,7 +16,17 @@ export class FinGridOptions<T = any> {
   public reloadActions: Observable<void>;
   public reloadColumns: Observable<void>;
 
+  public rowStyle?: (item: T) => ({[p: string]: any} | null | undefined)
+
+  public deleteOptions?: FinGridOnDeleteOptions<T>;
+  public onEdit?: (item: T) => Observable<void>;
+
   constructor(options: Partial<FinGridOptions<T>> = {}) {
     Object.assign(this, options);
   }
+}
+
+export class FinGridOnDeleteOptions<T = any> {
+  public onDelete?: (item: T) => Observable<void>;
+  public confirmDeleteMessage?: string;
 }

@@ -1,0 +1,81 @@
+fin-multi-select {
+  .select-container {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 6px;
+    color: var(--text-color);
+
+    p-multiselect {
+      width: 100%;
+      background-color: var(--p-inputtext-background);
+      border: 1px solid var(--p-inputtext-border-color);
+
+      &:hover {
+        border-color: var(--p-inputtext-hover-border-color);
+      }
+
+      .dropdownicon i {
+        color: var(--p-inputtext-hover-color);
+      }
+
+      &.p-disabled {
+        filter: brightness(0.9);
+        background-color: var(--p-inputtext-background);
+
+        .dropdownicon {
+          display: none;
+        }
+      }
+
+      .p-multiselect-label {
+        color: var(--p-inputtext-color);
+      }
+    }
+  }
+
+
+  .required {
+    label::after {
+      color: red;
+      content: ' *';
+    }
+  }
+
+  p-multiselect.p-multiselect.ng-invalid.ng-touched,
+  p-multiselect.p-multiselect.ng-invalid.ng-dirty {
+    border-color: var(--p-inputtext-invalid-border-color);
+  }
+
+  .p-multiselect-clear-icon {
+    top: 40%;
+
+    .clear-icon i {
+      color: var(--p-inputtext-hover-color);
+    }
+  }
+
+  .sub-text {
+    height: 30px;
+    max-width: 100%;
+    width: 100%;
+
+    .error-sub {
+      color: var(--color-error);
+      display: flex;
+    }
+  }
+}
+
+div.p-multiselect-overlay {
+  background-color: var(--p-inputtext-background);
+  border-color: var(--p-inputtext-hover-border-color);
+}
+
+li.p-multiselect-item.p-multiselect-item-selected {
+  background-color: var(--p-inputtext-hover-border-color) !important;
+}
+
+li.p-multiselect-item:not(.p-multiselect-item-selected):not(.p-disabled).p-focus {
+  background-color: var(--p-inputtext-hover-border-color);
+  filter: brightness(1.2);
+}

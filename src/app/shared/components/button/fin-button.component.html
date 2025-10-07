@@ -12,15 +12,31 @@
         [class.has-icon]="!!icon()"
 >
     @if (!!icon() && !spinner()) {
+      @if (iconBadge()) {
+        <p-overlaybadge [value]="iconBadge()" badgeSize="small"  [severity]="iconBadgeSeverity()">
+          <fin-icon
+            [icon]="icon()"
+            [iconColor]="iconColor()"
+            [fontAwesomeType]="iconFontAwesomeType()"
+            [type]="iconType()"
+            [imageFolder]="iconImageFolder()"
+            [imageExtension]="iconImageExtension()"
+            [tooltip]="iconTooltip()"
+            [size]="iconSize()"
+          />
+        </p-overlaybadge>
+      } @else {
         <fin-icon
-                [icon]="icon()"
-                [iconColor]="iconColor()"
-                [fontAwesomeType]="iconFontAwesomeType()"
-                [type]="iconType()"
-                [imageFolder]="iconImageFolder()"
-                [imageExtension]="iconImageExtension()"
-                [tooltip]="iconTooltip()"
+          [icon]="icon()"
+          [iconColor]="iconColor()"
+          [fontAwesomeType]="iconFontAwesomeType()"
+          [type]="iconType()"
+          [imageFolder]="iconImageFolder()"
+          [imageExtension]="iconImageExtension()"
+          [tooltip]="iconTooltip()"
+          [size]="iconSize()"
         />
+      }
     }
     @if (spinner()) {
         <mat-spinner class="spinner" [diameter]="isIconOnly() ? 28 : 20" [strokeWidth]="isIconOnly() ? 5 : 3"/>
@@ -38,6 +54,7 @@
                 [type]="iconSuffixType()"
                 [imageFolder]="iconSuffixImageFolder()"
                 [imageExtension]="iconSuffixImageExtension()"
+                [size]="iconSuffixSize()"
         />
     }
 </p-button>

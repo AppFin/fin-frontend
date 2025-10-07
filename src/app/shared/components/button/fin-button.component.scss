@@ -2,6 +2,16 @@ fin-button {
   width: fit-content;
   display: flex;
 
+  .p-overlaybadge .p-badge  {
+    right: 8px;
+    top: 8px;
+    outline: none;
+    font-size: 9px;
+    min-width: 0.9rem;
+    height: 0.9rem;
+    line-height: 0.9rem;
+  }
+
   p-button:not(.icon-only),
   p-button:not(.icon-only) > button {
     width: 100%;

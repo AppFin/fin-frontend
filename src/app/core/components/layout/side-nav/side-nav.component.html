@@ -1,35 +1,46 @@
-<mat-drawer-container class="example-container" [hasBackdrop]="false">
-    <mat-drawer
-            [opened]="sideNavOpened()"
-            [mode]="isMobile ? 'over' : 'side'"
-    >
+<mat-drawer-container [hasBackdrop]="false" >
+  <mat-drawer-content (click)="closeSideNotifications()">
+    <mat-drawer-container [hasBackdrop]="false">
+      <mat-drawer
+        [opened]="sideNavOpened()"
+        [mode]="isMobile ? 'over' : 'side'"
+      >
         <fin-side-nav-expanded />
-    </mat-drawer>
-    <mat-drawer-content>
+      </mat-drawer>
+      <mat-drawer-content>
         @if (!sideNavOpened()) {
-            <div class="menus-container">
-                <button class="menu-item" (click)="toggleSideNav()">
-                    <fin-icon
-                            tooltip="finCore.layout.openMenu"
-                            icon="chevron-right"
-                            size="md"
-                    />
-                </button>
-                @for (menuMetadata of menuMetadataPinned(); track menuMetadata.id) {
-                    <ng-container *ngTemplateOutlet="btn; context: {menu: menuMetadata.menu}"/>
-                }
-            </div>
+          <div class="menus-container">
+            <button class="menu-item" (click)="toggleSideNav()">
+              <fin-icon
+                tooltip="finCore.layout.openMenu"
+                icon="chevron-right"
+                size="md"
+              />
+            </button>
+            @for (menuMetadata of menuMetadataPinned(); track menuMetadata.id) {
+              <ng-container *ngTemplateOutlet="btn; context: {menu: menuMetadata.menu}" />
+            }
+          </div>
         }
 
         <div class="app-container" [class.opened]="sideNavOpened() && !isMobile">
-            <ng-content/>
+          <ng-content />
         </div>
-    </mat-drawer-content>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </mat-drawer-content>
+  <mat-drawer
+    [opened]="sideNotificationsOpened()"
+    mode="over"
+    position="end"
+  >
+    <fin-side-notifications-container />
+  </mat-drawer>
 </mat-drawer-container>
 
 
 <ng-template #btn let-menu="menu">
-    <button [routerLink]="menu.frontRoute" class="menu-item">
-        <fin-icon [tooltip]="menu.name | finTranslate" [icon]="menu.icon" [iconColor]="menu.color" size="md"/>
-    </button>
+  <button [routerLink]="menu.frontRoute" class="menu-item">
+    <fin-icon [tooltip]="menu.name | finTranslate" [icon]="menu.icon" [iconColor]="menu.color" size="md" />
+  </button>
 </ng-template>

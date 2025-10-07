@@ -18,6 +18,9 @@ import { LayoutService } from '../../../services/layout/layout.service';
 import { SideNavExpandedComponent } from './side-nav-expanded/side-nav-expanded.component';
 import { MenuMetadata } from '../../../types/layouts/menu-metadata';
 import { FinTranslatePipe } from '../../../pipes/translate/fin-translate.pipe';
+import {
+  FinSideNotificationsContainerComponent
+} from '../../notifications/side-notifications-container/fin-side-notifications-container.component';
 
 @Component({
   selector: 'fin-side-nav',
@@ -30,6 +33,7 @@ import { FinTranslatePipe } from '../../../pipes/translate/fin-translate.pipe';
     NgTemplateOutlet,
     SideNavExpandedComponent,
     FinTranslatePipe,
+    FinSideNotificationsContainerComponent,
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss',
@@ -45,6 +49,15 @@ export class SideNavComponent {
 
   public get sideNavOpened(): Signal<boolean> {
     return this.layoutService.sideNavOpened;
+  }
+
+  public get sideNotificationsOpened(): Signal<boolean> {
+    return this.layoutService.sideNotificationsOpened;
+  }
+
+  public closeSideNotifications(): void {
+    if (this.sideNotificationsOpened())
+      this.layoutService.toggleSideNotifications();
   }
 
   public toggleSideNav(): void {
