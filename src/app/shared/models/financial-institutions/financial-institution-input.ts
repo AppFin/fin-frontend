@@ -2,8 +2,9 @@ import { FinancialInstitutionType } from "../../enums/financial-institutions/fin
 
 export type FinancialInstitutionInput = {
   name: string;
-  code: string;
+  code: string | null;
   type: FinancialInstitutionType;
   icon: string;
   color: string;
+  inactive: boolean;
 };

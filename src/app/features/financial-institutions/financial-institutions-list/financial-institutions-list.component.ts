@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy,
+
   Component,
   inject,
   OnInit,
@@ -15,7 +15,6 @@ import {
   FinGridIconColumnOption,
   FinIconOptions,
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
-import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
 import { FinancialInstitutionType } from '../../../shared/enums/financial-institutions/financial-institution-type';
 import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
@@ -82,7 +81,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
         header: 'finCore.features.financialInstitutions.bankName',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
-        getValue: (item) => item.code || '-',
+        getValue: (item) => item.code,
         header: 'finCore.features.financialInstitutions.code',
         width: '100px',
       }),
@@ -98,13 +97,14 @@ export class FinancialInstitutionsListComponent implements OnInit {
         width: '80px',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
-        getValue: (item) => item.type as FinancialInstitutionType,
         header: 'finCore.features.financialInstitutions.type',
-        width: '200px',
+        getValue: (item) => {
+          return FinancialInstitutionType[item.type];
+        },
       }),
       new FinGridIconColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => {
-          if (!item.active) {
+          if (item.inactive) {
             return new FinIconOptions({
               icon: 'times',
               color: 'var(--color-disabled)',

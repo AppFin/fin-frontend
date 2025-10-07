@@ -5,7 +5,7 @@
   [canSave]="canSave"
   [isSaving]="saving()"
   (onSave)="save()"
-  (onCancel)="fechar()"
+  (onCancel)="close()"
 >
   @if (!loading()) {
     <fin-input 
@@ -17,40 +17,33 @@
     <fin-select
       label="finCore.features.financialInstitutions.type"
       [formControl]="formGroup.controls.type"
-      [options]="institutionTypeOptions"
-    />
-    
-    <fin-select
-      label="finCore.features.financialInstitutions.code"
-      helpText="finCore.features.financialInstitutions.codeHelp"
-      [formControl]="formGroup.controls.code"
-      [options]="bankCodeOptions()"
+      [options]="typeSelectOptions"
     />
     
     <fin-input 
+      label="finCore.features.financialInstitutions.code" 
+      helpText="finCore.features.financialInstitutions.codeHelp"
+      [formControl]="formGroup.controls.code" 
+    />
+    
+    <fin-input 
+      class="col-6"
       label="finCore.features.financialInstitutions.icon" 
       helpText="finCore.features.financialInstitutions.iconHelp"
-      [formControl]="formGroup.controls.icon" 
+      [formControl]="formGroup.controls.icon"
+      [iconSuffix]="formGroup.controls.icon.value"
+      [iconSuffixColor]="formGroup.controls.color.value"
+    />
+    
+    <fin-color-picker 
+      class="col-6"
+      label="finCore.features.financialInstitutions.color" 
+      [formControl]="formGroup.controls.color" 
     />
     
     <fin-toggle-switch
       label="finCore.features.shared.active"
       [formControl]="formGroup.controls.active"
     />
-    
-    @if (iconPreview()) {
-      <div class="icon-preview-container">
-        <label class="icon-preview-label">{{ 'finCore.features.financialInstitutions.iconPreview' | finTranslate }}</label>
-        <img [src]="iconPreview()" alt="Bank Icon" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px;" />
-      </div>
-    } @else if (formGroup.controls.code.value && !iconPreview()) {
-      <div class="icon-preview-container">
-        <label class="icon-preview-label">{{ 'finCore.features.financialInstitutions.iconPreview' | finTranslate }}</label>
-        <div class="icon-not-found">
-          <i class="pi pi-image" style="font-size: 3rem; color: var(--color-disabled);"></i>
-          <p style="color: var(--color-disabled); margin-top: 8px;">Ícone não encontrado</p>
-        </div>
-      </div>
-    }
   }
 </fin-editor-layout>
