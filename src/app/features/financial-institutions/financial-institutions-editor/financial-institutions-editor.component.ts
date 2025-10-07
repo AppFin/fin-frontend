@@ -7,9 +7,9 @@ import { FinToggleSwitchComponent } from '../../../shared/components/toggle-swit
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { FinancialInstitutionService } from '../../../core/services/financial-institutions/financial-institution.service';
-import { FinancialInstitutionInput,FinancialInstitutionOutput,} from '../../../shared/models/financial-institutions/financial-institution.model';
+import { FinancialInstitutionInput,FinancialInstitutionOutput,} from '../../../shared/models/financial-institutions/financial-institution-output';
 import { BankCode} from '../../../shared/enums/financial-institutions/bank-code.enum';
-import { InstitutionType, INSTITUTION_TYPE_LABELS} from '../../../shared/enums/financial-institutions/institution-type.enum';
+import { FinancialInstitutionType, INSTITUTION_TYPE_LABELS} from '../../../shared/enums/financial-institutions/financial-institution-type';
 import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
 import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
 import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
@@ -22,7 +22,7 @@ import { GLOBAL_INSTITUTIONS, getInstitutionsByType } from '../../../shared/mode
 type FinancialInstitutionInputForm = {
   name: FormControl<string>;
   code: FormControl<BankCode | null>;
-  type: FormControl<InstitutionType | null>;
+  type: FormControl<FinancialInstitutionType | null>;
   icon: FormControl<string>;
   color: FormControl<string>;
   active: FormControl<boolean>;
@@ -47,7 +47,7 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   public readonly editorType = signal<EditorType>(EditorType.Create);
 
   public readonly editorTypes = EditorType;
-  public readonly selectedType = signal<InstitutionType | null>(null);
+  public readonly selectedType = signal<FinancialInstitutionType | null>(null);
   public readonly selectedBankCode = signal<BankCode | null>(null);
   public readonly iconPreview = signal<string | null>(null);
   public readonly colorPreview = signal<string | null>(null);
@@ -176,7 +176,7 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     const input: FinancialInstitutionInput = {
       name: formValue.name,
       code: formValue.code!,
-      type: formValue.type || InstitutionType.Other,
+      type: formValue.type || FinancialInstitutionType.Other,
       icon: this.removeIconExtension(formValue.icon),
       color: formValue.color,
       active: formValue.active,
@@ -216,11 +216,11 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   }
 
   private getInstitutionTypeOptions(): Observable<
-    PagedOutput<FinSelectOption<InstitutionType>>
+    PagedOutput<FinSelectOption<FinancialInstitutionType>>
   > {
     const options = Object.entries(INSTITUTION_TYPE_LABELS).map(
       ([type, label]) => ({
-        value: Number(type) as InstitutionType,
+        value: Number(type) as FinancialInstitutionType,
         label: label,
       })
     );
@@ -228,7 +228,7 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     return of({
       totalCount: options.length,
       items: options,
-    } as PagedOutput<FinSelectOption<InstitutionType>>);
+    } as PagedOutput<FinSelectOption<FinancialInstitutionType>>);
   }
 
   private setFormGroup(
@@ -253,7 +253,7 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
       code: new FormControl<BankCode | null>(institutionEditing?.code ?? null, {
         validators: [Validators.required],
       }),
-      type: new FormControl<InstitutionType | null>(institutionEditing?.type ?? null, {
+      type: new FormControl<FinancialInstitutionType | null>(institutionEditing?.type ?? null, {
         validators: [Validators.required],
       }),
       icon: new FormControl(iconValue, {

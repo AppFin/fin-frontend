@@ -5,12 +5,11 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { FinancialInstitutionService } from '../../../core/services/financial-institutions/financial-institution.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
 import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
 import { of, Subject, tap } from 'rxjs';
-import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution.model';
+import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution-output';
 import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
 import {
   FinGridIconColumnOption,
@@ -18,10 +17,10 @@ import {
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
 import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
-import { InstitutionType, INSTITUTION_TYPE_LABELS } from '../../../shared/enums/financial-institutions/institution-type.enum';
+import { FinancialInstitutionType } from '../../../shared/enums/financial-institutions/financial-institution-type';
 import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
 import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
-import { getInstitutionByCode } from '../../../shared/models/financial-institutions/global-institutions';
+import { FinancialInstitutionApiService } from '../../../shared/services/financial-institutions/financial-institution-api.service';
 
 @Component({
   selector: 'fin-financial-institutions-list',
@@ -32,13 +31,12 @@ import { getInstitutionByCode } from '../../../shared/models/financial-instituti
   ],
   templateUrl: './financial-institutions-list.component.html',
   styleUrl: './financial-institutions-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FinancialInstitutionsListComponent implements OnInit {
   public readonly gridOptions = signal<FinGridOptions>(new FinGridOptions());
   public readonly loading = signal(true);
 
-  private readonly apiService = inject(FinancialInstitutionService);
+  private readonly apiService = inject(FinancialInstitutionApiService);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
 
@@ -56,8 +54,8 @@ export class FinancialInstitutionsListComponent implements OnInit {
     const gridOptions = new FinGridOptions({
       id: 'FINANCIAL_INSTITUTIONS_LIST',
       getColumns: () => of(this.getColumns()),
-      getActions: () => of(this.getActions()),
-      getList: (input) => this.apiService.getAll(input),
+      // onUp
+      getList: (input) => this.apiService.getList(input),
       reloadItens: this.reloadItens,
     });
 
@@ -100,7 +98,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
         width: '80px',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
-        getValue: (item) => INSTITUTION_TYPE_LABELS[item.type as InstitutionType] || 'Desconhecido',
+        getValue: (item) => item.type as FinancialInstitutionType,
         header: 'finCore.features.financialInstitutions.type',
         width: '200px',
       }),
