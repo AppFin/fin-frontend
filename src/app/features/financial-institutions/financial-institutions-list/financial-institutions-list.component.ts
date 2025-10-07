@@ -51,10 +51,22 @@ export class FinancialInstitutionsListComponent implements OnInit {
   }
 
   private setOptions() {
-    const gridOptions = new FinGridOptions({
+    const gridOptions = new FinGridOptions<FinancialInstitutionOutput>({
       id: 'FINANCIAL_INSTITUTIONS_LIST',
       getColumns: () => of(this.getColumns()),
-      // onUp
+      onEdit : (item) => {
+        this.router.navigate([`./${item.id}`], { relativeTo: this.activatedRoute });
+        return of();
+      },
+      rowStyle: (item) => {
+        return item.inactive
+          ? { backgroundColor: 'var(--color-error-50)' }
+          : null;
+      },
+      deleteOptions: {
+        onDelete: (item) => this.apiService.delete(item.id.toString()).pipe(tap(() => this.reloadItens.next())),
+        confirmDeleteMessage: 'finCore.features.titleCategory.deleteMessage',
+      },
       getList: (input) => this.apiService.getList(input),
       reloadItens: this.reloadItens,
     });
@@ -76,21 +88,9 @@ export class FinancialInstitutionsListComponent implements OnInit {
       }),
       new FinGridIconColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => {
-          const institution = getInstitutionByCode(item.code);
-          
-          if (!institution) {
-            return new FinIconOptions({
-              icon: 'image',
-              type: 'fontAwesome',
-              tooltip: 'Sem ícone',
-            });
-          }
-          
           return new FinIconOptions({
-            icon: institution.icon,
-            type: 'image',
-            imageFolder: 'icons/bank/',
-            imageExtension: '.png',
+            icon: item.icon,
+            type: 'bank',
             tooltip: item.name,
           });
         },
@@ -118,34 +118,6 @@ export class FinancialInstitutionsListComponent implements OnInit {
         header: 'finCore.features.shared.active',
         width: '80px',
       }),
-    ];
-  }
-
-  private getActions(): IFinGridActionOption<FinancialInstitutionOutput>[] {
-    return [
-      {
-        icon: new FinIconOptions({
-          icon: 'pen',
-          tooltip: 'finCore.actions.edit',
-          color: 'var(--color-disabled)',
-        }),
-        canShow: () => of(true),
-        disabled: () => of(false),
-        onClick: (item) => {
-          this.router.navigate([`./${item.id}`], { relativeTo: this.activatedRoute });
-          return of();
-        },
-      },
-      {
-        icon: new FinIconOptions({
-          icon: 'trash',
-          color: 'var(--color-error)',
-          tooltip: 'finCore.actions.delete',
-        }),
-        canShow: () => of(true),
-        disabled: () => of(false),
-        onClick: (item) => this.apiService.delete(item.id.toString()).pipe(tap(() => this.reloadItens.next())),
-      },
     ];
   }
 }
