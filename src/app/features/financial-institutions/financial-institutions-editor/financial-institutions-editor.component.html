@@ -8,19 +8,19 @@
   (onCancel)="close()"
 >
   @if (!loading()) {
-    <fin-input 
+    <fin-input class="col-12"
       label="finCore.features.financialInstitutions.name" 
       helpText="finCore.features.financialInstitutions.nameHelp"
       [formControl]="formGroup.controls.name" 
     />
     
-    <fin-select
+    <fin-select class ="col-6"
       label="finCore.features.financialInstitutions.type"
       [formControl]="formGroup.controls.type"
       [options]="typeSelectOptions"
     />
     
-    <fin-input 
+    <fin-input class="col-6"
       label="finCore.features.financialInstitutions.code" 
       helpText="finCore.features.financialInstitutions.codeHelp"
       [formControl]="formGroup.controls.code" 
@@ -32,6 +32,7 @@
       helpText="finCore.features.financialInstitutions.iconHelp"
       [formControl]="formGroup.controls.icon"
       [iconSuffix]="formGroup.controls.icon.value"
+      iconSuffixType= "bank"
       [iconSuffixColor]="formGroup.controls.color.value"
     />
     
@@ -40,10 +41,5 @@
       label="finCore.features.financialInstitutions.color" 
       [formControl]="formGroup.controls.color" 
     />
-    
-    <fin-toggle-switch
-      label="finCore.features.shared.active"
-      [formControl]="formGroup.controls.active"
-    />
-  }
+      }
 </fin-editor-layout>

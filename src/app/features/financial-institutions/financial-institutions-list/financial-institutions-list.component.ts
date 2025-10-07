@@ -89,12 +89,13 @@ export class FinancialInstitutionsListComponent implements OnInit {
         getValue: (item) => {
           return new FinIconOptions({
             icon: item.icon,
+            boxColor: item.color,
             type: 'bank',
             tooltip: item.name,
           });
         },
         header: 'finCore.features.financialInstitutions.icon',
-        width: '80px',
+        width: '50px',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
         header: 'finCore.features.financialInstitutions.type',

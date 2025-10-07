@@ -139,7 +139,7 @@ export const PtBrI18n: ITranslate = {
         color: 'Cor',
         colorHelp: 'Cor da instituição em hexadecimal (ex: #FCD116)',
         icon: 'Ícone',
-        iconHelp: 'Nome do arquivo do ícone (preenchido automaticamente)',
+        iconHelp: 'Nome do arquivo do ícone',
         list: {
           title: 'Instituições Financeiras',
         },

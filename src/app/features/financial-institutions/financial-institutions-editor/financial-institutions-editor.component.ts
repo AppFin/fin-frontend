@@ -19,10 +19,9 @@ import { FinColorPickerComponent } from '../../../shared/components/color-picker
 type FinancialInstitutionInputForm = {
   name: FormControl<string>;
   code: FormControl<string | null>;
-  type: FormControl<FinancialInstitutionType | null>;
+  type: FormControl<FinancialInstitutionType>;
   icon: FormControl<string>;
   color: FormControl<string>;
-  active: FormControl<boolean>;
 };
 
 @Component({
@@ -77,18 +76,10 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
       this.saving.set(false);
       return;
     }
-    const input: FinancialInstitutionInput = {
-      name: formValue.name,
-      code: formValue.code,
-      type: formValue.type,
-      icon: formValue.icon,
-      color: formValue.color,
-      inactive: !formValue.active,
-    };
     const request =
       this.editorType() === EditorType.Create
-        ? this.apiService.create(input).pipe(map(() => {}))
-        : this.apiService.update(this.institutionEditingId, input);
+        ? this.apiService.create(formValue).pipe(map(() => {}))
+        : this.apiService.update(this.institutionEditingId, formValue);
 
     request
       .pipe(
@@ -128,12 +119,6 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     institutionEditing: FinancialInstitutionOutput | null
   ): void {
     const activeValue = institutionEditing ? !institutionEditing.inactive : true;
-    
-    console.log('🔍 FORM INIT DEBUG:', {
-      institution: institutionEditing?.name,
-      inactive: institutionEditing?.inactive,
-      activeValue,
-    });
 
     this.formGroup = new FormGroup<FinancialInstitutionInputForm>({
       name: new FormControl(institutionEditing?.name ?? '', {
@@ -142,11 +127,13 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
       }),
       code: new FormControl<string | null>(institutionEditing?.code ?? null, {
         validators: [Validators.maxLength(20)],
+        nonNullable: true,
       }),
-      type: new FormControl<FinancialInstitutionType | null>(
-        institutionEditing?.type ?? null,
+      type: new FormControl<FinancialInstitutionType>(
+        institutionEditing?.type ?? FinancialInstitutionType.Bank,
         {
           validators: [Validators.required],
+          nonNullable: true,
         }
       ),
       icon: new FormControl(institutionEditing?.icon ?? '', {
@@ -156,9 +143,6 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
       color: new FormControl(institutionEditing?.color ?? '#000000', {
         nonNullable: true,
         validators: [Validators.required, Validators.maxLength(20)],
-      }),
-      active: new FormControl(activeValue, {
-        nonNullable: true,
       }),
     });
     this.loading.set(false);

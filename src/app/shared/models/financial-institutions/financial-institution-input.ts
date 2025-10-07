@@ -6,5 +6,4 @@ export type FinancialInstitutionInput = {
   type: FinancialInstitutionType;
   icon: string;
   color: string;
-  inactive: boolean;
 };
