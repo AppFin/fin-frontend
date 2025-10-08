@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
 import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
-import { of, Subject, tap } from 'rxjs';
+import { Observable, of, Subject, tap } from 'rxjs';
 import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution-output';
 import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
 import {
@@ -49,6 +49,12 @@ export class FinancialInstitutionsListComponent implements OnInit {
     this.router.navigate(['./new'], { relativeTo: this.activatedRoute });
   }
 
+  private toggleInactive(item: FinancialInstitutionOutput): Observable<void> {
+      return this.apiService
+        .toggleInactive(item.id)
+        .pipe(tap(() => this.reloadItens.next()));
+    }
+  
   private setOptions() {
     const gridOptions = new FinGridOptions<FinancialInstitutionOutput>({
       id: 'FINANCIAL_INSTITUTIONS_LIST',
@@ -57,15 +63,12 @@ export class FinancialInstitutionsListComponent implements OnInit {
         this.router.navigate([`./${item.id}`], { relativeTo: this.activatedRoute });
         return of();
       },
-      rowStyle: (item) => {
-        return item.inactive
-          ? { backgroundColor: 'var(--color-error-50)' }
-          : null;
-      },
       deleteOptions: {
         onDelete: (item) => this.apiService.delete(item.id.toString()).pipe(tap(() => this.reloadItens.next())),
         confirmDeleteMessage: 'finCore.features.titleCategory.deleteMessage',
       },
+      onToggleInactive: this.toggleInactive.bind(this),
+      getInactive: (item) => item.inactive, 
       getList: (input) => this.apiService.getList(input),
       reloadItens: this.reloadItens,
     });

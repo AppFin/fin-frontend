@@ -95,12 +95,13 @@ export class FinGridComponent<T> implements OnInit {
     await this.loadItens($event.first);
   }
 
-  public rowStyle(item: T): {[p: string]: any} | null | undefined {
+  public rowStyle(item: T): { [p: string]: any } | null | undefined {
     const rowStyleFn = this.options()?.rowStyle;
-    if (!rowStyleFn) return null;
-    return rowStyleFn(item)
+    if (rowStyleFn) return rowStyleFn(item);
+    const getInactiveFn = this.options()?.getInactive;
+    if (getInactiveFn && getInactiveFn(item)) return { backgroundColor: 'var(--color-error-50)' };
+    return null;
   }
-
   private async loadColumns(): Promise<void> {
     if (!this.options()?.getColumns) throw 'Invalid columns options';
 
@@ -170,6 +171,25 @@ export class FinGridComponent<T> implements OnInit {
   }
 
   private setDefaultActions(): void {
+    const onToggleInactive = this.options().onToggleInactive;
+    if (onToggleInactive) {
+      this.actions.update((actions) => {
+        return [
+          ...actions,
+          {
+            icon: (i) =>
+              new FinIconOptions({
+                icon: this.options().getInactive?.(i) ? 'toggle-off' : 'toggle-on',
+                tooltip: `finCore.actions.${this.options().getInactive?.(i) ? 'active' : 'inactive'}`,
+              }),
+            canShow: () => of(true),
+            disabled: () => of(false),
+            onClick: (item) => onToggleInactive(item),
+          },
+        ];
+      });
+    }
+
     const onEditAction = this.options().onEdit;
     if (onEditAction) {
       this.actions.update((actions) => {
@@ -214,7 +234,7 @@ export class FinGridComponent<T> implements OnInit {
     return this.notifyService
       .confirm(
         this.options().deleteOptions?.confirmDeleteMessage ??
-          'finCore.grid.confirmDelete',
+        'finCore.grid.confirmDelete',
         'danger',
         'trash'
       )

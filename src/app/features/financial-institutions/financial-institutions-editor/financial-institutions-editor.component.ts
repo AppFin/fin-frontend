@@ -1,20 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
-import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
-import { FinToggleSwitchComponent } from '../../../shared/components/toggle-switch/fin-toggle-switch.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EditorType } from '../../../shared/enums/layouts/editor-type';
-import { FinancialInstitutionApiService } from '../../../shared/services/financial-institutions/financial-institution-api.service';
-import { FinancialInstitutionInput } from '../../../shared/models/financial-institutions/financial-institution-input';
-import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution-output';
-import { FinancialInstitutionType } from '../../../shared/enums/financial-institutions/financial-institution-type';
+import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
+import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
+import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
+import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
 import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
 import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
+import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
+import { FinancialInstitutionType } from '../../../shared/enums/financial-institutions/financial-institution-type';
+import { EditorType } from '../../../shared/enums/layouts/editor-type';
+import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution-output';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
-import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
-import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
+import { FinancialInstitutionApiService } from '../../../shared/services/financial-institutions/financial-institution-api.service';
 
 type FinancialInstitutionInputForm = {
   name: FormControl<string>;
@@ -29,7 +27,6 @@ type FinancialInstitutionInputForm = {
   imports: [
     FinInputComponent,
     FinSelectComponent,
-    FinToggleSwitchComponent,
     FinColorPickerComponent,
     EditorLayoutComponent,
   ],
