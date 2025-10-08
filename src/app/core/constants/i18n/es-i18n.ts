@@ -133,6 +133,25 @@ export const EsI18n: ITranslate = {
       serverError: 'Error en el servidor',
     },
     features: {
+      financialInstitutions: {
+        active: 'Activo',
+        code: 'Código',
+        bankName: 'Nombre del Banco',
+        codeAndType: 'Código y Tipo',
+        codeHelp: 'Seleccione el código COMPE del banco (autocompletar al escribir el nombre)',
+        bankNameAndCode: 'Banco',
+        color: 'Color',
+        colorHelp: 'Color de la institución en hexadecimal (ej: #FCD116)',
+        icon: 'Ícono',
+        iconHelp: 'Nombre del archivo del icono (auto-rellenado)',
+        list: {
+          title: 'Instituciones Financieras',
+        },
+        name: 'Nombre de la Institución',
+        nameHelp: 'Escriba para autocompletar (ej: "nu" para Nubank)',
+        title: 'Instituciones Financieras',
+        type: 'Tipo de Institución'
+        },
       titleCategory: {
         active: 'Activar',
         color: 'Color',
@@ -192,6 +211,7 @@ export const EsI18n: ITranslate = {
         users: 'Usuarios',
       },
       shared: {
+        active: 'Activo',
         name: 'Nombre',
       },
     },

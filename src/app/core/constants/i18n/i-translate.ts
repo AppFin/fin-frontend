@@ -124,6 +124,25 @@ export interface ITranslate {
       serverError: string;
     };
     features: {
+      financialInstitutions: {
+        active: string;
+        code: string;
+        bankName: string;
+        codeAndType: string;
+        codeHelp: string;
+        bankNameAndCode: string;
+        color: string;
+        colorHelp: string;
+        icon: string;
+        iconHelp: string;
+        list: {
+          title: string;
+        };
+        name: string;
+        nameHelp: string;
+        title: string;
+        type: string;
+      };
       titleCategory: {
         active: string;
         color: string;
@@ -184,6 +203,7 @@ export interface ITranslate {
       };
       shared: {
         name: string;
+        active: string;
       };
     };
     grid: {

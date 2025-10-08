@@ -129,6 +129,25 @@ export const PtBrI18n: ITranslate = {
       serverError: 'Erro no servidor',
     },
     features: {
+      financialInstitutions: {
+        active: 'Ativo',
+        code: 'Código',
+        bankName: 'Nome do Banco',
+        codeAndType: 'Código e Tipo',
+        codeHelp: 'Selecione o código do banco',
+        bankNameAndCode: 'Banco',
+        color: 'Cor',
+        colorHelp: 'Cor da instituição em hexadecimal (ex: #FCD116)',
+        icon: 'Ícone',
+        iconHelp: 'Nome do arquivo do ícone',
+        list: {
+          title: 'Instituições Financeiras',
+        },
+        name: 'Nome da Instituição',
+        nameHelp: 'Digite para autocompletar',
+        title: 'Instituições Financeiras',
+        type: 'Tipo de Instituição'
+      },
       titleCategory: {
         active: 'Ativar',
         color: 'Cor',
@@ -188,6 +207,7 @@ export const PtBrI18n: ITranslate = {
         users: 'Usuários',
       },
       shared: {
+        active: 'Ativo',
         name: 'Nome',
       },
     },
