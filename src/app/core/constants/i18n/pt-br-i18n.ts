@@ -134,11 +134,6 @@ export const PtBrI18n: ITranslate = {
         color: 'Cor',
         deleteMessage: 'Ao remover essa categória ela será removida de todos os títulos.',
         icon: 'Ícone',
-        inactivatedFilter: {
-          activated: 'Ativados',
-          inactivated: 'Inativados',
-          title: 'Inativação',
-        },
         inactive: 'Inativar',
         name: 'Nome',
         title: 'Categórias de títulos',
@@ -189,6 +184,11 @@ export const PtBrI18n: ITranslate = {
       },
       shared: {
         name: 'Nome',
+        inactivatedFilter: {
+          activated: 'Ativados',
+          inactivated: 'Inativados',
+          title: 'Inativação',
+        },
       },
     },
     grid: {

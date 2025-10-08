@@ -11,8 +11,8 @@ import { TitleCategoryOutput } from '../../../shared/types/title-categories/titl
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
 import {
-  TitleCategoryTypeSelectorComponent
-} from '../components/title-category-type-selector/title-category-type-selector.component';
+  TitleCategoryTypeSelectComponent
+} from '../components/title-category-type-selector/title-category-type-select.component';
 
 type TitleCategoryInputForm = {
   name: FormControl<string>;
@@ -27,7 +27,7 @@ type TitleCategoryInputForm = {
     EditorLayoutComponent,
     FinInputComponent,
     FinColorPickerComponent,
-    TitleCategoryTypeSelectorComponent,
+    TitleCategoryTypeSelectComponent,
   ],
   templateUrl: './title-categories-editor.component.html',
   styleUrl: './title-categories-editor.component.scss',

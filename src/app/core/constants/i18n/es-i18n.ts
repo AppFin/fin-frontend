@@ -138,11 +138,6 @@ export const EsI18n: ITranslate = {
         color: 'Color',
         deleteMessage: 'Al eliminar esta categoría será removida de todos los títulos.',
         icon: 'Ícono',
-        inactivatedFilter: {
-          activated: 'Activados',
-          inactivated: 'Inactivados',
-          title: 'Inactivación',
-        },
         inactive: 'Inactivar',
         name: 'Nombre',
         title: 'Categorías de títulos',
@@ -193,6 +188,11 @@ export const EsI18n: ITranslate = {
       },
       shared: {
         name: 'Nombre',
+        inactivatedFilter: {
+          activated: 'Activados',
+          inactivated: 'Inactivados',
+          title: 'Inactivación',
+        },
       },
     },
     grid: {

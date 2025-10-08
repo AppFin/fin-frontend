@@ -3,11 +3,11 @@
     <fin-button (onClick)="createTitleCategory()" iconSuffix="plus" text="finCore.actions.new"  />
 
     <form>
-      <fin-title-category-inactivated-filter-selector
+      <fin-inactivated-filter-select
         [formControl]="filterForm.controls.inactivated"
       />
 
-      <fin-title-category-type-selector
+      <fin-title-category-type-select
         [formControl]="filterForm.controls.type"
       />
     </form>

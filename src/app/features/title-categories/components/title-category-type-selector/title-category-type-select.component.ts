@@ -8,13 +8,13 @@ import { FinSelectComponent } from '../../../../shared/components/select/fin-sel
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'fin-title-category-type-selector',
+  selector: 'fin-title-category-type-select',
   imports: [FinSelectComponent],
-  templateUrl: './title-category-type-selector.component.html',
-  styleUrl: './title-category-type-selector.component.scss',
+  templateUrl: './title-category-type-select.component.html',
+  styleUrl: './title-category-type-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TitleCategoryTypeSelectorComponent {
+export class TitleCategoryTypeSelectComponent {
   @Input() public formControl: FormControl<TitleCategoryType|null>;
 
   public readonly titleCategorySelectOptions = new FinSelectComponentOptions({

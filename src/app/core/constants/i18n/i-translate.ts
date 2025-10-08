@@ -129,11 +129,6 @@ export interface ITranslate {
         color: string;
         deleteMessage: string;
         icon: string;
-        inactivatedFilter: {
-          activated: string
-          inactivated: string,
-          title: string,
-        };
         inactive: string;
         name: string;
         title: string;
@@ -183,7 +178,11 @@ export interface ITranslate {
         };
       };
       shared: {
-        name: string;
+        name: string;        inactivatedFilter: {
+          activated: string
+          inactivated: string,
+          title: string,
+        };
       };
     };
     grid: {

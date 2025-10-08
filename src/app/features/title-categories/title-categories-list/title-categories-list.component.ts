@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
 import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
@@ -16,18 +23,12 @@ import {
   FinIconOptions,
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
 import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
-import {
-  FinGridSimpleColumnOption
-} from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
+import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
 import { TitleCategoryType } from '../../../shared/enums/title-categories/title-category-type';
 import { FormControl, FormGroup } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  TitleCategoryTypeSelectorComponent
-} from '../components/title-category-type-selector/title-category-type-selector.component';
-import {
-  TitleCategoryInactivatedFilterSelectorComponent
-} from '../components/title-category-inactivated-filter-selector/title-category-inactivated-filter-selector.component';
+import { TitleCategoryTypeSelectComponent } from '../components/title-category-type-selector/title-category-type-select.component';
+import { FinInactivatedFilterSelectComponent } from '../../../shared/components/inactivated-filter-select/fin-inactivated-filter-select.component';
 
 type TitleCategoriesListFilterForm = {
   type: FormControl<TitleCategoryType | null>;
@@ -40,8 +41,8 @@ type TitleCategoriesListFilterForm = {
     FinButtonComponent,
     FinGridComponent,
     FinPageLayoutComponent,
-    TitleCategoryTypeSelectorComponent,
-    TitleCategoryInactivatedFilterSelectorComponent,
+    TitleCategoryTypeSelectComponent,
+    FinInactivatedFilterSelectComponent,
   ],
   templateUrl: './title-categories-list.component.html',
   styleUrl: './title-categories-list.component.scss',

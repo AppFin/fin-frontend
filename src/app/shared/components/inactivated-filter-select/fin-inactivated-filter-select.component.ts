@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FinSelectComponentOptions } from '../../../../shared/components/select/fin-select-component-options';
+import { FinSelectComponent } from '../select/fin-select.component';
+import { FinSelectComponentOptions } from '../select/fin-select-component-options';
 import { Observable, of } from 'rxjs';
-import { PagedOutput } from '../../../../shared/models/paginations/paged-output';
-import { FinSelectOption } from '../../../../shared/components/select/fin-select-option';
-import { FinSelectComponent } from '../../../../shared/components/select/fin-select.component';
+import { FinSelectOption } from '../select/fin-select-option';
+import { PagedOutput } from '../../models/paginations/paged-output';
 
 @Component({
-  selector: 'fin-title-category-inactivated-filter-selector',
+  selector: 'fin-inactivated-filter-select',
   imports: [FinSelectComponent],
-  templateUrl: './title-category-inactivated-filter-selector.component.html',
-  styleUrl: './title-category-inactivated-filter-selector.component.scss',
+  templateUrl: './fin-inactivated-filter-select.component.html',
+  styleUrl: './fin-inactivated-filter-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TitleCategoryInactivatedFilterSelectorComponent {
+export class FinInactivatedFilterSelectComponent {
   @Input() public formControl: FormControl<boolean | null>;
 
   public readonly titleCategoryInactivatedSelectOptions =
@@ -29,11 +29,11 @@ export class TitleCategoryInactivatedFilterSelectorComponent {
       items: [
         {
           value: true,
-          label: `finCore.features.titleCategory.inactivatedFilter.inactivated`,
+          label: `finCore.features.shared.inactivatedFilter.inactivated`,
         },
         {
           value: false,
-          label: `finCore.features.titleCategory.inactivatedFilter.activated`,
+          label: `finCore.features.shared.inactivatedFilter.activated`,
         },
       ],
     } as PagedOutput<FinSelectOption<boolean | null>>);

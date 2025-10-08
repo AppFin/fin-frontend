@@ -136,11 +136,6 @@ export const EnI18n: ITranslate = {
         color: 'Color',
         deleteMessage: 'When removing this category it will be removed from all titles.',
         icon: 'Icon',
-        inactivatedFilter: {
-          activated: 'Activated',
-          inactivated: 'Inactivated',
-          title: 'Inactivation',
-        },
         inactive: 'Inactivate',
         name: 'Name',
         title: 'Title Categories',
@@ -191,6 +186,11 @@ export const EnI18n: ITranslate = {
       },
       shared: {
         name: 'Name',
+        inactivatedFilter: {
+          activated: 'Activated',
+          inactivated: 'Inactivated',
+          title: 'Inactivation',
+        },
       },
     },
     grid: {
