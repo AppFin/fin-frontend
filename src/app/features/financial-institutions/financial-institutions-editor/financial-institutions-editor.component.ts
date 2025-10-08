@@ -2,6 +2,8 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
+import { NotifyService } from '../../../core/services/notifications/notify.service';
+import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
@@ -48,6 +50,7 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private apiService = inject(FinancialInstitutionApiService);
+  private notifyService = inject(NotifyService);
   private institutionEditingId: string;
 
   public async ngOnInit(): Promise<void> {
@@ -73,17 +76,30 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
       this.saving.set(false);
       return;
     }
-    const request =
-      this.editorType() === EditorType.Create
-        ? this.apiService.create(formValue).pipe(map(() => {}))
-        : this.apiService.update(this.institutionEditingId, formValue);
+    
+    const isCreating = this.editorType() === EditorType.Create;
+    const request = isCreating
+      ? this.apiService.create(formValue).pipe(map(() => {}))
+      : this.apiService.update(this.institutionEditingId, formValue);
 
     request
       .pipe(
         first(),
         finalize(() => this.saving.set(false))
       )
-      .subscribe(() => this.close());
+      .subscribe({
+        next: () => {
+          const message = isCreating
+            ? 'finCore.features.financialInstitutions.createdSuccess'
+            : 'finCore.features.financialInstitutions.updatedSuccess';
+          this.notifyService.notifySnack(message, NotificationSeverity.Success);
+          this.close();
+        },
+        error: (error) => {
+          const errorMessage = error?.error?.message || 'finCore.errors.genericError';
+          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
+        }
+      });
   }
 
   public close(): void {
@@ -115,8 +131,6 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   private setFormGroup(
     institutionEditing: FinancialInstitutionOutput | null
   ): void {
-    const activeValue = institutionEditing ? !institutionEditing.inactive : true;
-
     this.formGroup = new FormGroup<FinancialInstitutionInputForm>({
       name: new FormControl(institutionEditing?.name ?? '', {
         nonNullable: true,

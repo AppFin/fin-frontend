@@ -65,7 +65,8 @@ export class FinancialInstitutionsListComponent implements OnInit {
       },
       deleteOptions: {
         onDelete: (item) => this.apiService.delete(item.id.toString()).pipe(tap(() => this.reloadItens.next())),
-        confirmDeleteMessage: 'finCore.features.titleCategory.deleteMessage',
+        confirmDeleteMessage: 'finCore.features.financialInstitutions.confirmDelete',
+        successMessage: 'finCore.features.financialInstitutions.deletedSuccess',
       },
       onToggleInactive: this.toggleInactive.bind(this),
       getInactive: (item) => item.inactive, 

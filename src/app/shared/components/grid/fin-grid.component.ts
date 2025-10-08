@@ -243,7 +243,13 @@ export class FinGridComponent<T> implements OnInit {
           if (!confirmation) return of();
           return this.options().deleteOptions?.onDelete?.(item) ?? of();
         }),
-        tap(() => this.reloadTable())
+        tap(() => {
+          const successMessage = this.options().deleteOptions?.successMessage;
+          if (successMessage) {
+            this.notifyService.notifySnack(successMessage, 'success' as any);
+          }
+          this.reloadTable();
+        })
       );
   }
 }

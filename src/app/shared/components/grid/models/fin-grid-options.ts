@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { PagedOutput } from '../../../models/paginations/paged-output';
 import { IFinGridColumnOption } from './columns/i-fin-grid-column-option';
 import { IFinGridActionOption } from './i-fin-grid-action-option';
+import { NotificationSeverity } from '../../../../core/enums/notifications/notification-severity';
 
 export class FinGridOptions<T = any> {
   public id: string;
@@ -33,5 +34,15 @@ export class FinGridOptions<T = any> {
 export class FinGridOnDeleteOptions<T = any> {
   public onDelete?: (item: T) => Observable<void>;
   public confirmDeleteMessage?: string;
+  public successMessage?: string;
 }
 
+export class FinGridInfoOptions {
+  public message: string;
+  public severity?: NotificationSeverity;
+  
+  constructor(message: string, severity: NotificationSeverity = NotificationSeverity.Success) {
+    this.message = message;
+    this.severity = severity;
+  }
+}

@@ -10,7 +10,6 @@ import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
 import { TitleCategoryApiService } from '../../../shared/services/title-categories/title-category-api.service';
 import { TitleCategoryGetListInput } from '../../../shared/types/title-categories/title-category-get-list-input';
-import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import {
   FinGridIconColumnOption,
   FinIconOptions,
