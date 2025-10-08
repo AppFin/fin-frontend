@@ -15,6 +15,8 @@ import { MenuOutput } from '../../../core/types/layouts/menu-output';
 import { MenuApiService } from '../../../core/services/layout/menu-api.service';
 import { MenuInput } from '../../../core/types/layouts/menu-input';
 import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
+import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
+import { NotifyService } from '../../../core/services/notifications/notify.service';
 
 type MenuInputForm = {
   frontRoute: FormControl<string>;
@@ -44,6 +46,7 @@ export class MenusEditorComponent implements OnInit {
   public readonly saving = signal(false);
   public readonly editorType = signal<EditorType>(EditorType.Create);
 
+  public notifyService = inject(NotifyService);
   public readonly editorTypes = EditorType;
 
   public readonly selectOptions = new FinSelectComponentOptions({
@@ -85,7 +88,19 @@ export class MenusEditorComponent implements OnInit {
         first(),
         finalize(() => this.saving.set(false))
       )
-      .subscribe(() => this.close());
+      .subscribe({
+        next: () => {
+          const message = request
+          ? 'finCore.features.menus.messages.created'
+          : 'finCore.features.menus.messages.updated';
+          this.notifyService.notifySnack(message, NotificationSeverity.Success);
+          this.close();
+        },
+        error: (error) => {
+          const errorMessage = error?.error?.message || 'finCore.errors.genericError';
+          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
+        }
+      });
   }
 
   public close(): void {

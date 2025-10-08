@@ -7,12 +7,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TitleCategoryApiService } from '../../../shared/services/title-categories/title-category-api.service';
 import { finalize, first, firstValueFrom, map } from 'rxjs';
 import { TitleCategoryInput } from '../../../shared/types/title-categories/title-category-input';
-import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
 import {
   TitleCategoryTypeSelectorComponent
 } from '../components/title-category-type-selector/title-category-type-selector.component';
+import { NotifyService } from '../../../core/services/notifications/notify.service';
+import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
+import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
 
 type TitleCategoryInputForm = {
   name: FormControl<string>;
@@ -45,6 +47,7 @@ export class TitleCategoriesEditorComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private apiService = inject(TitleCategoryApiService);
+  public notifyService = inject(NotifyService);
   private titleCategoryEditingId: string;
 
   public async ngOnInit(): Promise<void> {
@@ -69,7 +72,7 @@ export class TitleCategoriesEditorComponent implements OnInit {
 
     const request =
       this.editorType() === EditorType.Create
-        ? this.apiService.create(input).pipe(map(() => {}))
+        ? this.apiService.create(input).pipe(map(() => { }))
         : this.apiService.update(this.titleCategoryEditingId, input);
 
     request
@@ -77,46 +80,59 @@ export class TitleCategoriesEditorComponent implements OnInit {
         first(),
         finalize(() => this.saving.set(false))
       )
-      .subscribe(() => this.close());
+      .subscribe({
+        next: () => {
+
+          const message = request
+            ? 'finCore.features.notifications.editor.messages.created'
+            : 'finCore.features.notifications.editor.messages.updated';
+          this.notifyService.notifySnack(message, NotificationSeverity.Success);
+          this.close();
+        },
+        error: (error) => {
+          const errorMessage = error?.error?.message || 'finCore.errors.genericError';
+          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
+        }
+      });
   }
 
   public close(): void {
-    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-  }
+  this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+}
 
-  private async setEditingTitleCategory(): Promise<TitleCategoryOutput | null> {
-    const id = this.activatedRoute.snapshot.paramMap.get('titleCategoryId');
-    if (!id) return null;
+  private async setEditingTitleCategory(): Promise < TitleCategoryOutput | null > {
+  const id = this.activatedRoute.snapshot.paramMap.get('titleCategoryId');
+  if(!id) return null;
 
-    const titleCategory = await firstValueFrom(this.apiService.get(id));
-    this.editorType.set(EditorType.Edit);
-    this.titleCategoryEditingId = id;
-    this.titleCategoryEditingName.set(titleCategory.name);
-    return titleCategory;
-  }
+  const titleCategory = await firstValueFrom(this.apiService.get(id));
+  this.editorType.set(EditorType.Edit);
+  this.titleCategoryEditingId = id;
+  this.titleCategoryEditingName.set(titleCategory.name);
+  return titleCategory;
+}
 
   private setFormGroup(titleCategoryEditing: TitleCategoryOutput | null): void {
-    this.formGroup = new FormGroup<TitleCategoryInputForm>({
-      name: new FormControl(titleCategoryEditing?.name ?? '', {
+  this.formGroup = new FormGroup<TitleCategoryInputForm>({
+    name: new FormControl(titleCategoryEditing?.name ?? '', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(100)],
+    }),
+    color: new FormControl(titleCategoryEditing?.color ?? '', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(20)],
+    }),
+    icon: new FormControl(titleCategoryEditing?.icon ?? '', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(20)],
+    }),
+    type: new FormControl(
+      titleCategoryEditing?.type ?? TitleCategoryType.Both,
+      {
         nonNullable: true,
-        validators: [Validators.required, Validators.maxLength(100)],
-      }),
-      color: new FormControl(titleCategoryEditing?.color ?? '', {
-        nonNullable: true,
-        validators: [Validators.required, Validators.maxLength(20)],
-      }),
-      icon: new FormControl(titleCategoryEditing?.icon ?? '', {
-        nonNullable: true,
-        validators: [Validators.required, Validators.maxLength(20)],
-      }),
-      type: new FormControl(
-        titleCategoryEditing?.type ?? TitleCategoryType.Both,
-        {
-          nonNullable: true,
-          validators: Validators.required,
-        }
-      ),
-    });
-    this.loading.set(false);
-  }
+        validators: Validators.required,
+      }
+    ),
+  });
+  this.loading.set(false);
+}
 }

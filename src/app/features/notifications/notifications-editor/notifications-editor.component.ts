@@ -27,6 +27,7 @@ import { FinMultiSelectComponent } from '../../../shared/components/multi-select
 import { FinDatetimeComponent } from '../../../shared/components/datetime/fin-date-time.component';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { UserApiService } from '../../authentication/services/user-api.service';
+import { NotifyService } from '../../../core/services/notifications/notify.service';
 
 type NotificationInputForm = {
   ways: FormControl<NotificationWay[]>;
@@ -81,6 +82,7 @@ export class NotificationsEditorComponent implements OnInit {
   private router = inject(Router);
   private apiService = inject(NotificationApiService);
   private userApiService = inject(UserApiService);
+  public notifyService = inject(NotifyService);
   private notificationEditingId: string;
 
   public async ngOnInit(): Promise<void> {
@@ -113,7 +115,19 @@ export class NotificationsEditorComponent implements OnInit {
         first(),
         finalize(() => this.saving.set(false))
       )
-      .subscribe(() => this.close());
+      .subscribe({
+        next: () => {
+          const message = request
+          ? 'finCore.features.notifications.editor.messages.created'
+          : 'finCore.features.notifications.editor.messages.updated';
+          this.notifyService.notifySnack(message, NotificationSeverity.Success);
+          this.close();
+        },
+        error: (error) => {
+          const errorMessage = error?.error?.message || 'finCore.errors.genericError';
+          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
+        }
+      });
   }
 
   public close(): void {
