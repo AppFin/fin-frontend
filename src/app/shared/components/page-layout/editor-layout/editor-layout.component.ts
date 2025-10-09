@@ -29,7 +29,7 @@ import { NotificationSeverity } from '../../../../core/enums/notifications/notif
   styleUrl: './editor-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditorLayoutComponent<TInput = any> {
+export class EditorLayoutComponent<TInput> {
   public readonly title = input<string>('');
   public readonly formGroup = input<FormGroup>(new FormGroup({}));
   public readonly canSave = input(false);
