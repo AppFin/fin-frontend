@@ -142,6 +142,13 @@ export interface ITranslate {
         nameHelp: string;
         title: string;
         type: string;
+        pages: {
+          creating: string;
+          editing: string;
+        };
+        createdSuccess: string;
+        updatedSuccess: string;
+        deletedSuccess: string;
       };
       titleCategory: {
         active: string;
@@ -156,6 +163,14 @@ export interface ITranslate {
         inactive: string;
         name: string;
         title: string;
+        pages: {
+          creating: string;
+          editing: string;
+        };
+        messages: {
+          created: string;
+          updated: string;
+        };
         type: {
           both: string,
           expense: string,
@@ -175,11 +190,27 @@ export interface ITranslate {
         position: string;
         showOnSideNav: string;
         title: string;
+        pages: {
+          creating: string;
+          editing: string;
+        };
+        messages: {
+          created: string;
+          updated: string;
+        };
       };
       notifications: {
         continuous: string;
         htmlBody: string;
         link: string;
+        pages: {
+          creating: string;
+          editing: string;
+        };
+        messages: {
+          created: string;
+          updated: string;
+        };
         severity: {
           error: string;
           info: string;

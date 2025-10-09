@@ -150,8 +150,15 @@ export const EsI18n: ITranslate = {
         name: 'Nombre de la Institución',
         nameHelp: 'Escriba para autocompletar (ej: "nu" para Nubank)',
         title: 'Instituciones Financieras',
-        type: 'Tipo de Institución'
+        type: 'Tipo de Institución',
+        pages: {
+          creating: 'Creando Institución Financiera',
+          editing: 'Editando Institución Financiera',
         },
+        createdSuccess: '¡Institución financiera creada con éxito!',
+        updatedSuccess: '¡Institución financiera actualizada con éxito!',
+        deletedSuccess: '¡Institución financiera eliminada con éxito!',
+      },
       titleCategory: {
         active: 'Activar',
         color: 'Color',
@@ -165,6 +172,14 @@ export const EsI18n: ITranslate = {
         inactive: 'Inactivar',
         name: 'Nombre',
         title: 'Categorías de títulos',
+        pages: {
+          creating: 'Creando Categoría',
+          editing: 'Editando Categoría',
+        },
+        messages: {
+          created: '¡Categoría creada con éxito!',
+          updated: '¡Categoría actualizada con éxito!',
+        },
         type: {
           both: 'Ambos',
           expense: 'Gasto',
@@ -184,6 +199,14 @@ export const EsI18n: ITranslate = {
         position: 'Posición',
         showOnSideNav: 'Mostrar en la barra lateral',
         title: 'Menús',
+        pages: {
+          creating: 'Creando Menú',
+          editing: 'Editando Menú',
+        },
+        messages: {
+          created: '¡Menú creado con éxito!',
+          updated: '¡Menú actualizado con éxito!',
+        },
       },
       notifications: {
         title: 'Notificaciones',
@@ -191,6 +214,14 @@ export const EsI18n: ITranslate = {
         continuous: 'Continua',
         startToDelivery: 'Inicio de Entrega',
         stopToDelivery: 'Fin de Entrega',
+        pages: {
+          creating: 'Creando Notificación',
+          editing: 'Editando Notificación',
+        },
+        messages: {
+          created: '¡Notificación creada con éxito!',
+          updated: '¡Notificación actualizada con éxito!',
+        },
         severity: {
           title: 'Severidad',
           success: 'Éxito',

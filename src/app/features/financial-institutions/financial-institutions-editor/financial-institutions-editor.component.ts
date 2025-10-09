@@ -1,17 +1,17 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
-import { NotifyService } from '../../../core/services/notifications/notify.service';
-import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
+import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
+import { EditorSaveOptions } from '../../../shared/enums/layouts/editor-save-options';
 import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
 import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
 import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
 import { FinancialInstitutionType } from '../../../shared/enums/financial-institutions/financial-institution-type';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
+import { FinancialInstitutionInput } from '../../../shared/models/financial-institutions/financial-institution-input';
 import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution-output';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinancialInstitutionApiService } from '../../../shared/services/financial-institutions/financial-institution-api.service';
@@ -38,10 +38,25 @@ type FinancialInstitutionInputForm = {
 export class FinancialInstitutionsEditorComponent implements OnInit {
   public formGroup: FormGroup<FinancialInstitutionInputForm>;
   public readonly loading = signal(true);
-  public readonly saving = signal(false);
   public readonly editorType = signal<EditorType>(EditorType.Create);
 
   public readonly editorTypes = EditorType;
+
+  public readonly saveOptions = computed(() => {
+    const isCreating = this.editorType() === EditorType.Create;
+    
+    return new EditorSaveOptions<FinancialInstitutionInput>({
+      onSave: (input) => {
+        if (input.type === null) return of();
+        return isCreating
+          ? this.apiService.create(input).pipe(map(() => {}))
+          : this.apiService.update(this.institutionEditingId, input);
+      },
+      successMessage: isCreating
+        ? 'finCore.features.financialInstitutions.createdSuccess'
+        : 'finCore.features.financialInstitutions.updatedSuccess',
+    });
+  });
 
   public readonly typeSelectOptions = new FinSelectComponentOptions({
     getOptions: this.getInstitutionTypeOptions.bind(this),
@@ -50,7 +65,6 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private apiService = inject(FinancialInstitutionApiService);
-  private notifyService = inject(NotifyService);
   private institutionEditingId: string;
 
   public async ngOnInit(): Promise<void> {
@@ -62,44 +76,8 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     return (
       this.formGroup?.valid &&
       this.formGroup?.touched &&
-      !this.loading() &&
-      !this.saving()
+      !this.loading()
     );
-  }
-
-  public save(): void {
-    if (!this.canSave) return;
-    this.saving.set(true);
-
-    const formValue = this.formGroup.getRawValue();
-    if (formValue.type === null) {
-      this.saving.set(false);
-      return;
-    }
-    
-    const isCreating = this.editorType() === EditorType.Create;
-    const request = isCreating
-      ? this.apiService.create(formValue).pipe(map(() => {}))
-      : this.apiService.update(this.institutionEditingId, formValue);
-
-    request
-      .pipe(
-        first(),
-        finalize(() => this.saving.set(false))
-      )
-      .subscribe({
-        next: () => {
-          const message = isCreating
-            ? 'finCore.features.financialInstitutions.createdSuccess'
-            : 'finCore.features.financialInstitutions.updatedSuccess';
-          this.notifyService.notifySnack(message, NotificationSeverity.Success);
-          this.close();
-        },
-        error: (error) => {
-          const errorMessage = error?.error?.message || 'finCore.errors.genericError';
-          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
-        }
-      });
   }
 
   public close(): void {

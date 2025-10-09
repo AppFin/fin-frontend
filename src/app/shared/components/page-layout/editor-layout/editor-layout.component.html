@@ -23,9 +23,10 @@
 
     <fin-save-button
       [canSave]="canSave()"
-      [saving]="isSaving()"
-      (onSave)="onSave.emit()"
-    />
+      [saving]="saveOptions() ? saving() : isSaving()" 
+      (onSave)="saveOptions() ? handleSave() : onSave.emit()"
+    /><!--manter op ? por enquanto-->
+  
     </div>
   </div>
 </fin-page-layout>
