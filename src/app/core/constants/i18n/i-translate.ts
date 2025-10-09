@@ -11,6 +11,8 @@ export interface ITranslate {
       editing: string;
       editingName: string;
       loadMore: string;
+      active: string;
+      inactive: string;
       loading: string;
       new: string;
       noResults: string;
@@ -125,15 +127,12 @@ export interface ITranslate {
     };
     features: {
       financialInstitutions: {
-        active: string;
         code: string;
         bankName: string;
         codeAndType: string;
         codeHelp: string;
         bankNameAndCode: string;
-        color: string;
         colorHelp: string;
-        icon: string;
         iconHelp: string;
         list: {
           title: string;
@@ -144,25 +143,19 @@ export interface ITranslate {
         type: string;
       };
       titleCategory: {
-        active: string;
-        color: string;
         deleteMessage: string;
-        icon: string;
-        inactive: string;
         name: string;
         title: string;
         type: {
-          both: string,
-          expense: string,
-          income: string,
-          title: string
+          both: string;
+          expense: string;
+          income: string;
+          title: string;
         };
       };
       menus: {
-        color: string;
         frontRoute: string;
         hide: string;
-        icon: string;
         keyWord: string;
         leftTop: string;
         name: string;
@@ -197,10 +190,13 @@ export interface ITranslate {
         };
       };
       shared: {
-        name: string;        inactivatedFilter: {
-          activated: string
-          inactivated: string,
-          title: string,
+        name: string;
+        icon: string;
+        color: string;
+        inactivatedFilter: {
+          activated: string;
+          inactivated: string;
+          title: string;
         };
       };
     };

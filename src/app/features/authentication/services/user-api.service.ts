@@ -18,7 +18,7 @@ export class UserApiService {
   public getList(
     input: PagedFilteredAndSortedInput
   ): Observable<PagedOutput<UserDto>> {
-    let params = toHttpParams(input);
+    const params = toHttpParams(input);
     return this.http.get<PagedOutput<UserDto>>(this.API_URL, { params });
   }
 

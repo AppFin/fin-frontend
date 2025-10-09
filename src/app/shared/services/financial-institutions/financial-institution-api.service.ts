@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { ensureTrailingSlash } from '../../../core/functions/ensure-trailing-slash';
 import { toHttpParams } from '../../../core/functions/to-http-params';
-import { FinancialInstitutionInput } from '../../models/financial-institutions/financial-institution-input';
-import { FinancialInstitutionOutput } from '../../models/financial-institutions/financial-institution-output';
+import { FinancialInstitutionInput } from '../../types/financial-institutions/financial-institution-input';
+import { FinancialInstitutionOutput } from '../../types/financial-institutions/financial-institution-output';
 import { PagedOutput } from '../../models/paginations/paged-output';
-import { FinancialInstitutionGetListInput } from '../../models/financial-institutions/financial-intituton-get-list-input';
+import { FinancialInstitutionGetListInput } from '../../types/financial-institutions/financial-intituton-get-list-input';
 
 @Injectable({
   providedIn: 'root',

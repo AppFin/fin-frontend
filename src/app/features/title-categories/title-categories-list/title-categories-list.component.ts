@@ -17,7 +17,6 @@ import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
 import { TitleCategoryApiService } from '../../../shared/services/title-categories/title-category-api.service';
 import { TitleCategoryGetListInput } from '../../../shared/types/title-categories/title-category-get-list-input';
-import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import {
   FinGridIconColumnOption,
   FinIconOptions,
@@ -118,13 +117,27 @@ export class TitleCategoriesListComponent implements OnInit {
   private getColumns(): IFinGridColumnOption<TitleCategoryOutput>[] {
     return [
       new FinGridIconColumnOption<TitleCategoryOutput>({
-        header: 'finCore.features.titleCategory.icon',
-        width: '5%',
-        getValue: (item) =>
-          new FinIconOptions({
+        getValue: (item) => {
+          return new FinIconOptions({
             icon: item.icon,
+            tooltip: item.icon,
             color: item.color,
-          }),
+          });
+        },
+        header: 'finCore.features.shared.icon',
+        width: '3%',
+      }),
+      new FinGridIconColumnOption<TitleCategoryOutput>({
+        getValue: (item) => {
+          return new FinIconOptions({
+            icon: 'circle',
+            fontAwesomeType: 'fa-solid',
+            color: item.color,
+            tooltip: item.color,
+          });
+        },
+        header: 'finCore.features.shared.color',
+        width: '3%',
       }),
       new FinGridSimpleColumnOption<TitleCategoryOutput>({
         getValue: (item) => item.name,

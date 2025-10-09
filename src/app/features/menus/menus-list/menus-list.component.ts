@@ -56,8 +56,8 @@ export class MenusListComponent implements OnInit {
       reloadItens: this.reloadItens,
       onEdit: this.edit.bind(this),
       deleteOptions: {
-        onDelete: this.delete.bind(this)
-      }
+        onDelete: this.delete.bind(this),
+      },
     });
 
     this.gridOptions.set(gridOptions);
@@ -75,13 +75,27 @@ export class MenusListComponent implements OnInit {
         header: 'finCore.features.menus.frontRoute',
       }),
       new FinGridIconColumnOption<MenuOutput>({
-        getValue: (item) =>
-          new FinIconOptions({
-            color: item.color,
+        getValue: (item) => {
+          return new FinIconOptions({
             icon: item.icon,
-          }),
-        header: 'finCore.features.menus.icon',
-        width: '50px',
+            tooltip: item.icon,
+            color: item.color,
+          });
+        },
+        header: 'finCore.features.shared.icon',
+        width: '3%',
+      }),
+      new FinGridIconColumnOption<MenuOutput>({
+        getValue: (item) => {
+          return new FinIconOptions({
+            icon: 'circle',
+            fontAwesomeType: 'fa-solid',
+            color: item.color,
+            tooltip: item.color,
+          });
+        },
+        header: 'finCore.features.shared.color',
+        width: '3%',
       }),
       new FinGridIconColumnOption<MenuOutput>({
         getValue: (item) => {

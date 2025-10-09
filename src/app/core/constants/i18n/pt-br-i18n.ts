@@ -27,6 +27,8 @@ export const PtBrI18n: ITranslate = {
       toggleToLightMode: 'Mudar para modo claro',
       tryDifferentTerms: 'Tente outros termos',
       unpin: 'Desfixar',
+      active: 'Ativar',
+      inactive: 'Inativar',
     },
     appName: 'App Fin',
     auth: {
@@ -130,15 +132,12 @@ export const PtBrI18n: ITranslate = {
     },
     features: {
       financialInstitutions: {
-        active: 'Ativo',
         code: 'Código',
         bankName: 'Nome do Banco',
         codeAndType: 'Código e Tipo',
         codeHelp: 'Selecione o código do banco',
         bankNameAndCode: 'Banco',
-        color: 'Cor',
         colorHelp: 'Cor da instituição em hexadecimal (ex: #FCD116)',
-        icon: 'Ícone',
         iconHelp: 'Nome do arquivo do ícone',
         list: {
           title: 'Instituições Financeiras',
@@ -146,14 +145,11 @@ export const PtBrI18n: ITranslate = {
         name: 'Nome da Instituição',
         nameHelp: 'Digite para autocompletar',
         title: 'Instituições Financeiras',
-        type: 'Tipo de Instituição'
+        type: 'Tipo de Instituição',
       },
       titleCategory: {
-        active: 'Ativar',
-        color: 'Cor',
-        deleteMessage: 'Ao remover essa categória ela será removida de todos os títulos.',
-        icon: 'Ícone',
-        inactive: 'Inativar',
+        deleteMessage:
+          'Ao remover essa categória ela será removida de todos os títulos.',
         name: 'Nome',
         title: 'Categórias de títulos',
         type: {
@@ -164,10 +160,8 @@ export const PtBrI18n: ITranslate = {
         },
       },
       menus: {
-        color: 'Cor',
         frontRoute: 'Rota do front',
         hide: 'Oculto',
-        icon: 'Ícone',
         keyWord: 'Palavra-chave',
         leftTop: 'Superior esquerdo',
         name: 'Nome',
@@ -202,13 +196,14 @@ export const PtBrI18n: ITranslate = {
         users: 'Usuários',
       },
       shared: {
-        active: 'Ativo',
         name: 'Nome',
         inactivatedFilter: {
           activated: 'Ativados',
           inactivated: 'Inativados',
           title: 'Inativação',
         },
+        icon: 'Ícone',
+        color: 'Cor',
       },
     },
     grid: {

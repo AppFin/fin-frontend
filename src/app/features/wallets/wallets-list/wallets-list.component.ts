@@ -26,6 +26,7 @@ import {
   FinIconOptions,
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
 import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
+import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
 
 type WalletsListFilterForm = {
   inactivated: FormControl<boolean | null>;
@@ -79,6 +80,8 @@ export class WalletsListComponent implements OnInit {
           ? { backgroundColor: 'var(--color-error-50)' }
           : null;
       },
+      onToggleInactive: this.toggleInactivated.bind(this),
+      getInactive: (i) => { return i.inactivated; },
       deleteOptions: {
         onDelete: this.delete.bind(this),
       },
@@ -90,14 +93,28 @@ export class WalletsListComponent implements OnInit {
 
   private getColumns(): IFinGridColumnOption<WalletOutput>[] {
     return [
-      new FinGridIconColumnOption<WalletOutput>({
-        header: 'finCore.features.wallet.icon',
-        width: '5%',
-        getValue: (item) =>
-          new FinIconOptions({
+      new FinGridIconColumnOption<TitleCategoryOutput>({
+        getValue: (item) => {
+          return new FinIconOptions({
             icon: item.icon,
+            tooltip: item.icon,
             color: item.color,
-          }),
+          });
+        },
+        header: 'finCore.features.shared.icon',
+        width: '3%',
+      }),
+      new FinGridIconColumnOption<TitleCategoryOutput>({
+        getValue: (item) => {
+          return new FinIconOptions({
+            icon: 'circle',
+            fontAwesomeType: 'fa-solid',
+            color: item.color,
+            tooltip: item.color,
+          });
+        },
+        header: 'finCore.features.shared.color',
+        width: '3%',
       }),
       new FinGridSimpleColumnOption<WalletOutput>({
         getValue: (item) => item.name,

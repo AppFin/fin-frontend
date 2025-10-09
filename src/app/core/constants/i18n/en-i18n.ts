@@ -27,6 +27,8 @@ export const EnI18n: ITranslate = {
       toggleToLightMode: 'Toggle to light mode',
       tryDifferentTerms: 'Try different terms',
       unpin: 'Unpin',
+      active: 'Active',
+      inactive: 'Inactive',
     },
     appName: 'Fin App',
     auth: {
@@ -132,30 +134,25 @@ export const EnI18n: ITranslate = {
     },
     features: {
       financialInstitutions: {
-        active: 'Active',
         code: 'Code',
         bankName: 'Bank Name',
         codeAndType: 'Code and Type',
-        codeHelp: 'Select the bank COMPE code (auto-completes when typing the name)',
+        codeHelp:
+          '',
         bankNameAndCode: 'Bank',
-        color: 'Color',
-        colorHelp: 'Institution color in hexadecimal (e.g.: #FCD116)',
-        icon: 'Icon',
-        iconHelp: 'Icon filename (auto-filled)',
+        colorHelp: '',
+        iconHelp: '',
         list: {
           title: 'Financial Institutions',
         },
         name: 'Institution Name',
-        nameHelp: 'Type to autocomplete (e.g.: "nu" for Nubank)',
+        nameHelp: '',
         title: 'Financial Institutions',
-        type: 'Institution Type'
+        type: 'Institution Type',
       },
       titleCategory: {
-        active: 'Activate',
-        color: 'Color',
-        deleteMessage: 'When removing this category it will be removed from all titles.',
-        icon: 'Icon',
-        inactive: 'Inactivate',
+        deleteMessage:
+          'When removing this category it will be removed from all titles.',
         name: 'Name',
         title: 'Title Categories',
         type: {
@@ -166,10 +163,8 @@ export const EnI18n: ITranslate = {
         },
       },
       menus: {
-        color: 'Color',
         frontRoute: 'Front route',
         hide: 'Hide',
-        icon: 'Icon',
         keyWord: 'Keyword',
         leftTop: 'Left top',
         name: 'Name',
@@ -204,7 +199,8 @@ export const EnI18n: ITranslate = {
         users: 'Users',
       },
       shared: {
-        active: 'Active',
+        color: 'Color',
+        icon: 'Icon',
         name: 'Name',
         inactivatedFilter: {
           activated: 'Activated',

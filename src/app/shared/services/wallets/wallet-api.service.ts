@@ -27,7 +27,7 @@ export class WalletApiService {
   public getList(
     input: WalletGetListInput
   ): Observable<PagedOutput<WalletOutput>> {
-    let params = toHttpParams(input);
+    const params = toHttpParams(input);
     return this.http.get<PagedOutput<WalletOutput>>(this.API_URL, { params });
   }
 

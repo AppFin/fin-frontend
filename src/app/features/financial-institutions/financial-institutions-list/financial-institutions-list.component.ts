@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
 import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
 import { Observable, of, Subject, tap } from 'rxjs';
-import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution-output';
+import { FinancialInstitutionOutput } from '../../../shared/types/financial-institutions/financial-institution-output';
 import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
 import {
   FinGridIconColumnOption,
@@ -92,36 +92,31 @@ export class FinancialInstitutionsListComponent implements OnInit {
         getValue: (item) => {
           return new FinIconOptions({
             icon: item.icon,
-            boxColor: item.color,
             type: 'bank',
-            tooltip: item.name,
+            tooltip: item.icon,
           });
         },
-        header: 'finCore.features.financialInstitutions.icon',
-        width: '50px',
+        header: 'finCore.features.shared.icon',
+        width: '3%',
+      }),
+      new FinGridIconColumnOption<FinancialInstitutionOutput>({
+        getValue: (item) => {
+          return new FinIconOptions({
+            icon: 'circle',
+            fontAwesomeType: 'fa-solid',
+            color: item.color,
+            tooltip: item.color,
+          });
+        },
+        header: 'finCore.features.shared.color',
+        width: '3%',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
         header: 'finCore.features.financialInstitutions.type',
         getValue: (item) => {
           return FinancialInstitutionType[item.type];
         },
-      }),
-      new FinGridIconColumnOption<FinancialInstitutionOutput>({
-        getValue: (item) => {
-          if (item.inactive) {
-            return new FinIconOptions({
-              icon: 'times',
-              color: 'var(--color-disabled)',
-            });
-          }
-          return new FinIconOptions({
-            icon: 'check',
-            color: 'var(--color-success)',
-          });
-        },
-        header: 'finCore.features.shared.active',
-        width: '80px',
-      }),
+      })
     ];
   }
 }

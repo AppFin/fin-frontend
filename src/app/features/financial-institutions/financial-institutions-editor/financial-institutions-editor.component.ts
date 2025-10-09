@@ -10,7 +10,7 @@ import { FinSelectOption } from '../../../shared/components/select/fin-select-op
 import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
 import { FinancialInstitutionType } from '../../../shared/enums/financial-institutions/financial-institution-type';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
-import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution-output';
+import { FinancialInstitutionOutput } from '../../../shared/types/financial-institutions/financial-institution-output';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinancialInstitutionApiService } from '../../../shared/services/financial-institutions/financial-institution-api.service';
 
@@ -115,8 +115,6 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   private setFormGroup(
     institutionEditing: FinancialInstitutionOutput | null
   ): void {
-    const activeValue = institutionEditing ? !institutionEditing.inactive : true;
-
     this.formGroup = new FormGroup<FinancialInstitutionInputForm>({
       name: new FormControl(institutionEditing?.name ?? '', {
         nonNullable: true,
