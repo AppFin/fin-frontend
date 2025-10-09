@@ -58,7 +58,7 @@ export class FinIconComponent {
     switch (this.type()) {
       case 'bank':
         folder = 'icons/banks/';
-        break;
+        break;          
       case 'flag':
         folder = 'icons/flags/';
         break;

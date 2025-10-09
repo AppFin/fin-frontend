@@ -76,15 +76,11 @@ export class TitleCategoriesListComponent implements OnInit {
     const gridOptions = new FinGridOptions({
       id: 'TITLE_CATEGORIES_LIST',
       getColumns: () => of(this.getColumns()),
-      getRightActions: () => of(this.getActions()),
       reloadItens: this.reloadItens,
       getList: (input) => this.getTitleCategories(input),
       onEdit: this.edit.bind(this),
-      rowStyle: (item) => {
-        return item.inactivated
-          ? { backgroundColor: 'var(--color-error-50)' }
-          : null;
-      },
+      onToggleInactive: this.toggleInactivated.bind(this),
+      getInactive: (item) => item.inactivated,
       deleteOptions: {
         onDelete: this.delete.bind(this),
         confirmDeleteMessage: 'finCore.features.titleCategory.deleteMessage',
@@ -93,19 +89,6 @@ export class TitleCategoriesListComponent implements OnInit {
 
     this.gridOptions.set(gridOptions);
     this.loading.set(false);
-  }
-
-  public getActions(): IFinGridActionOption<TitleCategoryOutput>[] {
-    return [
-      {
-        icon: (i) =>
-          new FinIconOptions({
-            icon: i.inactivated ? 'toggle-off' : 'toggle-on',
-            tooltip: `finCore.features.titleCategory.${i.inactivated ? 'active' : 'inactive'}`,
-          }),
-        onClick: (item) => this.toggleInactivated(item),
-      },
-    ];
   }
 
   private edit(item: TitleCategoryOutput): Observable<void> {

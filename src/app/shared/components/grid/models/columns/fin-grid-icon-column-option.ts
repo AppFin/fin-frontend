@@ -32,6 +32,7 @@ export class FinIconOptions {
   public imageFolder: string = 'icons/';
   public imageExtension: string = '.png';
   public severity: FinSeverity = 'primary';
+  public boxColor: string = '';
 
   constructor(op: Partial<FinIconOptions> = {}) {
     Object.assign(this, op);

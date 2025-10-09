@@ -131,6 +131,25 @@ export const EnI18n: ITranslate = {
       serverError: 'Error on server',
     },
     features: {
+      financialInstitutions: {
+        active: 'Active',
+        code: 'Code',
+        bankName: 'Bank Name',
+        codeAndType: 'Code and Type',
+        codeHelp: 'Select the bank COMPE code (auto-completes when typing the name)',
+        bankNameAndCode: 'Bank',
+        color: 'Color',
+        colorHelp: 'Institution color in hexadecimal (e.g.: #FCD116)',
+        icon: 'Icon',
+        iconHelp: 'Icon filename (auto-filled)',
+        list: {
+          title: 'Financial Institutions',
+        },
+        name: 'Institution Name',
+        nameHelp: 'Type to autocomplete (e.g.: "nu" for Nubank)',
+        title: 'Financial Institutions',
+        type: 'Institution Type'
+      },
       titleCategory: {
         active: 'Activate',
         color: 'Color',
@@ -185,6 +204,7 @@ export const EnI18n: ITranslate = {
         users: 'Users',
       },
       shared: {
+        active: 'Active',
         name: 'Name',
         inactivatedFilter: {
           activated: 'Activated',
