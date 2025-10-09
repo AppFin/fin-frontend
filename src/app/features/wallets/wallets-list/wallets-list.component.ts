@@ -1,10 +1,35 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
 import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
-import {
-  FinInactivatedFilterSelectComponent
-} from '../../../shared/components/inactivated-filter-select/fin-inactivated-filter-select.component';
+import { FinInactivatedFilterSelectComponent } from '../../../shared/components/inactivated-filter-select/fin-inactivated-filter-select.component';
 import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
+import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime, Observable, of, Subject, tap } from 'rxjs';
+import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { WalletApiService } from '../../../shared/services/wallets/wallet-api.service';
+import { WalletOutput } from '../../../shared/types/wallets/wallet-output';
+import { PagedOutput } from '../../../shared/models/paginations/paged-output';
+import { WalletGetListInput } from '../../../shared/types/wallets/wallet-get-list-input';
+import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
+import {
+  FinGridIconColumnOption,
+  FinIconOptions,
+} from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
+import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
+
+type WalletsListFilterForm = {
+  inactivated: FormControl<boolean | null>;
+};
 
 @Component({
   selector: 'fin-wallets-list',
@@ -18,4 +43,100 @@ import { FinPageLayoutComponent } from '../../../shared/components/page-layout/f
   styleUrl: './wallets-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WalletsListComponent {}
+export class WalletsListComponent implements OnInit {
+  public readonly gridOptions = signal<FinGridOptions<WalletOutput>>(
+    new FinGridOptions()
+  );
+  public readonly loading = signal(true);
+
+  public filterForm: FormGroup<WalletsListFilterForm>;
+
+  private readonly apiService = inject(WalletApiService);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef);
+
+  private readonly reloadItens = new Subject<void>();
+
+  public ngOnInit(): void {
+    this.setForm();
+    this.setOptions();
+  }
+
+  public createWallet(): void {
+    this.router.navigate(['./new'], { relativeTo: this.activatedRoute });
+  }
+
+  private setOptions() {
+    const gridOptions = new FinGridOptions({
+      id: 'WALLETS_LIST',
+      getColumns: () => of(this.getColumns()),
+      reloadItens: this.reloadItens,
+      getList: (input) => this.getWallets(input),
+      onEdit: this.edit.bind(this),
+      rowStyle: (item) => {
+        return item.inactivated
+          ? { backgroundColor: 'var(--color-error-50)' }
+          : null;
+      },
+      deleteOptions: {
+        onDelete: this.delete.bind(this),
+      },
+    });
+
+    this.gridOptions.set(gridOptions);
+    this.loading.set(false);
+  }
+
+  private getColumns(): IFinGridColumnOption<WalletOutput>[] {
+    return [
+      new FinGridIconColumnOption<WalletOutput>({
+        header: 'finCore.features.wallet.icon',
+        width: '5%',
+        getValue: (item) =>
+          new FinIconOptions({
+            icon: item.icon,
+            color: item.color,
+          }),
+      }),
+      new FinGridSimpleColumnOption<WalletOutput>({
+        getValue: (item) => item.name,
+        header: 'finCore.features.wallet.name',
+      }),
+    ];
+  }
+
+  private edit(item: WalletOutput): Observable<void> {
+    this.router.navigate([`./${item.id}`], { relativeTo: this.activatedRoute });
+    return of();
+  }
+
+  private delete(item: WalletOutput): Observable<void> {
+    return this.apiService.delete(item.id);
+  }
+
+  private toggleInactivated(item: WalletOutput): Observable<void> {
+    return this.apiService
+      .toggleInactivated(item.id)
+      .pipe(tap(() => this.reloadItens.next()));
+  }
+
+  private getWallets(
+    input: PagedFilteredAndSortedInput
+  ): Observable<PagedOutput<WalletOutput>> {
+    return this.apiService.getList({
+      ...input,
+      ...this.filterForm.value,
+    } as WalletGetListInput);
+  }
+
+  private setForm(): void {
+    this.filterForm = new FormGroup<WalletsListFilterForm>({
+      inactivated: new FormControl(),
+    });
+
+    this.filterForm.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(300))
+      .subscribe(() => this.reloadItens.next());
+  }
+}
