@@ -1,1 +1,29 @@
-<p>wallets-editor works!</p>
+<fin-editor-layout
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  walletEditingName()"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="close()"
+>
+  @if (!loading()) {
+
+    <fin-input class="col-12" label="finCore.features.wallet.name" [formControl]="formGroup.controls.name" />
+
+    <fin-input class="col-6" label="Financial institution" [formControl]="formGroup.controls.financialInstitutionId" />
+
+    <fin-input class="col-6" label="finCore.features.wallet.initialBalance" type="number" [formControl]="formGroup.controls.initialBalance" />
+
+    <fin-color-picker class="col-6" label="finCore.features.shared.color" [formControl]="formGroup.controls.color" />
+    <fin-input
+      class="col-6"
+      label="finCore.features.shared.icon"
+      helpText="https://fontawesome.com/search"
+      [formControl]="formGroup.controls.icon"
+      [iconSuffix]="formGroup.controls.icon.value"
+      [iconSuffixColor]="formGroup.controls.color.value"
+    />
+
+  }
+</fin-editor-layout>

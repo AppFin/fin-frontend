@@ -1,3 +1,5 @@
+import { ErrorMessagesMap } from '../../rxjs-operators/handle-fin-back-http-error';
+
 export enum WalletCreateOrUpdateErrorCode
 {
   NameIsRequired = 0,
@@ -11,3 +13,7 @@ export enum WalletCreateOrUpdateErrorCode
   FinancialInstitutionNotFound =  8,
   FinancialInstitutionInactivated =  9
 }
+
+export const walletCreateOrUpdateErrorCodeMessages: ErrorMessagesMap<WalletCreateOrUpdateErrorCode> = new Map([
+  [WalletCreateOrUpdateErrorCode.NameAlreadyInUse, { message: 'finApp.features.wallet.errors.nameAlreadyInUse' }],
+]);

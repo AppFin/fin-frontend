@@ -2,6 +2,7 @@ import { IFinGridColumnOption } from './i-fin-grid-column-option';
 import { FinGridIconColumnComponent } from '../custom-columns/fin-grid-icon-column/fin-grid-icon-column.component';
 import {
   FinFontAwesomeType,
+  FinIconSize,
   FinIconType,
 } from '../../../icon/fin-icon.component';
 import { FinSeverity } from '../../../../../core/types/themes/fin-severity';
@@ -33,6 +34,7 @@ export class FinIconOptions {
   public imageExtension: string = '.png';
   public severity: FinSeverity = 'primary';
   public boxColor: string = '';
+  public size: FinIconSize = 'md';
 
   constructor(op: Partial<FinIconOptions> = {}) {
     Object.assign(this, op);

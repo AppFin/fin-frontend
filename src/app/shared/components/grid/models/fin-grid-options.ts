@@ -20,8 +20,8 @@ export class FinGridOptions<T = any> {
   public rowStyle?: (item: T) => ({[p: string]: any} | null | undefined)
 
   public deleteOptions?: FinGridOnDeleteOptions<T>;
-  public onEdit?: (item: T) => Observable<void>;
-  public onToggleInactive?: (item: T) => Observable<void>;
+  public onEdit?: (item: T) => Observable<any>;
+  public onToggleInactive?: (item: T) => Observable<any>;
   public getInactive?: (item: T) => boolean;
 
 
@@ -31,7 +31,7 @@ export class FinGridOptions<T = any> {
 }
 
 export class FinGridOnDeleteOptions<T = any> {
-  public onDelete?: (item: T) => Observable<void>;
+  public onDelete?: (item: T) => Observable<any>;
   public confirmDeleteMessage?: string;
 }
 

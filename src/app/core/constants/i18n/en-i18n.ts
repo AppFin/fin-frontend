@@ -131,14 +131,14 @@ export const EnI18n: ITranslate = {
       pattern: 'Invalid format',
       required: 'This field is required',
       serverError: 'Error on server',
+      error: 'Error',
     },
     features: {
       financialInstitutions: {
         code: 'Code',
         bankName: 'Bank Name',
         codeAndType: 'Code and Type',
-        codeHelp:
-          '',
+        codeHelp: '',
         bankNameAndCode: 'Bank',
         colorHelp: '',
         iconHelp: '',

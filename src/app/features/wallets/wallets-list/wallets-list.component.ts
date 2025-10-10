@@ -16,7 +16,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, Observable, of, Subject, tap } from 'rxjs';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { WalletApiService } from '../../../shared/services/wallets/wallet-api.service';
 import { WalletOutput } from '../../../shared/types/wallets/wallet-output';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { WalletGetListInput } from '../../../shared/types/wallets/wallet-get-list-input';
@@ -27,6 +26,8 @@ import {
 } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
 import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
+import { WalletService } from '../../../shared/services/wallets/wallet.service';
+import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-back-http-error';
 
 type WalletsListFilterForm = {
   inactivated: FormControl<boolean | null>;
@@ -52,7 +53,7 @@ export class WalletsListComponent implements OnInit {
 
   public filterForm: FormGroup<WalletsListFilterForm>;
 
-  private readonly apiService = inject(WalletApiService);
+  private readonly apiService = inject(WalletService);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly destroyRef = inject(DestroyRef);
@@ -81,7 +82,9 @@ export class WalletsListComponent implements OnInit {
           : null;
       },
       onToggleInactive: this.toggleInactivated.bind(this),
-      getInactive: (i) => { return i.inactivated; },
+      getInactive: (i) => {
+        return i.inactivated;
+      },
       deleteOptions: {
         onDelete: this.delete.bind(this),
       },
@@ -128,11 +131,11 @@ export class WalletsListComponent implements OnInit {
     return of();
   }
 
-  private delete(item: WalletOutput): Observable<void> {
+  private delete(item: WalletOutput): ObservableValidated<void> {
     return this.apiService.delete(item.id);
   }
 
-  private toggleInactivated(item: WalletOutput): Observable<void> {
+  private toggleInactivated(item: WalletOutput): ObservableValidated<void> {
     return this.apiService
       .toggleInactivated(item.id)
       .pipe(tap(() => this.reloadItens.next()));

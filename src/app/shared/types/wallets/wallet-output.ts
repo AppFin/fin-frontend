@@ -5,6 +5,6 @@ export type WalletOutput = {
   icon: string;
   inactivated: boolean;
   financialInstitutionId: string | null;
-  initialBalance: boolean;
-  currentBalance: boolean;
+  initialBalance: number;
+  currentBalance: number;
 }

@@ -94,6 +94,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
             icon: item.icon,
             type: 'bank',
             tooltip: item.icon,
+            size: 'xl'
           });
         },
         header: 'finCore.features.shared.icon',

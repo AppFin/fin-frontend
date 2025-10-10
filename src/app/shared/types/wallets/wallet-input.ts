@@ -3,5 +3,5 @@ export type WalletInput = {
   color: string;
   icon: string;
   financialInstitutionId: string | null;
-  initialBalance: boolean;
+  initialBalance: number;
 }

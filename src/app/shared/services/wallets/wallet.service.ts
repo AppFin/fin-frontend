@@ -7,10 +7,21 @@ import { WalletOutput } from '../../types/wallets/wallet-output';
 import { WalletInput } from '../../types/wallets/wallet-input';
 import { NotifyService } from '../../../core/services/notifications/notify.service';
 import {
-  handleUnprocessableEntityError,
+  handleFinBackHttpErrorAndDisplayMessage,
   ObservableValidated,
-} from '../../rxjs-operators/handle-unprocessable-entity-error';
-import { WalletCreateOrUpdateErrorCode } from '../../enums/wallets/walletcreate-or-update-error-code';
+} from '../../rxjs-operators/handle-fin-back-http-error';
+import {
+  WalletCreateOrUpdateErrorCode,
+  walletCreateOrUpdateErrorCodeMessages,
+} from '../../enums/wallets/walletcreate-or-update-error-code';
+import {
+  WalletToggleInactiveErrorCode,
+  WalletToggleInactiveErrorCodeMessages,
+} from '../../enums/wallets/wallet-toggle-inactive-error-code';
+import {
+  WalletDeleteErrorCode,
+  WalletDeleteErrorCodeMessages,
+} from '../../enums/wallets/wallet-delete-error-code';
 
 @Injectable({
   providedIn: 'root',
@@ -40,18 +51,67 @@ export class WalletService {
   }
 
   /**
-   * Creates a new wallet.
+   * Creates a new wallet and in case of error display message.
    * @param input The data for creating the wallet.
    * @returns An Observable of the created wallet data.
    */
-  public create(input: WalletInput): ObservableValidated<WalletOutput> {
-    return this.apiService.create(input).pipe(
-      handleUnprocessableEntityError<WalletCreateOrUpdateErrorCode>((err) => {
-        switch (err.errorCode) {
-          case WalletCreateOrUpdateErrorCode.NameAlreadyInUse:
-            break;
-        }
-      })
-    );
+  public create(input: WalletInput): ObservableValidated<WalletOutput,WalletCreateOrUpdateErrorCode> {
+    return this.apiService
+      .create(input)
+      .pipe(
+        handleFinBackHttpErrorAndDisplayMessage<WalletCreateOrUpdateErrorCode>(
+          walletCreateOrUpdateErrorCodeMessages,
+          this.notifyService
+        )
+      );
+  }
+
+  /**
+   * Updates an existing wallet and in case of error display message.
+   * @param id The ID of the wallet to be updated.
+   * @param input The updated wallet data.
+   * @returns An Observable that completes upon successful update.
+   */
+  public update(id: string, input: WalletInput): ObservableValidated<void,WalletCreateOrUpdateErrorCode> {
+    return this.apiService
+      .update(id, input)
+      .pipe(
+        handleFinBackHttpErrorAndDisplayMessage<WalletCreateOrUpdateErrorCode>(
+          walletCreateOrUpdateErrorCodeMessages,
+          this.notifyService
+        )
+      );
+  }
+
+  /**
+   * Toggles the inactivation state of a wallet and in case of error display message.
+   * @param id The ID of the wallet to toggle.
+   * @returns An Observable that completes upon successful update.
+   */
+  public toggleInactivated(id: string): ObservableValidated<void,WalletToggleInactiveErrorCode> {
+    return this.apiService
+      .toggleInactivated(id)
+      .pipe(
+        handleFinBackHttpErrorAndDisplayMessage<WalletToggleInactiveErrorCode>(
+          WalletToggleInactiveErrorCodeMessages,
+          this.notifyService
+        )
+      );
+  }
+
+  /**
+   * Deletes a wallet and in case of error display message.
+   * @param id The ID of the wallet to be deleted.
+   * @returns An Observable that completes upon successful deletion.
+   */
+  public delete(id: string): ObservableValidated<void,WalletDeleteErrorCode> {
+    return this.apiService
+      .delete(id)
+      .pipe(
+        handleFinBackHttpErrorAndDisplayMessage<WalletDeleteErrorCode>(
+          WalletDeleteErrorCodeMessages,
+          this.notifyService
+        )
+      );
   }
 }

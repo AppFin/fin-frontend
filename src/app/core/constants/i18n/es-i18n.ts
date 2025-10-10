@@ -133,6 +133,7 @@ export const EsI18n: ITranslate = {
       pattern: 'Formato inválido',
       required: 'Este campo es obligatorio',
       serverError: 'Error en el servidor',
+      error: 'Error',
     },
     features: {
       financialInstitutions: {

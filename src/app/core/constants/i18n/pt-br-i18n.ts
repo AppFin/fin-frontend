@@ -129,6 +129,7 @@ export const PtBrI18n: ITranslate = {
       pattern: 'Formato inválido',
       required: 'Este campo é obrigatório',
       serverError: 'Erro no servidor',
+      error: 'Erro',
     },
     features: {
       financialInstitutions: {

@@ -116,6 +116,7 @@ export interface ITranslate {
     };
     errors: {
       email: string;
+      error: string;
       forbidden: string;
       googleLoginError: string;
       internalError: string;

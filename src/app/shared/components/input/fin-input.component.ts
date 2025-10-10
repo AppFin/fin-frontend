@@ -67,7 +67,7 @@ import { IftaLabel } from 'primeng/iftalabel';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FinInputComponent implements OnInit, ControlValueAccessor {
-  @Input() public formControl: FormControl<string | null>;
+  @Input() public formControl: FormControl<string | number | null>;
 
   public readonly label = input('');
   public readonly type = input('text');
@@ -193,6 +193,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
       if (errors['maxlength'])
         errorMessage = `finCore.errors.maxLength|maxLength:${errors['maxlength'].requiredLength}`;
       if (errors['pattern']) errorMessage = 'finCore.errors.pattern';
+      if (errors['nameAlreadyInUse']) errorMessage = `finCore.errors.nameAlreadyInUse|nameAlreadyInUse:${errors['nameAlreadyInUse'].value}`;
     }
 
     this.errorMessage.set(errorMessage);
