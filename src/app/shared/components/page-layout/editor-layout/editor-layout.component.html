@@ -21,12 +21,11 @@
         (onClick)="onCancel.emit()"
       />
 
-    <fin-save-button
-      [canSave]="canSave()"
-      [saving]="saveOptions() ? saving() : isSaving()" 
-      (onSave)="saveOptions() ? handleSave() : onSave.emit()"
-    /><!--manter op ? por enquanto-->
-  
+      <fin-save-button
+        [canSave]="canSave()"
+        [saving]="isSaving()"
+        (onSave)="saveOptions() ? handleSave() : onSave.emit()"
+      />
     </div>
   </div>
 </fin-page-layout>

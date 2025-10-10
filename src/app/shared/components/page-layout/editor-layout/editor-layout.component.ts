@@ -3,8 +3,8 @@ import {
   Component,
   inject,
   input,
+  model,
   output,
-  signal,
 } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FinPageLayoutComponent } from '../fin-page-layout.component';
@@ -12,7 +12,7 @@ import { FinSaveButtonComponent } from '../../save-button/fin-save-button.compon
 import { FinTextComponent } from '../../text/fin-text.component';
 import { FinButtonComponent } from '../../button/fin-button.component';
 import { EditorSaveOptions } from '../../../enums/layouts/editor-save-options';
-import { catchError, finalize, tap, throwError } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 import { NotifyService } from '../../../../core/services/notifications/notify.service';
 import { NotificationSeverity } from '../../../../core/enums/notifications/notification-severity';
 
@@ -33,40 +33,38 @@ export class EditorLayoutComponent<TInput> {
   public readonly title = input<string>('');
   public readonly formGroup = input<FormGroup>(new FormGroup({}));
   public readonly canSave = input(false);
-  public readonly isSaving = input(false);
   public readonly loading = input(false);
-  
   public readonly saveOptions = input<EditorSaveOptions<TInput>>();
-  public readonly afterSave = output();
-
+  
+  public readonly isSaving = model(false);
+  
   public readonly onSave = output();
   public readonly onCancel = output();
-  
+  public readonly afterSave = output();
 
-  private notifyService = inject(NotifyService);
-  public readonly saving = signal(false);
+  private readonly notifyService = inject(NotifyService);
   
   public handleSave(): void {
     const options = this.saveOptions();
     if (!options?.onSave || !this.canSave()) return;
     
-    this.saving.set(true);
+    this.onSave.emit();
+    this.isSaving.set(true);
+    
     const formValue = this.formGroup().getRawValue() as TInput;
     
     options.onSave(formValue)
       .pipe(
         tap(() => {
           if (options.successMessage) {
-            this.notifyService.notifySnack(options.successMessage, NotificationSeverity.Success);
+            this.notifyService.notifySnack(
+              options.successMessage,
+              NotificationSeverity.Success
+            );
           }
           this.afterSave.emit();
         }),
-        catchError((error) => {
-          const errorMessage = options.errorMessage || error?.error?.message || 'finCore.errors.genericError';
-          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
-          return throwError(() => error);
-        }),
-        finalize(() => this.saving.set(false))
+        finalize(() => this.isSaving.set(false))
       )
       .subscribe();
   }

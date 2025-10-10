@@ -38,6 +38,7 @@ type FinancialInstitutionInputForm = {
 export class FinancialInstitutionsEditorComponent implements OnInit {
   public formGroup: FormGroup<FinancialInstitutionInputForm>;
   public readonly loading = signal(true);
+  public readonly saving = signal(false);
   public readonly editorType = signal<EditorType>(EditorType.Create);
 
   public readonly editorTypes = EditorType;
@@ -76,7 +77,8 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     return (
       this.formGroup?.valid &&
       this.formGroup?.touched &&
-      !this.loading()
+      !this.loading() &&
+      !this.saving()
     );
   }
 

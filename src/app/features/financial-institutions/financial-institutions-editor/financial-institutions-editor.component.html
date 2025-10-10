@@ -3,6 +3,7 @@
   [formGroup]="formGroup"
   [canSave]="canSave"
   [loading]="loading()"
+  [(isSaving)]="saving"
   [saveOptions]="saveOptions()"
   (afterSave)="close()"
   (onCancel)="close()"
