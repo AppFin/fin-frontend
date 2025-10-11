@@ -21,7 +21,7 @@ export class NotificationApiService {
   public getList(
     input: PagedFilteredAndSortedInput
   ): Observable<PagedOutput<NotificationOutput>> {
-    let params = toHttpParams(input);
+    const params = toHttpParams(input);
     return this.http.get<PagedOutput<NotificationOutput>>(this.API_URL, {
       params,
     });

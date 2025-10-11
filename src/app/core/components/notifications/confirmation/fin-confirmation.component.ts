@@ -1,10 +1,10 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FinDialogComponent } from '../../../../shared/components/dialog/fin-dialog.component';
-import { FinDialogFooterDirective } from '../../../../shared/components/dialog/fin-dialog-footer.directive';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
+import { FinDialogComponent } from '../../../../shared/components/generics/dialog/fin-dialog.component';
+import { FinDialogFooterDirective } from '../../../../shared/components/generics/dialog/fin-dialog-footer.directive';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
 import { FinSeverity } from '../../../types/themes/fin-severity';
-import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
+import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
 
 export type FinConfirmationData = {
   title: string;

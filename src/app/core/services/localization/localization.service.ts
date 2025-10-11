@@ -28,6 +28,16 @@ export class LocalizationService {
     return lang === 'pt-BR' ? '.' : ',';
   }
 
+  public getMoneySymbol(): string {
+    const lang = this.getLang();
+    return lang === 'pt-BR' ? 'R$' : '$';
+  }
+
+  public getMoneyCode(): string {
+    const lang = this.getLang();
+    return lang === 'pt-BR' ? 'BRL' : 'USD';
+  }
+
   public getDefaultDatetimeFormat(): string {
     const lang = this.getLang();
     return lang == 'en-US' ? DATE_TIME_DEFAULT_US : DATE_TIME_DEFAULT;

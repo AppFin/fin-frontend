@@ -27,6 +27,8 @@ export const EsI18n: ITranslate = {
       toggleToLightMode: 'Cambiar a modo claro',
       tryDifferentTerms: 'Prueba con otros términos',
       unpin: 'Desanclar',
+      active: 'Activar',
+      inactive: 'Inactivar',
     },
     appName: 'Fin App',
     auth: {
@@ -131,18 +133,18 @@ export const EsI18n: ITranslate = {
       pattern: 'Formato inválido',
       required: 'Este campo es obligatorio',
       serverError: 'Error en el servidor',
+      error: 'Error',
+      nameAlreadyInUse: "El nombre '{{nameAlreadyInUse}}' ya está en uso.",
     },
     features: {
       financialInstitutions: {
-        active: 'Activo',
         code: 'Código',
         bankName: 'Nombre del Banco',
         codeAndType: 'Código y Tipo',
-        codeHelp: 'Seleccione el código COMPE del banco (autocompletar al escribir el nombre)',
+        codeHelp:
+          'Seleccione el código COMPE del banco (autocompletar al escribir el nombre)',
         bankNameAndCode: 'Banco',
-        color: 'Color',
         colorHelp: 'Color de la institución en hexadecimal (ej: #FCD116)',
-        icon: 'Ícono',
         iconHelp: 'Nombre del archivo del icono (auto-rellenado)',
         list: {
           title: 'Instituciones Financieras',
@@ -150,19 +152,11 @@ export const EsI18n: ITranslate = {
         name: 'Nombre de la Institución',
         nameHelp: 'Escriba para autocompletar (ej: "nu" para Nubank)',
         title: 'Instituciones Financieras',
-        type: 'Tipo de Institución'
-        },
+        type: 'Tipo de Institución',
+      },
       titleCategory: {
-        active: 'Activar',
-        color: 'Color',
-        deleteMessage: 'Al eliminar esta categoría será removida de todos los títulos.',
-        icon: 'Ícono',
-        inactivatedFilter: {
-          activated: 'Activados',
-          inactivated: 'Inactivados',
-          title: 'Inactivación',
-        },
-        inactive: 'Inactivar',
+        deleteMessage:
+          'Al eliminar esta categoría será removida de todos los títulos.',
         name: 'Nombre',
         title: 'Categorías de títulos',
         type: {
@@ -173,10 +167,8 @@ export const EsI18n: ITranslate = {
         },
       },
       menus: {
-        color: 'Color',
         frontRoute: 'Ruta del front',
         hide: 'Esconder',
-        icon: 'Ícono',
         keyWord: 'Palabra clave',
         leftTop: 'Superior izquierda',
         name: 'Nombre',
@@ -211,8 +203,32 @@ export const EsI18n: ITranslate = {
         users: 'Usuarios',
       },
       shared: {
-        active: 'Activo',
+        color: 'Color',
+        icon: 'Ícono',
         name: 'Nombre',
+        inactivatedFilter: {
+          activated: 'Activados',
+          inactivated: 'Inactivados',
+          title: 'Inactivación',
+        },
+        customColor: 'Color personalizado',
+        customIcon: 'Icono personalizado',
+        typeCustomIcon: 'Tipo de icono personalizado',
+      },
+      wallet: {
+        selfCustody: 'Auto-custodia',
+        name: 'Nombre',
+        title: 'Billeteras',
+        initialBalance: 'Saldo inicial',
+        currentBalance: 'Saldo actual',
+        financialInstitution: 'Institución financiera',
+        errors: {
+          walletInUseByTitles: "Billetera en uso por títulos",
+          walletInUseByCreditCards: "Billetera en uso por tarjetas de crédito",
+          walletInUseByCreditCardsAndTitle: "Billetera en uso por tarjetas de crédito y título",
+          walletInUseByActivatedCreditCards: "Billetera en uso por tarjetas de crédito activadas",
+          nameAlreadyInUse: "El nombre ya está en uso",
+        }
       },
     },
     grid: {

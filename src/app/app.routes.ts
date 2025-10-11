@@ -6,6 +6,7 @@ import { adminGuard } from './core/guards/authentication/admin.guard';
 import { FINANCIAL_INSTITUTIONS_ROUTES } from './features/financial-institutions/financial-institutions-routes';
 import { NOTIFICATIONS_ROUTES } from './features/notifications/notifications-routes';
 import { TITLE_CATEGORIES_ROUTES } from './features/title-categories/title-categories-routes';
+import { WALLETS_ROUTES } from './features/wallets/wallets-routes';
 
 export const routes: Routes = [
   ...AUTH_ROUTES,
@@ -30,8 +31,9 @@ export const routes: Routes = [
               ...NOTIFICATIONS_ROUTES
             ]
           },
+          ...WALLETS_ROUTES,
           ...TITLE_CATEGORIES_ROUTES,
-        ]
+        ],
       },
       {
         path: '**',

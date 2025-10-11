@@ -27,6 +27,8 @@ export const EnI18n: ITranslate = {
       toggleToLightMode: 'Toggle to light mode',
       tryDifferentTerms: 'Try different terms',
       unpin: 'Unpin',
+      active: 'Active',
+      inactive: 'Inactive',
     },
     appName: 'Fin App',
     auth: {
@@ -129,38 +131,29 @@ export const EnI18n: ITranslate = {
       pattern: 'Invalid format',
       required: 'This field is required',
       serverError: 'Error on server',
+      nameAlreadyInUse: "Name '{{nameAlreadyInUse}}' already in use.",
+      error: 'Error',
     },
     features: {
       financialInstitutions: {
-        active: 'Active',
         code: 'Code',
         bankName: 'Bank Name',
         codeAndType: 'Code and Type',
-        codeHelp: 'Select the bank COMPE code (auto-completes when typing the name)',
+        codeHelp: '',
         bankNameAndCode: 'Bank',
-        color: 'Color',
-        colorHelp: 'Institution color in hexadecimal (e.g.: #FCD116)',
-        icon: 'Icon',
-        iconHelp: 'Icon filename (auto-filled)',
+        colorHelp: '',
+        iconHelp: '',
         list: {
           title: 'Financial Institutions',
         },
         name: 'Institution Name',
-        nameHelp: 'Type to autocomplete (e.g.: "nu" for Nubank)',
+        nameHelp: '',
         title: 'Financial Institutions',
-        type: 'Institution Type'
+        type: 'Institution Type',
       },
       titleCategory: {
-        active: 'Activate',
-        color: 'Color',
-        deleteMessage: 'When removing this category it will be removed from all titles.',
-        icon: 'Icon',
-        inactivatedFilter: {
-          activated: 'Activated',
-          inactivated: 'Inactivated',
-          title: 'Inactivation',
-        },
-        inactive: 'Inactivate',
+        deleteMessage:
+          'When removing this category it will be removed from all titles.',
         name: 'Name',
         title: 'Title Categories',
         type: {
@@ -171,10 +164,8 @@ export const EnI18n: ITranslate = {
         },
       },
       menus: {
-        color: 'Color',
         frontRoute: 'Front route',
         hide: 'Hide',
-        icon: 'Icon',
         keyWord: 'Keyword',
         leftTop: 'Left top',
         name: 'Name',
@@ -209,8 +200,34 @@ export const EnI18n: ITranslate = {
         users: 'Users',
       },
       shared: {
-        active: 'Active',
+        color: 'Color',
+        icon: 'Icon',
         name: 'Name',
+        inactivatedFilter: {
+          activated: 'Activated',
+          inactivated: 'Inactivated',
+          title: 'Inactivation',
+        },
+        customColor: 'Custom colo',
+        customIcon: 'Custom icon',
+        typeCustomIcon: 'Type custom icon',
+      },
+      wallet: {
+        selfCustody: 'Self-custody',
+        name: 'Name',
+        title: 'Wallets',
+        initialBalance: 'Initial balance',
+        currentBalance: 'Current balance',
+        financialInstitution: 'Financial Institution',
+        errors: {
+          walletInUseByTitles: 'Wallet in use by titles',
+          walletInUseByCreditCards: 'Wallet in use by credit cards',
+          walletInUseByCreditCardsAndTitle:
+            'Wallet in use by credit cards and title',
+          walletInUseByActivatedCreditCards:
+            'Wallet in use by activated credit cards',
+          nameAlreadyInUse: 'Name already in use',
+        },
       },
     },
     grid: {

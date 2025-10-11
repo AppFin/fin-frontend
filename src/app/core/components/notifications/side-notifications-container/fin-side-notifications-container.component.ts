@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NotificationService } from '../../../services/notifications/notification.service';
 import { SideNotificationItemComponent } from './side-notification-item/side-notification-item.component';
 import { slideOut } from '../../../../shared/animations/slide-out';
-import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
+import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
 
 @Component({
   selector: 'fin-side-notifications-container',

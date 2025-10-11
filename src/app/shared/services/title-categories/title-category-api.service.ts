@@ -27,7 +27,7 @@ export class TitleCategoryApiService {
   public getList(
     input: TitleCategoryGetListInput
   ): Observable<PagedOutput<TitleCategoryOutput>> {
-    let params = toHttpParams(input);
+    const params = toHttpParams(input);
     return this.http.get<PagedOutput<TitleCategoryOutput>>(this.API_URL, { params });
   }
 

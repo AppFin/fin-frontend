@@ -7,22 +7,22 @@ import {
 } from '@angular/core';
 import { NotificationApiService } from '../../../core/services/notifications/notification-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
-import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
+import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
+import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
 import { Observable, of, Subject, tap } from 'rxjs';
 import { NotificationOutput } from '../../../core/types/notifications/notification-output';
-import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
+import { FinGridSimpleColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
 import {
   FinGridIconColumnOption,
   FinIconOptions,
-} from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
 import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
 import { NotificationWay } from '../../../core/enums/notifications/notification-way';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
-import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
-import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
-import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
+import { FinPageLayoutComponent } from '../../../shared/components/generics/page-layout/fin-page-layout.component';
+import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
+import { FinButtonComponent } from '../../../shared/components/generics/button/fin-button.component';
 import { FinSeverity } from '../../../core/types/themes/fin-severity';
 import { DatePipe } from '@angular/common';
 import { LocalizationService } from '../../../core/services/localization/localization.service';

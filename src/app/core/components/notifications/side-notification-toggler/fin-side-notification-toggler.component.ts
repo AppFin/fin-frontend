@@ -4,7 +4,7 @@ import {
   computed,
   inject,
 } from '@angular/core';
-import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
+import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
 import { LayoutService } from '../../../services/layout/layout.service';
 import { NotificationService } from '../../../services/notifications/notification.service';
 

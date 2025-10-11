@@ -4,7 +4,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
 import { StepperModule } from 'primeng/stepper';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthCreateFinishedStepComponent } from './auth-create-finished-step/auth-create-finished-step.component';

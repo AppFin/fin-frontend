@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  computed,
   DestroyRef,
   ElementRef,
   HostListener,
@@ -12,8 +11,8 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, first } from 'rxjs';
-import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { FinIconComponent } from '../../../../shared/components/generics/icon/fin-icon.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FinTranslatePipe } from '../../../pipes/translate/fin-translate.pipe';
 import { CdkConnectedOverlay, OverlayModule } from '@angular/cdk/overlay';
@@ -22,7 +21,6 @@ import { MenuService } from '../../../services/layout/menu.service';
 import { MenuOutput } from '../../../types/layouts/menu-output';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { LayoutService } from '../../../services/layout/layout.service';
 
 @Component({
@@ -41,8 +39,10 @@ import { LayoutService } from '../../../services/layout/layout.service';
 export class ButtonFilterComponent implements OnInit {
   public readonly input = viewChild<ElementRef<HTMLInputElement>>('input');
   public readonly overlay = viewChild<CdkConnectedOverlay>(CdkConnectedOverlay);
-  public readonly searchWrapper = viewChild<ElementRef<HTMLDivElement>>('searchWrapper');
-  public readonly filterResults = viewChild<FilterResultsComponent>('filterResults');
+  public readonly searchWrapper =
+    viewChild<ElementRef<HTMLDivElement>>('searchWrapper');
+  public readonly filterResults =
+    viewChild<FilterResultsComponent>('filterResults');
 
   public readonly isExpanded = signal(false);
   public readonly loading = signal(false);
@@ -95,7 +95,9 @@ export class ButtonFilterComponent implements OnInit {
               this.cdr.detectChanges();
             };
 
-            wrapperEl.addEventListener('transitionend', updateOverlay, { once: true });
+            wrapperEl.addEventListener('transitionend', updateOverlay, {
+              once: true,
+            });
             setTimeout(updateOverlay, 300); // Fallback
           }
         }, 100);
@@ -125,7 +127,8 @@ export class ButtonFilterComponent implements OnInit {
   }
 
   public onInputEnter(event: Event): void {
-    const shouldIntercept = this.filterResults()?.shouldInterceptEnter() ?? false;
+    const shouldIntercept =
+      this.filterResults()?.shouldInterceptEnter() ?? false;
 
     if (shouldIntercept) {
       event.preventDefault();
@@ -146,7 +149,6 @@ export class ButtonFilterComponent implements OnInit {
   public async onSearch(skipCount = 0): Promise<void> {
     const value = this.formControl.value ?? '';
 
-
     if (skipCount === 0) {
       this.cancelCurrentRequest();
       this.clearResults();
@@ -154,7 +156,6 @@ export class ButtonFilterComponent implements OnInit {
     }
 
     if (value.trim()) {
-
       this.currentAbortController = new AbortController();
       const signal = this.currentAbortController.signal;
 
@@ -167,16 +168,16 @@ export class ButtonFilterComponent implements OnInit {
           this.PAGE_SIZE
         );
 
-
         if (!signal.aborted) {
           this.totalResults.set(result.totalCount);
 
           if (skipCount === 0) {
-
             this.filteredResults.set(result.items);
           } else {
-
-            this.filteredResults.update((current) => [...current, ...result.items]);
+            this.filteredResults.update((current) => [
+              ...current,
+              ...result.items,
+            ]);
           }
         }
       } catch (error) {
@@ -243,7 +244,7 @@ export class ButtonFilterComponent implements OnInit {
   }
 
   private openSearchDialog(): void {
-    const dialogRef = this.dialog.open(SearchDialogComponent, {
+    this.dialog.open(SearchDialogComponent, {
       width: '100vw',
       height: '100vh',
       maxWidth: '100vw',
@@ -251,7 +252,7 @@ export class ButtonFilterComponent implements OnInit {
       panelClass: 'search-dialog-panel',
       disableClose: false,
       hasBackdrop: true,
-      backdropClass: 'search-dialog-backdrop'
+      backdropClass: 'search-dialog-backdrop',
     });
   }
 }

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal, TemplateRef, } from '@angular/core';
 import { NotificationSeverity } from '../../../enums/notifications/notification-severity';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
 import { FinSeverity } from '../../../types/themes/fin-severity';
 import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html/safe-html.pipe';
 import { isHtml } from '../../../../shared/functions/is-html';
 import { NgTemplateOutlet } from '@angular/common';
-import { FinDialogComponent } from '../../../../shared/components/dialog/fin-dialog.component';
-import { FinDialogFooterDirective } from '../../../../shared/components/dialog/fin-dialog-footer.directive';
+import { FinDialogComponent } from '../../../../shared/components/generics/dialog/fin-dialog.component';
+import { FinDialogFooterDirective } from '../../../../shared/components/generics/dialog/fin-dialog-footer.directive';
 
 export type FinMessageData = {
   title: string;

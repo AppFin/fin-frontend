@@ -624,6 +624,21 @@ export const PrimeCustomPreset = definePreset(Aura, {
             },
             option: {
               color: '#e9ecef',
+              focusBackground: '#fcc46f',
+              selectedBackground: '#fcc46f',
+              selectedFocusBackground: '#fcc46f'
+            },
+          },
+        },
+        light: {
+          root: {
+            overlay: {
+              color: '#e9ecef',
+            },
+            option: {
+              focusBackground: '#fcc46f',
+              selectedBackground: '#fcc46f',
+              selectedFocusBackground: '#fcc46f'
             },
           },
         },

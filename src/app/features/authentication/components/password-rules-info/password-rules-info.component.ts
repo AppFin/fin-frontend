@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
 
 type PasswordFieldRule = {
   error: string;

@@ -2,15 +2,15 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
-import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
-import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
-import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
-import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
-import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
-import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
+import { FinColorPickerComponent } from '../../../shared/components/generics/color-picker/fin-color-picker.component';
+import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
+import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
+import { FinSelectComponentOptions } from '../../../shared/components/generics/select/fin-select-component-options';
+import { FinSelectOption } from '../../../shared/components/generics/select/fin-select-option';
+import { FinSelectComponent } from '../../../shared/components/generics/select/fin-select.component';
 import { FinancialInstitutionType } from '../../../shared/enums/financial-institutions/financial-institution-type';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
-import { FinancialInstitutionOutput } from '../../../shared/models/financial-institutions/financial-institution-output';
+import { FinancialInstitutionOutput } from '../../../shared/types/financial-institutions/financial-institution-output';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinancialInstitutionApiService } from '../../../shared/services/financial-institutions/financial-institution-api.service';
 
@@ -115,8 +115,6 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
   private setFormGroup(
     institutionEditing: FinancialInstitutionOutput | null
   ): void {
-    const activeValue = institutionEditing ? !institutionEditing.inactive : true;
-
     this.formGroup = new FormGroup<FinancialInstitutionInputForm>({
       name: new FormControl(institutionEditing?.name ?? '', {
         nonNullable: true,

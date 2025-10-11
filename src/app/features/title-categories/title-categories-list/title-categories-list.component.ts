@@ -1,8 +1,15 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, } from '@angular/core';
-import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
-import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
-import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
-import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { FinButtonComponent } from '../../../shared/components/generics/button/fin-button.component';
+import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
+import { FinPageLayoutComponent } from '../../../shared/components/generics/page-layout/fin-page-layout.component';
+import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, Observable, of, Subject, tap } from 'rxjs';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
@@ -10,24 +17,17 @@ import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
 import { TitleCategoryApiService } from '../../../shared/services/title-categories/title-category-api.service';
 import { TitleCategoryGetListInput } from '../../../shared/types/title-categories/title-category-get-list-input';
-import { IFinGridActionOption } from '../../../shared/components/grid/models/i-fin-grid-action-option';
 import {
   FinGridIconColumnOption,
   FinIconOptions,
-} from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
-import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
-import {
-  FinGridSimpleColumnOption
-} from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
+import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
+import { FinGridSimpleColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
 import { TitleCategoryType } from '../../../shared/enums/title-categories/title-category-type';
 import { FormControl, FormGroup } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  TitleCategoryTypeSelectorComponent
-} from '../components/title-category-type-selector/title-category-type-selector.component';
-import {
-  TitleCategoryInactivatedFilterSelectorComponent
-} from '../components/title-category-inactivated-filter-selector/title-category-inactivated-filter-selector.component';
+import { TitleCategoryTypeSelectComponent } from '../components/title-category-type-selector/title-category-type-select.component';
+import { FinInactivatedFilterSelectComponent } from '../../../shared/components/inactivated-filter-select/fin-inactivated-filter-select.component';
 
 type TitleCategoriesListFilterForm = {
   type: FormControl<TitleCategoryType | null>;
@@ -40,8 +40,8 @@ type TitleCategoriesListFilterForm = {
     FinButtonComponent,
     FinGridComponent,
     FinPageLayoutComponent,
-    TitleCategoryTypeSelectorComponent,
-    TitleCategoryInactivatedFilterSelectorComponent,
+    TitleCategoryTypeSelectComponent,
+    FinInactivatedFilterSelectComponent,
   ],
   templateUrl: './title-categories-list.component.html',
   styleUrl: './title-categories-list.component.scss',
@@ -117,13 +117,15 @@ export class TitleCategoriesListComponent implements OnInit {
   private getColumns(): IFinGridColumnOption<TitleCategoryOutput>[] {
     return [
       new FinGridIconColumnOption<TitleCategoryOutput>({
-        header: 'finCore.features.titleCategory.icon',
-        width: '5%',
-        getValue: (item) =>
-          new FinIconOptions({
+        getValue: (item) => {
+          return new FinIconOptions({
             icon: item.icon,
+            tooltip: item.icon,
             color: item.color,
-          }),
+          });
+        },
+        header: 'finCore.features.shared.icon',
+        width: '3%',
       }),
       new FinGridSimpleColumnOption<TitleCategoryOutput>({
         getValue: (item) => item.name,

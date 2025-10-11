@@ -4,8 +4,8 @@ import {
   input,
   output, signal, ElementRef, AfterViewInit,
 } from '@angular/core';
-import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
-import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
+import { FinIconComponent } from '../../../../../shared/components/generics/icon/fin-icon.component';
+import { FinTextComponent } from '../../../../../shared/components/generics/text/fin-text.component';
 import { MenuOutput } from '../../../../types/layouts/menu-output';
 import { Router, RouterLink } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
