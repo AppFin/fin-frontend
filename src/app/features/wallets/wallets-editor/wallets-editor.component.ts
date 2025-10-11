@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { FormGroupFromType } from '../../../shared/types/form/form-group-from-type';
 import { WalletInput } from '../../../shared/types/wallets/wallet-input';
@@ -10,21 +16,21 @@ import { FormControl, Validators } from '@angular/forms';
 import { nameAlreadyInUseValidator } from '../../../shared/validators/name-already-in-use-validator';
 import { WalletCreateOrUpdateErrorCode } from '../../../shared/enums/wallets/walletcreate-or-update-error-code';
 import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
-import { FinColorPickerComponent } from '../../../shared/components/generics/color-picker/fin-color-picker.component';
 import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
 import { FinMoneyInputComponent } from '../../../shared/components/money-input/fin-money-input.component';
-import {
-  FinFinancialInstitutionSelectComponent
-} from '../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component';
+import { FinFinancialInstitutionSelectComponent } from '../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component';
+import { FinUserFriendlyColorPickerComponent } from '../../../shared/components/user-friendly-color-picker/fin-user-friendly-color-picker.component';
+import { FinUserFriendlyIconPickerComponent } from '../../../shared/components/user-friendly-icon-picker/fin-user-friendly-icon-picker.component';
 
 @Component({
   selector: 'fin-wallets-editor',
   imports: [
     EditorLayoutComponent,
-    FinColorPickerComponent,
     FinInputComponent,
     FinMoneyInputComponent,
     FinFinancialInstitutionSelectComponent,
+    FinUserFriendlyColorPickerComponent,
+    FinUserFriendlyIconPickerComponent,
   ],
   templateUrl: './wallets-editor.component.html',
   styleUrl: './wallets-editor.component.scss',

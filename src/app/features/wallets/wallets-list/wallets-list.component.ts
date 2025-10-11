@@ -107,18 +107,6 @@ export class WalletsListComponent implements OnInit {
         header: 'finCore.features.shared.icon',
         width: '3%',
       }),
-      new FinGridIconColumnOption<TitleCategoryOutput>({
-        getValue: (item) => {
-          return new FinIconOptions({
-            icon: 'circle',
-            fontAwesomeType: 'fa-solid',
-            color: item.color,
-            tooltip: item.color,
-          });
-        },
-        header: 'finCore.features.shared.color',
-        width: '3%',
-      }),
       new FinGridSimpleColumnOption<WalletOutput>({
         getValue: (item) => item.name,
         header: 'finCore.features.wallet.name',

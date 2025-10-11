@@ -15,14 +15,11 @@
 
     <fin-money-input class="col-6" label="finCore.features.wallet.initialBalance" [formControl]="formGroup.controls.initialBalance" />
 
-    <fin-color-picker class="col-6" label="finCore.features.shared.color" [formControl]="formGroup.controls.color" />
-    <fin-input
+    <fin-user-friendly-color-picker class="col-6" label="finCore.features.shared.color" [formControl]="formGroup.controls.color" />
+    <fin-user-friendly-icon-picker
       class="col-6"
-      label="finCore.features.shared.icon"
-      helpText="https://fontawesome.com/search"
       [formControl]="formGroup.controls.icon"
-      [iconSuffix]="formGroup.controls.icon.value"
-      [iconSuffixColor]="formGroup.controls.color.value"
+      label="finCore.features.shared.icon"
     />
 
   }

@@ -39,4 +39,14 @@ export class FinMoneyInputComponent implements OnInit {
   public ngOnInit(): void {
     this.moneyPrefix.set(this.localizationService.getMoneyPrefix());
   }
+
+  public outputTransformFn = (value: string | number | null | undefined): string => {
+    if (!value) return '0';
+    const cleaned = value
+      .toString()
+      .replace(/[^\d,]/g, '')
+      .replace(',', '.');
+    const num = parseFloat(cleaned);
+    return isNaN(num) ? '0' : num.toString();
+  };
 }

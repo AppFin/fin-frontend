@@ -37,7 +37,9 @@ export class FinGridColumnRendererComponent<T> implements OnDestroy {
     read: ViewContainerRef,
   });
 
-  private componentRef = signal<ComponentRef<IFinGridCustomColumn<T>> | null>(null);
+  private componentRef = signal<ComponentRef<IFinGridCustomColumn<T>> | null>(
+    null
+  );
 
   private readonly datePipe = inject(DatePipe);
 
@@ -55,7 +57,6 @@ export class FinGridColumnRendererComponent<T> implements OnDestroy {
     this.columnOption();
     this.renderComponent();
   });
-
 
   public ngOnDestroy(): void {
     this.componentRef()?.destroy();
@@ -101,7 +102,7 @@ export class FinGridColumnRendererComponent<T> implements OnDestroy {
       this.componentRef.set(ref);
 
       const options = this.columnOption();
-      if(!this.componentRef()?.instance?.setItem || !options) return;
+      if (!this.componentRef()?.instance?.setItem || !options) return;
       this.componentRef()?.instance?.setItem(item, options);
     });
   }
