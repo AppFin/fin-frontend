@@ -1,10 +1,11 @@
 <fin-editor-layout
-  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editing'"
-  [loading]="loading()"
+  [title]="editorType() == editorTypes.Create ? 'finCore.features.financialInstitutions.pages.creating' : 'finCore.features.financialInstitutions.pages.editing'"
   [formGroup]="formGroup"
   [canSave]="canSave"
-  [isSaving]="saving()"
-  (onSave)="save()"
+  [loading]="loading()"
+  [(isSaving)]="saving"
+  [saveOptions]="saveOptions()"
+  (afterSave)="close()"
   (onCancel)="close()"
 >
   @if (!loading()) {

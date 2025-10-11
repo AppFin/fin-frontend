@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   OnInit,
   signal,
@@ -12,7 +13,7 @@ import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationApiService } from '../../../core/services/notifications/notification-api.service';
-import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
+import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { NotificationInput } from '../../../core/types/notifications/notification-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
@@ -27,7 +28,7 @@ import { FinMultiSelectComponent } from '../../../shared/components/multi-select
 import { FinDatetimeComponent } from '../../../shared/components/datetime/fin-date-time.component';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { UserApiService } from '../../authentication/services/user-api.service';
-import { NotifyService } from '../../../core/services/notifications/notify.service';
+import { EditorSaveOptions } from '../../../shared/enums/layouts/editor-save-options';
 
 type NotificationInputForm = {
   ways: FormControl<NotificationWay[]>;
@@ -66,6 +67,21 @@ export class NotificationsEditorComponent implements OnInit {
 
   public readonly editorTypes = EditorType;
 
+  public readonly saveOptions = computed(() => {
+    const isCreating = this.editorType() === EditorType.Create;
+    
+    return new EditorSaveOptions<NotificationInput>({
+      onSave: (input) => {
+        return isCreating
+          ? this.apiService.create(input).pipe(map(() => {}))
+          : this.apiService.update(this.notificationEditingId, input);
+      },
+      successMessage: isCreating
+        ? 'finCore.features.notifications.messages.created'
+        : 'finCore.features.notifications.messages.updated',
+    });
+  });
+
   public readonly severitySelectOptions = new FinSelectComponentOptions({
     getOptions: this.getNotificationSeverityOptions.bind(this),
   });
@@ -82,7 +98,6 @@ export class NotificationsEditorComponent implements OnInit {
   private router = inject(Router);
   private apiService = inject(NotificationApiService);
   private userApiService = inject(UserApiService);
-  public notifyService = inject(NotifyService);
   private notificationEditingId: string;
 
   public async ngOnInit(): Promise<void> {
@@ -97,37 +112,6 @@ export class NotificationsEditorComponent implements OnInit {
       !this.loading() &&
       !this.saving()
     );
-  }
-
-  public save(): void {
-    if (!this.canSave) return;
-    this.saving.set(true);
-
-    const input = this.formGroup.getRawValue() as NotificationInput;
-
-    const request =
-      this.editorType() === EditorType.Create
-        ? this.apiService.create(input).pipe(map(() => {}))
-        : this.apiService.update(this.notificationEditingId, input);
-
-    request
-      .pipe(
-        first(),
-        finalize(() => this.saving.set(false))
-      )
-      .subscribe({
-        next: () => {
-          const message = request
-          ? 'finCore.features.notifications.editor.messages.created'
-          : 'finCore.features.notifications.editor.messages.updated';
-          this.notifyService.notifySnack(message, NotificationSeverity.Success);
-          this.close();
-        },
-        error: (error) => {
-          const errorMessage = error?.error?.message || 'finCore.errors.genericError';
-          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
-        }
-      });
   }
 
   public close(): void {

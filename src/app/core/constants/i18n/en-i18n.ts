@@ -148,7 +148,14 @@ export const EnI18n: ITranslate = {
         name: 'Institution Name',
         nameHelp: 'Type to autocomplete (e.g.: "nu" for Nubank)',
         title: 'Financial Institutions',
-        type: 'Institution Type'
+        type: 'Institution Type',
+        pages: {
+          creating: 'Creating Financial Institution',
+          editing: 'Editing Financial Institution',
+        },
+        createdSuccess: 'Financial institution created successfully!',
+        updatedSuccess: 'Financial institution updated successfully!',
+        deletedSuccess: 'Financial institution deleted successfully!',
       },
       titleCategory: {
         active: 'Activate',
@@ -163,6 +170,14 @@ export const EnI18n: ITranslate = {
         inactive: 'Inactivate',
         name: 'Name',
         title: 'Title Categories',
+        pages: {
+          creating: 'Creating Category',
+          editing: 'Editing Category',
+        },
+        messages: {
+          created: 'Category created successfully!',
+          updated: 'Category updated successfully!',
+        },
         type: {
           both: 'Both',
           expense: 'Expense',
@@ -182,6 +197,14 @@ export const EnI18n: ITranslate = {
         position: 'Position',
         showOnSideNav: 'Show on side navigation',
         title: 'Menus',
+        pages: {
+          creating: 'Creating Menu',
+          editing: 'Editing Menu',
+        },
+        messages: {
+          created: 'Menu created successfully!',
+          updated: 'Menu updated successfully!',
+        },
       },
       notifications: {
         title: 'Notifications',
@@ -189,6 +212,14 @@ export const EnI18n: ITranslate = {
         continuous: 'Continuous',
         startToDelivery: 'Start Delivery',
         stopToDelivery: 'Stop Delivery',
+        pages: {
+          creating: 'Creating Notification',
+          editing: 'Editing Notification',
+        },
+        messages: {
+          created: 'Notification created successfully!',
+          updated: 'Notification updated successfully!',
+        },
         severity: {
           title: 'Severity',
           success: 'Success',

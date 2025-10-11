@@ -146,7 +146,14 @@ export const PtBrI18n: ITranslate = {
         name: 'Nome da Instituição',
         nameHelp: 'Digite para autocompletar',
         title: 'Instituições Financeiras',
-        type: 'Tipo de Instituição'
+        type: 'Tipo de Instituição',
+        pages: {
+          creating: 'Criando Instituição Financeira',
+          editing: 'Editando Instituição Financeira',
+        },
+        createdSuccess: 'Instituição financeira criada com sucesso!',
+        updatedSuccess: 'Instituição financeira atualizada com sucesso!',
+        deletedSuccess: 'Instituição financeira excluída com sucesso!',
       },
       titleCategory: {
         active: 'Ativar',
@@ -161,6 +168,14 @@ export const PtBrI18n: ITranslate = {
         inactive: 'Inativar',
         name: 'Nome',
         title: 'Categórias de títulos',
+        pages: {
+          creating: 'Criando Categoria',
+          editing: 'Editando Categoria',
+        },
+        messages: {
+          created: 'Categoria criada com sucesso!',
+          updated: 'Categoria atualizada com sucesso!',
+        },
         type: {
           both: 'Ambos',
           expense: 'Gasto',
@@ -180,6 +195,14 @@ export const PtBrI18n: ITranslate = {
         position: 'Posição',
         showOnSideNav: 'Mostrar na navegação lateral',
         title: 'Menus',
+        pages: {
+          creating: 'Criando Menu',
+          editing: 'Editando Menu',
+        },
+        messages: {
+          created: 'Menu criado com sucesso!',
+          updated: 'Menu atualizado com sucesso!',
+        },
       },
       notifications: {
         title: 'Notificações',
@@ -187,6 +210,14 @@ export const PtBrI18n: ITranslate = {
         continuous: 'Contínua',
         startToDelivery: 'Início da Entrega',
         stopToDelivery: 'Fim da Entrega',
+        pages: {
+          creating: 'Criando Notificação',
+          editing: 'Editando Notificação',
+        },
+        messages: {
+          created: 'Notificação criada com sucesso!',
+          updated: 'Notificação atualizada com sucesso!',
+        },
         severity: {
           title: 'Severidade',
           success: 'Sucesso',

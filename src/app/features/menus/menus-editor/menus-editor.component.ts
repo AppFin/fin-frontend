@@ -1,11 +1,11 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuPosition } from '../../../core/enums/layouts/menu-position';
 import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
 import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
-import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
+import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
 import { FinToggleSwitchComponent } from '../../../shared/components/toggle-switch/fin-toggle-switch.component';
@@ -15,8 +15,7 @@ import { MenuOutput } from '../../../core/types/layouts/menu-output';
 import { MenuApiService } from '../../../core/services/layout/menu-api.service';
 import { MenuInput } from '../../../core/types/layouts/menu-input';
 import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
-import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
-import { NotifyService } from '../../../core/services/notifications/notify.service';
+import { EditorSaveOptions } from '../../../shared/enums/layouts/editor-save-options';
 
 type MenuInputForm = {
   frontRoute: FormControl<string>;
@@ -46,8 +45,22 @@ export class MenusEditorComponent implements OnInit {
   public readonly saving = signal(false);
   public readonly editorType = signal<EditorType>(EditorType.Create);
 
-  public notifyService = inject(NotifyService);
   public readonly editorTypes = EditorType;
+
+  public readonly saveOptions = computed(() => {
+    const isCreating = this.editorType() === EditorType.Create;
+    
+    return new EditorSaveOptions<MenuInput>({
+      onSave: (input) => {
+        return isCreating
+          ? this.apiService.create(input).pipe(map(() => {}))
+          : this.apiService.update(this.menuEditingId, input);
+      },
+      successMessage: isCreating
+        ? 'finCore.features.menus.messages.created'
+        : 'finCore.features.menus.messages.updated',
+    });
+  });
 
   public readonly selectOptions = new FinSelectComponentOptions({
     getOptions: this.getMenuPositionOptions.bind(this),
@@ -70,37 +83,6 @@ export class MenusEditorComponent implements OnInit {
       !this.loading() &&
       !this.saving()
     );
-  }
-
-  public save(): void {
-    if (!this.canSave) return;
-    this.saving.set(true);
-
-    const input = this.formGroup.getRawValue() as MenuInput;
-
-    const request =
-      this.editorType() === EditorType.Create
-        ? this.apiService.create(input).pipe(map(() => {}))
-        : this.apiService.update(this.menuEditingId, input);
-
-    request
-      .pipe(
-        first(),
-        finalize(() => this.saving.set(false))
-      )
-      .subscribe({
-        next: () => {
-          const message = request
-          ? 'finCore.features.menus.messages.created'
-          : 'finCore.features.menus.messages.updated';
-          this.notifyService.notifySnack(message, NotificationSeverity.Success);
-          this.close();
-        },
-        error: (error) => {
-          const errorMessage = error?.error?.message || 'finCore.errors.genericError';
-          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
-        }
-      });
   }
 
   public close(): void {

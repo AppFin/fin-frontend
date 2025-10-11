@@ -1,20 +1,19 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal, } from '@angular/core';
 import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { TitleCategoryType } from '../../../shared/enums/title-categories/title-category-type';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TitleCategoryApiService } from '../../../shared/services/title-categories/title-category-api.service';
-import { finalize, first, firstValueFrom, map } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { TitleCategoryInput } from '../../../shared/types/title-categories/title-category-input';
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
 import {
   TitleCategoryTypeSelectorComponent
 } from '../components/title-category-type-selector/title-category-type-selector.component';
-import { NotifyService } from '../../../core/services/notifications/notify.service';
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
-import { NotificationSeverity } from '../../../core/enums/notifications/notification-severity';
+import { EditorSaveOptions } from '../../../shared/enums/layouts/editor-save-options';
 
 type TitleCategoryInputForm = {
   name: FormControl<string>;
@@ -44,10 +43,24 @@ export class TitleCategoriesEditorComponent implements OnInit {
 
   public readonly editorTypes = EditorType;
 
+  public readonly saveOptions = computed(() => {
+    const isCreating = this.editorType() === EditorType.Create;
+    
+    return new EditorSaveOptions<TitleCategoryInput>({
+      onSave: (input) => {
+        return isCreating
+          ? this.apiService.create(input).pipe(map(() => {}))
+          : this.apiService.update(this.titleCategoryEditingId, input);
+      },
+      successMessage: isCreating
+        ? 'finCore.features.titleCategory.messages.created'
+        : 'finCore.features.titleCategory.messages.updated',
+    });
+  });
+
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private apiService = inject(TitleCategoryApiService);
-  public notifyService = inject(NotifyService);
   private titleCategoryEditingId: string;
 
   public async ngOnInit(): Promise<void> {
@@ -64,41 +77,9 @@ export class TitleCategoriesEditorComponent implements OnInit {
     );
   }
 
-  public save(): void {
-    if (!this.canSave) return;
-    this.saving.set(true);
-
-    const input = this.formGroup.getRawValue() as TitleCategoryInput;
-
-    const request =
-      this.editorType() === EditorType.Create
-        ? this.apiService.create(input).pipe(map(() => { }))
-        : this.apiService.update(this.titleCategoryEditingId, input);
-
-    request
-      .pipe(
-        first(),
-        finalize(() => this.saving.set(false))
-      )
-      .subscribe({
-        next: () => {
-
-          const message = request
-            ? 'finCore.features.notifications.editor.messages.created'
-            : 'finCore.features.notifications.editor.messages.updated';
-          this.notifyService.notifySnack(message, NotificationSeverity.Success);
-          this.close();
-        },
-        error: (error) => {
-          const errorMessage = error?.error?.message || 'finCore.errors.genericError';
-          this.notifyService.notifySnack(errorMessage, NotificationSeverity.Error);
-        }
-      });
-  }
-
   public close(): void {
-  this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-}
+    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+  }
 
   private async setEditingTitleCategory(): Promise < TitleCategoryOutput | null > {
   const id = this.activatedRoute.snapshot.paramMap.get('titleCategoryId');

@@ -21,11 +21,11 @@
         (onClick)="onCancel.emit()"
       />
 
-    <fin-save-button
-      [canSave]="canSave()"
-      [saving]="isSaving()"
-      (onSave)="onSave.emit()"
-    />
+      <fin-save-button
+        [canSave]="canSave()"
+        [saving]="isSaving()"
+        (onSave)="saveOptions() ? handleSave() : onSave.emit()"
+      />
     </div>
   </div>
 </fin-page-layout>
