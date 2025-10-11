@@ -14,7 +14,7 @@ import { finalize, first, firstValueFrom, iif, tap } from 'rxjs';
 import { WalletOutput } from '../../../shared/types/wallets/wallet-output';
 import { FormControl, Validators } from '@angular/forms';
 import { nameAlreadyInUseValidator } from '../../../shared/validators/name-already-in-use-validator';
-import { WalletCreateOrUpdateErrorCode } from '../../../shared/enums/wallets/walletcreate-or-update-error-code';
+import { WalletCreateOrUpdateErrorCode } from '../../../shared/enums/wallets/wallet-create-or-update-error-code';
 import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
 import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
 import { FinMoneyInputComponent } from '../../../shared/components/money-input/fin-money-input.component';

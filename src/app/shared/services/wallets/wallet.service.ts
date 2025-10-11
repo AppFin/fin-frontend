@@ -13,7 +13,7 @@ import {
 import {
   WalletCreateOrUpdateErrorCode,
   walletCreateOrUpdateErrorCodeMessages,
-} from '../../enums/wallets/walletcreate-or-update-error-code';
+} from '../../enums/wallets/wallet-create-or-update-error-code';
 import {
   WalletToggleInactiveErrorCode,
   WalletToggleInactiveErrorCodeMessages,
