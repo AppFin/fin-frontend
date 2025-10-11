@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  Input,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FinSelectComponent } from '../select/fin-select.component';
 import { FinSelectComponentOptions } from '../select/fin-select-component-options';
@@ -15,6 +20,14 @@ import { PagedOutput } from '../../models/paginations/paged-output';
 })
 export class FinInactivatedFilterSelectComponent {
   @Input() public formControl: FormControl<boolean | null>;
+
+  public readonly readonly = input(false);
+  public readonly customErrorText = input<string>();
+  public readonly helpText = input<string>('');
+  public readonly id = input(
+    `fin-inactivated-filter-select-${Math.random().toString(36).substring(2, 9)}`
+  );
+
 
   public readonly titleCategoryInactivatedSelectOptions =
     new FinSelectComponentOptions({

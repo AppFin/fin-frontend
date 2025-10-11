@@ -12,10 +12,16 @@ import { WalletCreateOrUpdateErrorCode } from '../../../shared/enums/wallets/wal
 import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
 import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
 import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
+import { FinMoneyInputComponent } from '../../../shared/components/money-input/fin-money-input.component';
 
 @Component({
   selector: 'fin-wallets-editor',
-  imports: [EditorLayoutComponent, FinColorPickerComponent, FinInputComponent],
+  imports: [
+    EditorLayoutComponent,
+    FinColorPickerComponent,
+    FinInputComponent,
+    FinMoneyInputComponent,
+  ],
   templateUrl: './wallets-editor.component.html',
   styleUrl: './wallets-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

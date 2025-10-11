@@ -1,3 +1,8 @@
 <fin-select label="finCore.features.shared.inactivatedFilter.title"
             [formControl]="formControl"
-            [options]="titleCategoryInactivatedSelectOptions" />
+            [options]="titleCategoryInactivatedSelectOptions"
+            [readonly]="readonly()"
+            [customErrorText]="customErrorText()"
+            [helpText]="helpText()"
+            [id]="id()"
+/>

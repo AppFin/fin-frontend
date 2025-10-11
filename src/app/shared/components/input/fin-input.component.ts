@@ -39,6 +39,7 @@ import {
 } from '../icon/fin-icon.component';
 import { IconField } from 'primeng/iconfield';
 import { IftaLabel } from 'primeng/iftalabel';
+import { FinSeverity } from '../../../core/types/themes/fin-severity';
 
 @Component({
   selector: 'fin-input',
@@ -70,6 +71,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   @Input() public formControl: FormControl<string | number | null>;
 
   public readonly label = input('');
+  public readonly placeholder = input<string>('');
   public readonly type = input('text');
 
   public readonly customErrorText = input<string>();
@@ -84,11 +86,13 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
 
   // mask options
   public readonly mask = input<string>();
+  public readonly prefix = input<string>('');
   public readonly shownMaskExpression = input<string | null>(null);
   public readonly allowNegativeNumbers = input(false);
   public readonly validationMask = input(false);
   public readonly hiddenInput = input(false);
   public readonly leadZero = input(false);
+  public readonly dropSpecialCharacters = input(false);
   public readonly thousandSeparator = input<ThousandSeparator | null>(null);
   public readonly decimalMarker = input<DecimalMark | null>(null);
   public readonly inputTransformFn = input<((value: unknown) => string) | null>(
@@ -107,6 +111,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   public readonly iconPrefixType = input<FinIconType>('fontAwesome');
   public readonly iconPrefixImageFolder = input<string>('icons/');
   public readonly iconPrefixImageExtension = input<string>('.png');
+  public readonly iconPrefixSeverity = input<FinSeverity|null>(null);
 
   // icon suffix
   public readonly iconSuffix = input('');
@@ -117,6 +122,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');
+  public readonly iconSuffixSeverity = input<FinSeverity|null>(null);
 
   // templates prefix and suffix
   public readonly prefixTemplate = input<TemplateRef<any> | null>(null);

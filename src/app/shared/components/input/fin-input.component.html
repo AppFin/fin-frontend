@@ -14,7 +14,7 @@
                                 [type]="iconPrefixType()"
                                 [imageFolder]="iconPrefixImageFolder()"
                                 [imageExtension]="iconPrefixImageExtension()"
-
+                                [severity]="iconPrefixSeverity()"
                         />
                     }
                 </p-inputicon>
@@ -31,10 +31,12 @@
                    [style.width]="width()"
 
                    [mask]="mask()"
+                   [prefix]="prefix()"
                    [outputTransformFn]="outputTransformFn()"
                    [readOnly]="readonly()"
                    [shownMaskExpression]="shownMaskExpression()"
                    [thousandSeparator]="validThousandSeparator()"
+                   [dropSpecialCharacters]="dropSpecialCharacters()"
                    [type]="type()"
                    [validation]="validationMask()"
                    autocomplete="off"
@@ -53,7 +55,7 @@
                                 [type]="iconSuffixType()"
                                 [imageFolder]="iconSuffixImageFolder()"
                                 [imageExtension]="iconSuffixImageExtension()"
-
+                                [severity]="iconSuffixSeverity()"
                         />
                     }
                 </p-inputicon>

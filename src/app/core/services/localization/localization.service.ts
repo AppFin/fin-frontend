@@ -28,7 +28,7 @@ export class LocalizationService {
     return lang === 'pt-BR' ? '.' : ',';
   }
 
-  public getMoneySymbol(): string {
+  public getMoneyPrefix(): string {
     const lang = this.getLang();
     return lang === 'pt-BR' ? 'R$' : '$';
   }
