@@ -125,6 +125,7 @@ export interface ITranslate {
       pattern: string;
       required: string;
       serverError: string;
+      nameAlreadyInUse: string;
     };
     features: {
       financialInstitutions: {
@@ -194,12 +195,30 @@ export interface ITranslate {
         name: string;
         icon: string;
         color: string;
+        customColor: string;
+        customIcon: string;
+        typeCustomIcon: string;
         inactivatedFilter: {
           activated: string;
           inactivated: string;
           title: string;
         };
       };
+      wallet: {
+        selfCustody: string;
+        name: string;
+        title: string;
+        initialBalance: string;
+        currentBalance: string;
+        financialInstitution: string;
+        errors: {
+          walletInUseByTitles: string;
+          walletInUseByCreditCards: string;
+          walletInUseByCreditCardsAndTitle: string;
+          walletInUseByActivatedCreditCards: string;
+          nameAlreadyInUse: string;
+        }
+      }
     };
     grid: {
       confirmDelete: string;

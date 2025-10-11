@@ -11,17 +11,17 @@ export const WalletDeleteErrorCodeMessages: ErrorMessagesMap<WalletDeleteErrorCo
   new Map([
     [
       WalletDeleteErrorCode.WalletInUseByTitles,
-      { message: 'finApp.features.wallet.errors.walletInUseByTitles' },
+      { message: 'finCore.features.wallet.errors.walletInUseByTitles' },
     ],
     [
       WalletDeleteErrorCode.WalletInUseByCreditCards,
-      { message: 'finApp.features.wallet.errors.walletInUseByCreditCards' },
+      { message: 'finCore.features.wallet.errors.walletInUseByCreditCards' },
     ],
     [
       WalletDeleteErrorCode.WalletInUseByCreditCardsAndTitle,
       {
         message:
-          'finApp.features.wallet.errors.walletInUseByCreditCardsAndTitle',
+          'finCore.features.wallet.errors.walletInUseByCreditCardsAndTitle',
       },
     ],
   ]);

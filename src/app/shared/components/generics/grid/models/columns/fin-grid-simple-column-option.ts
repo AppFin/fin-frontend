@@ -5,7 +5,7 @@ import { IFinGridColumnOption } from './i-fin-grid-column-option';
 export class FinGridSimpleColumnOption<T> implements  IFinGridColumnOption<T> {
   public header: string;
   public width?: string;
-  public getValue: (item: T) => string;
+  public getValue: (item: T) => string | number | null;
   public customColumn?: () => Type<IFinGridCustomColumn<T>>;
 
   constructor(op: Partial<FinGridSimpleColumnOption<T>> = {}) {

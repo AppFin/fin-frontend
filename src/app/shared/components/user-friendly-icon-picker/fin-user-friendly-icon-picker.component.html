@@ -37,7 +37,7 @@
 
       <div class="custom-icon-section">
         <div class="custom-icon-header">
-          <label class="custom-icon-label">{{ 'finCore.iconPicker.customIcon' | finTranslate }}</label>
+          <label class="custom-icon-label">{{ 'finCore.features.shared.customIcon' | finTranslate }}</label>
           <button type="button" class="font-awesome-link" (click)="openFontAwesome()">
             <fin-icon icon="external-link" />
             <span>Font Awesome</span>
@@ -51,7 +51,7 @@
             type="text"
             [value]="customIconInput()"
             (input)="onCustomIconChange($event)"
-            placeholder="Digite o nome do ícone"
+            placeholder="finCore.features.shared.typeCustomIcon"
             class="icon-name-input"
             pInputText
           />

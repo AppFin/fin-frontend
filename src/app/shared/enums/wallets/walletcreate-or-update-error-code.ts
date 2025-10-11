@@ -15,5 +15,5 @@ export enum WalletCreateOrUpdateErrorCode
 }
 
 export const walletCreateOrUpdateErrorCodeMessages: ErrorMessagesMap<WalletCreateOrUpdateErrorCode> = new Map([
-  [WalletCreateOrUpdateErrorCode.NameAlreadyInUse, { message: 'finApp.features.wallet.errors.nameAlreadyInUse' }],
+  [WalletCreateOrUpdateErrorCode.NameAlreadyInUse, { message: 'finCore.features.wallet.errors.nameAlreadyInUse' }],
 ]);

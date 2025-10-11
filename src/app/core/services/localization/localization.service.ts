@@ -28,9 +28,14 @@ export class LocalizationService {
     return lang === 'pt-BR' ? '.' : ',';
   }
 
-  public getMoneyPrefix(): string {
+  public getMoneySymbol(): string {
     const lang = this.getLang();
     return lang === 'pt-BR' ? 'R$' : '$';
+  }
+
+  public getMoneyCode(): string {
+    const lang = this.getLang();
+    return lang === 'pt-BR' ? 'BRL' : 'USD';
   }
 
   public getDefaultDatetimeFormat(): string {

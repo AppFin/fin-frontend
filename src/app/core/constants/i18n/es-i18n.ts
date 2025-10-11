@@ -134,6 +134,7 @@ export const EsI18n: ITranslate = {
       required: 'Este campo es obligatorio',
       serverError: 'Error en el servidor',
       error: 'Error',
+      nameAlreadyInUse: "El nombre '{{nameAlreadyInUse}}' ya está en uso.",
     },
     features: {
       financialInstitutions: {
@@ -210,6 +211,24 @@ export const EsI18n: ITranslate = {
           inactivated: 'Inactivados',
           title: 'Inactivación',
         },
+        customColor: 'Color personalizado',
+        customIcon: 'Icono personalizado',
+        typeCustomIcon: 'Tipo de icono personalizado',
+      },
+      wallet: {
+        selfCustody: 'Auto-custodia',
+        name: 'Nombre',
+        title: 'Billeteras',
+        initialBalance: 'Saldo inicial',
+        currentBalance: 'Saldo actual',
+        financialInstitution: 'Institución financiera',
+        errors: {
+          walletInUseByTitles: "Billetera en uso por títulos",
+          walletInUseByCreditCards: "Billetera en uso por tarjetas de crédito",
+          walletInUseByCreditCardsAndTitle: "Billetera en uso por tarjetas de crédito y título",
+          walletInUseByActivatedCreditCards: "Billetera en uso por tarjetas de crédito activadas",
+          nameAlreadyInUse: "El nombre ya está en uso",
+        }
       },
     },
     grid: {

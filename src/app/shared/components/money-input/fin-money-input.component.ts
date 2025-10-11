@@ -37,15 +37,21 @@ export class FinMoneyInputComponent implements OnInit {
   private readonly localizationService = inject(LocalizationService);
 
   public ngOnInit(): void {
-    this.moneyPrefix.set(this.localizationService.getMoneyPrefix());
+    this.moneyPrefix.set(this.localizationService.getMoneySymbol());
   }
 
   public outputTransformFn = (value: string | number | null | undefined): string => {
     if (!value) return '0';
-    const cleaned = value
-      .toString()
+    const strValue = value.toString();
+    const isNegative = strValue.trim().startsWith('-');
+
+    let cleaned = strValue
       .replace(/[^\d,]/g, '')
       .replace(',', '.');
+
+    if (isNegative) {
+      cleaned = '-' + cleaned;
+    }
     const num = parseFloat(cleaned);
     return isNaN(num) ? '0' : num.toString();
   };

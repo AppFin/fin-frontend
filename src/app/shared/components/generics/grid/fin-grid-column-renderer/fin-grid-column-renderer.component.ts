@@ -20,6 +20,7 @@ import { FinGridDateTimeColumnOption } from '../models/columns/fin-grid-date-tim
 import { DatePipe } from '@angular/common';
 import { IFinGridCustomColumn } from '../interface/i-fin-grid-custom-column';
 import { FinGridIconColumnOption } from '../models/columns/fin-grid-icon-column-option';
+import { FinGridMoneyColumnOption } from '../models/columns/fin-grid-money-column-option';
 
 @Component({
   selector: 'fin-grid-column-renderer',
@@ -66,7 +67,8 @@ export class FinGridColumnRendererComponent<T> implements OnDestroy {
     if (columnOption instanceof FinGridSimpleColumnOption) {
       if (!columnOption?.getValue) throw new Error('Invalid column option');
       if (!item) throw new Error('Invalid item');
-      return columnOption.getValue(item);
+      let value = columnOption.getValue(item);
+      return value?.toString() ?? '';
     }
     if (columnOption instanceof FinGridDateTimeColumnOption) {
       if (!columnOption?.getDateValue) throw new Error('Invalid column option');
@@ -83,6 +85,9 @@ export class FinGridColumnRendererComponent<T> implements OnDestroy {
       return columnOption?.customColumn ? columnOption?.customColumn() : null;
     }
     if (columnOption instanceof FinGridIconColumnOption) {
+      return columnOption?.customColumn;
+    }
+    if (columnOption instanceof FinGridMoneyColumnOption) {
       return columnOption?.customColumn;
     }
     return null;

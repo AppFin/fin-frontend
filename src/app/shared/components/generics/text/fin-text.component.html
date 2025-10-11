@@ -112,7 +112,7 @@
 
   <ng-template #textContent>
     @if (!!text()) {
-      {{ text() | finTranslate }}
+      {{ (text() ?? '') | finTranslate }}
     } @else {
       <ng-content />
     }

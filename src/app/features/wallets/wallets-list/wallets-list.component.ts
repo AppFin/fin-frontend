@@ -28,6 +28,13 @@ import { FinGridSimpleColumnOption } from '../../../shared/components/generics/g
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
 import { WalletService } from '../../../shared/services/wallets/wallet.service';
 import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-back-http-error';
+import {
+  FinancialInstitutionWalletColumnComponent
+} from './FinancialInstitutionWalletColumnService/financial-institution-wallet-column.component';
+import {
+  FinGridMoneyColumnOption
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-money-column-option';
+
 
 type WalletsListFilterForm = {
   inactivated: FormControl<boolean | null>;
@@ -111,6 +118,19 @@ export class WalletsListComponent implements OnInit {
         getValue: (item) => item.name,
         header: 'finCore.features.wallet.name',
       }),
+      new FinGridSimpleColumnOption<WalletOutput>({
+        getValue: (item) => item.financialInstitutionId,
+        header: 'finCore.features.wallet.financialInstitution',
+        customColumn: () => FinancialInstitutionWalletColumnComponent
+      }),
+      new FinGridMoneyColumnOption<WalletOutput>({
+        header: 'finCore.features.wallet.initialBalance',
+        getValue: item => item.initialBalance
+      }),
+      new FinGridMoneyColumnOption<WalletOutput>({
+        header: 'finCore.features.wallet.currentBalance',
+        getValue: item => item.currentBalance
+      })
     ];
   }
 

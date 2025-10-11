@@ -25,7 +25,7 @@ export class FinTextComponent {
   public readonly type = input<FinTextType>('paragraph');
   public readonly textColor = input('');
   public readonly backgroundColor = input('transparent');
-  public readonly text = input('');
+  public readonly text = input<string | null | undefined>('');
   public readonly severity = input<FinSeverity | null>(null);
   public readonly fixedSize = input(true);
   public readonly tooltip = input('');

@@ -130,6 +130,7 @@ export const PtBrI18n: ITranslate = {
       required: 'Este campo é obrigatório',
       serverError: 'Erro no servidor',
       error: 'Erro',
+      nameAlreadyInUse: "O nome '{{nameAlreadyInUse}}' já está em uso.",
     },
     features: {
       financialInstitutions: {
@@ -205,6 +206,24 @@ export const PtBrI18n: ITranslate = {
         },
         icon: 'Ícone',
         color: 'Cor',
+        customColor: 'Cor customizado',
+        customIcon: 'Ícone customizado',
+        typeCustomIcon: 'Dígite o ícone customizado',
+      },
+      wallet: {
+        selfCustody: 'Carteira física',
+        name: 'Nome',
+        title: 'Carteiras',
+        initialBalance: 'Saldo inicial',
+        currentBalance: 'Saldo atual',
+        financialInstitution: 'Instituição financeira',
+        errors: {
+          walletInUseByTitles: "Carteira em uso por títulos",
+          walletInUseByCreditCards: "Carteira em uso por cartões de crédito",
+          walletInUseByCreditCardsAndTitle: "Carteira em uso por cartões de crédito e título",
+          walletInUseByActivatedCreditCards: "Carteira em uso por cartões de crédito ativados",
+          nameAlreadyInUse: "Nome já está em uso",
+        }
       },
     },
     grid: {
