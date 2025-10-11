@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FinSelectComponentOptions } from '../../../../shared/components/select/fin-select-component-options';
+import { FinSelectComponentOptions } from '../../../../shared/components/generics/select/fin-select-component-options';
 import { Observable, of } from 'rxjs';
 import { PagedOutput } from '../../../../shared/models/paginations/paged-output';
-import { FinSelectOption } from '../../../../shared/components/select/fin-select-option';
+import { FinSelectOption } from '../../../../shared/components/generics/select/fin-select-option';
 import { TitleCategoryType } from '../../../../shared/enums/title-categories/title-category-type';
-import { FinSelectComponent } from '../../../../shared/components/select/fin-select.component';
+import { FinSelectComponent } from '../../../../shared/components/generics/select/fin-select.component';
 import { FormControl } from '@angular/forms';
 
 @Component({

@@ -8,9 +8,9 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
+import { FinButtonComponent } from '../../../../../shared/components/generics/button/fin-button.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FinInputComponent } from '../../../../../shared/components/input/fin-input.component';
+import { FinInputComponent } from '../../../../../shared/components/generics/input/fin-input.component';
 import { UserCreateForm } from '../../../models/user-create-form';
 import { UserCreateService } from '../../../services/user-create.service';
 

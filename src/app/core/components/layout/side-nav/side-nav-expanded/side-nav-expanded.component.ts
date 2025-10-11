@@ -7,13 +7,13 @@ import {
   Signal,
   signal,
 } from '@angular/core';
-import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
-import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
+import { FinIconComponent } from '../../../../../shared/components/generics/icon/fin-icon.component';
+import { FinTextComponent } from '../../../../../shared/components/generics/text/fin-text.component';
 import { LayoutService } from '../../../../services/layout/layout.service';
 import { RouterLink } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { ifVerticalAnimation } from '../../../../../shared/animations/if-vertical.animation';
-import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
+import { FinButtonComponent } from '../../../../../shared/components/generics/button/fin-button.component';
 import { MenuService } from '../../../../services/layout/menu.service';
 import { MenuMetadata } from '../../../../types/layouts/menu-metadata';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';

@@ -1,20 +1,20 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
+import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuPosition } from '../../../core/enums/layouts/menu-position';
-import { FinSelectComponentOptions } from '../../../shared/components/select/fin-select-component-options';
-import { FinSelectOption } from '../../../shared/components/select/fin-select-option';
+import { FinSelectComponentOptions } from '../../../shared/components/generics/select/fin-select-component-options';
+import { FinSelectOption } from '../../../shared/components/generics/select/fin-select-option';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { finalize, first, firstValueFrom, map, Observable, of } from 'rxjs';
-import { FinSelectComponent } from '../../../shared/components/select/fin-select.component';
-import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
-import { FinToggleSwitchComponent } from '../../../shared/components/toggle-switch/fin-toggle-switch.component';
+import { FinSelectComponent } from '../../../shared/components/generics/select/fin-select.component';
+import { FinColorPickerComponent } from '../../../shared/components/generics/color-picker/fin-color-picker.component';
+import { FinToggleSwitchComponent } from '../../../shared/components/generics/toggle-switch/fin-toggle-switch.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { MenuOutput } from '../../../core/types/layouts/menu-output';
 import { MenuApiService } from '../../../core/services/layout/menu-api.service';
 import { MenuInput } from '../../../core/types/layouts/menu-input';
-import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
+import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
 
 type MenuInputForm = {
   frontRoute: FormControl<string>;

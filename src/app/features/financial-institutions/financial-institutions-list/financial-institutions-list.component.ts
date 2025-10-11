@@ -6,19 +6,19 @@ import {
   signal,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
-import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
+import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
+import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
 import { Observable, of, Subject, tap } from 'rxjs';
 import { FinancialInstitutionOutput } from '../../../shared/types/financial-institutions/financial-institution-output';
-import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
+import { FinGridSimpleColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
 import {
   FinGridIconColumnOption,
   FinIconOptions,
-} from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
-import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
+import { FinPageLayoutComponent } from '../../../shared/components/generics/page-layout/fin-page-layout.component';
 import { FinancialInstitutionType } from '../../../shared/enums/financial-institutions/financial-institution-type';
-import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
-import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
+import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
+import { FinButtonComponent } from '../../../shared/components/generics/button/fin-button.component';
 import { FinancialInstitutionApiService } from '../../../shared/services/financial-institutions/financial-institution-api.service';
 
 @Component({

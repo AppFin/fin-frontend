@@ -11,7 +11,7 @@ import {
   MatDrawerContent,
 } from '@angular/material/sidenav';
 import { MenuService } from '../../../services/layout/menu.service';
-import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
+import { FinIconComponent } from '../../../../shared/components/generics/icon/fin-icon.component';
 import { RouterLink } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { LayoutService } from '../../../services/layout/layout.service';

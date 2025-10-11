@@ -5,10 +5,10 @@ import {
   Input,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FinSelectComponent } from '../select/fin-select.component';
-import { FinSelectComponentOptions } from '../select/fin-select-component-options';
+import { FinSelectComponent } from '../generics/select/fin-select.component';
+import { FinSelectComponentOptions } from '../generics/select/fin-select-component-options';
 import { Observable, of } from 'rxjs';
-import { FinSelectOption } from '../select/fin-select-option';
+import { FinSelectOption } from '../generics/select/fin-select-option';
 import { PagedOutput } from '../../models/paginations/paged-output';
 
 @Component({
@@ -28,13 +28,12 @@ export class FinInactivatedFilterSelectComponent {
     `fin-inactivated-filter-select-${Math.random().toString(36).substring(2, 9)}`
   );
 
-
-  public readonly titleCategoryInactivatedSelectOptions =
+  public readonly inactivatedSelectOptions =
     new FinSelectComponentOptions({
-      getOptions: this.getTitleCategoryInactivatedOptions.bind(this),
+      getOptions: this.getInactivatedOptions.bind(this),
     });
 
-  private getTitleCategoryInactivatedOptions(): Observable<
+  private getInactivatedOptions(): Observable<
     PagedOutput<FinSelectOption<boolean | null>>
   > {
     return of({

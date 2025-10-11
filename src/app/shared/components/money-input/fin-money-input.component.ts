@@ -7,7 +7,7 @@ import {
   OnInit, signal,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FinInputComponent } from '../input/fin-input.component';
+import { FinInputComponent } from '../generics/input/fin-input.component';
 import { LocalizationService } from '../../../core/services/localization/localization.service';
 
 @Component({

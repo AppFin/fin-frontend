@@ -6,10 +6,10 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
-import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
-import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
-import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
+import { FinButtonComponent } from '../../../shared/components/generics/button/fin-button.component';
+import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
+import { FinPageLayoutComponent } from '../../../shared/components/generics/page-layout/fin-page-layout.component';
+import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, Observable, of, Subject, tap } from 'rxjs';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
@@ -20,9 +20,9 @@ import { TitleCategoryGetListInput } from '../../../shared/types/title-categorie
 import {
   FinGridIconColumnOption,
   FinIconOptions,
-} from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
-import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
-import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
+import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
+import { FinGridSimpleColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
 import { TitleCategoryType } from '../../../shared/enums/title-categories/title-category-type';
 import { FormControl, FormGroup } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

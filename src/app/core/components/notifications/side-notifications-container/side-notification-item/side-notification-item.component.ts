@@ -9,9 +9,9 @@ import {
   signal,
 } from '@angular/core';
 import { NotifyUserDto } from '../../../../types/notifications/notify-user-dto';
-import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
-import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
-import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
+import { FinIconComponent } from '../../../../../shared/components/generics/icon/fin-icon.component';
+import { FinTextComponent } from '../../../../../shared/components/generics/text/fin-text.component';
+import { FinButtonComponent } from '../../../../../shared/components/generics/button/fin-button.component';
 import { FinSeverity } from '../../../../types/themes/fin-severity';
 import { NotificationSeverity } from '../../../../enums/notifications/notification-severity';
 import { Router } from '@angular/router';

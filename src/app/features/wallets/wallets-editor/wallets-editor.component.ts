@@ -9,10 +9,13 @@ import { WalletOutput } from '../../../shared/types/wallets/wallet-output';
 import { FormControl, Validators } from '@angular/forms';
 import { nameAlreadyInUseValidator } from '../../../shared/validators/name-already-in-use-validator';
 import { WalletCreateOrUpdateErrorCode } from '../../../shared/enums/wallets/walletcreate-or-update-error-code';
-import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
-import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
-import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
+import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
+import { FinColorPickerComponent } from '../../../shared/components/generics/color-picker/fin-color-picker.component';
+import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
 import { FinMoneyInputComponent } from '../../../shared/components/money-input/fin-money-input.component';
+import {
+  FinFinancialInstitutionSelectComponent
+} from '../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component';
 
 @Component({
   selector: 'fin-wallets-editor',
@@ -21,6 +24,7 @@ import { FinMoneyInputComponent } from '../../../shared/components/money-input/f
     FinColorPickerComponent,
     FinInputComponent,
     FinMoneyInputComponent,
+    FinFinancialInstitutionSelectComponent,
   ],
   templateUrl: './wallets-editor.component.html',
   styleUrl: './wallets-editor.component.scss',

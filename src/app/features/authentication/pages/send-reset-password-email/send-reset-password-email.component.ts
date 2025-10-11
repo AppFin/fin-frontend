@@ -5,16 +5,16 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
-import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
-import { FinInputComponent } from '../../../../shared/components/input/fin-input.component';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
+import { FinIconComponent } from '../../../../shared/components/generics/icon/fin-icon.component';
+import { FinInputComponent } from '../../../../shared/components/generics/input/fin-input.component';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
+import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/authentication/auth.service';
 import { SendResetPasswordEmailForm } from '../../models/send-reset-password-email-form';
