@@ -130,6 +130,12 @@ export const EnI18n: ITranslate = {
       serverError: 'Error on server',
     },
     features: {
+      cardBrand: {
+        title: 'Card Brands',
+        name: 'Name',
+        icon: 'Icon',
+        color: 'Color',
+      },
       menus: {
         color: 'Color',
         frontRoute: 'Front route',

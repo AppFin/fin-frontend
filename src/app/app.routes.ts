@@ -4,6 +4,7 @@ import { authenticatedGuard } from './core/guards/authentication/authenticated.g
 import { MENUS_ROUTES } from './features/menus/menus-routes';
 import { adminGuard } from './core/guards/authentication/admin.guard';
 import { NOTIFICATIONS_ROUTES } from './features/notifications/notifications-routes';
+import { CARD_BRAND_ROUTES } from './features/card-brand/card-brand-routes';
 
 export const routes: Routes = [
   ...AUTH_ROUTES,
@@ -24,7 +25,8 @@ export const routes: Routes = [
             canActivate: [adminGuard],
             children: [
               ...MENUS_ROUTES,
-              ...NOTIFICATIONS_ROUTES
+              ...NOTIFICATIONS_ROUTES,
+              ...CARD_BRAND_ROUTES
             ]
           }
         ]

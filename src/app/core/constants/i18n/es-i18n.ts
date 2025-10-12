@@ -132,6 +132,12 @@ export const EsI18n: ITranslate = {
       serverError: 'Error en el servidor',
     },
     features: {
+      cardBrand: {
+        title: 'Banderas de Tarjeta',
+        name: 'Nombre',
+        icon: 'Ícono',
+        color: 'Color',
+      },
       menus: {
         color: 'Color',
         frontRoute: 'Ruta del front',

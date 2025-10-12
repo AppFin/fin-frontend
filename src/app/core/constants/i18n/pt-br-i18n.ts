@@ -128,6 +128,12 @@ export const PtBrI18n: ITranslate = {
       serverError: 'Erro no servidor',
     },
     features: {
+      cardBrand: {
+        title: 'Bandeiras de Cartão',
+        name: 'Nome',
+        icon: 'Ícone',
+        color: 'Cor',
+      },
       menus: {
         color: 'Cor',
         frontRoute: 'Rota do front',

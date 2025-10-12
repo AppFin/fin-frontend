@@ -123,6 +123,12 @@ export interface ITranslate {
       serverError: string;
     };
     features: {
+      cardBrand: {
+        title: string,
+        name: string,
+        icon: string,
+        color: string,
+      },
       menus: {
         color: string;
         frontRoute: string;
