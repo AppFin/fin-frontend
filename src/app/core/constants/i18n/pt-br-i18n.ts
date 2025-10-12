@@ -11,6 +11,7 @@ export const PtBrI18n: ITranslate = {
       delete: 'Excluir',
       edit: 'Editar',
       editing: 'Editando',
+      editingName: 'Editando {{name}}',
       loadMore: 'Carregar mais',
       loading: 'Carregando...',
       new: 'Novo',
@@ -26,6 +27,8 @@ export const PtBrI18n: ITranslate = {
       toggleToLightMode: 'Mudar para modo claro',
       tryDifferentTerms: 'Tente outros termos',
       unpin: 'Desfixar',
+      active: 'Ativar',
+      inactive: 'Inativar',
     },
     appName: 'App Fin',
     auth: {
@@ -126,8 +129,38 @@ export const PtBrI18n: ITranslate = {
       pattern: 'Formato inválido',
       required: 'Este campo é obrigatório',
       serverError: 'Erro no servidor',
+      error: 'Erro',
+      nameAlreadyInUse: "O nome '{{nameAlreadyInUse}}' já está em uso.",
     },
     features: {
+      financialInstitutions: {
+        code: 'Código',
+        bankName: 'Nome do Banco',
+        codeAndType: 'Código e Tipo',
+        codeHelp: 'Selecione o código do banco',
+        bankNameAndCode: 'Banco',
+        colorHelp: 'Cor da instituição em hexadecimal (ex: #FCD116)',
+        iconHelp: 'Nome do arquivo do ícone',
+        list: {
+          title: 'Instituições Financeiras',
+        },
+        name: 'Nome da Instituição',
+        nameHelp: 'Digite para autocompletar',
+        title: 'Instituições Financeiras',
+        type: 'Tipo de Instituição',
+      },
+      titleCategory: {
+        deleteMessage:
+          'Ao remover essa categória ela será removida de todos os títulos.',
+        name: 'Nome',
+        title: 'Categórias de títulos',
+        type: {
+          both: 'Ambos',
+          expense: 'Gasto',
+          income: 'Receitas',
+          title: 'Tipo',
+        },
+      },
       cardBrand: {
         title: 'Bandeiras de Cartão',
         name: 'Nome',
@@ -135,10 +168,8 @@ export const PtBrI18n: ITranslate = {
         color: 'Cor',
       },
       menus: {
-        color: 'Cor',
         frontRoute: 'Rota do front',
         hide: 'Oculto',
-        icon: 'Ícone',
         keyWord: 'Palavra-chave',
         leftTop: 'Superior esquerdo',
         name: 'Nome',
@@ -174,6 +205,31 @@ export const PtBrI18n: ITranslate = {
       },
       shared: {
         name: 'Nome',
+        inactivatedFilter: {
+          activated: 'Ativados',
+          inactivated: 'Inativados',
+          title: 'Inativação',
+        },
+        icon: 'Ícone',
+        color: 'Cor',
+        customColor: 'Cor customizado',
+        customIcon: 'Ícone customizado',
+        typeCustomIcon: 'Dígite o ícone customizado',
+      },
+      wallet: {
+        selfCustody: 'Carteira física',
+        name: 'Nome',
+        title: 'Carteiras',
+        initialBalance: 'Saldo inicial',
+        currentBalance: 'Saldo atual',
+        financialInstitution: 'Instituição financeira',
+        errors: {
+          walletInUseByTitles: "Carteira em uso por títulos",
+          walletInUseByCreditCards: "Carteira em uso por cartões de crédito",
+          walletInUseByCreditCardsAndTitle: "Carteira em uso por cartões de crédito e título",
+          walletInUseByActivatedCreditCards: "Carteira em uso por cartões de crédito ativados",
+          nameAlreadyInUse: "Nome já está em uso",
+        }
       },
     },
     grid: {

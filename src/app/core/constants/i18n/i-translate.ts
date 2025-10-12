@@ -9,7 +9,10 @@ export interface ITranslate {
       delete: string;
       edit: string;
       editing: string;
+      editingName: string;
       loadMore: string;
+      active: string;
+      inactive: string;
       loading: string;
       new: string;
       noResults: string;
@@ -113,6 +116,7 @@ export interface ITranslate {
     };
     errors: {
       email: string;
+      error: string;
       forbidden: string;
       googleLoginError: string;
       internalError: string;
@@ -121,8 +125,36 @@ export interface ITranslate {
       pattern: string;
       required: string;
       serverError: string;
+      nameAlreadyInUse: string;
     };
     features: {
+      financialInstitutions: {
+        code: string;
+        bankName: string;
+        codeAndType: string;
+        codeHelp: string;
+        bankNameAndCode: string;
+        colorHelp: string;
+        iconHelp: string;
+        list: {
+          title: string;
+        };
+        name: string;
+        nameHelp: string;
+        title: string;
+        type: string;
+      };
+      titleCategory: {
+        deleteMessage: string;
+        name: string;
+        title: string;
+        type: {
+          both: string;
+          expense: string;
+          income: string;
+          title: string;
+        };
+      };
       cardBrand: {
         title: string,
         name: string,
@@ -130,10 +162,8 @@ export interface ITranslate {
         color: string,
       },
       menus: {
-        color: string;
         frontRoute: string;
         hide: string;
-        icon: string;
         keyWord: string;
         leftTop: string;
         name: string;
@@ -169,7 +199,32 @@ export interface ITranslate {
       };
       shared: {
         name: string;
+        icon: string;
+        color: string;
+        customColor: string;
+        customIcon: string;
+        typeCustomIcon: string;
+        inactivatedFilter: {
+          activated: string;
+          inactivated: string;
+          title: string;
+        };
       };
+      wallet: {
+        selfCustody: string;
+        name: string;
+        title: string;
+        initialBalance: string;
+        currentBalance: string;
+        financialInstitution: string;
+        errors: {
+          walletInUseByTitles: string;
+          walletInUseByCreditCards: string;
+          walletInUseByCreditCardsAndTitle: string;
+          walletInUseByActivatedCreditCards: string;
+          nameAlreadyInUse: string;
+        }
+      }
     };
     grid: {
       confirmDelete: string;

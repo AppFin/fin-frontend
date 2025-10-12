@@ -1,13 +1,12 @@
 import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    HostListener,
-    inject,
-    signal,
-    viewChild,
-    DestroyRef,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  signal,
+  viewChild,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
@@ -18,13 +17,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
-import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
+import { FinIconComponent } from '../../../../../shared/components/generics/icon/fin-icon.component';
+import { FinTextComponent } from '../../../../../shared/components/generics/text/fin-text.component';
 import { FinTranslatePipe } from '../../../../pipes/translate/fin-translate.pipe';
 import { Router } from '@angular/router';
 import { MenuOutput } from '../../../../types/layouts/menu-output';
 import { MenuService } from '../../../../services/layout/menu.service';
-import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
+import { FinButtonComponent } from '../../../../../shared/components/generics/button/fin-button.component';
 
 @Component({
   selector: 'fin-search-dialog',

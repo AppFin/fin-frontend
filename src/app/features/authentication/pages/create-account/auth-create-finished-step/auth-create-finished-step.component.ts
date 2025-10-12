@@ -5,8 +5,8 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
-import { FinIconComponent } from '../../../../../shared/components/icon/fin-icon.component';
+import { FinButtonComponent } from '../../../../../shared/components/generics/button/fin-button.component';
+import { FinIconComponent } from '../../../../../shared/components/generics/icon/fin-icon.component';
 
 @Component({
   selector: 'fin-auth-create-finished-step',

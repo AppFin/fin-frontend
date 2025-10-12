@@ -7,21 +7,21 @@ import {
 } from '@angular/core';
 import { MenuApiService } from '../../../core/services/layout/menu-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
-import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
+import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
+import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
 import { Observable, of, Subject, tap } from 'rxjs';
 import { MenuOutput } from '../../../core/types/layouts/menu-output';
-import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
+import { FinGridSimpleColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
 import {
   FinGridIconColumnOption,
   FinIconOptions,
-} from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
 import { MenuPosition } from '../../../core/enums/layouts/menu-position';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
-import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
-import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
-import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
+import { FinPageLayoutComponent } from '../../../shared/components/generics/page-layout/fin-page-layout.component';
+import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
+import { FinButtonComponent } from '../../../shared/components/generics/button/fin-button.component';
 
 @Component({
   selector: 'fin-menus-list',
@@ -54,8 +54,10 @@ export class MenusListComponent implements OnInit {
       getColumns: () => of(this.getColumns()),
       getList: (input) => this.getMenus(input),
       reloadItens: this.reloadItens,
-      onDelete: this.delete.bind(this),
       onEdit: this.edit.bind(this),
+      deleteOptions: {
+        onDelete: this.delete.bind(this),
+      },
     });
 
     this.gridOptions.set(gridOptions);
@@ -73,13 +75,27 @@ export class MenusListComponent implements OnInit {
         header: 'finCore.features.menus.frontRoute',
       }),
       new FinGridIconColumnOption<MenuOutput>({
-        getValue: (item) =>
-          new FinIconOptions({
-            color: item.color,
+        getValue: (item) => {
+          return new FinIconOptions({
             icon: item.icon,
-          }),
-        header: 'finCore.features.menus.icon',
-        width: '50px',
+            tooltip: item.icon,
+            color: item.color,
+          });
+        },
+        header: 'finCore.features.shared.icon',
+        width: '3%',
+      }),
+      new FinGridIconColumnOption<MenuOutput>({
+        getValue: (item) => {
+          return new FinIconOptions({
+            icon: 'circle',
+            fontAwesomeType: 'fa-solid',
+            color: item.color,
+            tooltip: item.color,
+          });
+        },
+        header: 'finCore.features.shared.color',
+        width: '3%',
       }),
       new FinGridIconColumnOption<MenuOutput>({
         getValue: (item) => {

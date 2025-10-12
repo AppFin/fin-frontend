@@ -6,8 +6,8 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
+import { FinIconComponent } from '../../../../shared/components/generics/icon/fin-icon.component';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
 import {
   FormControl,
   FormGroup,
@@ -15,8 +15,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginInputForm } from '../../models/login-input-form';
-import { FinInputComponent } from '../../../../shared/components/input/fin-input.component';
-import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
+import { FinInputComponent } from '../../../../shared/components/generics/input/fin-input.component';
+import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
 import {
   AuthService,
   ExternalLoginProvider,

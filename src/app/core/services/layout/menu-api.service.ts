@@ -19,7 +19,7 @@ export class MenuApiService {
   public getList(
     input: PagedFilteredAndSortedInput
   ): Observable<PagedOutput<MenuOutput>> {
-    let params = toHttpParams(input);
+    const params = toHttpParams(input);
     return this.http.get<PagedOutput<MenuOutput>>(this.API_URL, { params });
   }
 

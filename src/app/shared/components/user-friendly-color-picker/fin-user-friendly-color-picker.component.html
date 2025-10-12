@@ -1,0 +1,65 @@
+<div class="color-picker-container">
+  <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
+    <div
+      class="color-display-wrapper"
+      [id]="id()"
+      [matMenuTriggerFor]="colorMenu"
+      [class.readonly]="readonly()"
+      [class.disabled-state]="disabled()"
+    >
+      <div class="color-preview" [style.background-color]="selectedColor"></div>
+      <div class="color-value">{{ selectedColor }}</div>
+      <fin-icon icon="chevron-down" class="dropdown-icon" />
+    </div>
+    <label [for]="id()">{{ label() | finTranslate }}</label>
+  </p-iftalabel>
+
+  <mat-menu #colorMenu="matMenu" class="color-picker-menu">
+    <div class="color-picker-content" (click)="$event.stopPropagation()">
+      <div class="color-grid">
+        @for (color of predefinedColors; track color) {
+          <div
+            class="color-option"
+            [class.selected]="isColorSelected(color)"
+            [style.background-color]="color"
+            (click)="selectColor(color)"
+          >
+            @if (isColorSelected(color)) {
+              <fin-icon icon="check" class="check-icon" />
+            }
+          </div>
+        }
+      </div>
+
+      <div class="custom-color-section">
+        <label class="custom-color-label">{{ 'finCore.features.shared.customColor' | finTranslate }}</label>
+        <div class="custom-color-input-wrapper">
+          <input
+            #colorInput
+            type="color"
+            [value]="customColorInput()"
+            (change)="onCustomColorChange($event)"
+            class="native-color-input"
+          />
+          <input
+            type="text"
+            [value]="customColorInput()"
+            (input)="onCustomColorChange($event)"
+            maxlength="7"
+            placeholder="#000000"
+            class="hex-input"
+            pInputText
+          />
+        </div>
+      </div>
+    </div>
+  </mat-menu>
+
+  <div class="sub-text">
+    @if (!hasError()) {
+      <fin-text [text]="helpText()" class="info-sub" type="info"/>
+    } @else {
+      <fin-text [text]="errorMessageEffective()" class="error-sub" type="info"/>
+    }
+  </div>
+</div>

@@ -494,7 +494,7 @@ export const PrimeCustomPreset = definePreset(Aura, {
             focusBorderColor: '#f87b07',
             invalidBorderColor: '#f21b3f',
             color: '#212529',
-          }
+          },
         },
         dark: {
           root: {
@@ -509,9 +509,9 @@ export const PrimeCustomPreset = definePreset(Aura, {
             focusBorderColor: '#fdc570',
             invalidBorderColor: '#f21b3f',
             color: '#f8f9fa',
-          }
-        }
-      }
+          },
+        },
+      },
     },
     multiselect: {
       colorScheme: {
@@ -615,6 +615,35 @@ export const PrimeCustomPreset = definePreset(Aura, {
         },
       },
     },
+    select: {
+      colorScheme: {
+        dark: {
+          root: {
+            overlay: {
+              color: '#e9ecef',
+            },
+            option: {
+              color: '#e9ecef',
+              focusBackground: '#fcc46f',
+              selectedBackground: '#fcc46f',
+              selectedFocusBackground: '#fcc46f'
+            },
+          },
+        },
+        light: {
+          root: {
+            overlay: {
+              color: '#e9ecef',
+            },
+            option: {
+              focusBackground: '#fcc46f',
+              selectedBackground: '#fcc46f',
+              selectedFocusBackground: '#fcc46f'
+            },
+          },
+        },
+      },
+    },
     editor: {
       colorScheme: {
         light: {
@@ -643,7 +672,8 @@ export const PrimeCustomPreset = definePreset(Aura, {
             borderColor: '#e9ecef',
 
             color: '#212529',
-            shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
             padding: '0.25rem 0',
             optionFocusBackground: '#fdc570',
             optionColor: '#212529',
@@ -676,7 +706,8 @@ export const PrimeCustomPreset = definePreset(Aura, {
             background: '#1a1d23',
             borderColor: '#212529',
             color: '#e9ecef',
-            shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+            shadow:
+              '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
             padding: '0.25rem 0',
             optionFocusBackground: '#212529',
             optionColor: '#e9ecef',

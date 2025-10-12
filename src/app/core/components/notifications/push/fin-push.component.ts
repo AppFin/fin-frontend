@@ -11,9 +11,9 @@ import {
   MAT_SNACK_BAR_DATA,
   MatSnackBarRef,
 } from '@angular/material/snack-bar';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
-import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
-import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
+import { FinIconComponent } from '../../../../shared/components/generics/icon/fin-icon.component';
+import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
 import { isHtml } from '../../../../shared/functions/is-html';
 import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html/safe-html.pipe';
 import { FinSeverity } from '../../../types/themes/fin-severity';

@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../../services/theme/theme.service';
-import { FinButtonComponent } from '../../../../shared/components/button/fin-button.component';
+import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
 
 @Component({
   selector: 'fin-theme-toggle',

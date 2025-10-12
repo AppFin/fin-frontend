@@ -16,14 +16,14 @@ import {
 } from '@angular/forms';
 import { UserStartCreateInputForm } from '../../../models/user-start-create-input';
 import { passwordValidator } from '../../../validators/password-validator';
-import { FinInputComponent } from '../../../../../shared/components/input/fin-input.component';
+import { FinInputComponent } from '../../../../../shared/components/generics/input/fin-input.component';
 import { PasswordRulesInfoComponent } from '../../../components/password-rules-info/password-rules-info.component';
-import { FinButtonComponent } from '../../../../../shared/components/button/fin-button.component';
+import { FinButtonComponent } from '../../../../../shared/components/generics/button/fin-button.component';
 import { matchPasswordValidator } from '../../../validators/match-password-validator';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { InputOtpModule } from 'primeng/inputotp';
 import { MessageModule } from 'primeng/message';
-import { FinTextComponent } from '../../../../../shared/components/text/fin-text.component';
+import { FinTextComponent } from '../../../../../shared/components/generics/text/fin-text.component';
 import { UserCreateService } from '../../../services/user-create.service';
 import { interval, map, takeWhile } from 'rxjs';
 import { TimerFomatterPipe } from '../../../../../shared/pipes/timer-formatter/timer-fomatter.pipe';

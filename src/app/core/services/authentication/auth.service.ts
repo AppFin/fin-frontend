@@ -70,11 +70,13 @@ export class AuthService {
   }
 
   public async logout(): Promise<void> {
-    const request = this.api.logout().pipe(catchError(() => of()));
-    await firstValueFrom(request);
-
-    this.clearAuth();
-    await this.router.navigate(['/authentication/login']);
+    try {
+      const request = this.api.logout().pipe(catchError(() => of()));
+      await firstValueFrom(request);
+    } finally {
+      this.clearAuth();
+      await this.router.navigate(['/authentication/login']);
+    }
   }
 
   public async externalLogin(provider: ExternalLoginProvider): Promise<void> {
@@ -215,11 +217,11 @@ export class AuthService {
     if (!token) return;
     try {
       const payload = jwtDecode(token) as {
-        userId?: string,
-        role?: 'Admin' | 'User',
-        imageUrl?: string,
-        tenantId?: string,
-        unique_name?: string,
+        userId?: string;
+        role?: 'Admin' | 'User';
+        imageUrl?: string;
+        tenantId?: string;
+        unique_name?: string;
       };
 
       const user = new UserProps({

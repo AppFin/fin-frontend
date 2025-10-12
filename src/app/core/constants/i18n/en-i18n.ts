@@ -11,6 +11,7 @@ export const EnI18n: ITranslate = {
       delete: 'Delete',
       edit: 'Edit',
       editing: 'Editing',
+      editingName: 'Editing {{name}}',
       loadMore: 'Load more',
       loading: 'Loading...',
       new: 'New',
@@ -26,6 +27,8 @@ export const EnI18n: ITranslate = {
       toggleToLightMode: 'Toggle to light mode',
       tryDifferentTerms: 'Try different terms',
       unpin: 'Unpin',
+      active: 'Active',
+      inactive: 'Inactive',
     },
     appName: 'Fin App',
     auth: {
@@ -128,8 +131,38 @@ export const EnI18n: ITranslate = {
       pattern: 'Invalid format',
       required: 'This field is required',
       serverError: 'Error on server',
+      nameAlreadyInUse: "Name '{{nameAlreadyInUse}}' already in use.",
+      error: 'Error',
     },
     features: {
+      financialInstitutions: {
+        code: 'Code',
+        bankName: 'Bank Name',
+        codeAndType: 'Code and Type',
+        codeHelp: '',
+        bankNameAndCode: 'Bank',
+        colorHelp: '',
+        iconHelp: '',
+        list: {
+          title: 'Financial Institutions',
+        },
+        name: 'Institution Name',
+        nameHelp: '',
+        title: 'Financial Institutions',
+        type: 'Institution Type',
+      },
+      titleCategory: {
+        deleteMessage:
+          'When removing this category it will be removed from all titles.',
+        name: 'Name',
+        title: 'Title Categories',
+        type: {
+          both: 'Both',
+          expense: 'Expense',
+          income: 'Income',
+          title: 'Type',
+        },
+      },
       cardBrand: {
         title: 'Card Brands',
         name: 'Name',
@@ -175,7 +208,34 @@ export const EnI18n: ITranslate = {
         users: 'Users',
       },
       shared: {
+        color: 'Color',
+        icon: 'Icon',
         name: 'Name',
+        inactivatedFilter: {
+          activated: 'Activated',
+          inactivated: 'Inactivated',
+          title: 'Inactivation',
+        },
+        customColor: 'Custom colo',
+        customIcon: 'Custom icon',
+        typeCustomIcon: 'Type custom icon',
+      },
+      wallet: {
+        selfCustody: 'Self-custody',
+        name: 'Name',
+        title: 'Wallets',
+        initialBalance: 'Initial balance',
+        currentBalance: 'Current balance',
+        financialInstitution: 'Financial Institution',
+        errors: {
+          walletInUseByTitles: 'Wallet in use by titles',
+          walletInUseByCreditCards: 'Wallet in use by credit cards',
+          walletInUseByCreditCardsAndTitle:
+            'Wallet in use by credit cards and title',
+          walletInUseByActivatedCreditCards:
+            'Wallet in use by activated credit cards',
+          nameAlreadyInUse: 'Name already in use',
+        },
       },
     },
     grid: {

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal, Signal, } from '@angular/core';
 import { ButtonFilterComponent } from '../button-filter/button-filter.component';
-import { FinIconComponent } from '../../../../shared/components/icon/fin-icon.component';
-import { FinTextComponent } from '../../../../shared/components/text/fin-text.component';
-import { FinUserImageComponent } from '../../../../shared/components/user-image/fin-user-image.component';
+import { FinIconComponent } from '../../../../shared/components/generics/icon/fin-icon.component';
+import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
+import { FinUserImageComponent } from '../../../../shared/components/generics/user-image/fin-user-image.component';
 import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 import { Toolbar } from 'primeng/toolbar';
 import { LayoutService } from '../../../services/layout/layout.service';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FinTextComponent } from '../../shared/components/text/fin-text.component';
+import { FinTextComponent } from '../../shared/components/generics/text/fin-text.component';
 
 @Component({
   selector: 'fin-authentication',
