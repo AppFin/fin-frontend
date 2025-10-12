@@ -170,10 +170,8 @@ export const EnI18n: ITranslate = {
         color: 'Color',
       },
       menus: {
-        color: 'Color',
         frontRoute: 'Front route',
         hide: 'Hide',
-        icon: 'Icon',
         keyWord: 'Keyword',
         leftTop: 'Left top',
         name: 'Name',

@@ -6,9 +6,12 @@ import { CardBrandApiService } from '../../../core/services/card-brand/card-bran
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { CardBrandOutput } from '../../../core/types/card-brands/card-brand-output';
 import { CardBrandInput } from '../../../core/types/card-brands/card-brand-input';
-import { EditorLayoutComponent } from '../../../shared/components/page-layout/editor-layout/editor-layout.component';
-import { FinInputComponent } from '../../../shared/components/input/fin-input.component';
-import { FinColorPickerComponent } from '../../../shared/components/color-picker/fin-color-picker.component';
+import { FinColorPickerComponent } from '../../../shared/components/generics/color-picker/fin-color-picker.component';
+import {
+  EditorLayoutComponent
+} from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
+import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
+
 
 type CardBrandInputForm = {
   name: FormControl<string>;

@@ -5,13 +5,18 @@ import { CardBrandApiService } from '../../../core/services/card-brand/card-bran
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { CardBrandOutput } from '../../../core/types/card-brands/card-brand-output';
-import { FinPageLayoutComponent } from '../../../shared/components/page-layout/fin-page-layout.component';
-import { FinGridComponent } from '../../../shared/components/grid/fin-grid.component';
-import { FinButtonComponent } from '../../../shared/components/button/fin-button.component';
-import { FinGridOptions } from '../../../shared/components/grid/models/fin-grid-options';
-import { IFinGridColumnOption } from '../../../shared/components/grid/models/columns/i-fin-grid-column-option';
-import { FinGridSimpleColumnOption } from '../../../shared/components/grid/models/columns/fin-grid-simple-column-option';
-import { FinGridIconColumnOption, FinIconOptions } from '../../../shared/components/grid/models/columns/fin-grid-icon-column-option';
+import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
+import { FinButtonComponent } from '../../../shared/components/generics/button/fin-button.component';
+import { FinPageLayoutComponent } from '../../../shared/components/generics/page-layout/fin-page-layout.component';
+import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
+import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
+import {
+  FinGridIconColumnOption, FinIconOptions,
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
+import {
+  FinGridSimpleColumnOption
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
+
 
 @Component({
   selector: 'fin-card-brand-list',
@@ -45,7 +50,9 @@ export class CardBrandListComponent implements OnInit {
       getColumns: () => of(this.getColumns()),
       getList: (input) => this.getCardBrands(input),
       reloadItens: this.reloadItens,
-      onDelete: this.delete.bind(this),
+      deleteOptions: {
+        onDelete: this.delete.bind(this),
+      },
       onEdit: this.edit.bind(this),
     });
 
