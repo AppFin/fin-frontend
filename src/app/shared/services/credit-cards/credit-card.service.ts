@@ -18,7 +18,10 @@ import {
   CreditCardToggleInactiveErrorCode,
   CreditCardToggleInactiveErrorCodeMessages,
 } from '../../enums/credit-cards/credit-card-toggle-inactive-error-code';
-import { CreditCardDeleteErrorCode } from '../../enums/credit-cards/credit-card-delete-error-code';
+import {
+  CreditCardDeleteErrorCode,
+  CreditCardDeleteErrorCodeMessages,
+} from '../../enums/credit-cards/credit-card-delete-error-code';
 
 @Injectable({
   providedIn: 'root',
@@ -115,7 +118,7 @@ export class CreditCardService {
       .delete(id)
       .pipe(
         handleFinBackHttpErrorAndDisplayMessage<CreditCardDeleteErrorCode>(
-          CreditCardDewleteErrorCodeMessages,
+          CreditCardDeleteErrorCodeMessages,
           this.notifyService
         )
       );
