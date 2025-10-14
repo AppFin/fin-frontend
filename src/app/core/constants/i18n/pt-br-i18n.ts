@@ -161,6 +161,12 @@ export const PtBrI18n: ITranslate = {
           title: 'Tipo',
         },
       },
+      cardBrand: {
+        title: 'Bandeiras de Cartão',
+        name: 'Nome',
+        icon: 'Ícone',
+        color: 'Cor',
+      },
       menus: {
         frontRoute: 'Rota do front',
         hide: 'Oculto',

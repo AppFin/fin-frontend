@@ -155,6 +155,12 @@ export interface ITranslate {
           title: string;
         };
       };
+      cardBrand: {
+        title: string,
+        name: string,
+        icon: string,
+        color: string,
+      },
       menus: {
         frontRoute: string;
         hide: string;

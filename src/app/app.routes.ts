@@ -5,6 +5,7 @@ import { MENUS_ROUTES } from './features/menus/menus-routes';
 import { adminGuard } from './core/guards/authentication/admin.guard';
 import { FINANCIAL_INSTITUTIONS_ROUTES } from './features/financial-institutions/financial-institutions-routes';
 import { NOTIFICATIONS_ROUTES } from './features/notifications/notifications-routes';
+import { CARD_BRAND_ROUTES } from './features/card-brand/card-brand-routes';
 import { TITLE_CATEGORIES_ROUTES } from './features/title-categories/title-categories-routes';
 import { WALLETS_ROUTES } from './features/wallets/wallets-routes';
 
@@ -28,7 +29,8 @@ export const routes: Routes = [
             children: [
               ...MENUS_ROUTES,
               ...FINANCIAL_INSTITUTIONS_ROUTES,
-              ...NOTIFICATIONS_ROUTES
+              ...NOTIFICATIONS_ROUTES,
+              ...CARD_BRAND_ROUTES
             ]
           },
           ...WALLETS_ROUTES,

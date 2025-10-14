@@ -163,6 +163,12 @@ export const EnI18n: ITranslate = {
           title: 'Type',
         },
       },
+      cardBrand: {
+        title: 'Card Brands',
+        name: 'Name',
+        icon: 'Icon',
+        color: 'Color',
+      },
       menus: {
         frontRoute: 'Front route',
         hide: 'Hide',

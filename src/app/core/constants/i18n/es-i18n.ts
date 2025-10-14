@@ -137,6 +137,12 @@ export const EsI18n: ITranslate = {
       nameAlreadyInUse: "El nombre '{{nameAlreadyInUse}}' ya está en uso.",
     },
     features: {
+      cardBrand: {
+        title: 'Banderas de Tarjeta',
+        name: 'Nombre',
+        icon: 'Ícono',
+        color: 'Color',
+      },
       financialInstitutions: {
         code: 'Código',
         bankName: 'Nombre del Banco',
