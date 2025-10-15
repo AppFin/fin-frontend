@@ -37,7 +37,7 @@
 <p-menu #menu [popup]="true">
   <ng-template #start>
     <div class="menu-btn-container">
-      <button class="option">
+      <button class="option" routerLink="/settings" (click)="menu.hide()">
         <fin-icon icon="cog" severity="secondary" />
         <fin-text text="finCore.layout.settings" type="paragraph" />
       </button>

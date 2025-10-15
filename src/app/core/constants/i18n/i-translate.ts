@@ -224,6 +224,59 @@ export interface ITranslate {
       unpinnedMenus: string;
       xNotifications: string;
     };
+    settings: {
+      title: string;
+      loading: string;
+      sections: {
+        profile: string;
+        appearance: string;
+        preferences: string;
+      };
+      profile: {
+        title: string;
+        description: string;
+        firstName: string;
+        lastName: string;
+        displayName: string;
+        displayNameHelp: string;
+        gender: string;
+        birthDate: string;
+        imageUrl: string;
+        genderOptions: {
+          man: string;
+          woman: string;
+          other: string;
+        };
+      };
+      appearance: {
+        title: string;
+        description: string;
+        theme: string;
+        currentTheme: string;
+        lightTheme: string;
+        darkTheme: string;
+        toggleTheme: string;
+        lightMode: string;
+        darkMode: string;
+      };
+      preferences: {
+        title: string;
+        description: string;
+        comingSoon: string;
+      };
+      actions: {
+        cancel: string;
+        edit: string;
+        save: string;
+        saving: string;
+      };
+      messages: {
+        saveSuccess: string;
+        saveError: string;
+        loadError: string;
+        unauthenticated: string;
+      };
+    };
     sharedComponents: {
       grid: {
         noData: string;

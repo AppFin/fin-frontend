@@ -25,4 +25,12 @@ export class UserApiService {
   public get(id: string): Observable<UserDto> {
     return this.http.get<UserDto>(this.API_URL + id);
   }
+
+  public updateTheme(userId: string, theme: string): Observable<UserDto> {
+    return this.http.patch<UserDto>(
+      this.API_URL + userId + '/theme',
+      JSON.stringify(theme),
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+  }
 }

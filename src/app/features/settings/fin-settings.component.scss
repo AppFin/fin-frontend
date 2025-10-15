@@ -1,0 +1,21 @@
+.edit-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.fin-settings__theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--surface-card);
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}

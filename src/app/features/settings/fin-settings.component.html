@@ -1,0 +1,72 @@
+﻿<fin-editor-layout
+  [title]="'finCore.settings.title'"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="cancel()"
+>
+  @if (!loading()) {
+    @if (!isEditing()) {
+      <div class="col-12 edit-button-container">
+        <fin-button
+          [text]="'finCore.actions.edit' | finTranslate"
+          (click)="enableEdit()">
+          <fin-icon icon="edit" slot="left" />
+        </fin-button>
+      </div>
+    }
+
+    <fin-input
+      class="col-6"
+      [label]="'finCore.settings.profile.firstName' | finTranslate"
+      [formControl]="formGroup.controls.firstName"
+      [required]="true" />
+
+    <fin-input
+      class="col-6"
+      [label]="'finCore.settings.profile.lastName' | finTranslate"
+      [formControl]="formGroup.controls.lastName"
+      [required]="true" />
+
+    <fin-input
+      class="col-6"
+      [label]="'finCore.settings.profile.displayName' | finTranslate"
+      [formControl]="formGroup.controls.displayName" />
+
+    <fin-select
+      class="col-6"
+      [label]="'finCore.settings.profile.gender' | finTranslate"
+      [options]="genderSelectOptions"
+      [formControl]="formGroup.controls.gender" />
+
+    <fin-input
+      class="col-6"
+      [label]="'finCore.settings.profile.birthDate' | finTranslate"
+      [formControl]="formGroup.controls.birthDate"
+      type="date" />
+
+    <fin-input
+      class="col-6"
+      [label]="'finCore.settings.profile.imageUrl' | finTranslate"
+      [formControl]="formGroup.controls.imagePublicUrl" />
+
+    <div class="col-12">
+      <div class="fin-settings__theme">
+        <div class="fin-settings__theme-info">
+          <fin-text [text]="'finCore.settings.appearance.theme' | finTranslate" />
+          <fin-text
+            [text]="(isDarkMode() ? 'finCore.settings.appearance.darkMode' : 'finCore.settings.appearance.lightMode') | finTranslate"
+            [type]="'info'" />
+        </div>
+        
+        <fin-button
+          [text]="'finCore.settings.appearance.toggleTheme' | finTranslate"
+          (click)="toggleTheme()">
+          <fin-icon [icon]="isDarkMode() ? 'light_mode' : 'dark_mode'" slot="left" />
+        </fin-button>
+      </div>
+    </div>
+  }
+</fin-editor-layout>

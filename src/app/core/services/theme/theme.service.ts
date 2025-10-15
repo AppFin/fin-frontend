@@ -4,12 +4,15 @@ import {
   BACKGROUND_LIGHT,
 } from '../../../../styles/variables';
 import { StorageService } from '../app/storage.service';
+import { UserSettingsApiService } from '../user-settings/user-settings-api.service';
+import { UserTheme } from '../../../shared/models/users/settings/user-settings-dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
   private readonly storageService = inject(StorageService);
+  private readonly userSettingsApiService = inject(UserSettingsApiService);
 
   private readonly MANUALLY_SET_THEME_KEY = 'manually-set-theme';
   private readonly THEME_KEY = 'theme';
@@ -34,7 +37,9 @@ export class ThemeService {
 
   public toggleTheme(): void {
     this.storageService.saveToLocalStorage(this.MANUALLY_SET_THEME_KEY, '1');
-    this.setDarkMode(!this.darkModeSignal());
+    const newTheme = !this.darkModeSignal();
+    this.setDarkMode(newTheme);
+    this.syncThemeToBackend(newTheme ? 'dark' : 'light');
   }
 
   public get isDarkMode(): boolean {
@@ -43,6 +48,11 @@ export class ThemeService {
 
   public setDarkMode(isDark: boolean): void {
     this.darkModeSignal.set(isDark);
+  }
+
+  public loadUserTheme(theme: UserTheme | string): void {
+    const isDark = theme === 'dark';
+    this.setDarkMode(isDark);
   }
 
   private getInitialTheme(): boolean {
@@ -74,5 +84,15 @@ export class ThemeService {
         isDark ? BACKGROUND_DARK : BACKGROUND_LIGHT
       );
     }
+  }
+
+  private syncThemeToBackend(themeStr: string): void {
+    const theme = themeStr as UserTheme;
+    
+    this.userSettingsApiService.updateTheme(theme).subscribe({
+      error: (error: unknown) => {
+        console.error('Erro ao sincronizar tema com backend:', error);
+      },
+    });
   }
 }

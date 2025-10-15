@@ -9,6 +9,7 @@ export class UserDto {
   public gender: UserGender | null;
   public birthDate: Date | null;
   public imagePublicUrl: string | null;
+  public theme: string;
   public isAdmin: boolean;
   public isActivity: boolean;
   public tenants: Tenant[];
