@@ -98,7 +98,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
           });
         },
         header: 'finCore.features.shared.icon',
-        width: '3%',
+        width: '4%',
       }),
       new FinGridIconColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => {
