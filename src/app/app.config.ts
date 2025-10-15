@@ -25,12 +25,15 @@ import { appInterceptor } from './core/interceptors/app.interceptor';
 import { provideToastr } from 'ngx-toastr';
 import { localeIdFactory } from './core/functions/locale-factory';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { provideCachedEntityServices } from './shared/services/abstractions/cached-entities/provide-cached-entity-services';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor, appInterceptor, errorInterceptor])),
+    provideHttpClient(
+      withInterceptors([authInterceptor, appInterceptor, errorInterceptor])
+    ),
     provideHttpClient(),
     provideAnimationsAsync(),
     provideToastr({
@@ -57,8 +60,9 @@ export const appConfig: ApplicationConfig = {
     ),
     {
       provide: LOCALE_ID,
-      useFactory: localeIdFactory
+      useFactory: localeIdFactory,
     },
+    provideCachedEntityServices(),
     provideAppInitializer(finAppInitializer),
   ],
 };

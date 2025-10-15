@@ -6,6 +6,7 @@ import {
   ApiFetchFunction,
   fetchAllItemsInChunks,
 } from '../../../functions/fetch-all-items-in-chunks';
+import { Observable } from 'rxjs';
 
 /**
  * @abstract
@@ -122,7 +123,7 @@ export abstract class CachedEntityService<
    * Must be implemented by the subclass to provide the function responsible for
    * fetching a paged output of entities from the external API or source.
    */
-  public abstract getList: ApiFetchFunction<TEntity, TFilter>;
+  public abstract getList(filter: TFilter): Observable<PagedOutput<TEntity>>;
 
   /**
    * @abstract

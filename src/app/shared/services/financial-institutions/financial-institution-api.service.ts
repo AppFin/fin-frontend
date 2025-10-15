@@ -21,9 +21,9 @@ export class FinancialInstitutionApiService extends CachedEntityService<
     ensureTrailingSlash(environment.apiUrl) + 'financial-institutions/';
   private readonly http = inject(HttpClient);
 
-  public override getList = (
+  public override getList (
     input: FinancialInstitutionGetListInput
-  ): Observable<PagedOutput<FinancialInstitutionOutput>> => {
+  ): Observable<PagedOutput<FinancialInstitutionOutput>> {
     const params = toHttpParams(input);
     return this.http.get<PagedOutput<FinancialInstitutionOutput>>(
       this.API_URL,
