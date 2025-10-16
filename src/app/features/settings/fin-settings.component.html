@@ -11,7 +11,7 @@
     @if (!isEditing()) {
       <div class="col-12 edit-button-container">
         <fin-button
-          [text]="'finCore.actions.edit' | finTranslate"
+          [text]="'finCore.actions.edit'"
           (click)="enableEdit()">
           <fin-icon icon="edit" slot="left" />
         </fin-button>
@@ -20,49 +20,49 @@
 
     <fin-input
       class="col-6"
-      [label]="'finCore.settings.profile.firstName' | finTranslate"
+      [label]="'finCore.settings.profile.firstName'"
       [formControl]="formGroup.controls.firstName"
       [required]="true" />
 
     <fin-input
       class="col-6"
-      [label]="'finCore.settings.profile.lastName' | finTranslate"
+      [label]="'finCore.settings.profile.lastName'"
       [formControl]="formGroup.controls.lastName"
       [required]="true" />
 
     <fin-input
       class="col-6"
-      [label]="'finCore.settings.profile.displayName' | finTranslate"
+      [label]="'finCore.settings.profile.displayName'"
       [formControl]="formGroup.controls.displayName" />
 
     <fin-select
       class="col-6"
-      [label]="'finCore.settings.profile.gender' | finTranslate"
+      [label]="'finCore.settings.profile.gender'"
       [options]="genderSelectOptions"
       [formControl]="formGroup.controls.gender" />
 
-    <fin-input
+    <fin-datetime
       class="col-6"
-      [label]="'finCore.settings.profile.birthDate' | finTranslate"
+      [label]="'finCore.settings.profile.birthDate'"
       [formControl]="formGroup.controls.birthDate"
       type="date" />
 
     <fin-input
       class="col-6"
-      [label]="'finCore.settings.profile.imageUrl' | finTranslate"
+      [label]="'finCore.settings.profile.imageUrl'"
       [formControl]="formGroup.controls.imagePublicUrl" />
 
     <div class="col-12">
       <div class="fin-settings__theme">
         <div class="fin-settings__theme-info">
-          <fin-text [text]="'finCore.settings.appearance.theme' | finTranslate" />
+          <fin-text [text]="'finCore.settings.appearance.theme'" />
           <fin-text
-            [text]="(isDarkMode() ? 'finCore.settings.appearance.darkMode' : 'finCore.settings.appearance.lightMode') | finTranslate"
+            [text]="(isDarkMode() ? 'finCore.settings.appearance.darkMode' : 'finCore.settings.appearance.lightMode')"
             [type]="'info'" />
         </div>
         
         <fin-button
-          [text]="'finCore.settings.appearance.toggleTheme' | finTranslate"
+          [text]="'finCore.settings.appearance.toggleTheme'"
           (click)="toggleTheme()">
           <fin-icon [icon]="isDarkMode() ? 'light_mode' : 'dark_mode'" slot="left" />
         </fin-button>

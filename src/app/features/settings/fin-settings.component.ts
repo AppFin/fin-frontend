@@ -18,16 +18,21 @@ import { NotificationSeverity } from '../../core/enums/notifications/notificatio
 import { FinSelectComponentOptions } from '../../shared/components/select/fin-select-component-options';
 import { PagedOutput } from '../../shared/models/paginations/paged-output';
 import { FinSelectOption } from '../../shared/components/select/fin-select-option';
-import { UserSettingsDto } from '../../shared/models/users/settings/user-settings-dto';
-import { UserSettingsUpdateInput } from '../../shared/models/users/settings/user-settings-update-input';
+import { UserSettingsInput } from '../../shared/models/users/settings/user-settings-input';
+import { UserSettingsOutput } from '../../shared/models/users/settings/user-settings-output';
+import { FinDatetimeComponent } from "../../shared/components/datetime/fin-date-time.component";
 
 type UserSettingsForm = {
   firstName: FormControl<string>;
   lastName: FormControl<string>;
-  displayName: FormControl<string>;
+  displayName: FormControl<string | null>;
   gender: FormControl<UserGender | null>;
-  birthDate: FormControl<string>;
-  imagePublicUrl: FormControl<string>;
+  birthDate: FormControl<Date | null>;
+  imagePublicUrl: FormControl<string | null>;
+  theme: FormControl<string>;
+  locale: FormControl<string>;
+  timezone: FormControl<string>;
+  currencyCode: FormControl<string>;
 };
 
 @Component({
@@ -41,7 +46,8 @@ type UserSettingsForm = {
     FinButtonComponent,
     EditorLayoutComponent,
     FinTranslatePipe,
-  ],
+    FinDatetimeComponent
+],
   templateUrl: './fin-settings.component.html',
   styleUrl: './fin-settings.component.scss',
 })
@@ -64,7 +70,9 @@ export class FinSettingsComponent implements OnInit {
 
   public async ngOnInit(): Promise<void> {
     const userSettings = await this.loadUserSettings();
-    this.setFormGroup(userSettings);
+    this.setFormGroup(userSettings)
+    this.loading.set(false);
+
   }
 
   public get canSave(): boolean {
@@ -87,10 +95,10 @@ export class FinSettingsComponent implements OnInit {
 
     this.saving.set(true);
 
-    const input = this.formGroup.getRawValue() as UserSettingsUpdateInput;
-
+    const formValue = this.formGroup.getRawValue() as UserSettingsInput;
+    
     this.userSettingsService
-      .updateSettings(input)
+      .updateSettings(formValue)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         finalize(() => this.saving.set(false))
@@ -140,45 +148,38 @@ export class FinSettingsComponent implements OnInit {
     } as PagedOutput<FinSelectOption<UserGender>>);
   }
 
-  private setFormGroup(userSettings: UserSettingsDto | null): void {
+  private setFormGroup(userSettings: UserSettingsOutput): void {
     this.formGroup = new FormGroup<UserSettingsForm>({
-      firstName: new FormControl(userSettings?.firstName ?? '', {
+      firstName: new FormControl(userSettings.firstName, {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      lastName: new FormControl(userSettings?.lastName ?? '', {
+      lastName: new FormControl(userSettings.lastName, {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      displayName: new FormControl(userSettings?.displayName ?? '', {
+      displayName: new FormControl(userSettings?.displayName, {
         nonNullable: true,
       }),
-      gender: new FormControl(userSettings?.gender ?? null),
+      gender: new FormControl(userSettings.gender),
       birthDate: new FormControl(
-        userSettings?.birthDate ? new Date(userSettings.birthDate).toISOString().split('T')[0] : '',
-        { nonNullable: true }
+        userSettings.birthDate
       ),
-      imagePublicUrl: new FormControl(userSettings?.imagePublicUrl ?? '', {
+      imagePublicUrl: new FormControl(userSettings?.imagePublicUrl, {
         nonNullable: true,
       }),
-    });
+      theme: new FormControl(userSettings.theme, { nonNullable: true }),
+      locale: new FormControl(userSettings.locale, { nonNullable: true }),
+      timezone: new FormControl(userSettings.timezone, { nonNullable: true }),
+      currencyCode: new FormControl(userSettings.currencyCode, { nonNullable: true }),
+    }); 
     this.formGroup.disable();
     this.loading.set(false);
   }
 
-  private async loadUserSettings(): Promise<UserSettingsDto | null> {
-    this.loading.set(true);
-    try {
-      return await firstValueFrom(this.userSettingsService.getSettings());
-    } catch (error) {
-      console.error('Error loading settings:', error);
-      this.notifyService.notifyMessage(
-        'finCore.settings.title',
-        'finCore.settings.messages.loadError',
-        NotificationSeverity.Error
-      );
-      this.loading.set(false);
-      return null;
-    }
+  private async loadUserSettings(): Promise<UserSettingsOutput> {
+    
+     
+    return await firstValueFrom(this.userSettingsService.getSettings());
   }
 }
