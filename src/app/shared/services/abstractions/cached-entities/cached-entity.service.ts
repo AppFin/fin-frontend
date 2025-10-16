@@ -126,7 +126,6 @@ export abstract class CachedEntityService<
   public abstract getList(filter: TFilter): Observable<PagedOutput<TEntity>>;
 
   /**
-   * @abstract
    * Must be implemented by subclasses to define the structural or business
    * filtering logic (e.g., filter by `status === Active`, `belongsToUser`, etc.).
    * This filtering is applied *before* the generic pagination and sorting.
@@ -135,5 +134,7 @@ export abstract class CachedEntityService<
    * @param filter The filter input object.
    * @returns `true` if the entity should be kept in the list; `false` otherwise.
    */
-  protected abstract applyStructuralFilter(entity: TEntity, filter: TFilter): boolean;
+  protected applyStructuralFilter(entity: TEntity, filter: TFilter): boolean {
+    return true; // Default implementation: no structural filtering
+  };
 }

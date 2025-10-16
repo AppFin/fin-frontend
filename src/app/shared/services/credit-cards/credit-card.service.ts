@@ -22,11 +22,12 @@ import {
   CreditCardDeleteErrorCode,
   CreditCardDeleteErrorCodeMessages,
 } from '../../enums/credit-cards/credit-card-delete-error-code';
+import { CachedEntityService } from '../abstractions/cached-entities/cached-entity.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CreditCardService {
+export class CreditCardService extends CachedEntityService<CreditCardOutput, CreditCardGetListInput> {
   private apiService = inject(CreditCardApiService);
   private notifyService = inject(NotifyService);
 
@@ -122,5 +123,10 @@ export class CreditCardService {
           this.notifyService
         )
       );
+  }
+
+  protected override applyStructuralFilter(entity: CreditCardOutput, filter: CreditCardGetListInput): boolean {
+    const filterByInactivated = filter.inactivated !== undefined && entity.inactivated === null;
+    return !filterByInactivated || entity.inactivated === filter.inactivated;
   }
 }

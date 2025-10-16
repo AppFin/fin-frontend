@@ -8,6 +8,7 @@ import { NOTIFICATIONS_ROUTES } from './features/notifications/notifications-rou
 import { CARD_BRAND_ROUTES } from './features/card-brand/card-brand-routes';
 import { TITLE_CATEGORIES_ROUTES } from './features/title-categories/title-categories-routes';
 import { WALLETS_ROUTES } from './features/wallets/wallets-routes';
+import { CREDIT_CARDS_ROUTES } from './features/credit-cards/credit-cards-routes';
 
 export const routes: Routes = [
   ...AUTH_ROUTES,
@@ -35,6 +36,7 @@ export const routes: Routes = [
           },
           ...WALLETS_ROUTES,
           ...TITLE_CATEGORIES_ROUTES,
+          ...CREDIT_CARDS_ROUTES
         ],
       },
       {
