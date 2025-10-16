@@ -29,11 +29,9 @@ import { TitleCategoryOutput } from '../../../shared/types/title-categories/titl
 import { WalletService } from '../../../shared/services/wallets/wallet.service';
 import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-back-http-error';
 import {
-  FinancialInstitutionWalletColumnComponent
-} from './FinancialInstitutionWalletColumnService/financial-institution-wallet-column.component';
-import {
   FinGridMoneyColumnOption
 } from '../../../shared/components/generics/grid/models/columns/fin-grid-money-column-option';
+import { FinancialInstitutionWalletColumnComponent } from './financial-institution-wallet-column/financial-institution-wallet-column.component';
 
 
 type WalletsListFilterForm = {

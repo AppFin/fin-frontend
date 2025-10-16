@@ -19,6 +19,9 @@ import { CreditCardService } from '../../../shared/services/credit-cards/credit-
 import { CreditCardGetListInput } from '../../../shared/types/credit-cards/credit-card-get-list-input';
 import { CreditCardOutput } from '../../../shared/types/credit-cards/credit-card-output';
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
+import { FinancialInstitutionColumnComponent } from '../../../shared/components/financial-institution/financial-institution-column/financial-institution-column.component';
+import { CardBrandColumnComponent } from '../../../shared/components/card-brands/card-brand-column/card-brand-column.component';
+import { WalletColumnComponent } from '../../../shared/components/wallets/wallet-column/wallet-column.component';
 
 type CreditCardsListFilterForm = {
   inactivated: FormControl<boolean | null>;
@@ -100,17 +103,17 @@ export class CreditCardsListComponent implements OnInit {
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.debitWalletId,
         header: 'finCore.features.creditCard.debitWalletId',
-        // customColumn: () => FinancialInstitutionCreditCardColumnComponent
+        customColumn: () => WalletColumnComponent
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.financialInstitutionId,
         header: 'finCore.features.financialInstitutions.titleSingular',
-        // customColumn: () => FinancialInstitutionCreditCardColumnComponent
+        customColumn: () => FinancialInstitutionColumnComponent
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.cardBrandId,
         header: 'finCore.features.cardBrands.titleSingular',
-        // customColumn: () => FinancialInstitutionCreditCardColumnComponent
+        customColumn: () => CardBrandColumnComponent
       }),
       new FinGridMoneyColumnOption<CreditCardOutput>({
         header: 'finCore.features.creditCard.initialBalance',

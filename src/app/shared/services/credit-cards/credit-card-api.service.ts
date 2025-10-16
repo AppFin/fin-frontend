@@ -16,7 +16,7 @@ import { CreditCardInput } from '../../types/credit-cards/credit-card-input';
   providedIn: 'root',
 })
 export class CreditCardApiService {
-  private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'creditCards/';
+  private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'credit-cards/';
   private readonly http = inject(HttpClient);
 
   /**

@@ -45,7 +45,6 @@ export class NotificationWebsocketService implements OnDestroy, OnInit {
   }
 
   public async startConnection(): Promise<void> {
-    console.log('start connection');
     try {
       this.hubConnection = new HubConnectionBuilder()
         .withUrl(this.API_URL, {
@@ -59,7 +58,6 @@ export class NotificationWebsocketService implements OnDestroy, OnInit {
       this.setupEventHandlers();
 
       await this.hubConnection.start();
-      console.log('SignalR Connected');
       this._isConnected.set(true);
     } catch (error) {
       console.error('SignalR Connection Error:', error);
@@ -73,7 +71,6 @@ export class NotificationWebsocketService implements OnDestroy, OnInit {
       this.hubConnection.state === HubConnectionState.Connected
     ) {
       await this.hubConnection.stop();
-      console.log('SignalR Disconnected');
       this._isConnected.set(false);
     }
   }
@@ -86,23 +83,19 @@ export class NotificationWebsocketService implements OnDestroy, OnInit {
     this.hubConnection.on(
       this.SEND_NOTIFICATION_ACTION,
       async (payload: NotifyUserDto) => {
-        console.log(payload);
         await this.notificationService.addNotificationFromWebSocket(payload);
       }
     );
 
     this.hubConnection.onreconnecting(() => {
-      console.log('SignalR Reconnecting...');
       this._isConnected.set(false);
     });
 
     this.hubConnection.onreconnected(() => {
-      console.log('SignalR Reconnected');
       this._isConnected.set(true);
     });
 
     this.hubConnection.onclose(() => {
-      console.log('SignalR Connection Closed');
       this._isConnected.set(false);
     });
   }

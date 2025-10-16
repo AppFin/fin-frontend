@@ -54,9 +54,6 @@ export class FinCardBrandSelectComponent {
         ...input
       });
 
-    console.log(cardBrands);
-    console.log(input);
-
     return of({
       totalCount: cardBrands.totalCount,
       items: cardBrands.items.map(
