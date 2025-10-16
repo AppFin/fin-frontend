@@ -34,7 +34,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([authInterceptor, appInterceptor, errorInterceptor])
     ),
-    provideHttpClient(),
     provideAnimationsAsync(),
     provideToastr({
       timeOut: 5000,
