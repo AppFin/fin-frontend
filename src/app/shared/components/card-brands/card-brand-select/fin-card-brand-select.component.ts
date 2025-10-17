@@ -27,7 +27,7 @@ import { CardBrandApiService } from '../../../../core/services/card-brand/card-b
 export class FinCardBrandSelectComponent {
   @Input() public formControl: FormControl<string | null>;
 
-  public readonly label = input('finCore.features.cardBrand.title');
+  public readonly label = input('finCore.features.cardBrand.titleSingular');
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');

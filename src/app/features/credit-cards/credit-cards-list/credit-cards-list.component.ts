@@ -119,11 +119,11 @@ export class CreditCardsListComponent implements OnInit {
         header: 'finCore.features.creditCard.initialBalance',
         getValue: item => item.limit
       }),
-      new FinGridMoneyColumnOption<CreditCardOutput>({
+      new FinGridSimpleColumnOption<CreditCardOutput>({
         header: 'finCore.features.creditCard.closingDay',
         getValue: item => item.closingDay
       }),
-      new FinGridMoneyColumnOption<CreditCardOutput>({
+      new FinGridSimpleColumnOption<CreditCardOutput>({
         header: 'finCore.features.creditCard.dueDay',
         getValue: item => item.dueDay
       })

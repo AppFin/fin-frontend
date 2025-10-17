@@ -7,4 +7,5 @@ export type CreditCardInput = {
   debitWalletId: string;
   dueDay: number;
   closingDay: number;
+  limit: number;
 }

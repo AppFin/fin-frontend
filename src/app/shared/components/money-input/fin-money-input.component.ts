@@ -27,6 +27,8 @@ export class FinMoneyInputComponent implements OnInit {
 
   public readonly width = input('100%');
 
+  public readonly allowNegativeNumbers = input(true);
+
   public readonly readonly = input(false);
   public readonly id = input(
     `fin-money-input-${Math.random().toString(36).substring(2, 9)}`

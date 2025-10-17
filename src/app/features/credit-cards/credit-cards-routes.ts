@@ -23,7 +23,7 @@ export const CREDIT_CARDS_ROUTES: Routes = [
           ).then((m) => m.CreditCardsEditorComponent),
       },
       {
-        path: ':walletId',
+        path: ':creditCardId',
         loadComponent: () =>
           import(
             './credit-cards-editor/credit-cards-editor.component'

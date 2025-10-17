@@ -35,6 +35,9 @@ export class FinWalletSelectComponent {
     `fin-wallet-select-${Math.random().toString(36).substring(2, 9)}`
   );
 
+  public readonly inactivatedFilter = input<boolean | undefined>(undefined);
+
+
   public readonly selectOptions =
     new FinSelectComponentOptions<string, WalletOutput>({
       getOptions: this.getWalletOptions.bind(this),
@@ -51,7 +54,8 @@ export class FinWalletSelectComponent {
   > {
     const wallets =
       this.walletService.getListCached({
-        ...input
+        ...input,
+        inactivated: this.inactivatedFilter(),
       });
 
     return of({
