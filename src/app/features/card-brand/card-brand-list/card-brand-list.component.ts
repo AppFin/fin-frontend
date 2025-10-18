@@ -65,8 +65,7 @@ export class CardBrandListComponent implements OnInit {
       new FinGridIconColumnOption<CardBrandOutput>({
         getValue: (item) =>
           new FinIconOptions({
-            type: 'image',
-            imageFolder: 'icons/flags/',
+            type: 'brand',
             icon: item.icon,
             tooltip: item.name,
             size: 'xl'

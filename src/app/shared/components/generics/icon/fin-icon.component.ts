@@ -12,6 +12,7 @@ import { FinSeverity } from '../../../../core/types/themes/fin-severity';
 import { finSeverityConverter } from '../../../../core/functions/fin-severity-converter';
 
 export type FinIconSize =
+  | 'xxs'
   | 'xs'
   | 'sm'
   | 'md'
@@ -22,7 +23,7 @@ export type FinIconSize =
   | '10xl'
   | '15xl';
 export type FinFontAwesomeType = 'fa-solid' | 'fa-regular' | 'fa-brands';
-export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'flag';
+export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'brand';
 
 @Component({
   selector: 'fin-icon',
@@ -58,9 +59,9 @@ export class FinIconComponent {
     switch (this.type()) {
       case 'bank':
         folder = 'icons/banks/';
-        break;          
-      case 'flag':
-        folder = 'icons/flags/';
+        break;
+      case 'brand':
+        folder = 'icons/card-brands/';
         break;
     }
 
@@ -70,6 +71,7 @@ export class FinIconComponent {
     return `${folder}${this.icon()}${extension}`;
   });
   private sizeMap: Record<FinIconSize, number> = {
+    xxs: 8,
     xs: 12,
     sm: 16,
     md: 20,

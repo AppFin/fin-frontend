@@ -2,14 +2,14 @@
   [customErrorText]="customErrorText()" [helpText]="helpText()" [id]="id()">
   <ng-template #itemTemplate let-option>
     <div class="select-option">
-      <fin-icon [icon]="option.customValue.icon" type="flag" />
+      <fin-icon [icon]="option.customValue.icon" type="brand" />
       <fin-text type="paragraph" [text]="option.label" />
     </div>
   </ng-template>
 
   <ng-template #selectedItemTemplate let-option>
     <div class="select-option">
-      <fin-icon [icon]="option.customValue.icon" type="flag" size="sm" />
+      <fin-icon [icon]="option.customValue.icon" type="brand" size="xs" />
       <fin-text type="paragraph" [text]="option.label" />
     </div>
   </ng-template>
