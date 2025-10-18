@@ -130,24 +130,20 @@ export interface ITranslate {
     features: {
       financialInstitutions: {
         code: string;
-        bankName: string;
-        codeAndType: string;
-        codeHelp: string;
-        bankNameAndCode: string;
-        colorHelp: string;
-        iconHelp: string;
-        list: {
-          title: string;
-        };
-        name: string;
-        nameHelp: string;
         title: string;
-        type: string;
+        titleSingular: string;
+        type: {
+          title: string;
+          bank: string;
+          digitalBank: string;
+          foodCard: string;
+        }
       };
       titleCategory: {
         deleteMessage: string;
         name: string;
         title: string;
+        titleSingular: string;
         type: {
           both: string;
           expense: string;
@@ -157,10 +153,17 @@ export interface ITranslate {
       };
       cardBrand: {
         title: string,
-        name: string,
-        icon: string,
-        color: string,
+        titleSingular: string,
       },
+      creditCard: {
+        title: string,
+        titleSingular: string,
+        debitWallet: string,
+        closingDay: string,
+        dueDay: string,
+        limit: string,
+
+      };
       menus: {
         frontRoute: string;
         hide: string;

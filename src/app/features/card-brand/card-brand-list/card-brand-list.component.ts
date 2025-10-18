@@ -70,12 +70,12 @@ export class CardBrandListComponent implements OnInit {
             tooltip: item.name,
             size: 'xl'
           }),
-        header: 'finCore.features.cardBrand.icon',
+        header: 'finCore.features.shared.icon',
         width: '5%',
       }),
       new FinGridSimpleColumnOption<CardBrandOutput>({
         getValue: (item) => item.name,
-        header: 'finCore.features.cardBrand.name',
+        header: 'finCore.features.shared.name',
       }),
     ];
   }

@@ -98,11 +98,11 @@ export class CreditCardsListComponent implements OnInit {
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.name,
-        header: 'finCore.features.creditCard.name',
+        header: 'finCore.features.shared.name',
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.debitWalletId,
-        header: 'finCore.features.creditCard.debitWalletId',
+        header: 'finCore.features.creditCard.debitWallet',
         customColumn: () => WalletColumnComponent
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
@@ -112,11 +112,11 @@ export class CreditCardsListComponent implements OnInit {
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.cardBrandId,
-        header: 'finCore.features.cardBrands.titleSingular',
+        header: 'finCore.features.cardBrand.titleSingular',
         customColumn: () => CardBrandColumnComponent
       }),
       new FinGridMoneyColumnOption<CreditCardOutput>({
-        header: 'finCore.features.creditCard.initialBalance',
+        header: 'finCore.features.creditCard.limit',
         getValue: item => item.limit
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({

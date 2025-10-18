@@ -1,12 +1,7 @@
 <div class="icon-picker-container">
   <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
-    <div
-      class="icon-display-wrapper"
-      [id]="id()"
-      [matMenuTriggerFor]="iconMenu"
-      [class.readonly]="readonly()"
-      [class.disabled-state]="disabled()"
-    >
+    <div class="icon-display-wrapper" [id]="id()" [matMenuTriggerFor]="iconMenu" [class.readonly]="readonly()"
+      [class.disabled-state]="disabled()">
       <div class="icon-preview">
         <fin-icon [icon]="selectedIcon" />
       </div>
@@ -20,18 +15,14 @@
     <div class="icon-picker-content" (click)="$event.stopPropagation()">
       <div class="icon-grid">
         @for (icon of predefinedIcons; track icon) {
-          <div
-            class="icon-option"
-            [class.selected]="isIconSelected(icon)"
-            (click)="selectIcon(icon)"
-          >
-            <fin-icon [icon]="icon" class="option-icon" />
-            @if (isIconSelected(icon)) {
-              <div class="selected-indicator">
-                <fin-icon icon="check" class="check-icon" />
-              </div>
-            }
+        <div class="icon-option" [class.selected]="isIconSelected(icon)" (click)="selectIcon(icon)">
+          <fin-icon [icon]="icon" class="option-icon" />
+          @if (isIconSelected(icon)) {
+          <div class="selected-indicator">
+            <fin-icon icon="check" class="check-icon" />
           </div>
+          }
+        </div>
         }
       </div>
 
@@ -47,14 +38,9 @@
           <div class="icon-input-preview">
             <fin-icon [icon]="customIconInput()" />
           </div>
-          <input
-            type="text"
-            [value]="customIconInput()"
-            (input)="onCustomIconChange($event)"
-            placeholder="finCore.features.shared.typeCustomIcon"
-            class="icon-name-input"
-            pInputText
-          />
+          <input type="text" [value]="customIconInput()" (input)="onCustomIconChange($event)"
+            [placeholder]="'finCore.features.shared.typeCustomIcon' | finTranslate" class="icon-name-input"
+            pInputText />
         </div>
       </div>
     </div>
@@ -62,9 +48,9 @@
 
   <div class="sub-text">
     @if (!hasError()) {
-      <fin-text [text]="helpText()" class="info-sub" type="info"/>
+    <fin-text [text]="helpText()" class="info-sub" type="info" />
     } @else {
-      <fin-text [text]="errorMessageEffective()" class="error-sub" type="info"/>
+    <fin-text [text]="errorMessageEffective()" class="error-sub" type="info" />
     }
   </div>
 </div>

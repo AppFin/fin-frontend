@@ -75,7 +75,7 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     }
     const request =
       this.editorType() === EditorType.Create
-        ? this.apiService.create(formValue).pipe(map(() => {}))
+        ? this.apiService.create(formValue).pipe(map(() => { }))
         : this.apiService.update(this.institutionEditingId, formValue);
 
     request
@@ -98,15 +98,15 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
       items: [
         {
           value: FinancialInstitutionType.Bank,
-          label: 'Banco Tradicional',
+          label: `finCore.features.financialInstitutions.type.${FinancialInstitutionType[FinancialInstitutionType.Bank].charAt(0).toLowerCase() + FinancialInstitutionType[FinancialInstitutionType.Bank].slice(1)}`,
         },
         {
           value: FinancialInstitutionType.DigitalBank,
-          label: 'Banco Digital',
+          label: `finCore.features.financialInstitutions.type.${FinancialInstitutionType[FinancialInstitutionType.DigitalBank].charAt(0).toLowerCase() + FinancialInstitutionType[FinancialInstitutionType.DigitalBank].slice(1)}`,
         },
         {
           value: FinancialInstitutionType.FoodCard,
-          label: 'Cartão Alimentação',
+          label: `finCore.features.financialInstitutions.type.${FinancialInstitutionType[FinancialInstitutionType.FoodCard].charAt(0).toLowerCase() + FinancialInstitutionType[FinancialInstitutionType.FoodCard].slice(1)}`,
         },
       ],
     } as PagedOutput<FinSelectOption<FinancialInstitutionType>>);
