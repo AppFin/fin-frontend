@@ -5,7 +5,6 @@ fin-user-friendly-icon-picker {
       content: ' *';
     }
   }
-
   .disabled .icon-display-wrapper {
     filter: brightness(0.9);
     cursor: not-allowed;
@@ -34,6 +33,7 @@ fin-user-friendly-icon-picker {
     color: var(--text-color);
 
     .icon-display-wrapper {
+      min-height: 60px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -43,7 +43,6 @@ fin-user-friendly-icon-picker {
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.2s;
-      min-height: 53px;
 
       &:not(.readonly):not(.disabled-state):hover {
         border-color: var(--p-inputtext-hover-border-color);

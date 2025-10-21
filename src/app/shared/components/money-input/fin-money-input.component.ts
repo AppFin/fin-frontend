@@ -18,7 +18,7 @@ import { LocalizationService } from '../../../core/services/localization/localiz
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FinMoneyInputComponent implements OnInit {
-  @Input() public formControl: FormControl<number | null>;
+  @Input() public formControl: FormControl<number | string | null>;
 
   public readonly label = input('');
 
@@ -40,21 +40,33 @@ export class FinMoneyInputComponent implements OnInit {
 
   public ngOnInit(): void {
     this.moneyPrefix.set(this.localizationService.getMoneySymbol());
+    this.normalizeValue();
   }
 
-  public outputTransformFn = (value: string | number | null | undefined): string => {
-    if (!value) return '0';
+  public outputTransformFn = (value: string | number | null | undefined): number | null => {
+    if (value === null || value === undefined || value == '') {
+
+      return null;
+    }
     const strValue = value.toString();
     const isNegative = strValue.trim().startsWith('-');
 
     let cleaned = strValue
-      .replace(/[^\d,]/g, '')
-      .replace(',', '.');
+      .replaceAll(this.localizationService.getThousandSeparator(), '')
+      .replaceAll(this.localizationService.getDecimalMark(), '.')
+      .replace(/[^\d.]/g, '');
 
     if (isNegative) {
       cleaned = '-' + cleaned;
     }
     const num = parseFloat(cleaned);
-    return isNaN(num) ? '0' : num.toString();
+    return isNaN(num) ? 0 : num;
   };
+
+  private normalizeValue(): void {
+    const value = this.formControl.value;
+    if (value === null || value === undefined) return;
+    const valueStr = Number(value).toFixed(2);
+    this.formControl.setValue(valueStr)
+  }
 }

@@ -7,6 +7,7 @@ fin-multi-select {
 
     p-multiselect {
       width: 100%;
+      min-height: 60px;
       background-color: var(--p-inputtext-background);
       border: 1px solid var(--p-inputtext-border-color);
 
@@ -32,7 +33,6 @@ fin-multi-select {
       }
     }
   }
-
 
   .required {
     label::after {
@@ -75,7 +75,9 @@ li.p-multiselect-item.p-multiselect-item-selected {
   background-color: var(--p-inputtext-hover-border-color) !important;
 }
 
-li.p-multiselect-item:not(.p-multiselect-item-selected):not(.p-disabled).p-focus {
+li.p-multiselect-item:not(.p-multiselect-item-selected):not(
+    .p-disabled
+  ).p-focus {
   background-color: var(--p-inputtext-hover-border-color);
   filter: brightness(1.2);
 }

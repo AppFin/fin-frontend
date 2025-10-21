@@ -135,6 +135,7 @@ export class WalletsEditorComponent implements OnInit {
         walletEditing?.financialInstitutionId ?? null
       ),
       initialBalance: new FormControl(walletEditing?.initialBalance ?? 0, {
+        validators: [Validators.required],
         nonNullable: true,
       }),
     });
