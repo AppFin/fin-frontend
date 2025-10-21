@@ -21,6 +21,5 @@ export class FinGridMoneyColumnComponent<T = any>
     if (!(options instanceof FinGridMoneyColumnOption))
       throw 'Options not FinGridMoneyColumnOption';
     this.value.set(options.getValue(item) ?? 0);
-    console.log(this.value());
   }
 }

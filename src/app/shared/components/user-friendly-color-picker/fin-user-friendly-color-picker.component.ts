@@ -55,8 +55,7 @@ import { FinIconComponent } from '../generics/icon/fin-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class FinUserFriendlyColorPickerComponent
-  implements OnInit, ControlValueAccessor
-{
+  implements OnInit, ControlValueAccessor {
   @Input() public formControl: FormControl<string | null>;
 
   public readonly label = input('');
@@ -114,11 +113,12 @@ export class FinUserFriendlyColorPickerComponent
 
   public ngOnInit(): void {
     this.startRequiredSub();
-    this.customColorInput.set(this.formControl.value || '#000000');
+    if (!this.formControl.value) this.formControl.setValue('#000000')
+    this.customColorInput.set(this.formControl.value || '');
   }
 
   public get selectedColor(): string {
-    return this.formControl.value || '#000000';
+    return this.formControl.value || '';
   }
 
   public validStatesChange(): void {
@@ -197,7 +197,7 @@ export class FinUserFriendlyColorPickerComponent
     }
   }
 
-  registerOnChange(fn: any): void {}
-  registerOnTouched(fn: any): void {}
-  setDisabledState?(isDisabled: boolean): void {}
+  registerOnChange(fn: any): void { }
+  registerOnTouched(fn: any): void { }
+  setDisabledState?(isDisabled: boolean): void { }
 }

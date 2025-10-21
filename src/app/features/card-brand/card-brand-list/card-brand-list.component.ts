@@ -65,17 +65,17 @@ export class CardBrandListComponent implements OnInit {
       new FinGridIconColumnOption<CardBrandOutput>({
         getValue: (item) =>
           new FinIconOptions({
-            type: 'image',
-            imageFolder: 'icons/flags/',
+            type: 'brand',
             icon: item.icon,
             tooltip: item.name,
+            size: 'xl'
           }),
-        header: 'finCore.features.cardBrand.icon',
-        width: '50px',
+        header: 'finCore.features.shared.icon',
+        width: '5%',
       }),
       new FinGridSimpleColumnOption<CardBrandOutput>({
         getValue: (item) => item.name,
-        header: 'finCore.features.cardBrand.name',
+        header: 'finCore.features.shared.name',
       }),
     ];
   }

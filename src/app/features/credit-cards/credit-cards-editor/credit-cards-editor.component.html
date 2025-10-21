@@ -1,0 +1,34 @@
+<fin-editor-layout
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  entityEditingName()"
+  [loading]="loading()" [formGroup]="formGroup" [canSave]="canSave" [isSaving]="saving()" (onSave)="save()"
+  (onCancel)="close()">
+  @if (!loading()) {
+
+  <fin-input class="col-12" label="finCore.features.shared.name" [formControl]="formGroup.controls.name" />
+
+  <fin-financial-institution-select class="col-6" [inactivatedFilter]="false"
+    [formControl]="formGroup.controls.financialInstitutionId" />
+
+  <fin-card-brand-select class="col-6" [formControl]="formGroup.controls.cardBrandId" />
+
+  <fin-wallet-select class="col-6" label="finCore.features.creditCard.debitWallet" [inactivatedFilter]="false"
+    [formControl]="formGroup.controls.debitWalletId" />
+
+  <fin-money-input [allowNegativeNumbers]="false" class="col-6" label="finCore.features.creditCard.limit"
+    [formControl]="formGroup.controls.limit" />
+
+  <fin-month-day-select class="col-6" label="finCore.features.creditCard.dueDay"
+    [formControl]="formGroup.controls.dueDay" />
+
+
+  <fin-month-day-select class="col-6" label="finCore.features.creditCard.closingDay"
+    [formControl]="formGroup.controls.closingDay" />
+
+
+  <fin-user-friendly-color-picker class="col-6" label="finCore.features.shared.color"
+    [formControl]="formGroup.controls.color" />
+  <fin-user-friendly-icon-picker class="col-6" [formControl]="formGroup.controls.icon"
+    label="finCore.features.shared.icon" />
+
+  }
+</fin-editor-layout>

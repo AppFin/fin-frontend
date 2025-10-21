@@ -1,10 +1,12 @@
-export type WalletOutput = {
-  id: string;
-  name: string;
-  color: string;
-  icon: string;
-  inactivated: boolean;
-  financialInstitutionId: string | null;
-  initialBalance: number;
-  currentBalance: number;
+import { IEntity } from "../../interfaces/entities/i-entity";
+
+export class WalletOutput implements IEntity {
+  public id: string;
+  public name: string;
+  public color: string;
+  public icon: string;
+  public inactivated: boolean;
+  public financialInstitutionId: string | null;
+  public initialBalance: number;
+  public currentBalance: number;
 }

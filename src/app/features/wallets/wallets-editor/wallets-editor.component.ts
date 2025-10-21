@@ -5,22 +5,22 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { EditorType } from '../../../shared/enums/layouts/editor-type';
-import { FormGroupFromType } from '../../../shared/types/form/form-group-from-type';
-import { WalletInput } from '../../../shared/types/wallets/wallet-input';
-import { ActivatedRoute, Router } from '@angular/router';
-import { WalletService } from '../../../shared/services/wallets/wallet.service';
-import { finalize, first, firstValueFrom, iif, tap } from 'rxjs';
-import { WalletOutput } from '../../../shared/types/wallets/wallet-output';
 import { FormControl, Validators } from '@angular/forms';
-import { nameAlreadyInUseValidator } from '../../../shared/validators/name-already-in-use-validator';
-import { WalletCreateOrUpdateErrorCode } from '../../../shared/enums/wallets/walletcreate-or-update-error-code';
-import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { finalize, first, firstValueFrom, iif, tap } from 'rxjs';
+import { FinFinancialInstitutionSelectComponent } from "../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component";
 import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
+import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
 import { FinMoneyInputComponent } from '../../../shared/components/money-input/fin-money-input.component';
-import { FinFinancialInstitutionSelectComponent } from '../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component';
 import { FinUserFriendlyColorPickerComponent } from '../../../shared/components/user-friendly-color-picker/fin-user-friendly-color-picker.component';
 import { FinUserFriendlyIconPickerComponent } from '../../../shared/components/user-friendly-icon-picker/fin-user-friendly-icon-picker.component';
+import { EditorType } from '../../../shared/enums/layouts/editor-type';
+import { WalletCreateOrUpdateErrorCode } from '../../../shared/enums/wallets/wallet-create-or-update-error-code';
+import { WalletService } from '../../../shared/services/wallets/wallet.service';
+import { FormGroupFromType } from '../../../shared/types/form/form-group-from-type';
+import { WalletInput } from '../../../shared/types/wallets/wallet-input';
+import { WalletOutput } from '../../../shared/types/wallets/wallet-output';
+import { nameAlreadyInUseValidator } from '../../../shared/validators/name-already-in-use-validator';
 
 @Component({
   selector: 'fin-wallets-editor',
@@ -28,9 +28,9 @@ import { FinUserFriendlyIconPickerComponent } from '../../../shared/components/u
     EditorLayoutComponent,
     FinInputComponent,
     FinMoneyInputComponent,
-    FinFinancialInstitutionSelectComponent,
     FinUserFriendlyColorPickerComponent,
     FinUserFriendlyIconPickerComponent,
+    FinFinancialInstitutionSelectComponent
   ],
   templateUrl: './wallets-editor.component.html',
   styleUrl: './wallets-editor.component.scss',
@@ -135,6 +135,7 @@ export class WalletsEditorComponent implements OnInit {
         walletEditing?.financialInstitutionId ?? null
       ),
       initialBalance: new FormControl(walletEditing?.initialBalance ?? 0, {
+        validators: [Validators.required],
         nonNullable: true,
       }),
     });

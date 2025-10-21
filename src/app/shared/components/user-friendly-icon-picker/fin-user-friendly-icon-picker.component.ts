@@ -54,8 +54,7 @@ import { FinIconComponent } from '../generics/icon/fin-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class FinUserFriendlyIconPickerComponent
-  implements OnInit, ControlValueAccessor
-{
+  implements OnInit, ControlValueAccessor {
   @Input() public formControl: FormControl<string | null>;
 
   public readonly label = input('');
@@ -78,8 +77,8 @@ export class FinUserFriendlyIconPickerComponent
     'piggy-bank',
     'house',
     'car',
-    'utensils',
     'cart-shopping',
+    'utensils',
     'kit-medical',
     'gamepad',
     'graduation-cap',
@@ -109,11 +108,12 @@ export class FinUserFriendlyIconPickerComponent
 
   public ngOnInit(): void {
     this.startRequiredSub();
-    this.customIconInput.set(this.formControl.value || 'circle');
+    if (!this.formControl.value) this.formControl.setValue('circle')
+    this.customIconInput.set(this.formControl.value || '');
   }
 
   public get selectedIcon(): string {
-    return this.formControl.value || 'circle';
+    return this.formControl.value || '';
   }
 
   public validStatesChange(): void {
@@ -196,7 +196,7 @@ export class FinUserFriendlyIconPickerComponent
     }
   }
 
-  registerOnChange(fn: any): void {}
-  registerOnTouched(fn: any): void {}
-  setDisabledState?(isDisabled: boolean): void {}
+  registerOnChange(fn: any): void { }
+  registerOnTouched(fn: any): void { }
+  setDisabledState?(isDisabled: boolean): void { }
 }

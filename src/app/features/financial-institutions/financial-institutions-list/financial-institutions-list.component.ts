@@ -50,16 +50,16 @@ export class FinancialInstitutionsListComponent implements OnInit {
   }
 
   private toggleInactive(item: FinancialInstitutionOutput): Observable<void> {
-      return this.apiService
-        .toggleInactive(item.id)
-        .pipe(tap(() => this.reloadItens.next()));
-    }
-  
+    return this.apiService
+      .toggleInactive(item.id)
+      .pipe(tap(() => this.reloadItens.next()));
+  }
+
   private setOptions() {
     const gridOptions = new FinGridOptions<FinancialInstitutionOutput>({
       id: 'FINANCIAL_INSTITUTIONS_LIST',
       getColumns: () => of(this.getColumns()),
-      onEdit : (item) => {
+      onEdit: (item) => {
         this.router.navigate([`./${item.id}`], { relativeTo: this.activatedRoute });
         return of();
       },
@@ -68,7 +68,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
         confirmDeleteMessage: 'finCore.features.titleCategory.deleteMessage',
       },
       onToggleInactive: this.toggleInactive.bind(this),
-      getInactive: (item) => item.inactive, 
+      getInactive: (item) => item.inactive,
       getList: (input) => this.apiService.getList(input),
       reloadItens: this.reloadItens,
     });
@@ -81,7 +81,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
     return [
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => item.name,
-        header: 'finCore.features.financialInstitutions.bankName',
+        header: 'finCore.features.shared.name',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => item.code,
@@ -98,7 +98,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
           });
         },
         header: 'finCore.features.shared.icon',
-        width: '3%',
+        width: '4%',
       }),
       new FinGridIconColumnOption<FinancialInstitutionOutput>({
         getValue: (item) => {
@@ -113,9 +113,10 @@ export class FinancialInstitutionsListComponent implements OnInit {
         width: '3%',
       }),
       new FinGridSimpleColumnOption<FinancialInstitutionOutput>({
-        header: 'finCore.features.financialInstitutions.type',
+        header: 'finCore.features.financialInstitutions.type.title',
         getValue: (item) => {
-          return FinancialInstitutionType[item.type];
+          const name = FinancialInstitutionType[item.type];
+          return `finCore.features.financialInstitutions.type.${name.charAt(0).toLowerCase() + name.slice(1)}`;
         },
       })
     ];

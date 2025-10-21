@@ -135,25 +135,20 @@ export const PtBrI18n: ITranslate = {
     features: {
       financialInstitutions: {
         code: 'Código',
-        bankName: 'Nome do Banco',
-        codeAndType: 'Código e Tipo',
-        codeHelp: 'Selecione o código do banco',
-        bankNameAndCode: 'Banco',
-        colorHelp: 'Cor da instituição em hexadecimal (ex: #FCD116)',
-        iconHelp: 'Nome do arquivo do ícone',
-        list: {
-          title: 'Instituições Financeiras',
-        },
-        name: 'Nome da Instituição',
-        nameHelp: 'Digite para autocompletar',
         title: 'Instituições Financeiras',
-        type: 'Tipo de Instituição',
+        titleSingular: 'Instituição Financeira',
+        type: {
+          title: 'Tipo de Instituição',
+          bank: 'Banco',
+          digitalBank: 'Banco digital',
+          foodCard: 'Cartão alimentação/refeição',
+        },
       },
       titleCategory: {
-        deleteMessage:
-          'Ao remover essa categória ela será removida de todos os títulos.',
+        deleteMessage: 'Ao remover essa categória ela será removida de todos os títulos.',
         name: 'Nome',
-        title: 'Categórias de títulos',
+        title: 'Categorias de títulos',
+        titleSingular: 'Categoria de título',
         type: {
           both: 'Ambos',
           expense: 'Gasto',
@@ -163,9 +158,7 @@ export const PtBrI18n: ITranslate = {
       },
       cardBrand: {
         title: 'Bandeiras de Cartão',
-        name: 'Nome',
-        icon: 'Ícone',
-        color: 'Cor',
+        titleSingular: 'Bandeira do Cartão',
       },
       menus: {
         frontRoute: 'Rota do front',
@@ -231,6 +224,14 @@ export const PtBrI18n: ITranslate = {
           nameAlreadyInUse: "Nome já está em uso",
         }
       },
+      creditCard: {
+        title: 'Cartões de Crédito',
+        titleSingular: 'Cartão de Crédito',
+        debitWallet: 'Carteira de débito',
+        closingDay: 'Dia do fechamento',
+        dueDay: 'Dia de vencimento',
+        limit: 'Limite',
+      }
     },
     grid: {
       confirmDelete: 'Tem certeza que deseja deletar esse item?',

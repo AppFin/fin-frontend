@@ -6,6 +6,7 @@ fin-select {
     color: var(--text-color);
 
     p-select {
+      min-height: 60px;
       width: 100%;
       background-color: var(--p-inputtext-background);
       border: 1px solid var(--p-inputtext-border-color);
@@ -28,7 +29,6 @@ fin-select {
       }
     }
   }
-
 
   .required {
     label::after {

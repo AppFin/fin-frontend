@@ -1,0 +1,8 @@
+@let item = wallet();
+
+@if (item) {
+<div class="item-container">
+  <fin-icon [icon]="item.icon" [iconColor]="item.color" />
+  <fin-text [text]="item.name" type="paragraph" />
+</div>
+}

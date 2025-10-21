@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FinSelectComponent } from '../../generics/select/fin-select.component';
 import { FormControl } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { PagedOutput } from '../../../models/paginations/paged-output';
 import { FinSelectOption } from '../../generics/select/fin-select-option';
 import { FinSelectComponentOptions } from '../../generics/select/fin-select-component-options';
@@ -27,7 +27,7 @@ import { FinIconComponent } from '../../generics/icon/fin-icon.component';
 export class FinFinancialInstitutionSelectComponent {
   @Input() public formControl: FormControl<string | null>;
 
-  public readonly label = input('');
+  public readonly label = input('finCore.features.financialInstitutions.titleSingular');
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
@@ -51,25 +51,22 @@ export class FinFinancialInstitutionSelectComponent {
   ): Observable<
     PagedOutput<FinSelectOption<string, FinancialInstitutionOutput>>
   > {
-    return this.financialInstitutionService
-      .getList({
+    const financialInstitutions =
+      this.financialInstitutionService.getListCached({
         ...input,
         inactive: this.inactivatedFilter(),
-      })
-      .pipe(
-        map((result) => {
-          return {
-            totalCount: result.totalCount,
-            items: result.items.map(
-              (item) =>
-                ({
-                  label: item.name,
-                  value: item.id,
-                  customValue: item,
-                }) as FinSelectOption<string, FinancialInstitutionOutput>
-            ),
-          };
-        })
-      );
+      });
+
+    return of({
+      totalCount: financialInstitutions.totalCount,
+      items: financialInstitutions.items.map(
+        (item) =>
+          ({
+            label: item.name,
+            value: item.id,
+            customValue: item,
+          }) as FinSelectOption<string, FinancialInstitutionOutput>
+      ),
+    });
   }
 }

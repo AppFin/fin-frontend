@@ -64,7 +64,7 @@ export class CardBrandEditorComponent implements OnInit {
 
     const request =
       this.editorType() === EditorType.Create
-        ? this.apiService.create(input).pipe(map(() => {}))
+        ? this.apiService.create(input).pipe(map(() => { }))
         : this.apiService.update(this.cardBrandEditingId, input);
 
     request

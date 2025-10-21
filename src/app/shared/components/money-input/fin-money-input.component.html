@@ -1,17 +1,4 @@
-<fin-input
-  [formControl]="formControl"
-  [label]="label()"
-  [customErrorText]="customErrorText()"
-  [helpText]="helpText()"
-  [width]="width()"
-  [readonly]="readonly()"
-  [id]="id()"
-  iconSuffix="coins"
-  iconSuffixSeverity="primary"
-  [allowNegativeNumbers]="true"
-  [leadZero]="true"
-  mask="separator.2"
-  [prefix]="moneyPrefix()"
-  [dropSpecialCharacters]="false"
-  [outputTransformFn]="outputTransformFn"
-/>
+<fin-input [formControl]="formControl" [label]="label()" [customErrorText]="customErrorText()" [helpText]="helpText()"
+  [width]="width()" [readonly]="readonly()" [id]="id()" iconSuffix="coins" iconSuffixSeverity="primary"
+  [allowNegativeNumbers]="allowNegativeNumbers()" [leadZero]="true" mask="separator.2" [prefix]="moneyPrefix()"
+  [dropSpecialCharacters]="false" [outputTransformFn]="outputTransformFn" />

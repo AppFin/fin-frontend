@@ -43,7 +43,7 @@ fin-user-friendly-color-picker {
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.2s;
-      min-height: 53px;
+      min-height: 60px;
 
       &:not(.readonly):not(.disabled-state):hover {
         border-color: var(--p-inputtext-hover-border-color);

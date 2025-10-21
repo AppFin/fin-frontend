@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardBrandComponent } from './card-brand.component';
+import { CardBrandSelectComponent } from './card-brand-select.component';
 
-describe('CardBrandComponent', () => {
-  let component: CardBrandComponent;
-  let fixture: ComponentFixture<CardBrandComponent>;
+describe('CardBrandSelectComponent', () => {
+  let component: CardBrandSelectComponent;
+  let fixture: ComponentFixture<CardBrandSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardBrandComponent]
+      imports: [CardBrandSelectComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CardBrandComponent);
+    fixture = TestBed.createComponent(CardBrandSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,23 +1,12 @@
 <fin-editor-layout
   [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editing'"
-  [loading]="loading()"
-  [formGroup]="formGroup"
-  [canSave]="canSave"
-  [isSaving]="saving()"
-  (onSave)="save()"
+  [loading]="loading()" [formGroup]="formGroup" [canSave]="canSave" [isSaving]="saving()" (onSave)="save()"
   (onCancel)="close()">
   @if (!loading()) {
-    <fin-input class="col-12" label="finCore.features.cardBrand.name" [formControl]="formGroup.controls.name" />
-    <fin-color-picker class="col-6" label="finCore.features.cardBrand.color" [formControl]="formGroup.controls.color" />
-    <fin-input
-      class="col-6"
-      label="finCore.features.cardBrand.icon"
-      helpText="visa, mastercard, elo, senff"
-      [formControl]="formGroup.controls.icon"
-      [iconSuffix]="formGroup.controls.icon.value"
-      [iconSuffixColor]="formGroup.controls.color.value"
-      iconSuffixType="image"
-      iconSuffixImageFolder="icons/flags/"
-    />
+  <fin-input class="col-12" label="finCore.features.shared.name" [formControl]="formGroup.controls.name" />
+  <fin-color-picker class="col-6" label="finCore.features.shared.color" [formControl]="formGroup.controls.color" />
+  <fin-input class="col-6" label="finCore.features.shared.icon" [formControl]="formGroup.controls.icon"
+    [iconSuffix]="formGroup.controls.icon.value" [iconSuffixColor]="formGroup.controls.color.value"
+    iconSuffixType="brand" />
   }
 </fin-editor-layout>

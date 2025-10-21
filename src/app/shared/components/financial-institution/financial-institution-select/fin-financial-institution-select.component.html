@@ -1,21 +1,15 @@
-<fin-select [label]="label()"
-            [formControl]="formControl"
-            [options]="titleFinancialInstitutionSelectOptions"
-            [readonly]="readonly()"
-            [customErrorText]="customErrorText()"
-            [helpText]="helpText()"
-            [id]="id()"
->
+<fin-select [label]="label()" [formControl]="formControl" [options]="titleFinancialInstitutionSelectOptions"
+  [readonly]="readonly()" [customErrorText]="customErrorText()" [helpText]="helpText()" [id]="id()">
   <ng-template #itemTemplate let-option>
     <div class="financial-institution-option">
-      <fin-icon [icon]="option.customValue.icon"  type="bank" />
+      <fin-icon [icon]="option.customValue.icon" type="bank" />
       <fin-text type="paragraph" [text]="option.label" />
     </div>
   </ng-template>
 
   <ng-template #selectedItemTemplate let-option>
     <div class="financial-institution-option">
-      <fin-icon [icon]="option.customValue.icon" type="bank" size="sm" />
+      <fin-icon [icon]="option.customValue.icon" type="bank" />
       <fin-text type="paragraph" [text]="option.label" />
     </div>
   </ng-template>

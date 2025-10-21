@@ -1,0 +1,8 @@
+@let item = cardBrand();
+
+@if (item) {
+<div class="item-container">
+  <fin-icon [icon]="item.icon" type="brand" />
+  <fin-text [text]="item.name" type="paragraph" />
+</div>
+}
