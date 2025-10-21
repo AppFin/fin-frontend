@@ -1,13 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  forwardRef,
   inject,
   input,
   Input,
 } from '@angular/core';
 import { FinSelectComponent } from '../../generics/select/fin-select.component';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { PagedOutput } from '../../../models/paginations/paged-output';
 import { FinSelectOption } from '../../generics/select/fin-select-option';
@@ -24,15 +23,8 @@ import { FinIconComponent } from '../../generics/icon/fin-icon.component';
   templateUrl: './fin-financial-institution-select.component.html',
   styleUrl: './fin-financial-institution-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FinFinancialInstitutionSelectComponent),
-      multi: true,
-    },
-  ],
 })
-export class FinFinancialInstitutionSelectComponent implements ControlValueAccessor {
+export class FinFinancialInstitutionSelectComponent {
   @Input() public formControl: FormControl<string | null>;
 
   public readonly label = input('finCore.features.financialInstitutions.titleSingular');
@@ -76,14 +68,5 @@ export class FinFinancialInstitutionSelectComponent implements ControlValueAcces
           }) as FinSelectOption<string, FinancialInstitutionOutput>
       ),
     });
-  }
-
-  writeValue(obj: any): void {
-  }
-  registerOnChange(fn: any): void {
-  }
-  registerOnTouched(fn: any): void {
-  }
-  setDisabledState?(isDisabled: boolean): void {
   }
 }

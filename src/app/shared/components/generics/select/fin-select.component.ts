@@ -4,7 +4,6 @@ import {
   computed,
   contentChild,
   DestroyRef,
-  forwardRef,
   inject,
   input,
   Input,
@@ -14,10 +13,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  ControlValueAccessor,
   FormControl,
   FormsModule,
-  NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -52,15 +49,8 @@ import { NgTemplateOutlet } from '@angular/common';
   styleUrl: './fin-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FinSelectComponent),
-      multi: true,
-    },
-  ],
 })
-export class FinSelectComponent<T = any, C = null> implements OnInit, ControlValueAccessor {
+export class FinSelectComponent<T = any, C = null> implements OnInit {
   @Input() public formControl: FormControl<any>;
 
   public itemTemplateContent = contentChild<TemplateRef<any> | undefined>(
@@ -170,12 +160,5 @@ export class FinSelectComponent<T = any, C = null> implements OnInit, ControlVal
     this.loading.set(false);
   }
 
-  writeValue(obj: any): void {
-  }
-  registerOnChange(fn: any): void {
-  }
-  registerOnTouched(fn: any): void {
-  }
-  setDisabledState?(isDisabled: boolean): void {
-  }
+  protected readonly onblur = onblur;
 }

@@ -25,7 +25,7 @@ import { FinButtonComponent } from '../../button/fin-button.component';
 })
 export class EditorLayoutComponent {
   public readonly title = input<string>('');
-  public readonly formGroup = input.required<FormGroup>();
+  public readonly formGroup = input<FormGroup>(new FormGroup({}));
   public readonly canSave = input(false);
   public readonly isSaving = input(false);
   public readonly loading = input(false);

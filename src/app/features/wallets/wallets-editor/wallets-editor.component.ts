@@ -5,7 +5,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize, first, firstValueFrom, iif, tap } from 'rxjs';
 import { FinFinancialInstitutionSelectComponent } from "../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component";
@@ -26,12 +26,11 @@ import { nameAlreadyInUseValidator } from '../../../shared/validators/name-alrea
   selector: 'fin-wallets-editor',
   imports: [
     EditorLayoutComponent,
-    FinMoneyInputComponent,
     FinInputComponent,
-    FinFinancialInstitutionSelectComponent,
+    FinMoneyInputComponent,
     FinUserFriendlyColorPickerComponent,
     FinUserFriendlyIconPickerComponent,
-    ReactiveFormsModule
+    FinFinancialInstitutionSelectComponent
   ],
   templateUrl: './wallets-editor.component.html',
   styleUrl: './wallets-editor.component.scss',
