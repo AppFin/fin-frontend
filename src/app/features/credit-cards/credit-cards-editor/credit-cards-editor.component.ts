@@ -1,28 +1,27 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
-import { CreditCardInput } from '../../../shared/types/credit-cards/credit-card-input';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EditorType } from '../../../shared/enums/layouts/editor-type';
-import { FormGroupFromType } from '../../../shared/types/form/form-group-from-type';
-import { CreditCardService } from '../../../shared/services/credit-cards/credit-card.service';
-import { CreditCardOutput } from '../../../shared/types/credit-cards/credit-card-output';
 import { finalize, first, firstValueFrom, iif, tap } from 'rxjs';
-import { FormControl, Validators } from '@angular/forms';
-import { nameAlreadyInUseValidator } from '../../../shared/validators/name-already-in-use-validator';
-import { EditorLayoutComponent } from "../../../shared/components/generics/page-layout/editor-layout/editor-layout.component";
-import { FinInputComponent } from "../../../shared/components/generics/input/fin-input.component";
+import { FinCardBrandSelectComponent } from "../../../shared/components/card-brands/card-brand-select/fin-card-brand-select.component";
 import { FinFinancialInstitutionSelectComponent } from "../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component";
+import { FinInputComponent } from "../../../shared/components/generics/input/fin-input.component";
+import { EditorLayoutComponent } from "../../../shared/components/generics/page-layout/editor-layout/editor-layout.component";
 import { FinMoneyInputComponent } from "../../../shared/components/money-input/fin-money-input.component";
+import { FinMonthDaySelectComponent } from "../../../shared/components/month-day-select/fin-month-day-select.component";
 import { FinUserFriendlyColorPickerComponent } from "../../../shared/components/user-friendly-color-picker/fin-user-friendly-color-picker.component";
 import { FinUserFriendlyIconPickerComponent } from "../../../shared/components/user-friendly-icon-picker/fin-user-friendly-icon-picker.component";
-import { CreditCardCreateOrUpdateErrorCode } from '../../../shared/enums/credit-cards/credit-card-create-or-update-error-code';
-import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-back-http-error';
-import { FinCardBrandSelectComponent } from "../../../shared/components/card-brands/card-brand-select/fin-card-brand-select.component";
 import { FinWalletSelectComponent } from "../../../shared/components/wallets/wallet-select/fin-wallet-select.component";
-import { FinMonthDaySelectComponent } from "../../../shared/components/month-day-select/fin-month-day-select.component";
+import { CreditCardCreateOrUpdateErrorCode } from '../../../shared/enums/credit-cards/credit-card-create-or-update-error-code';
+import { EditorType } from '../../../shared/enums/layouts/editor-type';
+import { CreditCardService } from '../../../shared/services/credit-cards/credit-card.service';
+import { CreditCardInput } from '../../../shared/types/credit-cards/credit-card-input';
+import { CreditCardOutput } from '../../../shared/types/credit-cards/credit-card-output';
+import { FormGroupFromType } from '../../../shared/types/form/form-group-from-type';
+import { nameAlreadyInUseValidator } from '../../../shared/validators/name-already-in-use-validator';
 
 @Component({
   selector: 'fin-credit-cards-editor',
-  imports: [EditorLayoutComponent, FinInputComponent, FinFinancialInstitutionSelectComponent, FinMoneyInputComponent, FinUserFriendlyColorPickerComponent, FinUserFriendlyIconPickerComponent, FinCardBrandSelectComponent, FinWalletSelectComponent, FinMonthDaySelectComponent],
+  imports: [EditorLayoutComponent, FinInputComponent, FinFinancialInstitutionSelectComponent, FinMoneyInputComponent, FinUserFriendlyColorPickerComponent, FinUserFriendlyIconPickerComponent, FinCardBrandSelectComponent, FinWalletSelectComponent, FinMonthDaySelectComponent, ReactiveFormsModule],
   templateUrl: './credit-cards-editor.component.html',
   styleUrl: './credit-cards-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -99,7 +99,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
     null
   );
   public readonly outputTransformFn = input<
-    ((value: string | number | null | undefined) => string) | null
+    ((value: string | number | null | undefined) => string | number) | null
   >(null);
 
   // icon prefix
@@ -111,7 +111,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   public readonly iconPrefixType = input<FinIconType>('fontAwesome');
   public readonly iconPrefixImageFolder = input<string>('icons/');
   public readonly iconPrefixImageExtension = input<string>('.png');
-  public readonly iconPrefixSeverity = input<FinSeverity|null>(null);
+  public readonly iconPrefixSeverity = input<FinSeverity | null>(null);
 
   // icon suffix
   public readonly iconSuffix = input('');
@@ -122,7 +122,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   public readonly iconSuffixType = input<FinIconType>('fontAwesome');
   public readonly iconSuffixImageFolder = input<string>('icons/');
   public readonly iconSuffixImageExtension = input<string>('.png');
-  public readonly iconSuffixSeverity = input<FinSeverity|null>(null);
+  public readonly iconSuffixSeverity = input<FinSeverity | null>(null);
 
   // templates prefix and suffix
   public readonly prefixTemplate = input<TemplateRef<any> | null>(null);
@@ -205,8 +205,8 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
     this.errorMessage.set(errorMessage);
   }
 
-  writeValue(obj: any): void {}
-  registerOnChange(fn: any): void {}
-  registerOnTouched(fn: any): void {}
-  setDisabledState?(isDisabled: boolean): void {}
+  writeValue(obj: any): void { }
+  registerOnChange(fn: any): void { }
+  registerOnTouched(fn: any): void { }
+  setDisabledState?(isDisabled: boolean): void { }
 }

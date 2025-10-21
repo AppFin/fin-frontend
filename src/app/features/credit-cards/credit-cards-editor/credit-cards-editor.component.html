@@ -15,7 +15,7 @@
     [formControl]="formGroup.controls.debitWalletId" />
 
   <fin-money-input [allowNegativeNumbers]="false" class="col-6" label="finCore.features.creditCard.limit"
-    [formControl]="formGroup.controls.limit" />
+    formControlName="limit" />
 
   <fin-month-day-select class="col-6" label="finCore.features.creditCard.dueDay"
     [formControl]="formGroup.controls.dueDay" />

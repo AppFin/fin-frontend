@@ -1,16 +1,15 @@
+@if (formGroup) {}
 <fin-editor-layout
   [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  walletEditingName()"
   [loading]="loading()" [formGroup]="formGroup" [canSave]="canSave" [isSaving]="saving()" (onSave)="save()"
   (onCancel)="close()">
   @if (!loading()) {
-
   <fin-input class="col-12" label="finCore.features.wallet.name" [formControl]="formGroup.controls.name" />
 
   <fin-financial-institution-select class="col-6" label="finCore.features.wallet.financialInstitution"
     [inactivatedFilter]="false" [formControl]="formGroup.controls.financialInstitutionId" />
 
-  <fin-money-input class="col-6" label="finCore.features.wallet.initialBalance"
-    [formControl]="formGroup.controls.initialBalance" />
+  <fin-money-input class="col-6" label="finCore.features.wallet.initialBalance" formControlName="initialBalance" />
 
   <fin-user-friendly-color-picker class="col-6" label="finCore.features.shared.color"
     [formControl]="formGroup.controls.color" />
