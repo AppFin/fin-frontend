@@ -1,0 +1,9 @@
+<fin-page-layout title="finCore.features.titles.title" [loading]="loading()">
+  <div header>
+    <fin-button (onClick)="createTitleCard()" iconSuffix="plus" text="finCore.actions.new" />
+    <fin-button (onClick)="openFilter()" icon="search" variant="outlined" iconColor="var(--color-secondary)"
+      text="finCore.actions.filter" />
+  </div>
+
+  <fin-grid [options]="gridOptions()" />
+</fin-page-layout>
