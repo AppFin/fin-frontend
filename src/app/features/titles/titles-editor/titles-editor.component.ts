@@ -16,10 +16,11 @@ import { TitleService } from '../../../shared/services/titles/title.service';
 import { FormGroupFromType } from '../../../shared/types/form/form-group-from-type';
 import { TitleInput } from '../../../shared/types/titles/title-input';
 import { TitleOutput } from '../../../shared/types/titles/title-output';
+import { TitleCategoryMultiSelectComponent } from "../../../shared/components/title-categories/title-category-multi-select/title-category-multi-select.component";
 
 @Component({
   selector: 'fin-titles-editor',
-  imports: [EditorLayoutComponent, FinInputComponent, FinWalletSelectComponent, FinMoneyInputComponent, FinDatetimeComponent, SelectButtonModule, FinSelectButtonComponent],
+  imports: [EditorLayoutComponent, FinInputComponent, FinWalletSelectComponent, FinMoneyInputComponent, FinDatetimeComponent, SelectButtonModule, FinSelectButtonComponent, TitleCategoryMultiSelectComponent],
   templateUrl: './titles-editor.component.html',
   styleUrl: './titles-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -115,7 +116,7 @@ export class TitlesEditorComponent implements OnInit {
       value: new FormControl(
         entityEditing?.value ?? 0,
         {
-          validators: Validators.required,
+          validators: [Validators.required, Validators.min(0.01)],
           nonNullable: true
         }
       ),

@@ -16,7 +16,6 @@
 
   <fin-datetime class="col-6" label="finCore.features.shared.date" [formControl]="formGroup.controls.date" />
 
-  <fin-money-input class="col-12" label="finCore.features.titleCategory.title"
-    [formControl]="formGroup.controls.value" />
+  <fin-title-category-multi-select class="col-12" [formControl]="formGroup.controls.titleCategoriesIds" />
   }
 </fin-editor-layout>

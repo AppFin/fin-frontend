@@ -1,10 +1,11 @@
 import { TitleCategoryType } from '../../enums/title-categories/title-category-type';
+import { IEntity } from '../../interfaces/entities/i-entity';
 
-export type TitleCategoryOutput = {
-  id: string;
-  name: string;
-  color: string;
-  icon: string;
-  type: TitleCategoryType;
-  inactivated: boolean;
+export class TitleCategoryOutput implements IEntity {
+  public id: string;
+  public name: string;
+  public color: string;
+  public icon: string;
+  public type: TitleCategoryType;
+  public inactivated: boolean;
 }

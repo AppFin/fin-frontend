@@ -8,6 +8,7 @@ import { TitleCategoryOutput } from '../../types/title-categories/title-category
 import { PagedOutput } from '../../models/paginations/paged-output';
 import { toHttpParams } from '../../../core/functions/to-http-params';
 import { TitleCategoryInput } from '../../types/title-categories/title-category-input';
+import { CachedEntityService } from '../abstractions/cached-entities/cached-entity.service';
 
 /**
  * Service for interacting with the Title Categories API endpoints.
@@ -15,7 +16,7 @@ import { TitleCategoryInput } from '../../types/title-categories/title-category-
 @Injectable({
   providedIn: 'root',
 })
-export class TitleCategoryApiService {
+export class TitleCategoryApiService extends CachedEntityService<TitleCategoryOutput, TitleCategoryGetListInput> {
   private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'title-categories/';
   private readonly http = inject(HttpClient);
 
@@ -75,5 +76,10 @@ export class TitleCategoryApiService {
    */
   public delete(id: string): Observable<void> {
     return this.http.delete<void>(this.API_URL + id);
+  }
+
+  protected override applyStructuralFilter(entity: TitleCategoryOutput, filter: TitleCategoryGetListInput) {
+    const filterByInactivated = filter.inactivated !== undefined && entity.inactivated === null;
+    return !filterByInactivated || entity.inactivated === filter.inactivated;
   }
 }

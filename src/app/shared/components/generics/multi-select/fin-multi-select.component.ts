@@ -2,12 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  contentChild,
   DestroyRef,
   inject,
   input,
   Input,
   OnInit,
   signal,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -29,6 +31,7 @@ import { PagedFilteredAndSortedInput } from '../../../models/paginations/paged-f
 import { FinSelectComponentOptions } from '../select/fin-select-component-options';
 import { FinSelectOptionWithTranslation } from '../select/fin-select-option';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'fin-multi-select',
@@ -42,21 +45,21 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     MatProgressSpinnerModule,
     FinTextComponent,
     FloatLabelModule,
+    NgTemplateOutlet
   ],
   templateUrl: './fin-multi-select.component.html',
   styleUrl: './fin-multi-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class FinMultiSelectComponent implements OnInit {
+export class FinMultiSelectComponent<T = any, C = null> implements OnInit {
   @Input() public formControl: FormControl<any[] | null>;
 
   public readonly label = input('');
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
   public readonly helpText = input('');
-  public readonly selectComponentOptions = input<FinSelectComponentOptions>(
-    undefined,
+  public readonly selectComponentOptions = input.required<FinSelectComponentOptions<T, C>>(
     { alias: 'options' }
   );
 
@@ -72,6 +75,10 @@ export class FinMultiSelectComponent implements OnInit {
   public readonly showClear = input(false);
   public readonly filter = input(true);
   public readonly width = input('100%');
+
+  public itemTemplateContent = contentChild<TemplateRef<any> | undefined>(
+    'itemTemplate'
+  );
 
   public readonly loading = signal(true);
   public readonly options = signal<FinSelectOptionWithTranslation[]>([]);

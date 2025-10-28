@@ -1,37 +1,29 @@
 <div class="select-container">
-  <p-iftalabel
-    [class.required]="required()"
-    [class.disabled]="disabled()"
-  >
-    <p-multiSelect
-      [style.width]="width()"
-      [style.max-width]="width()"
-      (onBlur)="onBlur()"
-      [formControl]="formControl"
-      [inputId]="id()"
-      [options]="options()"
-      [readonly]="loading() ? true : readonly()"
-      [showClear]="showClear()"
-      [filter]="filter()"
-      optionDisabled="disabled"
-      optionLabel="labelTranslated"
-      optionValue="value"
-      [maxSelectedLabels]="maxSelectedLabels()"
-      [selectedItemsLabel]="selectedItemsLabel() | finTranslate"
-      [display]="display()"
-      [placeholder]="loading() ? ('finCore.actions.loading' | finTranslate) : ''"
-    >
+  <p-iftalabel [class.required]="required()" [class.disabled]="disabled()">
+    <p-multiSelect [style.width]="width()" [style.max-width]="width()" (onBlur)="onBlur()" appendTo="body"
+      [formControl]="formControl" [inputId]="id()" [options]="options()" [readonly]="loading() ? true : readonly()"
+      [showClear]="showClear()" [filter]="filter()" optionDisabled="disabled" optionLabel="labelTranslated"
+      optionValue="value" [maxSelectedLabels]="maxSelectedLabels()"
+      [selectedItemsLabel]="selectedItemsLabel() | finTranslate" [display]="display()"
+      [placeholder]="loading() ? ('finCore.actions.loading' | finTranslate) : ''">
+
+      @let itemTemplate = itemTemplateContent();
+      @if (itemTemplate) {
+      <ng-template #item let-option>
+        <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: option }" />
+      </ng-template>
+      }
 
       <ng-template #clearicon>
-        <fin-icon class="clear-icon" icon="times"/>
+        <fin-icon class="clear-icon" icon="times" />
       </ng-template>
 
       <ng-template #dropdownicon>
         <div class="dropdownicon">
           @if (!loading()) {
-            <fin-icon icon="chevron-down"/>
+          <fin-icon icon="chevron-down" />
           } @else {
-            <mat-spinner [diameter]="20" [strokeWidth]="3"/>
+          <mat-spinner [diameter]="20" [strokeWidth]="3" />
           }
         </div>
       </ng-template>
@@ -41,9 +33,9 @@
 
   <div class="sub-text">
     @if (!hasError()) {
-      <fin-text [text]="helpText()" class="info-sub" type="info"/>
+    <fin-text [text]="helpText()" class="info-sub" type="info" />
     } @else {
-      <fin-text [text]="errorMessageEffective()" class="error-sub" type="info"/>
+    <fin-text [text]="errorMessageEffective()" class="error-sub" type="info" />
     }
   </div>
 </div>
