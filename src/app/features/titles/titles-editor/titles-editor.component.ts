@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
-import { TitleInput } from '../../../shared/types/titles/title-input';
-import { EditorType } from '../../../shared/enums/layouts/editor-type';
-import { FormGroupFromType } from '../../../shared/types/form/form-group-from-type';
-import { TitleService } from '../../../shared/services/titles/title.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { finalize, first, firstValueFrom, iif } from 'rxjs';
-import { TitleOutput } from '../../../shared/types/titles/title-output';
 import { FormControl, Validators } from '@angular/forms';
-import { TitleType } from '../../../shared/enums/titles/title-type';
-import { EditorLayoutComponent } from "../../../shared/components/generics/page-layout/editor-layout/editor-layout.component";
-import { FinInputComponent } from "../../../shared/components/generics/input/fin-input.component";
-import { FinWalletSelectComponent } from "../../../shared/components/wallets/wallet-select/fin-wallet-select.component";
-import { FinMoneyInputComponent } from "../../../shared/components/money-input/fin-money-input.component";
-import { FinDatetimeComponent } from "../../../shared/components/generics/datetime/fin-date-time.component";
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectButtonModule } from "primeng/selectbutton";
-import { FinTranslatePipe } from "../../../core/pipes/translate/fin-translate.pipe";
+import { finalize, first, firstValueFrom, iif } from 'rxjs';
 import { FinTranslateService } from '../../../core/services/translate/fin-translate.service';
+import { FinDatetimeComponent } from "../../../shared/components/generics/datetime/fin-date-time.component";
+import { FinInputComponent } from "../../../shared/components/generics/input/fin-input.component";
+import { EditorLayoutComponent } from "../../../shared/components/generics/page-layout/editor-layout/editor-layout.component";
+import { FinSelectButtonComponent, FinSelectButtonOption } from "../../../shared/components/generics/select-button/fin-select-button.component";
+import { FinMoneyInputComponent } from "../../../shared/components/money-input/fin-money-input.component";
+import { FinWalletSelectComponent } from "../../../shared/components/wallets/wallet-select/fin-wallet-select.component";
+import { EditorType } from '../../../shared/enums/layouts/editor-type';
+import { TitleType } from '../../../shared/enums/titles/title-type';
+import { TitleService } from '../../../shared/services/titles/title.service';
+import { FormGroupFromType } from '../../../shared/types/form/form-group-from-type';
+import { TitleInput } from '../../../shared/types/titles/title-input';
+import { TitleOutput } from '../../../shared/types/titles/title-output';
 
 @Component({
   selector: 'fin-titles-editor',
-  imports: [EditorLayoutComponent, FinInputComponent, FinWalletSelectComponent, FinMoneyInputComponent, FinDatetimeComponent, SelectButtonModule, FinTranslatePipe],
+  imports: [EditorLayoutComponent, FinInputComponent, FinWalletSelectComponent, FinMoneyInputComponent, FinDatetimeComponent, SelectButtonModule, FinSelectButtonComponent],
   templateUrl: './titles-editor.component.html',
   styleUrl: './titles-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -34,11 +34,12 @@ export class TitlesEditorComponent implements OnInit {
   public readonly editorTypes = EditorType;
 
   private translateService = inject(FinTranslateService);
-  public readonly titleTypeOptions: { label: string, value: TitleType }[] = [
-    // { label: this.translateService.translate('finCore.features.title.type.expense'), value: TitleType.Expense },
+  public readonly titleTypeOptions: FinSelectButtonOption<TitleType>[] = [
+    // { label: 'finCore.features.title.type.expense', value: TitleType.Expense },
+    // { label: 'finCore.features.title.type.income', value: TitleType.Income },
+
     { label: 'expense', value: TitleType.Expense },
     { label: 'income', value: TitleType.Income },
-    // { label: this.translateService.translate('finCore.features.title.type.income'), value: TitleType.Income }
   ];
 
   private activatedRoute = inject(ActivatedRoute);

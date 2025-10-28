@@ -27,7 +27,7 @@ import { FinTextComponent } from '../../generics/text/fin-text.component';
 export class FinWalletSelectComponent {
   @Input() public formControl: FormControl<string | null>;
 
-  public readonly label = input('finCore.features.wallet.title');
+  public readonly label = input('finCore.features.wallet.titleSingular');
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
