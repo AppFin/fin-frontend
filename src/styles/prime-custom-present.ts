@@ -99,6 +99,76 @@ export const PrimeCustomPreset = definePreset(Aura, {
     },
   },
   components: {
+    selectbutton: {
+      colorScheme: {
+        light: {
+          root: {
+            borderRadius: '0.375rem',
+            invalidBorderColor: '#f21b3f',
+          },
+          button: {
+            background: '#ffffff',
+            hoverBackground: '#fdc570',
+            selectedBackground: '#f87b07',
+            checkedBackground: '#f87b07',
+            checkedHoverBackground: 'rgb(46, 38, 26)',
+            borderColor: '#adb5bd',
+            hoverBorderColor: '#f87b07',
+            selectedBorderColor: '#f87b07',
+            checkedBorderColor: '#f87b07',
+            checkedHoverBorderColor: 'rgb(46, 38, 26)',
+            color: '#212529',
+            hoverColor: '#212529',
+            selectedColor: '#ffffff',
+            checkedColor: '#ffffff',
+            checkedHoverColor: '#ffffff',
+            padding: '0.75rem 1.25rem',
+            gap: '0.5rem',
+            fontWeight: '500',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+        },
+        dark: {
+          root: {
+            borderRadius: '0.375rem',
+            invalidBorderColor: '#f21b3f',
+          },
+          button: {
+            background: '#1a1d23',
+            hoverBackground: '#212529',
+            selectedBackground: '#fdc570',
+            checkedBackground: '#fdc570',
+            checkedHoverBackground: '#f87b07',
+            borderColor: '#5e6671',
+            hoverBorderColor: '#fdc570',
+            selectedBorderColor: '#fdc570',
+            checkedBorderColor: '#fdc570',
+            checkedHoverBorderColor: '#f87b07',
+            color: '#e9ecef',
+            hoverColor: '#e9ecef',
+            selectedColor: '#000000',
+            checkedColor: '#000000',
+            checkedHoverColor: '#000000',
+            padding: '0.75rem 1.25rem',
+            gap: '0.5rem',
+            fontWeight: '500',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
+          },
+        },
+      },
+    },
     toolbar: {
       colorScheme: {
         light: {
