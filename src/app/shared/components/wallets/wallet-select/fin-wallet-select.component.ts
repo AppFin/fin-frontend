@@ -65,6 +65,7 @@ export class FinWalletSelectComponent {
           ({
             label: item.name,
             value: item.id,
+            disabled: this.formControl.value == item.id ? false : item.inactivated,
             customValue: item,
           }) as FinSelectOption<string, WalletOutput>
       ),

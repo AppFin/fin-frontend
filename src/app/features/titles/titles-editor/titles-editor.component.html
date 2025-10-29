@@ -12,7 +12,7 @@
   <fin-select-button [formControl]="formGroup.controls.type" [options]="titleTypeOptions"
     [label]="'finCore.features.shared.type'" class="col-6" />
 
-  <fin-wallet-select class="col-6" [inactivatedFilter]="false" [formControl]="formGroup.controls.walletId" />
+  <fin-wallet-select class="col-6" [formControl]="formGroup.controls.walletId" />
 
   <fin-datetime class="col-6" label="finCore.features.shared.date" [formControl]="formGroup.controls.date" />
 

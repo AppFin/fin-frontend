@@ -81,14 +81,19 @@ export class FinGridColumnRendererComponent<T> implements OnDestroy {
   private getCustomComponent(
     columnOption?: IFinGridColumnOption<T>
   ): Type<IFinGridCustomColumn<T>> | null {
-    if (columnOption instanceof FinGridSimpleColumnOption) {
-      return columnOption?.customColumn ? columnOption?.customColumn() : null;
-    }
-    if (columnOption instanceof FinGridIconColumnOption) {
-      return columnOption?.customColumn;
-    }
-    if (columnOption instanceof FinGridMoneyColumnOption) {
-      return columnOption?.customColumn;
+    const customColumn = (columnOption as any)['customColumn'];
+    if (customColumn !== undefined && customColumn !== null) {
+      try {
+        if (typeof customColumn === 'function') {
+          const isClass = customColumn.toString().startsWith('class') ||
+            customColumn.prototype !== undefined;
+
+
+          return isClass ? customColumn : customColumn();
+        } else {
+          return customColumn;
+        }
+      } catch { }
     }
     return null;
   }

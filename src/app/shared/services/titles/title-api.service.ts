@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ensureTrailingSlash } from '../../../core/functions/ensure-trailing-slash';
 import { PagedOutput } from '../../models/paginations/paged-output';
 import { toHttpParams } from '../../../core/functions/to-http-params';
@@ -28,7 +28,16 @@ export class TitleApiService {
     input: TitleGetListInput
   ): Observable<PagedOutput<TitleOutput>> {
     const params = toHttpParams(input);
-    return this.http.get<PagedOutput<TitleOutput>>(this.API_URL, { params });
+    return this.http.get<PagedOutput<TitleOutput>>(this.API_URL, { params })
+      .pipe(
+        map(result => {
+          result.items = result.items.map(title => {
+            title.date = new Date(title.date);
+            return title;
+          });
+          return result;
+        })
+      );
   }
 
   /**
@@ -37,7 +46,12 @@ export class TitleApiService {
    * @returns An Observable of the title data.
    */
   public get(id: string): Observable<TitleOutput> {
-    return this.http.get<TitleOutput>(this.API_URL + id);
+    return this.http.get<TitleOutput>(this.API_URL + id).pipe(
+      map(title => {
+        title.date = new Date(title.date);
+        return title;
+      })
+    );
   }
 
   /**

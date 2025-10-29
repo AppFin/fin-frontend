@@ -18,6 +18,7 @@ import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-b
 import { TitleService } from '../../../shared/services/titles/title.service';
 import { TitleGetListInput } from '../../../shared/types/titles/title-get-list-input';
 import { TitleOutput } from '../../../shared/types/titles/title-output';
+import { TitleCategoriesColumnOption } from '../../../shared/components/title-categories/title-categories-column/title-categories-column-option';
 
 @Component({
   selector: 'fin-titles-list',
@@ -110,9 +111,9 @@ export class TitlesListComponent implements OnInit {
         header: 'finCore.features.wallet.titleSingular',
         customColumn: () => WalletColumnComponent
       }),
-      new FinGridSimpleColumnOption<TitleOutput>({
+      new TitleCategoriesColumnOption<TitleOutput>({
         header: 'finCore.features.titleCategories.title',
-        getValue: item => item.titleCategoriesIds.join(', ')
+        getValue: item => item.titleCategoriesIds
       })
     ];
   }
