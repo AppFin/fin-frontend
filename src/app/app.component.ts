@@ -8,11 +8,9 @@ import {
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ThemeService } from './core/services/theme/theme.service';
 import { RouterOutlet } from '@angular/router';
 import { AppService } from './app.service';
-import { AuthService } from './core/services/authentication/auth.service';
-import { firstValueFrom } from 'rxjs';
+import { ThemeService } from './core/services/theme/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -25,29 +23,14 @@ import { firstValueFrom } from 'rxjs';
 export class AppComponent implements OnInit {
   private readonly themeService = inject(ThemeService);
   private readonly appService = inject(AppService);
-  private readonly authService = inject(AuthService);
 
   private readonly destroyRef = inject(DestroyRef);
 
   public ngOnInit(): void {
-    this.startAppAsync()
+    this.appService.startAppAsync(this.destroyRef)
   }
 
   public get isDarkMode(): boolean {
     return this.themeService.isDarkMode;
-  }
-
-  public async startAppAsync(): Promise<void> {
-    const authStated = this.authService.authStarted;
-    if (!authStated) await firstValueFrom(this.authService.authStartedSub);
-    await this.appService.startUseCaches(this.destroyRef);
-    this.removeSplashScreen();
-  }
-
-  private removeSplashScreen(): void {
-    const splash = document.getElementById('splash-screen');
-    if (splash) {
-      splash.remove();
-    }
   }
 }

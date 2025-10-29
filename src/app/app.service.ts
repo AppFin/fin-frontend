@@ -1,7 +1,8 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, firstValueFrom } from 'rxjs';
 import { AuthService } from './core/services/authentication/auth.service';
 import { CACHED_ENTITY_SERVICES } from './shared/services/abstractions/cached-entities/cached-entity-services';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
 export class AppService {
@@ -10,7 +11,24 @@ export class AppService {
 
   private loadedCache = false;
 
-  public async startUseCaches(destroyRef: DestroyRef): Promise<void> {
+  public async startAppAsync(destroyRef: DestroyRef): Promise<void> {
+    const authStated = this.authService.authStarted;
+    if (!authStated) {
+      const observable = this.authService.authStartedSub.pipe(filter(started => started))
+      await firstValueFrom(observable);
+    }
+    await this.startUseCaches(destroyRef);
+    this.removeSplashScreen();
+  }
+
+  private removeSplashScreen(): void {
+    const splash = document.getElementById('splash-screen');
+    if (splash) {
+      splash.remove();
+    }
+  }
+
+  private async startUseCaches(destroyRef: DestroyRef): Promise<void> {
     const logged = this.authService.isAuthenticated;
     if (logged) await this.loadCaches();
     this.authService.isAuthenticatedSub
