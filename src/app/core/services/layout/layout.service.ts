@@ -9,6 +9,7 @@ type SideModalOpenedProps = {
   opened: boolean,
   template?: TemplateRef<any>,
   config?: SideModalConfig
+  input?: any
 }
 
 @Injectable({
@@ -67,10 +68,10 @@ export class LayoutService {
     return window.innerWidth <= 768;
   }
 
-  public openSideModal<TResult = null>(template: TemplateRef<any>, config: SideModalConfig | undefined = undefined): Observable<TResult> {
+  public openSideModal<TResult = null, TInput = undefined>(template: TemplateRef<any>, config: SideModalConfig | undefined = undefined, input: TInput | undefined = undefined): Observable<TResult> {
     if (this.sideModalResult) this.sideModalResult.next(null);
     this.sideModalResult = new Subject<TResult>();
-    this._sideModalOpened.next({ opened: true, template, config });
+    this._sideModalOpened.next({ opened: true, template, config, input });
     return this.sideModalResult.asObservable();
   }
 

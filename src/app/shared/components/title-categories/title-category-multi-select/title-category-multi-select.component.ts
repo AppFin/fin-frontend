@@ -23,6 +23,7 @@ export class TitleCategoryMultiSelectComponent {
 
   public readonly label = input('finCore.features.titleCategory.title');
   public readonly readonly = input(false);
+  public readonly maxSelectedLabels = input(10);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
   public readonly id = input(

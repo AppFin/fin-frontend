@@ -57,7 +57,7 @@ export class TitlesListComponent implements OnInit {
   public openFilter() {
     const template = this.filterTemplate();
     if (!template) return;
-    this.layoutService.openSideModal<TitleFilter>(template).subscribe(filter => {
+    this.layoutService.openSideModal<TitleFilter, TitleFilter>(template, undefined, this.appliedFilter).subscribe(filter => {
       if (!filter) return;
       this.appliedFilter = filter;
       this.reloadItens.next();
@@ -95,7 +95,11 @@ export class TitlesListComponent implements OnInit {
   ): Observable<PagedOutput<TitleOutput>> {
     return this.apiService.getList({
       ...this.appliedFilter,
-      ...input
+      ...input,
+      filter: {
+        property: 'description',
+        filter: this.appliedFilter?.filter
+      }
     } as TitleGetListInput);
   }
 

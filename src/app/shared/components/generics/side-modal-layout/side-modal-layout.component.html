@@ -3,10 +3,14 @@
   <fin-text type="label" [text]="title()" />
   }
 
-  @if (formGroup()) {
-  <form [formGroup]="formGroup()" class="fin-grid-layout">
+  @if (hasFormGroup()) {
+  <form [formGroup]="effectiveFormGroup()" class="fin-grid-layout">
     <ng-content />
   </form>
+  } @else {
+  <div class="fin-grid-layout">
+    <ng-content />
+  </div>
   }
 </div>
 

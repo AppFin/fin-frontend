@@ -8,6 +8,6 @@
   <fin-grid [options]="gridOptions()" />
 </fin-page-layout>
 
-<ng-template #filter let-closeFn="closeFn">
-  <fin-title-list-filter (applyFilter)="closeFn($event)" />
+<ng-template #filter let-closeFn="closeFn" let-input="input">
+  <fin-title-list-filter (applyFilter)="closeFn($event)" [currentAppliedFIlter]="input" />
 </ng-template>

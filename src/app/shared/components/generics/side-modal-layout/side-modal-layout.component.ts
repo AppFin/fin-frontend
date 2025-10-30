@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, computed, input, ViewEncapsulation } from '@angular/core';
+import { FormGroup, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { FinTextComponent } from "../text/fin-text.component";
 
 @Component({
@@ -10,8 +10,11 @@ import { FinTextComponent } from "../text/fin-text.component";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideModalLayoutComponent {
-  public readonly formGroup = input.required<FormGroup>();
+  public readonly formGroup = input<FormGroup>();
   public readonly title = input('');
+
+  public readonly hasFormGroup = computed(() => !this.formGroup());
+  public readonly effectiveFormGroup = computed(() => this.formGroup() ?? new UntypedFormGroup({}));
 
 
 }

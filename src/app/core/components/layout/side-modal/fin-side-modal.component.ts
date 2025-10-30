@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { LayoutService } from '../../../services/layout/layout.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -20,6 +20,7 @@ export type SideModalConfig = {
 export class FinSideModalComponent implements OnInit {
   public readonly isOpened = signal(false);
   public readonly config = signal<SideModalConfig | undefined>(undefined);
+  public readonly input = signal<any | undefined>(undefined);
   public readonly template = signal<TemplateRef<any> | undefined>(undefined);
 
   private readonly layoutService = inject(LayoutService);
@@ -27,6 +28,10 @@ export class FinSideModalComponent implements OnInit {
 
   public ngOnInit(): void {
     this.startOpenedSideModalSub();
+  }
+
+  public get width(): string {
+    return this.layoutService.isMobile ? '100%' : (this.config()?.width ?? '30%');
   }
 
   public close(result: any = null): void {
@@ -48,6 +53,7 @@ export class FinSideModalComponent implements OnInit {
         this.config.set(options.config);
         this.isOpened.set(options.opened);
         this.template.set(options.template);
+        this.input.set(options.input);
       });
   }
 }
