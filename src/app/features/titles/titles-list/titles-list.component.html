@@ -7,3 +7,8 @@
 
   <fin-grid [options]="gridOptions()" />
 </fin-page-layout>
+
+<ng-template #filter let-closeFn="closeFn">
+  <p>HELLO TESTE</p>
+  <button (click)="closeFn()">click me</button>
+</ng-template>

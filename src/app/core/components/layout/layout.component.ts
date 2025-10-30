@@ -9,10 +9,11 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { NotificationWebsocketService } from '../../services/notifications/notification-websocket.service';
+import { FinSideModalComponent } from "./side-modal/fin-side-modal.component";
 
 @Component({
   selector: 'fin-layout',
-  imports: [RouterOutlet, HeaderComponent, SideNavComponent],
+  imports: [RouterOutlet, HeaderComponent, SideNavComponent, FinSideModalComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

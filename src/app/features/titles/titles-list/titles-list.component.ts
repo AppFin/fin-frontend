@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, TemplateRef, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 import { FinButtonComponent } from "../../../shared/components/generics/button/fin-button.component";
@@ -10,6 +10,7 @@ import { FinGridSimpleColumnOption } from '../../../shared/components/generics/g
 import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
 import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
 import { FinPageLayoutComponent } from "../../../shared/components/generics/page-layout/fin-page-layout.component";
+import { TitleCategoriesColumnOption } from '../../../shared/components/title-categories/title-categories-column/title-categories-column-option';
 import { WalletColumnComponent } from '../../../shared/components/wallets/wallet-column/wallet-column.component';
 import { TitleType } from '../../../shared/enums/titles/title-type';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
@@ -18,7 +19,7 @@ import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-b
 import { TitleService } from '../../../shared/services/titles/title.service';
 import { TitleGetListInput } from '../../../shared/types/titles/title-get-list-input';
 import { TitleOutput } from '../../../shared/types/titles/title-output';
-import { TitleCategoriesColumnOption } from '../../../shared/components/title-categories/title-categories-column/title-categories-column-option';
+import { LayoutService } from '../../../core/services/layout/layout.service';
 
 @Component({
   selector: 'fin-titles-list',
@@ -28,6 +29,8 @@ import { TitleCategoriesColumnOption } from '../../../shared/components/title-ca
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitlesListComponent implements OnInit {
+  public readonly filterTemplate = viewChild<TemplateRef<any>>('filter');
+
   public readonly gridOptions = signal<FinGridOptions<TitleOutput>>(
     new FinGridOptions()
   );
@@ -36,6 +39,7 @@ export class TitlesListComponent implements OnInit {
   private readonly apiService = inject(TitleService);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly layoutService = inject(LayoutService);
 
   private readonly reloadItens = new Subject<void>();
 
@@ -48,7 +52,9 @@ export class TitlesListComponent implements OnInit {
   }
 
   public openFilter() {
-    throw new Error('Method not implemented.');
+    const template = this.filterTemplate();
+    if (!template) return;
+    this.layoutService.openSideModal(template)
   }
 
   private setOptions() {

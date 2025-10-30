@@ -1,0 +1,16 @@
+fin-side-modal {
+  overflow: hidden;
+  height: auto;
+  flex: 1;
+  display: flex;
+
+  > mat-drawer-container {
+    overflow: hidden;
+    height: auto;
+    flex: 1;
+
+    mat-drawer {
+      background-color: var(--p-toolbar-background) !important;
+    }
+  }
+}
