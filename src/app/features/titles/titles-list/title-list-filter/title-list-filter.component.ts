@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, OnInit, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit, output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FinButtonComponent } from "../../../../shared/components/generics/button/fin-button.component";
 import { FinDialogFooterDirective } from "../../../../shared/components/generics/dialog/fin-dialog-footer.directive";
@@ -11,6 +11,7 @@ import { FormGroupFromType } from '../../../../shared/types/form/form-group-from
 import { FinInputComponent } from "../../../../shared/components/generics/input/fin-input.component";
 import { FinTitlesTypeSelectComponent } from "../../../../shared/components/titles/titles-type-select/fin-titles-type-select.component";
 import { FinWalletSelectComponent } from "../../../../shared/components/wallets/wallet-multi-select/fin-wallet-multi-select.component";
+import { LayoutService } from '../../../../core/services/layout/layout.service';
 
 export type TitleFilter = {
   categoryIds: string[];
@@ -41,8 +42,14 @@ export class TitleListFilterComponent implements OnInit {
   public readonly currentAppliedFIlter = input<TitleFilter | null>();
   public form: FormGroupFromType<TitleFilter>;
 
+  private readonly layoutService = inject(LayoutService);
+
   public ngOnInit(): void {
     this.setForm();
+  }
+
+  public get isMobile(): boolean {
+    return this.layoutService.isMobile;
   }
 
   public cancel(): void {

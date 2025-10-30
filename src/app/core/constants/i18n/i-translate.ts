@@ -10,6 +10,10 @@ export interface ITranslate {
       edit: string;
       editing: string;
       editingName: string;
+      filter: string;
+      apply: string;
+      applyFilter: string;
+      clearFilter: string;
       loadMore: string;
       active: string;
       inactive: string;
@@ -19,6 +23,7 @@ export interface ITranslate {
       ok: string;
       open: string;
       pin: string;
+      xSelected: string;
       save: string;
       search: string;
       searching: string;
@@ -139,6 +144,14 @@ export interface ITranslate {
           foodCard: string;
         }
       };
+      title: {
+        title: string;
+        titleSingular: string;
+        type: {
+          expense: string
+          income: string
+        }
+      };
       titleCategory: {
         deleteMessage: string;
         name: string;
@@ -203,10 +216,19 @@ export interface ITranslate {
       shared: {
         name: string;
         icon: string;
+        description: string;
+        date: string;
+        type: string;
+        value: string;
         color: string;
         customColor: string;
         customIcon: string;
         typeCustomIcon: string;
+        multiplyFilterOperator: {
+          title: string
+          or: string
+          and: string
+        };
         inactivatedFilter: {
           activated: string;
           inactivated: string;
@@ -217,6 +239,7 @@ export interface ITranslate {
         selfCustody: string;
         name: string;
         title: string;
+        titleSingular: string;
         initialBalance: string;
         currentBalance: string;
         financialInstitution: string;

@@ -4,7 +4,7 @@
       [formControl]="formControl" [inputId]="id()" [options]="options()" [readonly]="loading() ? true : readonly()"
       [showClear]="showClear()" [filter]="filter()" optionDisabled="disabled" optionLabel="labelTranslated"
       optionValue="value" [maxSelectedLabels]="maxSelectedLabels()"
-      [selectedItemsLabel]="selectedItemsLabel() | finTranslate" [display]="display()"
+      [selectedItemsLabel]="selectedItemsLabel()+'|x:'+formControl.value?.length| finTranslate" [display]="display()"
       [placeholder]="loading() ? ('finCore.actions.loading' | finTranslate) : ''">
 
       @let itemTemplate = itemTemplateContent();

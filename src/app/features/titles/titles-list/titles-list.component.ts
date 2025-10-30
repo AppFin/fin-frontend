@@ -57,7 +57,7 @@ export class TitlesListComponent implements OnInit {
   public openFilter() {
     const template = this.filterTemplate();
     if (!template) return;
-    this.layoutService.openSideModal<TitleFilter, TitleFilter>(template, undefined, this.appliedFilter).subscribe(filter => {
+    this.layoutService.openSideModal<TitleFilter, TitleFilter>(template, { width: '40%' }, this.appliedFilter).subscribe(filter => {
       if (!filter) return;
       this.appliedFilter = filter;
       this.reloadItens.next();
@@ -117,11 +117,11 @@ export class TitlesListComponent implements OnInit {
       }),
       new FinGridMoneyColumnOption<TitleOutput>({
         getValue: (item) => item.effectiveValue,
-        header: 'finCore.features.title.effectiveValue'
+        header: 'finCore.features.shared.value'
       }),
       new FinGridDateTimeColumnOption<TitleOutput>({
         getValue: (item) => item.date,
-        header: 'finCore.features.title.date',
+        header: 'finCore.features.shared.date',
         type: 'datetime'
       }),
       new FinGridSimpleColumnOption<TitleOutput>({
@@ -130,7 +130,7 @@ export class TitlesListComponent implements OnInit {
         customColumn: () => WalletColumnComponent
       }),
       new TitleCategoriesColumnOption<TitleOutput>({
-        header: 'finCore.features.titleCategories.title',
+        header: 'finCore.features.titleCategory.title',
         getValue: item => item.titleCategoriesIds
       })
     ];

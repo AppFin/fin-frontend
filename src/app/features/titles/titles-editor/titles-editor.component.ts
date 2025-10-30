@@ -36,11 +36,8 @@ export class TitlesEditorComponent implements OnInit {
 
   private translateService = inject(FinTranslateService);
   public readonly titleTypeOptions: FinSelectButtonOption<TitleType>[] = [
-    // { label: 'finCore.features.title.type.expense', value: TitleType.Expense },
-    // { label: 'finCore.features.title.type.income', value: TitleType.Income },
-
-    { label: 'expense', value: TitleType.Expense },
-    { label: 'income', value: TitleType.Income },
+    { label: 'finCore.features.title.type.expense', value: TitleType.Expense },
+    { label: 'finCore.features.title.type.income', value: TitleType.Income }
   ];
 
   private activatedRoute = inject(ActivatedRoute);

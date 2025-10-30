@@ -23,7 +23,7 @@ export class FinMultiplyFilterOperatorFilterSelectComponent {
   @Input() public formControl: FormControl<MultiplyFilterOperator | null>;
 
   public readonly readonly = input(false);
-  public readonly label = input('Operador');
+  public readonly label = input('finCore.features.shared.multiplyFilterOperator.title');
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
   public readonly id = input(
@@ -43,11 +43,11 @@ export class FinMultiplyFilterOperatorFilterSelectComponent {
       items: [
         {
           value: MultiplyFilterOperator.Or,
-          label: `OR`,
+          label: `finCore.features.shared.multiplyFilterOperator.or`,
         },
         {
           value: MultiplyFilterOperator.And,
-          label: `AND`,
+          label: `finCore.features.shared.multiplyFilterOperator.and`,
         },
       ],
     } as PagedOutput<FinSelectOption<MultiplyFilterOperator>>);
