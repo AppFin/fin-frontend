@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal, TemplateRef, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
+import { LayoutService } from '../../../core/services/layout/layout.service';
 import { FinButtonComponent } from "../../../shared/components/generics/button/fin-button.component";
 import { FinGridComponent } from "../../../shared/components/generics/grid/fin-grid.component";
 import { FinGridDateTimeColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-date-time-column-option';
@@ -19,11 +20,11 @@ import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-b
 import { TitleService } from '../../../shared/services/titles/title.service';
 import { TitleGetListInput } from '../../../shared/types/titles/title-get-list-input';
 import { TitleOutput } from '../../../shared/types/titles/title-output';
-import { LayoutService } from '../../../core/services/layout/layout.service';
+import { TitleFilter, TitleListFilterComponent } from "./title-list-filter/title-list-filter.component";
 
 @Component({
   selector: 'fin-titles-list',
-  imports: [FinPageLayoutComponent, FinButtonComponent, FinGridComponent],
+  imports: [FinPageLayoutComponent, FinButtonComponent, FinGridComponent, TitleListFilterComponent],
   templateUrl: './titles-list.component.html',
   styleUrl: './titles-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -43,6 +44,8 @@ export class TitlesListComponent implements OnInit {
 
   private readonly reloadItens = new Subject<void>();
 
+  private appliedFilter?: TitleFilter;
+
   public ngOnInit(): void {
     this.setOptions();
   }
@@ -54,7 +57,11 @@ export class TitlesListComponent implements OnInit {
   public openFilter() {
     const template = this.filterTemplate();
     if (!template) return;
-    this.layoutService.openSideModal(template)
+    this.layoutService.openSideModal<TitleFilter>(template).subscribe(filter => {
+      if (!filter) return;
+      this.appliedFilter = filter;
+      this.reloadItens.next();
+    })
   }
 
   private setOptions() {
@@ -87,6 +94,7 @@ export class TitlesListComponent implements OnInit {
     input: PagedFilteredAndSortedInput
   ): Observable<PagedOutput<TitleOutput>> {
     return this.apiService.getList({
+      ...this.appliedFilter,
       ...input
     } as TitleGetListInput);
   }

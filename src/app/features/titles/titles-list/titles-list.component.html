@@ -9,6 +9,5 @@
 </fin-page-layout>
 
 <ng-template #filter let-closeFn="closeFn">
-  <p>HELLO TESTE</p>
-  <button (click)="closeFn()">click me</button>
+  <fin-title-list-filter (applyFilter)="closeFn($event)" />
 </ng-template>
