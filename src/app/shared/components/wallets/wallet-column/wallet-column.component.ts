@@ -9,12 +9,12 @@ import { WalletOutput } from '../../../types/wallets/wallet-output';
 import { IFinGridCustomColumn } from '../../generics/grid/interface/i-fin-grid-custom-column';
 import { FinGridSimpleColumnOption } from '../../generics/grid/models/columns/fin-grid-simple-column-option';
 import { IFinGridColumnOption } from '../../generics/grid/models/columns/i-fin-grid-column-option';
-import { FinIconComponent } from '../../generics/icon/fin-icon.component';
 import { FinTextComponent } from '../../generics/text/fin-text.component';
+import { WalletIconComponent } from "../wallet-icon/wallet-icon.component";
 
 @Component({
   selector: 'fin-wallet-column',
-  imports: [FinIconComponent, FinTextComponent],
+  imports: [FinTextComponent, WalletIconComponent],
   templateUrl: './wallet-column.component.html',
   styleUrl: './wallet-column.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
