@@ -1,12 +1,12 @@
 <div class="input-container">
   <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
-    <p-inputSwitch
+    <p-toggleswitch
       [formControl]="formControl"
       [id]="id()"
       [disabled]="disabled()"
       class="toggle-switch-input"
       #toggle
-    ></p-inputSwitch>
+    ></p-toggleswitch>
     <label [for]="id()" >{{ label() | finTranslate }}</label>
   </p-iftalabel>
   <div class="sub-text">

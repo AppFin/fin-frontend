@@ -19,13 +19,13 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { FloatLabelModule } from 'primeng/floatlabel';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime } from 'rxjs';
-import { FinTextComponent } from '../text/fin-text.component';
-import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
+import { DatePickerModule } from 'primeng/datepicker';
+import { FloatLabelModule } from 'primeng/floatlabel';
 import { IftaLabelModule } from 'primeng/iftalabel';
-import { CalendarModule } from 'primeng/calendar';
+import { debounceTime } from 'rxjs';
+import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
+import { FinTextComponent } from '../text/fin-text.component';
 
 type DateTimeValue = Date | string | null;
 
@@ -37,8 +37,8 @@ type DateTimeValue = Date | string | null;
     FinTextComponent,
     FinTranslatePipe,
     IftaLabelModule,
-    CalendarModule
-],
+    DatePickerModule,
+  ],
   templateUrl: './fin-date-time.component.html',
   styleUrl: './fin-date-time.component.scss',
   providers: [
