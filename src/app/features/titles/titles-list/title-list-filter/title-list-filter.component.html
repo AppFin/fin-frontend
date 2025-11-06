@@ -1,0 +1,20 @@
+<fin-side-modal-layout [formGroup]="form" title="finCore.actions.filter">
+
+  <fin-input class="col-12" [formControl]="form.controls.filter" label="finCore.features.shared.description" />
+
+  <fin-multiply-filter-operator-filter-select class="col-3" [formControl]="form.controls.categoryOperator" />
+  <fin-title-category-multi-select class="col-9" [formControl]="form.controls.categoryIds"
+    [maxSelectedLabels]="isMobile ? 3 : 5" />
+
+  <fin-titles-type-select class="col-3" [formControl]="form.controls.type" />
+  <fin-multi-wallet-select class="col-9" [formControl]="form.controls.walletIds"
+    [maxSelectedLabels]="isMobile ? 3 : 5" />
+
+  <div footer>
+    <fin-button severity="secondary" iconColor="var(--color-disabled)" variant="outlined" icon="eraser"
+      text="finCore.actions.clearFilter" (onClick)="clear()" />
+    <fin-button severity="secondary" variant="outlined" text="finCore.actions.cancel" (onClick)="cancel()" />
+    <fin-button severity="primary" text="finCore.actions.apply" (onClick)="apply()" />
+  </div>
+
+</fin-side-modal-layout>

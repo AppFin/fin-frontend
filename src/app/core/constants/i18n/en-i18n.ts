@@ -29,6 +29,11 @@ export const EnI18n: ITranslate = {
       unpin: 'Unpin',
       active: 'Activate',
       inactive: 'Inactivate',
+      filter: 'Filter',
+      apply: 'Apply',
+      applyFilter: 'Apply filter',
+      clearFilter: 'Clear filter',
+      xSelected: '{{x}} itens selected'
     },
     appName: 'App Fin',
     auth: {
@@ -197,6 +202,11 @@ export const EnI18n: ITranslate = {
         users: 'Users',
       },
       shared: {
+        multiplyFilterOperator: {
+          title: 'Operator',
+          or: 'Or',
+          and: 'And'
+        },
         name: 'Name',
         inactivatedFilter: {
           activated: 'Activated',
@@ -208,6 +218,10 @@ export const EnI18n: ITranslate = {
         customColor: 'Custom color',
         customIcon: 'Custom icon',
         typeCustomIcon: 'Type custom icon',
+        description: 'Description',
+        date: 'Date',
+        type: 'Type',
+        value: 'Value'
       },
       wallet: {
         selfCustody: 'Physical wallet',
@@ -222,7 +236,8 @@ export const EnI18n: ITranslate = {
           walletInUseByCreditCardsAndTitle: "Wallet in use by credit cards and titles",
           walletInUseByActivatedCreditCards: "Wallet in use by activated credit cards",
           nameAlreadyInUse: "Name is already in use",
-        }
+        },
+        titleSingular: 'Wallet'
       },
       creditCard: {
         title: 'Credit Cards',
@@ -231,6 +246,14 @@ export const EnI18n: ITranslate = {
         closingDay: 'Closing day',
         dueDay: 'Due day',
         limit: 'Limit',
+      },
+      title: {
+        title: 'Transfers',
+        titleSingular: 'Transfer',
+        type: {
+          expense: 'Expense',
+          income: 'Income'
+        }
       }
     },
     grid: {

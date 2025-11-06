@@ -29,6 +29,11 @@ export const PtBrI18n: ITranslate = {
       unpin: 'Desfixar',
       active: 'Ativar',
       inactive: 'Inativar',
+      filter: 'Filtrar',
+      apply: 'Aplicar',
+      applyFilter: 'Aplicar filtro',
+      clearFilter: 'Limpar filtro',
+      xSelected: '{{x}} itens selecionados'
     },
     appName: 'App Fin',
     auth: {
@@ -208,6 +213,15 @@ export const PtBrI18n: ITranslate = {
         customColor: 'Cor customizado',
         customIcon: 'Ícone customizado',
         typeCustomIcon: 'Dígite o ícone customizado',
+        description: 'Descrição',
+        date: 'Data',
+        type: 'Tipo',
+        value: 'Valor',
+        multiplyFilterOperator: {
+          title: 'Operador',
+          or: 'Ou',
+          and: 'E'
+        }
       },
       wallet: {
         selfCustody: 'Carteira física',
@@ -222,7 +236,8 @@ export const PtBrI18n: ITranslate = {
           walletInUseByCreditCardsAndTitle: "Carteira em uso por cartões de crédito e título",
           walletInUseByActivatedCreditCards: "Carteira em uso por cartões de crédito ativados",
           nameAlreadyInUse: "Nome já está em uso",
-        }
+        },
+        titleSingular: 'Carteira'
       },
       creditCard: {
         title: 'Cartões de Crédito',
@@ -231,6 +246,14 @@ export const PtBrI18n: ITranslate = {
         closingDay: 'Dia do fechamento',
         dueDay: 'Dia de vencimento',
         limit: 'Limite',
+      },
+      title: {
+        title: 'Transferências',
+        titleSingular: 'Transferência',
+        type: {
+          expense: 'Gasto',
+          income: 'Receita'
+        }
       }
     },
     grid: {

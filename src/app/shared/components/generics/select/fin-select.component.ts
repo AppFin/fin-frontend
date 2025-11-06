@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,25 +13,24 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime, firstValueFrom } from 'rxjs';
-import { Select } from 'primeng/select';
-import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
-import { FinSelectComponentOptions } from './fin-select-component-options';
-import { PagedFilteredAndSortedInput } from '../../../models/paginations/paged-filtered-and-sorted-input';
-import { FinSelectOptionWithTranslation } from './fin-select-option';
-import { IftaLabel } from 'primeng/iftalabel';
-import { FinIconComponent } from '../icon/fin-icon.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FinTextComponent } from '../text/fin-text.component';
+import { IftaLabel } from 'primeng/iftalabel';
+import { Select } from 'primeng/select';
+import { debounceTime, firstValueFrom } from 'rxjs';
+import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
 import { FinTranslateService } from '../../../../core/services/translate/fin-translate.service';
-import { NgTemplateOutlet } from '@angular/common';
+import { PagedFilteredAndSortedInput } from '../../../models/paginations/paged-filtered-and-sorted-input';
+import { FinIconComponent } from '../icon/fin-icon.component';
+import { FinTextComponent } from '../text/fin-text.component';
+import { FinSelectComponentOptions } from './fin-select-component-options';
+import { FinSelectOptionWithTranslation } from './fin-select-option';
 
 @Component({
   selector: 'fin-select',

@@ -1,0 +1,21 @@
+<fin-editor-layout
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  entityEditingName()"
+  [loading]="loading()" [formGroup]="formGroup" [canSave]="canSave" [isSaving]="saving()" (onSave)="save()"
+  (onCancel)="close()">
+  @if (!loading()) {
+  <fin-input class="col-12" label="finCore.features.shared.description"
+    [formControl]="formGroup.controls.description" />
+
+  <fin-money-input [allowNegativeNumbers]="false" class="col-6" label="finCore.features.shared.value"
+    [formControl]="formGroup.controls.value" />
+
+  <fin-select-button [formControl]="formGroup.controls.type" [options]="titleTypeOptions"
+    [label]="'finCore.features.shared.type'" class="col-6" />
+
+  <fin-wallet-select class="col-6" [formControl]="formGroup.controls.walletId" />
+
+  <fin-datetime class="col-6" label="finCore.features.shared.date" [formControl]="formGroup.controls.date" />
+
+  <fin-title-category-multi-select class="col-12" [formControl]="formGroup.controls.titleCategoriesIds" />
+  }
+</fin-editor-layout>

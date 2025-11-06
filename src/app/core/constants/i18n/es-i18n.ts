@@ -29,6 +29,11 @@ export const EsI18n: ITranslate = {
       unpin: 'Desfijar',
       active: 'Activar',
       inactive: 'Desactivar',
+      filter: 'Filtrar',
+      apply: 'Aplicar',
+      applyFilter: 'Aplicar filtro',
+      clearFilter: 'Limpiar filtro',
+      xSelected: '{{x}} elementos seleccionados'
     },
     appName: 'App Fin',
     auth: {
@@ -197,6 +202,11 @@ export const EsI18n: ITranslate = {
         users: 'Usuarios',
       },
       shared: {
+        multiplyFilterOperator: {
+          title: 'Operador',
+          or: 'O',
+          and: 'Y'
+        },
         name: 'Nombre',
         inactivatedFilter: {
           activated: 'Activados',
@@ -208,6 +218,10 @@ export const EsI18n: ITranslate = {
         customColor: 'Color personalizado',
         customIcon: 'Ícono personalizado',
         typeCustomIcon: 'Ingrese el ícono personalizado',
+        description: 'Descripción',
+        date: 'Fecha',
+        type: 'Tipo',
+        value: 'Valor'
       },
       wallet: {
         selfCustody: 'Cartera física',
@@ -222,7 +236,8 @@ export const EsI18n: ITranslate = {
           walletInUseByCreditCardsAndTitle: "Cartera en uso por tarjetas de crédito y títulos",
           walletInUseByActivatedCreditCards: "Cartera en uso por tarjetas de crédito activadas",
           nameAlreadyInUse: "El nombre ya está en uso",
-        }
+        },
+        titleSingular: 'Cartera'
       },
       creditCard: {
         title: 'Tarjetas de Crédito',
@@ -231,6 +246,14 @@ export const EsI18n: ITranslate = {
         closingDay: 'Día de cierre',
         dueDay: 'Día de vencimiento',
         limit: 'Límite',
+      },
+      title: {
+        title: 'Transferencias',
+        titleSingular: 'Transferencia',
+        type: {
+          expense: 'Gasto',
+          income: 'Ingreso'
+        }
       }
     },
     grid: {

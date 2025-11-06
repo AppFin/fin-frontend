@@ -1,0 +1,51 @@
+.required {
+  label::after {
+    color: red;
+    content: ' *';
+  }
+}
+
+.disabled ::ng-deep .p-selectbutton {
+  filter: brightness(0.9);
+}
+
+::ng-deep .p-selectbutton.ng-invalid.ng-touched,
+::ng-deep .p-selectbutton.ng-invalid.ng-dirty {
+  .p-button {
+    border-color: var(--p-selectbutton-invalid-border-color);
+  }
+}
+
+.p-iftalabel:has(.ng-invalid.ng-touched) label,
+.p-iftalabel:has(.ng-invalid.ng-dirty) label {
+  color: var(--p-iftalabel-invalid-color);
+}
+
+.sub-text {
+  height: 30px;
+  max-width: 100%;
+  width: 100%;
+
+  .error-sub {
+    color: var(--color-error);
+    display: flex;
+  }
+}
+
+.select-button-container {
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 6px;
+  color: var(--text-color);
+}
+p-selectbutton {
+  display: flex;
+  gap: 0;
+  min-height: 60px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+::ng-deep p-togglebutton {
+  flex: 1;
+}

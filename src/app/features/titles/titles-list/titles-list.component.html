@@ -1,0 +1,13 @@
+<fin-page-layout title="finCore.features.title.title" [loading]="loading()">
+  <div header>
+    <fin-button (onClick)="createTitleCard()" iconSuffix="plus" text="finCore.actions.new" />
+    <fin-button (onClick)="openFilter()" icon="search" variant="outlined" iconColor="var(--color-secondary)"
+      text="finCore.actions.filter" />
+  </div>
+
+  <fin-grid [options]="gridOptions()" />
+</fin-page-layout>
+
+<ng-template #filter let-closeFn="closeFn" let-input="input">
+  <fin-title-list-filter (applyFilter)="closeFn($event)" [currentAppliedFIlter]="input" />
+</ng-template>

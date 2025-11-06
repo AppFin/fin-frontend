@@ -117,7 +117,7 @@ export class WalletService extends CachedEntityService<WalletOutput, WalletGetLi
   }
 
   protected override applyStructuralFilter(entity: WalletOutput, filter: WalletGetListInput): boolean {
-    const filterByInactivated = filter.inactivated !== undefined && entity.inactivated === null;
+    const filterByInactivated = filter.inactivated !== undefined && entity.inactivated !== null;
     return !filterByInactivated || entity.inactivated === filter.inactivated;
   }
 }

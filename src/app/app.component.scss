@@ -3,6 +3,7 @@
   color: var(--text-dark);
   --text-color: var(--text-dark);
   --background-color: var(--background-dark);
+  --background-inverted-color: var(--background-light);
 }
 
 .app-container.light-theme {
@@ -10,6 +11,7 @@
   color: var(--text-light);
   --text-color: var(--text-light);
   --background-color: var(--background-light);
+  --background-inverted-color: var(--background-dark);
 }
 
 .app-container {
@@ -19,4 +21,3 @@
 
   --mobile: 768px;
 }
-

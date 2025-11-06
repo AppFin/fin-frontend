@@ -1,15 +1,15 @@
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   input,
 } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
+import { finSeverityConverter } from '../../../../core/functions/fin-severity-converter';
 import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
 import { FinSeverity } from '../../../../core/types/themes/fin-severity';
-import { finSeverityConverter } from '../../../../core/functions/fin-severity-converter';
 
 export type FinIconSize =
   | 'xxs'
@@ -67,6 +67,7 @@ export class FinIconComponent {
 
     let extension = this.imageExtension();
     if (this.type() !== 'image') extension = '.png';
+    if (this.type() === 'bank') extension = '.svg';
 
     return `${folder}${this.icon()}${extension}`;
   });

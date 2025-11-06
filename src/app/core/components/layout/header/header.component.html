@@ -1,32 +1,19 @@
 <p-toolbar>
   <ng-template #start>
-    <fin-icon
-      class="logo-icon"
-      type="image"
-      icon="fin"
-      size="3xl"
-      tooltip="finCore.appName"
-      routerLink="/"
-    />
+    <fin-icon class="logo-icon" type="image" icon="fin" size="3xl" tooltip="finCore.appName" routerLink="/titles" />
     <button class="side-nav-toggle" (click)="toggleSideNav()">
-      <fin-icon
-        [tooltip]="sideNavOpened() ? 'finCore.layout.openMenu' : 'finCore.layout.closeMenu'"
-        [icon]="sideNavOpened() ? 'chevron-left' : 'chevron-right'"
-        size="md"
-      />
+      <fin-icon [tooltip]="sideNavOpened() ? 'finCore.layout.openMenu' : 'finCore.layout.closeMenu'"
+        [icon]="sideNavOpened() ? 'chevron-left' : 'chevron-right'" size="md" />
     </button>
   </ng-template>
   <ng-template #center>
-    <fin-text
-      [text]="pageName()"
-      type="paragraph"
-    />
+    <fin-text [text]="pageName()" type="paragraph" />
   </ng-template>
   <ng-template #end>
     <div class="itens-container">
       <fin-theme-toggle />
-       <fin-side-notification-toggler/>
-        <fin-button-filter />
+      <fin-side-notification-toggler />
+      <fin-button-filter />
       <button (click)="menu.toggle($event)">
         <fin-user-image />
       </button>
@@ -54,11 +41,11 @@
     <button class="perfil-container">
       <fin-user-image size="2.3rem" />
       <span class="name-container">
-                <fin-text [text]="user()?.name ?? ''" type="paragraph" />
+        <fin-text [text]="user()?.name ?? ''" type="paragraph" />
         @if (user()?.isAdmin) {
-          <fin-text text="finCore.layout.admin" type="info" />
+        <fin-text text="finCore.layout.admin" type="info" />
         }
-            </span>
+      </span>
     </button>
   </ng-template>
 </p-menu>

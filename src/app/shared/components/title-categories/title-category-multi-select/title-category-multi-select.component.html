@@ -1,0 +1,9 @@
+<fin-multi-select [label]="label()" [formControl]="formControl" [options]="selectOptions" [readonly]="readonly()"
+  [customErrorText]="customErrorText()" [helpText]="helpText()" [id]="id()" [maxSelectedLabels]="maxSelectedLabels()">
+  <ng-template #itemTemplate let-option>
+    <div class="select-option">
+      <fin-icon [icon]="option.customValue.icon" [iconColor]="option.customValue.color" />
+      <fin-text type="paragraph" [text]="option.label" />
+    </div>
+  </ng-template>
+</fin-multi-select>

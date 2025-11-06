@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+}
+
+div[footer] {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}

@@ -1,0 +1,19 @@
+<div class="side-modal-conteiner">
+  @if (title()) {
+  <fin-text type="label" [text]="title()" />
+  }
+
+  @if (hasFormGroup()) {
+  <form [formGroup]="effectiveFormGroup()" class="fin-grid-layout">
+    <ng-content />
+  </form>
+  } @else {
+  <div class="fin-grid-layout">
+    <ng-content />
+  </div>
+  }
+</div>
+
+<div class="footer">
+  <ng-content select="[footer]" />
+</div>

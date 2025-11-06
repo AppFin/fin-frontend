@@ -38,6 +38,12 @@ export class AuthService {
   public get isAuthenticated(): boolean {
     return this.isAuthenticatedSubject.value;
   }
+  private authStartedSubject = new BehaviorSubject(false);
+  public authStartedSub = this.authStartedSubject.asObservable();
+  public get authStarted(): boolean {
+    return this.authStartedSubject.value;
+  }
+
 
   private readonly api = inject(AuthApiService);
   private readonly router = inject(Router);
@@ -51,6 +57,7 @@ export class AuthService {
 
   constructor() {
     this.initializeAuth();
+    this.authStartedSubject.next(true);
   }
 
   public async login(input: LoginInput): Promise<void> {

@@ -1,13 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable, tap } from 'rxjs';
 import { ensureTrailingSlash } from '../../../core/functions/ensure-trailing-slash';
 import { TitleCategoryGetListInput } from '../../types/title-categories/title-category-get-list-input';
 import { TitleCategoryOutput } from '../../types/title-categories/title-category-output';
 import { PagedOutput } from '../../models/paginations/paged-output';
 import { toHttpParams } from '../../../core/functions/to-http-params';
 import { TitleCategoryInput } from '../../types/title-categories/title-category-input';
+import { CachedEntityService } from '../abstractions/cached-entities/cached-entity.service';
 
 /**
  * Service for interacting with the Title Categories API endpoints.
@@ -15,7 +16,7 @@ import { TitleCategoryInput } from '../../types/title-categories/title-category-
 @Injectable({
   providedIn: 'root',
 })
-export class TitleCategoryApiService {
+export class TitleCategoryApiService extends CachedEntityService<TitleCategoryOutput, TitleCategoryGetListInput> {
   private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'title-categories/';
   private readonly http = inject(HttpClient);
 
@@ -46,7 +47,8 @@ export class TitleCategoryApiService {
    * @returns An Observable of the created category data.
    */
   public create(input: TitleCategoryInput): Observable<TitleCategoryOutput> {
-    return this.http.post<TitleCategoryOutput>(this.API_URL, input);
+    return this.http.post<TitleCategoryOutput>(this.API_URL, input)
+      .pipe(tap((entity) => this.updateOrCreateOnCache(entity)));
   }
 
   /**
@@ -56,7 +58,12 @@ export class TitleCategoryApiService {
    * @returns An Observable that completes upon successful update.
    */
   public update(id: string, input: TitleCategoryInput): Observable<void> {
-    return this.http.put<void>(this.API_URL + id, input);
+    return this.http.put<void>(this.API_URL + id, input).pipe(
+      tap(async () => {
+        const entity = await firstValueFrom(this.get(id));
+        this.updateOrCreateOnCache(entity);
+      })
+    );
   }
 
   /**
@@ -74,6 +81,12 @@ export class TitleCategoryApiService {
    * @returns An Observable that completes upon successful deletion.
    */
   public delete(id: string): Observable<void> {
-    return this.http.delete<void>(this.API_URL + id);
+    return this.http.delete<void>(this.API_URL + id)
+      .pipe(tap(() => this.delete(id)));
+  }
+
+  protected override applyStructuralFilter(entity: TitleCategoryOutput, filter: TitleCategoryGetListInput) {
+    const filterByInactivated = filter.inactivated !== undefined && entity.inactivated === null;
+    return !filterByInactivated || entity.inactivated === filter.inactivated;
   }
 }

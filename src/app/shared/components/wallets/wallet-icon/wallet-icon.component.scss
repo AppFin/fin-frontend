@@ -1,0 +1,31 @@
+.wallet-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+}
+
+.wallet-icon-main {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallet-icon-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  height: 70%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(40%, 5%);
+  background-color: var(--background-light);
+  border-radius: 50%;
+  border: 1px solid var(--background-dark);
+}

@@ -7,6 +7,15 @@
 
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
+::selection {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
 
 * {
   box-sizing: border-box;
