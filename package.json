@@ -19,16 +19,16 @@
   "private": true,
   "dependencies": {
     "@angular-eslint/schematics": "^20.1.1",
-    "@angular/animations": "19.0.0",
+    "@angular/animations": "20.3.10",
     "@angular/cdk": "^19.2.0",
-    "@angular/common": "^19.2.0",
-    "@angular/compiler": "^19.2.0",
-    "@angular/core": "^19.2.0",
-    "@angular/forms": "^19.2.0",
+    "@angular/common": "^20.3.10",
+    "@angular/compiler": "^20.3.10",
+    "@angular/core": "^20.3.10",
+    "@angular/forms": "^20.3.10",
     "@angular/material": "^19.2.0",
-    "@angular/platform-browser": "^19.2.0",
-    "@angular/platform-browser-dynamic": "^19.2.0",
-    "@angular/router": "^19.2.0",
+    "@angular/platform-browser": "^20.3.10",
+    "@angular/platform-browser-dynamic": "^20.3.10",
+    "@angular/router": "^20.3.10",
     "@fortawesome/fontawesome-free": "^7.0.0",
     "@microsoft/signalr": "^9.0.6",
     "@ngx-translate/core": "^16.0.4",
@@ -48,9 +48,9 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.15",
-    "@angular/cli": "^19.2.15",
-    "@angular/compiler-cli": "^19.2.0",
+    "@angular/build": "^20.3.9",
+    "@angular/cli": "^20.3.9",
+    "@angular/compiler-cli": "^20.3.10",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^8.42.0",
     "@typescript-eslint/parser": "^8.42.0",
@@ -68,7 +68,7 @@
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-order": "^7.0.0",
-    "typescript": "~5.7.2"
+    "typescript": "~5.9.3"
   },
   "lint-staged": {
     "*.{ts,html}": [

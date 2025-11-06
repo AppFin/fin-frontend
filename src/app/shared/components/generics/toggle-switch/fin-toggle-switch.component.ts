@@ -19,7 +19,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
 import { FinTextComponent } from '../text/fin-text.component';
@@ -30,13 +30,12 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 @Component({
   selector: 'fin-toggle-switch',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     InputSwitchModule,
     FinTextComponent,
     FinTranslatePipe,
-    IftaLabel,
-  ],
+    IftaLabel
+],
   templateUrl: './fin-toggle-switch.component.html',
   styleUrl: './fin-toggle-switch.component.scss',
   providers: [

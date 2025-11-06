@@ -18,7 +18,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
@@ -32,14 +32,13 @@ type DateTimeValue = Date | string | null;
 @Component({
   selector: 'fin-datetime',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     FloatLabelModule,
     FinTextComponent,
     FinTranslatePipe,
     IftaLabelModule,
-    CalendarModule,
-  ],
+    CalendarModule
+],
   templateUrl: './fin-date-time.component.html',
   styleUrl: './fin-date-time.component.scss',
   providers: [

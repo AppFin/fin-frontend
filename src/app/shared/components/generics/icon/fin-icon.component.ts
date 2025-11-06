@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,12 +28,11 @@ export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'brand';
 @Component({
   selector: 'fin-icon',
   imports: [
-    CommonModule,
     MatTooltipModule,
     TranslateModule,
     NgOptimizedImage,
-    FinTranslatePipe,
-  ],
+    FinTranslatePipe
+],
   templateUrl: './fin-icon.component.html',
   styleUrl: './fin-icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
