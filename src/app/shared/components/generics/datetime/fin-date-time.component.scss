@@ -5,12 +5,17 @@
   }
 }
 
-.disabled .p-calendar {
+.disabled .p-datepicker {
   filter: brightness(0.9);
 }
 
-p-calendar {
+p-datepicker {
   display: flex;
+
+  input {
+    width: 100%;
+  }
+
   span {
     width: 100%;
 
@@ -23,8 +28,8 @@ p-calendar {
   }
 }
 
-.p-calendar:has(.ng-invalid.ng-touched) .p-inputtext,
-.p-calendar:has(.ng-invalid.ng-dirty) .p-inputtext {
+.p-datepicker:has(.ng-invalid.ng-touched) .p-inputtext,
+.p-datepicker:has(.ng-invalid.ng-dirty) .p-inputtext {
   border-color: var(--p-inputtext-invalid-border-color);
 }
 
@@ -51,6 +56,6 @@ p-calendar {
   color: var(--text-color);
 }
 
-p-calendar {
+p-datepicker {
   height: 60px;
 }

@@ -7,7 +7,6 @@ $cell-padding-vertical: 0.1rem;
 $paginator-height: 2rem;
 $background-color: var(--p-surface-100);
 
-
 $mobile: 768px;
 $tablet: 1024px;
 
@@ -61,25 +60,21 @@ fin-grid {
 
   p-table {
     height: 100%;
+    display: flex !important;
+    max-height: 100%;
+    overflow: hidden;
     width: 100%;
     display: flex;
+    flex-direction: column;
+    background: $background-color;
+    border: 1px solid var(--p-content-border-color);
+    border-radius: $border-radius-large;
 
-    .p-datatable {
-      max-height: 100%;
-      overflow: hidden;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      background: $background-color;
-      border: 1px solid var(--p-content-border-color);
-      border-radius: $border-radius-large;
-
-      @media (max-width: $mobile) {
-        border-radius: $border-radius-default;
-        box-shadow: none;
-        border: none;
-        background: transparent;
-      }
+    @media (max-width: $mobile) {
+      border-radius: $border-radius-default;
+      box-shadow: none;
+      border: none;
+      background: transparent;
     }
 
     .p-datatable-table-container {
@@ -329,21 +324,23 @@ fin-grid {
       }
 
       .p-paginator-rpp-dropdown {
-        > div,
-        > span {
+
+        >div,
+        >span {
           padding: 0.3rem;
+          color: var(--text-color);
 
           @media (max-width: $mobile) {
             font-size: 0.875rem;
           }
         }
 
-
-        .p-dropdown-panel {
+        .p-select-overlay {
           transform: translateY(-100%) !important;
           margin-top: -0.5rem !important;
           top: auto !important;
           bottom: 100% !important;
+          color: var(--text-color);
         }
       }
 
@@ -362,7 +359,7 @@ fin-grid {
           font-size: 0.875rem;
         }
 
-        &.p-paginator-page-selected {
+        &.p-paginator-page-active {
           background: var(--color-secondary);
           color: var(--p-primary-contrast-color);
         }
@@ -370,6 +367,7 @@ fin-grid {
 
 
       @media (max-width: 480px) {
+
         .p-paginator-first,
         .p-paginator-last {
           display: none;
@@ -378,7 +376,6 @@ fin-grid {
     }
   }
 }
-
 
 @media (max-width: $mobile) {
   .mobile-hidden {

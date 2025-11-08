@@ -688,49 +688,27 @@ export const PrimeCustomPreset = definePreset(Aura, {
     select: {
       colorScheme: {
         dark: {
-          root: {
-            // overlay: {
-            //   color: '#e9ecef',
-            // },
-            // option: {
-            //   color: '#e9ecef',
-            //   focusBackground: '#fcc46f',
-            //   selectedBackground: '#fcc46f',
-            //   selectedFocusBackground: '#fcc46f'
-            // },
+          overlay: {
+            color: '#e9ecef',
+          },
+          option: {
+            color: '#e9ecef',
+            focusBackground: '#fcc46f',
+            selectedBackground: '#fcc46f',
+            selectedFocusBackground: '#fcc46f',
           },
         },
         light: {
-          root: {
-            // overlay: {
-            //   color: '#e9ecef',
-            // },
-            // option: {
-            //   focusBackground: '#fcc46f',
-            //   selectedBackground: '#fcc46f',
-            //   selectedFocusBackground: '#fcc46f'
-            // },
-          },
+          root: {},
         },
       },
     },
     editor: {
       colorScheme: {
         light: {
-          // root: {
-          //   borderColor: '#adb5bd',
-          //   hoverBorderColor: '#f87b07',
-          //   focusBorderColor: '#f87b07',
-          //   invalidBorderColor: '#f21b3f',
-          //   color: '#212529',
-          // },
           toolbar: {
             background: '#f8f9fa',
             borderColor: '#adb5bd',
-            // itemColor: '#6c757d',
-            // itemHoverColor: '#f87b07',
-            // itemActiveColor: '#f87b07',
-            // itemPadding: '0.5rem',
           },
           content: {
             background: '#ffffff',
@@ -745,27 +723,12 @@ export const PrimeCustomPreset = definePreset(Aura, {
             shadow:
               '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
             padding: '0.25rem 0',
-            // optionFocusBackground: '#fdc570',
-            // optionColor: '#212529',
-            // optionFocusColor: '#212529',
-            // optionPadding: '0.5rem 0.75rem',
           },
         },
         dark: {
-          // root: {
-          //   borderColor: '#5e6671',
-          //   hoverBorderColor: '#fdc570',
-          //   focusBorderColor: '#fdc570',
-          //   invalidBorderColor: '#f21b3f',
-          //   color: '#f8f9fa',
-          // },
           toolbar: {
             background: '#1a1d23',
             borderColor: '#5e6671',
-            // // itemColor: '#adb5bd',
-            // itemHoverColor: '#fdc570',
-            // itemActiveColor: '#fdc570',
-            // itemPadding: '0.5rem',
           },
           content: {
             background: '#1e2228',
@@ -779,11 +742,6 @@ export const PrimeCustomPreset = definePreset(Aura, {
             shadow:
               '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
             padding: '0.25rem 0',
-            // optionFocusBackground: '#212529',
-            // optionColor: '#e9ecef',
-            // optionFocusColor: '#e9ecef',
-            // optionPadding: '0.5rem 0.75rem',
-            // optionBorderRadius: '0.25rem',
           },
         },
       },
@@ -913,7 +871,6 @@ export const PrimeCustomPreset = definePreset(Aura, {
         light: {
           root: {
             borderColor: '#e9ecef',
-            // backgroundColor: '#ffffff',
           },
           header: {
             background: '#f8f9fa',
@@ -946,22 +903,20 @@ export const PrimeCustomPreset = definePreset(Aura, {
             hoverBackground: '#f8f9fa',
             selectedBackground: '#fdc570',
             stripedBackground: '#f8f9fa',
-            // focusBackground: '#e9ecef',
             color: '#212529',
             hoverColor: '#212529',
             selectedColor: '#212529',
-            // focusColor: '#212529',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
           },
           bodyCell: {
             borderColor: '#e9ecef',
             padding: '1rem',
-            // focusRing: {
-            //   width: '0',
-            //   style: 'none',
-            //   color: 'unset',
-            //   offset: '0',
-            //   shadow: 'none',
-            // },
           },
           footerCell: {
             background: '#f8f9fa',
@@ -987,7 +942,6 @@ export const PrimeCustomPreset = definePreset(Aura, {
         dark: {
           root: {
             borderColor: '#212529',
-            // backgroundColor: '#1a1d23',
           },
           header: {
             background: '#1a1d23',
@@ -1020,22 +974,20 @@ export const PrimeCustomPreset = definePreset(Aura, {
             hoverBackground: '#212529',
             selectedBackground: '#212529',
             stripedBackground: '#212529',
-            // focusBackground: '#212529',
             color: '#e9ecef',
             hoverColor: '#e9ecef',
             selectedColor: '#fdc570',
-            // focusColor: '#e9ecef',
+            focusRing: {
+              width: '0',
+              style: 'none',
+              color: 'unset',
+              offset: '0',
+              shadow: 'none',
+            },
           },
           bodyCell: {
             borderColor: '#212529',
             padding: '1rem',
-            // focusRing: {
-            //   width: '0',
-            //   style: 'none',
-            //   color: 'unset',
-            //   offset: '0',
-            //   shadow: 'none',
-            // },
           },
           footerCell: {
             background: '#1a1d23',
