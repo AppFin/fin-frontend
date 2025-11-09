@@ -32,17 +32,13 @@ body {
 }
 
 html {
-  @include mat.theme(
-    (
-      color: (
-        theme-type: light,
+  @include mat.theme((color: (theme-type: light,
         primary: mat.$azure-palette,
         tertiary: mat.$blue-palette,
       ),
       typography: Roboto,
       density: 0,
-    )
-  );
+    ));
 }
 
 body {
@@ -147,17 +143,25 @@ body {
   0% {
     transform: scale(1) rotate(0deg);
   }
+
   25% {
-    transform: scale(1.5) rotate(0deg); /* Zoom in */
+    transform: scale(1.5) rotate(0deg);
+    /* Zoom in */
   }
+
   50% {
-    transform: scale(0.8) rotate(0deg); /* Back to normal */
+    transform: scale(0.8) rotate(0deg);
+    /* Back to normal */
   }
+
   75% {
-    transform: scale(1.1) rotate(720deg); /* Spin */
+    transform: scale(1.1) rotate(720deg);
+    /* Spin */
   }
+
   100% {
-    transform: scale(1) rotate(720deg); /* Hold spin position */
+    transform: scale(1) rotate(720deg);
+    /* Hold spin position */
   }
 }
 

@@ -19,7 +19,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { InputTextModule } from 'primeng/inputtext';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
@@ -32,15 +32,14 @@ import { FinIconComponent } from '../generics/icon/fin-icon.component';
 @Component({
   selector: 'fin-user-friendly-icon-picker',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     InputTextModule,
     FinTextComponent,
     FinTranslatePipe,
     IftaLabel,
     FinIconComponent,
-    MatMenuModule,
-  ],
+    MatMenuModule
+],
   templateUrl: './fin-user-friendly-icon-picker.component.html',
   styleUrl: './fin-user-friendly-icon-picker.component.scss',
   providers: [

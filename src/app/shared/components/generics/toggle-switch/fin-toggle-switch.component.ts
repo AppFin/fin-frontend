@@ -3,14 +3,12 @@ import {
   Component,
   computed,
   DestroyRef,
-  ElementRef,
   forwardRef,
   inject,
   Input,
   input,
   OnInit,
   signal,
-  ViewChild,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -19,20 +17,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime } from 'rxjs';
-import { FinTextComponent } from '../text/fin-text.component';
-import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
 import { IftaLabel } from 'primeng/iftalabel';
-import { InputSwitchModule } from 'primeng/inputswitch';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { debounceTime } from 'rxjs';
+import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
+import { FinTextComponent } from '../text/fin-text.component';
 
 @Component({
   selector: 'fin-toggle-switch',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
-    InputSwitchModule,
+    ToggleSwitchModule,
     FinTextComponent,
     FinTranslatePipe,
     IftaLabel,

@@ -20,7 +20,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { InputTextModule } from 'primeng/inputtext';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
@@ -31,13 +31,12 @@ import { IftaLabel } from 'primeng/iftalabel';
 @Component({
   selector: 'fin-color-picker',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     InputTextModule,
     FinTextComponent,
     FinTranslatePipe,
-    IftaLabel,
-  ],
+    IftaLabel
+],
   templateUrl: './fin-color-picker.component.html',
   styleUrl: './fin-color-picker.component.scss',
   providers: [

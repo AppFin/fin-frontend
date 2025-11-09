@@ -1,4 +1,6 @@
-export interface ITranslate {
+import { TranslationObject } from '@ngx-translate/core';
+
+export interface ITranslate extends TranslationObject {
   finCore: {
     actions: {
       cancel: string;
@@ -142,15 +144,15 @@ export interface ITranslate {
           bank: string;
           digitalBank: string;
           foodCard: string;
-        }
+        };
       };
       title: {
         title: string;
         titleSingular: string;
         type: {
-          expense: string
-          income: string
-        }
+          expense: string;
+          income: string;
+        };
       };
       titleCategory: {
         deleteMessage: string;
@@ -165,17 +167,16 @@ export interface ITranslate {
         };
       };
       cardBrand: {
-        title: string,
-        titleSingular: string,
-      },
+        title: string;
+        titleSingular: string;
+      };
       creditCard: {
-        title: string,
-        titleSingular: string,
-        debitWallet: string,
-        closingDay: string,
-        dueDay: string,
-        limit: string,
-
+        title: string;
+        titleSingular: string;
+        debitWallet: string;
+        closingDay: string;
+        dueDay: string;
+        limit: string;
       };
       menus: {
         frontRoute: string;
@@ -225,9 +226,9 @@ export interface ITranslate {
         customIcon: string;
         typeCustomIcon: string;
         multiplyFilterOperator: {
-          title: string
-          or: string
-          and: string
+          title: string;
+          or: string;
+          and: string;
         };
         inactivatedFilter: {
           activated: string;
@@ -249,8 +250,8 @@ export interface ITranslate {
           walletInUseByCreditCardsAndTitle: string;
           walletInUseByActivatedCreditCards: string;
           nameAlreadyInUse: string;
-        }
-      }
+        };
+      };
     };
     grid: {
       confirmDelete: string;

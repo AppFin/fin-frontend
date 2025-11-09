@@ -17,7 +17,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
@@ -36,13 +36,12 @@ export interface FinSelectButtonOption<T = any> {
   selector: 'fin-select-button',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     SelectButtonModule,
     FinTextComponent,
     FinTranslatePipe,
-    IftaLabel,
-  ],
+    IftaLabel
+],
   templateUrl: './fin-select-button.component.html',
   styleUrl: './fin-select-button.component.scss',
   providers: [

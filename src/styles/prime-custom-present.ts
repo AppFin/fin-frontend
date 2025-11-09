@@ -16,19 +16,19 @@ export const PrimeCustomPreset = definePreset(Aura, {
       900: '#fdc570',
       950: '#fdc570',
     },
-    secondary: {
-      50: '#212522',
-      100: '#212522',
-      200: '#212522',
-      300: '#212522',
-      400: '#212522',
-      500: '#212522',
-      600: '#212522',
-      700: '#212522',
-      800: '#212522',
-      900: '#212522',
-      950: '#212522',
-    },
+    // secondary: {
+    //   50: '#212522',
+    //   100: '#212522',
+    //   200: '#212522',
+    //   300: '#212522',
+    //   400: '#212522',
+    //   500: '#212522',
+    //   600: '#212522',
+    //   700: '#212522',
+    //   800: '#212522',
+    //   900: '#212522',
+    //   950: '#212522',
+    // },
     colorScheme: {
       light: {
         primary: {
@@ -60,7 +60,7 @@ export const PrimeCustomPreset = definePreset(Aura, {
         content: {
           color: '#212529',
           hoverColor: '#f87b07',
-          activeColor: 'rgb(46, 38, 26)',
+          // activeColor: 'rgb(46, 38, 26)',
         },
       },
       dark: {
@@ -93,7 +93,7 @@ export const PrimeCustomPreset = definePreset(Aura, {
         content: {
           color: '#f8f9fa',
           hoverColor: '#fdc570',
-          activeColor: '#f87b07',
+          // activeColor: '#f87b07',
         },
       },
     },
@@ -106,66 +106,66 @@ export const PrimeCustomPreset = definePreset(Aura, {
             borderRadius: '0.375rem',
             invalidBorderColor: '#f21b3f',
           },
-          button: {
-            background: '#ffffff',
-            hoverBackground: '#fdc570',
-            selectedBackground: '#f87b07',
-            checkedBackground: '#f87b07',
-            checkedHoverBackground: 'rgb(46, 38, 26)',
-            borderColor: '#adb5bd',
-            hoverBorderColor: '#f87b07',
-            selectedBorderColor: '#f87b07',
-            checkedBorderColor: '#f87b07',
-            checkedHoverBorderColor: 'rgb(46, 38, 26)',
-            color: '#212529',
-            hoverColor: '#212529',
-            selectedColor: '#ffffff',
-            checkedColor: '#ffffff',
-            checkedHoverColor: '#ffffff',
-            padding: '0.75rem 1.25rem',
-            gap: '0.5rem',
-            fontWeight: '500',
-            focusRing: {
-              width: '0',
-              style: 'none',
-              color: 'unset',
-              offset: '0',
-              shadow: 'none',
-            },
-          },
+          // button: {
+          //   background: '#ffffff',
+          //   hoverBackground: '#fdc570',
+          //   selectedBackground: '#f87b07',
+          //   checkedBackground: '#f87b07',
+          //   checkedHoverBackground: 'rgb(46, 38, 26)',
+          //   borderColor: '#adb5bd',
+          //   hoverBorderColor: '#f87b07',
+          //   selectedBorderColor: '#f87b07',
+          //   checkedBorderColor: '#f87b07',
+          //   checkedHoverBorderColor: 'rgb(46, 38, 26)',
+          //   color: '#212529',
+          //   hoverColor: '#212529',
+          //   selectedColor: '#ffffff',
+          //   checkedColor: '#ffffff',
+          //   checkedHoverColor: '#ffffff',
+          //   padding: '0.75rem 1.25rem',
+          //   gap: '0.5rem',
+          //   fontWeight: '500',
+          //   focusRing: {
+          //     width: '0',
+          //     style: 'none',
+          //     color: 'unset',
+          //     offset: '0',
+          //     shadow: 'none',
+          //   },
+          // },
         },
         dark: {
           root: {
             borderRadius: '0.375rem',
             invalidBorderColor: '#f21b3f',
           },
-          button: {
-            background: '#1a1d23',
-            hoverBackground: '#212529',
-            selectedBackground: '#fdc570',
-            checkedBackground: '#fdc570',
-            checkedHoverBackground: '#f87b07',
-            borderColor: '#5e6671',
-            hoverBorderColor: '#fdc570',
-            selectedBorderColor: '#fdc570',
-            checkedBorderColor: '#fdc570',
-            checkedHoverBorderColor: '#f87b07',
-            color: '#e9ecef',
-            hoverColor: '#e9ecef',
-            selectedColor: '#000000',
-            checkedColor: '#000000',
-            checkedHoverColor: '#000000',
-            padding: '0.75rem 1.25rem',
-            gap: '0.5rem',
-            fontWeight: '500',
-            focusRing: {
-              width: '0',
-              style: 'none',
-              color: 'unset',
-              offset: '0',
-              shadow: 'none',
-            },
-          },
+          // button: {
+          //   background: '#1a1d23',
+          //   hoverBackground: '#212529',
+          //   selectedBackground: '#fdc570',
+          //   checkedBackground: '#fdc570',
+          //   checkedHoverBackground: '#f87b07',
+          //   borderColor: '#5e6671',
+          //   hoverBorderColor: '#fdc570',
+          //   selectedBorderColor: '#fdc570',
+          //   checkedBorderColor: '#fdc570',
+          //   checkedHoverBorderColor: '#f87b07',
+          //   color: '#e9ecef',
+          //   hoverColor: '#e9ecef',
+          //   selectedColor: '#000000',
+          //   checkedColor: '#000000',
+          //   checkedHoverColor: '#000000',
+          //   padding: '0.75rem 1.25rem',
+          //   gap: '0.5rem',
+          //   fontWeight: '500',
+          //   focusRing: {
+          //     width: '0',
+          //     style: 'none',
+          //     color: 'unset',
+          //     offset: '0',
+          //     shadow: 'none',
+          //   },
+          // },
         },
       },
     },
@@ -688,49 +688,27 @@ export const PrimeCustomPreset = definePreset(Aura, {
     select: {
       colorScheme: {
         dark: {
-          root: {
-            overlay: {
-              color: '#e9ecef',
-            },
-            option: {
-              color: '#e9ecef',
-              focusBackground: '#fcc46f',
-              selectedBackground: '#fcc46f',
-              selectedFocusBackground: '#fcc46f'
-            },
+          overlay: {
+            color: '#e9ecef',
+          },
+          option: {
+            color: '#e9ecef',
+            focusBackground: '#fcc46f',
+            selectedBackground: '#fcc46f',
+            selectedFocusBackground: '#fcc46f',
           },
         },
         light: {
-          root: {
-            overlay: {
-              color: '#e9ecef',
-            },
-            option: {
-              focusBackground: '#fcc46f',
-              selectedBackground: '#fcc46f',
-              selectedFocusBackground: '#fcc46f'
-            },
-          },
+          root: {},
         },
       },
     },
     editor: {
       colorScheme: {
         light: {
-          root: {
-            borderColor: '#adb5bd',
-            hoverBorderColor: '#f87b07',
-            focusBorderColor: '#f87b07',
-            invalidBorderColor: '#f21b3f',
-            color: '#212529',
-          },
           toolbar: {
             background: '#f8f9fa',
             borderColor: '#adb5bd',
-            itemColor: '#6c757d',
-            itemHoverColor: '#f87b07',
-            itemActiveColor: '#f87b07',
-            itemPadding: '0.5rem',
           },
           content: {
             background: '#ffffff',
@@ -745,27 +723,12 @@ export const PrimeCustomPreset = definePreset(Aura, {
             shadow:
               '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
             padding: '0.25rem 0',
-            optionFocusBackground: '#fdc570',
-            optionColor: '#212529',
-            optionFocusColor: '#212529',
-            optionPadding: '0.5rem 0.75rem',
           },
         },
         dark: {
-          root: {
-            borderColor: '#5e6671',
-            hoverBorderColor: '#fdc570',
-            focusBorderColor: '#fdc570',
-            invalidBorderColor: '#f21b3f',
-            color: '#f8f9fa',
-          },
           toolbar: {
             background: '#1a1d23',
             borderColor: '#5e6671',
-            itemColor: '#adb5bd',
-            itemHoverColor: '#fdc570',
-            itemActiveColor: '#fdc570',
-            itemPadding: '0.5rem',
           },
           content: {
             background: '#1e2228',
@@ -779,11 +742,6 @@ export const PrimeCustomPreset = definePreset(Aura, {
             shadow:
               '0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
             padding: '0.25rem 0',
-            optionFocusBackground: '#212529',
-            optionColor: '#e9ecef',
-            optionFocusColor: '#e9ecef',
-            optionPadding: '0.5rem 0.75rem',
-            optionBorderRadius: '0.25rem',
           },
         },
       },
@@ -913,7 +871,6 @@ export const PrimeCustomPreset = definePreset(Aura, {
         light: {
           root: {
             borderColor: '#e9ecef',
-            backgroundColor: '#ffffff',
           },
           header: {
             background: '#f8f9fa',
@@ -946,15 +903,9 @@ export const PrimeCustomPreset = definePreset(Aura, {
             hoverBackground: '#f8f9fa',
             selectedBackground: '#fdc570',
             stripedBackground: '#f8f9fa',
-            focusBackground: '#e9ecef',
             color: '#212529',
             hoverColor: '#212529',
             selectedColor: '#212529',
-            focusColor: '#212529',
-          },
-          bodyCell: {
-            borderColor: '#e9ecef',
-            padding: '1rem',
             focusRing: {
               width: '0',
               style: 'none',
@@ -962,6 +913,10 @@ export const PrimeCustomPreset = definePreset(Aura, {
               offset: '0',
               shadow: 'none',
             },
+          },
+          bodyCell: {
+            borderColor: '#e9ecef',
+            padding: '1rem',
           },
           footerCell: {
             background: '#f8f9fa',
@@ -977,13 +932,16 @@ export const PrimeCustomPreset = definePreset(Aura, {
             borderColor: '#e9ecef',
             color: '#212529',
           },
-          dropPointColor: '#f87b07',
-          columnResizerWidth: '0.5rem',
+          dropPoint: {
+            color: '#f87b07',
+          },
+          columnResizer: {
+            width: '0.5rem',
+          },
         },
         dark: {
           root: {
             borderColor: '#212529',
-            backgroundColor: '#1a1d23',
           },
           header: {
             background: '#1a1d23',
@@ -1016,15 +974,9 @@ export const PrimeCustomPreset = definePreset(Aura, {
             hoverBackground: '#212529',
             selectedBackground: '#212529',
             stripedBackground: '#212529',
-            focusBackground: '#212529',
             color: '#e9ecef',
             hoverColor: '#e9ecef',
             selectedColor: '#fdc570',
-            focusColor: '#e9ecef',
-          },
-          bodyCell: {
-            borderColor: '#212529',
-            padding: '1rem',
             focusRing: {
               width: '0',
               style: 'none',
@@ -1032,6 +984,10 @@ export const PrimeCustomPreset = definePreset(Aura, {
               offset: '0',
               shadow: 'none',
             },
+          },
+          bodyCell: {
+            borderColor: '#212529',
+            padding: '1rem',
           },
           footerCell: {
             background: '#1a1d23',
@@ -1047,8 +1003,12 @@ export const PrimeCustomPreset = definePreset(Aura, {
             borderColor: '#212529',
             color: '#e9ecef',
           },
-          dropPointColor: '#fdc570',
-          columnResizerWidth: '0.5rem',
+          dropPoint: {
+            color: '#fdc570',
+          },
+          columnResizer: {
+            width: '0.5rem',
+          },
         },
       },
     },
@@ -1098,7 +1058,7 @@ export const PrimeCustomPreset = definePreset(Aura, {
             borderRadius: '50%',
             shadow: 'none',
           },
-          stepPanel: {
+          steppanel: {
             background: '#ffffff',
             color: '#212529',
             padding: '1.25rem 0.5rem',
@@ -1148,7 +1108,7 @@ export const PrimeCustomPreset = definePreset(Aura, {
             borderRadius: '50%',
             shadow: 'none',
           },
-          stepPanel: {
+          steppanel: {
             background: '#1a1d23',
             color: '#e9ecef',
             padding: '1.25rem 0.5rem',

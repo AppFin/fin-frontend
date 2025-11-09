@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +17,7 @@ import { ThemeService } from './core/services/theme/theme.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslateModule, RouterOutlet],
+  imports: [TranslateModule, RouterOutlet],
   providers: [AppService]
 })
 export class AppComponent implements OnInit {
