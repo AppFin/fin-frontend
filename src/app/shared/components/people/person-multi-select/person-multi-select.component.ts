@@ -9,58 +9,56 @@ import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { PagedFilteredAndSortedInput } from '../../../models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../models/paginations/paged-output';
-import { TitleCategoryApiService } from '../../../services/title-categories/title-category-api.service';
-import { TitleCategoryOutput } from '../../../types/title-categories/title-category-output';
-import { FinIconComponent } from '../../generics/icon/fin-icon.component';
+import { PeopleService } from '../../../services/people/person.service';
+import { PersonOutput } from '../../../types/people/person-output';
 import { FinMultiSelectComponent } from '../../generics/multi-select/fin-multi-select.component';
 import { FinSelectComponentOptions } from '../../generics/select/fin-select-component-options';
 import { FinSelectOption } from '../../generics/select/fin-select-option';
-import { FinTextComponent } from '../../generics/text/fin-text.component';
 
 @Component({
-  selector: 'fin-title-category-multi-select',
-  imports: [FinMultiSelectComponent, FinTextComponent, FinIconComponent],
-  templateUrl: './title-category-multi-select.component.html',
-  styleUrl: './title-category-multi-select.component.scss',
+  selector: 'fin-person-multi-select',
+  imports: [FinMultiSelectComponent],
+  templateUrl: './person-multi-select.component.html',
+  styleUrl: './person-multi-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TitleCategoryMultiSelectComponent {
+export class PersonMultiSelectComponent {
   @Input() public formControl: FormControl<string[]>;
 
-  public readonly label = input('finCore.features.titleCategory.title');
+  public readonly label = input('finCore.features.person.title');
   public readonly readonly = input(false);
   public readonly maxSelectedLabels = input(10);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
   public readonly id = input(
-    `fin-title-category-multi-select-${Math.random().toString(36).substring(2, 9)}`
+    `fin-person-multi-select-${Math.random().toString(36).substring(2, 9)}`
   );
 
   public readonly selectOptions = new FinSelectComponentOptions<
     string,
-    TitleCategoryOutput
+    PersonOutput
   >({
-    getOptions: this.getCardBrandOptions.bind(this),
+    getOptions: this.getPersonOptions.bind(this),
   });
 
-  private readonly cardBrandService = inject(TitleCategoryApiService);
+  private readonly personService = inject(PeopleService);
 
-  private getCardBrandOptions(
+  private getPersonOptions(
     input: PagedFilteredAndSortedInput
-  ): Observable<PagedOutput<FinSelectOption<string, TitleCategoryOutput>>> {
-    const cardBrands = this.cardBrandService.getListCached({
+  ): Observable<PagedOutput<FinSelectOption<string, PersonOutput>>> {
+    const persons = this.personService.getListCached({
       ...input,
     });
 
     return of({
-      totalCount: cardBrands.totalCount,
-      items: cardBrands.items.map(
+      totalCount: persons.totalCount,
+      items: persons.items.map(
         (item) =>
           ({
             label: item.name,
             value: item.id,
             customValue: item,
-          }) as FinSelectOption<string, TitleCategoryOutput>
+          }) as FinSelectOption<string, PersonOutput>
       ),
     });
   }

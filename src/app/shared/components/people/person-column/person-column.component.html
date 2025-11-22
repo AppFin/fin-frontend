@@ -1,0 +1,6 @@
+@for (item of categories(); track item.id) {
+<p-chip>
+  <fin-icon [icon]="item.icon" [iconColor]="item.color" size="xs" />
+  <fin-text type="info" [text]="item.name" />
+</p-chip>
+}
