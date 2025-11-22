@@ -1,0 +1,17 @@
+<fin-editor-layout
+  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  personEditingName()"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="close()"
+>
+  @if (!loading()) {
+  <fin-input
+    class="col-12"
+    label="finCore.features.wallet.name"
+    [formControl]="formGroup.controls.name"
+  />
+  }
+</fin-editor-layout>
