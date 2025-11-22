@@ -1,16 +1,28 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, TemplateRef, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  TemplateRef,
+  viewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 import { LayoutService } from '../../../core/services/layout/layout.service';
-import { FinButtonComponent } from "../../../shared/components/generics/button/fin-button.component";
-import { FinGridComponent } from "../../../shared/components/generics/grid/fin-grid.component";
+import { FinButtonComponent } from '../../../shared/components/generics/button/fin-button.component';
+import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
 import { FinGridDateTimeColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-date-time-column-option';
-import { FinGridIconColumnOption, FinIconOptions } from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
+import {
+  FinGridIconColumnOption,
+  FinIconOptions,
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
 import { FinGridMoneyColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-money-column-option';
 import { FinGridSimpleColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
 import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
 import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
-import { FinPageLayoutComponent } from "../../../shared/components/generics/page-layout/fin-page-layout.component";
+import { FinPageLayoutComponent } from '../../../shared/components/generics/page-layout/fin-page-layout.component';
+import { PersonColumnOption } from '../../../shared/components/people/person-column/person-column-option';
 import { TitleCategoriesColumnOption } from '../../../shared/components/title-categories/title-categories-column/title-categories-column-option';
 import { WalletColumnComponent } from '../../../shared/components/wallets/wallet-column/wallet-column.component';
 import { TitleType } from '../../../shared/enums/titles/title-type';
@@ -20,14 +32,22 @@ import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-b
 import { TitleService } from '../../../shared/services/titles/title.service';
 import { TitleGetListInput } from '../../../shared/types/titles/title-get-list-input';
 import { TitleOutput } from '../../../shared/types/titles/title-output';
-import { TitleFilter, TitleListFilterComponent } from "./title-list-filter/title-list-filter.component";
+import {
+  TitleFilter,
+  TitleListFilterComponent,
+} from './title-list-filter/title-list-filter.component';
 
 @Component({
   selector: 'fin-titles-list',
-  imports: [FinPageLayoutComponent, FinButtonComponent, FinGridComponent, TitleListFilterComponent],
+  imports: [
+    FinPageLayoutComponent,
+    FinButtonComponent,
+    FinGridComponent,
+    TitleListFilterComponent,
+  ],
   templateUrl: './titles-list.component.html',
   styleUrl: './titles-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitlesListComponent implements OnInit {
   public readonly filterTemplate = viewChild<TemplateRef<any>>('filter');
@@ -57,11 +77,16 @@ export class TitlesListComponent implements OnInit {
   public openFilter() {
     const template = this.filterTemplate();
     if (!template) return;
-    this.layoutService.openSideModal<TitleFilter, TitleFilter>(template, { width: '40%' }, this.appliedFilter).subscribe(filter => {
-      if (!filter) return;
-      this.appliedFilter = filter;
-      this.reloadItens.next();
-    })
+    this.layoutService
+      .openSideModal<
+        TitleFilter,
+        TitleFilter
+      >(template, { width: '40%' }, this.appliedFilter)
+      .subscribe((filter) => {
+        if (!filter) return;
+        this.appliedFilter = filter;
+        this.reloadItens.next();
+      });
   }
 
   private setOptions() {
@@ -89,7 +114,6 @@ export class TitlesListComponent implements OnInit {
     return this.apiService.delete(item.id);
   }
 
-
   private getCreditCards(
     input: PagedFilteredAndSortedInput
   ): Observable<PagedOutput<TitleOutput>> {
@@ -98,18 +122,19 @@ export class TitlesListComponent implements OnInit {
       ...input,
       filter: {
         property: 'description',
-        filter: this.appliedFilter?.filter
-      }
+        filter: this.appliedFilter?.filter,
+      },
     } as TitleGetListInput);
   }
 
   private getColumns(): IFinGridColumnOption<TitleOutput>[] {
     return [
       new FinGridIconColumnOption<TitleOutput>({
-        getValue: (item) => new FinIconOptions({
-          severity: item.type == TitleType.Expense ? 'danger' : 'success',
-          icon: item.type == TitleType.Expense ? 'arrow-down' : 'arrow-up',
-        })
+        getValue: (item) =>
+          new FinIconOptions({
+            severity: item.type == TitleType.Expense ? 'danger' : 'success',
+            icon: item.type == TitleType.Expense ? 'arrow-down' : 'arrow-up',
+          }),
       }),
       new FinGridSimpleColumnOption<TitleOutput>({
         getValue: (item) => item.description,
@@ -117,22 +142,26 @@ export class TitlesListComponent implements OnInit {
       }),
       new FinGridMoneyColumnOption<TitleOutput>({
         getValue: (item) => item.effectiveValue,
-        header: 'finCore.features.shared.value'
+        header: 'finCore.features.shared.value',
       }),
       new FinGridDateTimeColumnOption<TitleOutput>({
         getValue: (item) => item.date,
         header: 'finCore.features.shared.date',
-        type: 'datetime'
+        type: 'datetime',
       }),
       new FinGridSimpleColumnOption<TitleOutput>({
         getValue: (item) => item.walletId,
         header: 'finCore.features.wallet.titleSingular',
-        customColumn: () => WalletColumnComponent
+        customColumn: () => WalletColumnComponent,
       }),
       new TitleCategoriesColumnOption<TitleOutput>({
         header: 'finCore.features.titleCategory.title',
-        getValue: item => item.titleCategoriesIds
-      })
+        getValue: (item) => item.titleCategoriesIds,
+      }),
+      new PersonColumnOption<TitleOutput>({
+        header: 'finCore.features.person.title',
+        getValue: (item) => item.titlePeople.map((t) => t.personId),
+      }),
     ];
   }
 }

@@ -9,13 +9,12 @@ import { PeopleService } from '../../../services/people/person.service';
 import { PersonOutput } from '../../../types/people/person-output';
 import { IFinGridCustomColumn } from '../../generics/grid/interface/i-fin-grid-custom-column';
 import { IFinGridColumnOption } from '../../generics/grid/models/columns/i-fin-grid-column-option';
-import { FinIconComponent } from '../../generics/icon/fin-icon.component';
 import { FinTextComponent } from '../../generics/text/fin-text.component';
 import { PersonColumnOption } from './person-column-option';
 
 @Component({
   selector: 'fin-person-column',
-  imports: [ChipModule, FinTextComponent, FinIconComponent],
+  imports: [ChipModule, FinTextComponent],
   templateUrl: './person-column.component.html',
   styleUrl: './person-column.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
