@@ -93,7 +93,7 @@ export class PeopleListComponent implements OnInit {
     return [
       new FinGridSimpleColumnOption<PersonOutput>({
         getValue: (item) => item.name,
-        header: 'finCore.features.person.name',
+        header: 'finCore.features.shared.name',
       }),
     ];
   }

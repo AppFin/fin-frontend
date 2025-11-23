@@ -3,8 +3,12 @@ import { ITranslate } from './i-translate';
 export const EnI18n: ITranslate = {
   finCore: {
     actions: {
+      active: 'Activate',
+      apply: 'Apply',
+      applyFilter: 'Apply filter',
       cancel: 'Cancel',
       changeOrder: 'Change order',
+      clearFilter: 'Clear filter',
       close: 'Close',
       confirmation: 'Confirmation',
       creating: 'Creating',
@@ -12,8 +16,10 @@ export const EnI18n: ITranslate = {
       edit: 'Edit',
       editing: 'Editing',
       editingName: 'Editing {{name}}',
-      loadMore: 'Load more',
+      filter: 'Filter',
+      inactive: 'Inactivate',
       loading: 'Loading...',
+      loadMore: 'Load more',
       new: 'New',
       noResults: 'No results',
       ok: 'Ok',
@@ -27,13 +33,7 @@ export const EnI18n: ITranslate = {
       toggleToLightMode: 'Switch to light mode',
       tryDifferentTerms: 'Try different terms',
       unpin: 'Unpin',
-      active: 'Activate',
-      inactive: 'Inactivate',
-      filter: 'Filter',
-      apply: 'Apply',
-      applyFilter: 'Apply filter',
-      clearFilter: 'Clear filter',
-      xSelected: '{{x}} itens selected'
+      xSelected: '{{x}} items selected',
     },
     appName: 'App Fin',
     auth: {
@@ -110,8 +110,7 @@ export const EnI18n: ITranslate = {
           title: 'Reset password',
         },
         sendResetEmail: {
-          emailSent:
-            'If the email exists on the platform it has been sent now',
+          emailSent: 'If the email exists on the platform it has been sent now',
           sendLink: 'Send link',
           subtitle: 'Enter your email to receive the recovery link',
           title: 'Forgot your password?',
@@ -124,46 +123,48 @@ export const EnI18n: ITranslate = {
       or: 'or',
     },
     errors: {
+      duplicateValues: 'Duplicate values: {{duplicateValues}}.',
       email: 'Invalid email',
+      error: 'Error',
       forbidden: 'You do not have permission to access this page',
       googleLoginError: 'Error logging in with Google',
       internalError:
         'Internal server error, try again or contact support. Error code 500.',
+      max: 'Value must be at most {{max}}. Current value: {{actual}}',
       maxLength: 'Maximum {{maxLength}} characters',
+      min: 'Value must be at least {{min}}. Current value: {{actual}}',
       minLength: 'Minimum {{minLength}} characters',
+      nameAlreadyInUse: "The name '{{nameAlreadyInUse}}' is already in use.",
       pattern: 'Invalid format',
       required: 'This field is required',
       serverError: 'Server error',
-      error: 'Error',
-      nameAlreadyInUse: "The name '{{nameAlreadyInUse}}' is already in use.",
+      sumExceed:
+        'Sum exceeds the maximum value of {{max}}. Current Value: {{sum}}',
+      sumMustBeAtLeast: 'Sum must be at least {{min}}. Current Value: {{sum}}',
     },
     features: {
+      cardBrand: {
+        title: 'Card Brands',
+        titleSingular: 'Card Brand',
+      },
+      creditCard: {
+        closingDay: 'Closing day',
+        debitWallet: 'Debit wallet',
+        dueDay: 'Due day',
+        limit: 'Limit',
+        title: 'Credit Cards',
+        titleSingular: 'Credit Card',
+      },
       financialInstitutions: {
         code: 'Code',
         title: 'Financial Institutions',
         titleSingular: 'Financial Institution',
         type: {
-          title: 'Institution Type',
           bank: 'Bank',
           digitalBank: 'Digital bank',
           foodCard: 'Food/meal card',
+          title: 'Institution Type',
         },
-      },
-      titleCategory: {
-        deleteMessage: 'When removing this category it will be removed from all titles.',
-        name: 'Name',
-        title: 'Title Categories',
-        titleSingular: 'Title Category',
-        type: {
-          both: 'Both',
-          expense: 'Expense',
-          income: 'Income',
-          title: 'Type',
-        },
-      },
-      cardBrand: {
-        title: 'Card Brands',
-        titleSingular: 'Card Brand',
       },
       menus: {
         frontRoute: 'Front route',
@@ -177,19 +178,22 @@ export const EnI18n: ITranslate = {
         title: 'Menus',
       },
       notifications: {
-        title: 'Notifications',
-        textBody: 'Message',
         continuous: 'Continuous',
+        htmlBody: 'HTML message',
+        link: 'Link',
+        severity: {
+          default: 'Normal',
+          error: 'Error',
+          info: 'Information',
+          success: 'Success',
+          title: 'Severity',
+          warning: 'Warning',
+        },
         startToDelivery: 'Start of Delivery',
         stopToDelivery: 'End of Delivery',
-        severity: {
-          title: 'Severity',
-          success: 'Success',
-          error: 'Error',
-          warning: 'Warning',
-          info: 'Information',
-          default: 'Normal',
-        },
+        textBody: 'Message',
+        title: 'Notifications',
+        users: 'Users',
         ways: {
           email: 'Email',
           message: 'Message',
@@ -197,64 +201,78 @@ export const EnI18n: ITranslate = {
           snack: 'Snack',
           title: 'Delivery Methods',
         },
-        htmlBody: 'HTML message',
-        link: 'Link',
-        users: 'Users',
+      },
+      person: {
+        errors: {
+          nameAlreadyInUse: 'Name is already in use',
+          personInUse: 'Person in use',
+        },
+        title: 'People',
+        titleSingular: 'Person',
       },
       shared: {
-        multiplyFilterOperator: {
-          title: 'Operator',
-          or: 'Or',
-          and: 'And'
-        },
-        name: 'Name',
+        color: 'Color',
+        customColor: 'Custom color',
+        customIcon: 'Custom icon',
+        date: 'Date',
+        description: 'Description',
+        icon: 'Icon',
         inactivatedFilter: {
           activated: 'Activated',
           inactivated: 'Inactivated',
           title: 'Inactivation',
         },
-        icon: 'Icon',
-        color: 'Color',
-        customColor: 'Custom color',
-        customIcon: 'Custom icon',
-        typeCustomIcon: 'Type custom icon',
-        description: 'Description',
-        date: 'Date',
-        type: 'Type',
-        value: 'Value'
-      },
-      wallet: {
-        selfCustody: 'Physical wallet',
-        name: 'Name',
-        title: 'Wallets',
-        initialBalance: 'Initial balance',
-        currentBalance: 'Current balance',
-        financialInstitution: 'Financial institution',
-        errors: {
-          walletInUseByTitles: "Wallet in use by titles",
-          walletInUseByCreditCards: "Wallet in use by credit cards",
-          walletInUseByCreditCardsAndTitle: "Wallet in use by credit cards and titles",
-          walletInUseByActivatedCreditCards: "Wallet in use by activated credit cards",
-          nameAlreadyInUse: "Name is already in use",
+        multiplyFilterOperator: {
+          and: 'And',
+          or: 'Or',
+          title: 'Operator',
         },
-        titleSingular: 'Wallet'
-      },
-      creditCard: {
-        title: 'Credit Cards',
-        titleSingular: 'Credit Card',
-        debitWallet: 'Debit wallet',
-        closingDay: 'Closing day',
-        dueDay: 'Due day',
-        limit: 'Limit',
+        name: 'Name',
+        percentage: 'Percentage',
+        type: 'Type',
+        typeCustomIcon: 'Type custom icon',
+        value: 'Value',
       },
       title: {
+        advancedPersonSplit: 'Advanced person split',
         title: 'Transfers',
         titleSingular: 'Transfer',
         type: {
           expense: 'Expense',
-          income: 'Income'
-        }
-      }
+          income: 'Income',
+        },
+      },
+      titleCategory: {
+        deleteMessage:
+          'When removing this category it will be removed from all titles.',
+        name: 'Name',
+        title: 'Title Categories',
+        titleSingular: 'Title Category',
+        type: {
+          both: 'Both',
+          expense: 'Expense',
+          income: 'Income',
+          title: 'Type',
+        },
+      },
+      wallet: {
+        currentBalance: 'Current balance',
+        errors: {
+          nameAlreadyInUse: 'Name is already in use',
+          walletInUseByActivatedCreditCards:
+            'Wallet in use by activated credit cards',
+          walletInUseByCreditCards: 'Wallet in use by credit cards',
+          walletInUseByCreditCardsAndTitle:
+            'Wallet in use by credit cards and titles',
+          walletInUseByTitles: 'Wallet in use by titles',
+        },
+        financialInstitution: 'Financial institution',
+        initialBalance: 'Initial balance',
+        name: 'Name',
+        selfCustody: 'Physical wallet',
+        title: 'Wallets',
+        titleSingular: 'Wallet',
+      },
     },
     grid: {
       confirmDelete: 'Are you sure you want to delete this item?',
@@ -272,7 +290,7 @@ export const EnI18n: ITranslate = {
       settings: 'Settings',
       termsAndPolicies: 'Terms and policies',
       unpinnedMenus: 'Unpinned menus',
-      xNotifications: '{{notificationCount}}  notification(s)',
+      xNotifications: '{{notificationCount}} notification(s)',
     },
     sharedComponents: {
       grid: {

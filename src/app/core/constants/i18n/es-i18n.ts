@@ -3,8 +3,12 @@ import { ITranslate } from './i-translate';
 export const EsI18n: ITranslate = {
   finCore: {
     actions: {
+      active: 'Activar',
+      apply: 'Aplicar',
+      applyFilter: 'Aplicar filtro',
       cancel: 'Cancelar',
       changeOrder: 'Cambiar orden',
+      clearFilter: 'Limpiar filtro',
       close: 'Cerrar',
       confirmation: 'Confirmación',
       creating: 'Creando',
@@ -12,8 +16,10 @@ export const EsI18n: ITranslate = {
       edit: 'Editar',
       editing: 'Editando',
       editingName: 'Editando {{name}}',
-      loadMore: 'Cargar más',
+      filter: 'Filtrar',
+      inactive: 'Desactivar',
       loading: 'Cargando...',
+      loadMore: 'Cargar más',
       new: 'Nuevo',
       noResults: 'Sin resultados',
       ok: 'Aceptar',
@@ -27,13 +33,7 @@ export const EsI18n: ITranslate = {
       toggleToLightMode: 'Cambiar a modo claro',
       tryDifferentTerms: 'Intente otros términos',
       unpin: 'Desfijar',
-      active: 'Activar',
-      inactive: 'Desactivar',
-      filter: 'Filtrar',
-      apply: 'Aplicar',
-      applyFilter: 'Aplicar filtro',
-      clearFilter: 'Limpiar filtro',
-      xSelected: '{{x}} elementos seleccionados'
+      xSelected: '{{x}} elementos seleccionados',
     },
     appName: 'App Fin',
     auth: {
@@ -59,10 +59,13 @@ export const EsI18n: ITranslate = {
         maxAttemptsReached: 'Se alcanzó el número máximo de intentos',
         notSamePassword: 'Las contraseñas no coinciden',
         passwordMinLength: 'La contraseña debe tener al menos 5 caracteres',
-        passwordMustHasLowercase: 'La contraseña debe contener una letra minúscula',
+        passwordMustHasLowercase:
+          'La contraseña debe contener una letra minúscula',
         passwordMustHasNumber: 'La contraseña debe contener un número',
-        passwordMustHasSpecial: 'La contraseña debe contener un carácter especial',
-        passwordMustHasUppercase: 'La contraseña debe contener una letra mayúscula',
+        passwordMustHasSpecial:
+          'La contraseña debe contener un carácter especial',
+        passwordMustHasUppercase:
+          'La contraseña debe contener una letra mayúscula',
         passwordsMustBeEquals: 'Las contraseñas deben ser iguales',
         resetPasswordError: 'Error al restablecer la contraseña',
         sendResetError: 'Error al enviar correo de restablecimiento',
@@ -77,7 +80,8 @@ export const EsI18n: ITranslate = {
               resendCode: 'Reenviar código',
               resendConde: 'Reenviar código',
               title: 'Credenciales',
-              typeCodeSentOnEmail: 'Ingrese el código enviado a su correo electrónico',
+              typeCodeSentOnEmail:
+                'Ingrese el código enviado a su correo electrónico',
               youCanResendCodeIn: 'Puede reenviar el código en {{resendIn}}',
             },
             finished: {
@@ -110,10 +114,10 @@ export const EsI18n: ITranslate = {
           title: 'Restablecer contraseña',
         },
         sendResetEmail: {
-          emailSent:
-            'Si el correo existe en la plataforma, fue enviado ahora',
+          emailSent: 'Si el correo existe en la plataforma, fue enviado ahora',
           sendLink: 'Enviar enlace',
-          subtitle: 'Ingrese su correo electrónico para recibir el enlace de recuperación',
+          subtitle:
+            'Ingrese su correo electrónico para recibir el enlace de recuperación',
           title: '¿Olvidó su contraseña?',
         },
       },
@@ -124,46 +128,49 @@ export const EsI18n: ITranslate = {
       or: 'o',
     },
     errors: {
+      duplicateValues: 'Valores duplicados: {{duplicateValues}}.',
       email: 'Correo electrónico inválido',
+      error: 'Error',
       forbidden: 'No tiene permiso para acceder a esta página',
       googleLoginError: 'Error al iniciar sesión con Google',
       internalError:
         'Error interno en el servidor, intente nuevamente o comuníquese con soporte. Código de error 500.',
+      max: 'El valor debe ser como máximo {{max}}. Valor actual: {{actual}}',
       maxLength: 'Máximo de {{maxLength}} caracteres',
+      min: 'El valor debe ser al menos {{min}}. Valor actual: {{actual}}',
       minLength: 'Mínimo de {{minLength}} caracteres',
+      nameAlreadyInUse: "El nombre '{{nameAlreadyInUse}}' ya está en uso.",
       pattern: 'Formato inválido',
       required: 'Este campo es obligatorio',
       serverError: 'Error en el servidor',
-      error: 'Error',
-      nameAlreadyInUse: "El nombre '{{nameAlreadyInUse}}' ya está en uso.",
+      sumExceed:
+        'La suma excede el valor máximo de {{max}}. Valor Actual: {{sum}}',
+      sumMustBeAtLeast:
+        'La suma debe ser al menos {{min}}. Valor Actual: {{sum}}',
     },
     features: {
+      cardBrand: {
+        title: 'Banderas de Tarjeta',
+        titleSingular: 'Bandera de Tarjeta',
+      },
+      creditCard: {
+        closingDay: 'Día de cierre',
+        debitWallet: 'Cartera de débito',
+        dueDay: 'Día de vencimiento',
+        limit: 'Límite',
+        title: 'Tarjetas de Crédito',
+        titleSingular: 'Tarjeta de Crédito',
+      },
       financialInstitutions: {
         code: 'Código',
         title: 'Instituciones Financieras',
         titleSingular: 'Institución Financiera',
         type: {
-          title: 'Tipo de Institución',
           bank: 'Banco',
           digitalBank: 'Banco digital',
           foodCard: 'Tarjeta de alimentación/comida',
+          title: 'Tipo de Institución',
         },
-      },
-      titleCategory: {
-        deleteMessage: 'Al eliminar esta categoría, será removida de todos los títulos.',
-        name: 'Nombre',
-        title: 'Categorías de títulos',
-        titleSingular: 'Categoría de título',
-        type: {
-          both: 'Ambos',
-          expense: 'Gasto',
-          income: 'Ingresos',
-          title: 'Tipo',
-        },
-      },
-      cardBrand: {
-        title: 'Banderas de Tarjeta',
-        titleSingular: 'Bandera de Tarjeta',
       },
       menus: {
         frontRoute: 'Ruta del front',
@@ -177,19 +184,22 @@ export const EsI18n: ITranslate = {
         title: 'Menús',
       },
       notifications: {
-        title: 'Notificaciones',
-        textBody: 'Mensaje',
         continuous: 'Continuo',
+        htmlBody: 'Mensaje HTML',
+        link: 'Enlace',
+        severity: {
+          default: 'Normal',
+          error: 'Error',
+          info: 'Información',
+          success: 'Éxito',
+          title: 'Severidad',
+          warning: 'Advertencia',
+        },
         startToDelivery: 'Inicio de Entrega',
         stopToDelivery: 'Fin de Entrega',
-        severity: {
-          title: 'Severidad',
-          success: 'Éxito',
-          error: 'Error',
-          warning: 'Advertencia',
-          info: 'Información',
-          default: 'Normal',
-        },
+        textBody: 'Mensaje',
+        title: 'Notificaciones',
+        users: 'Usuarios',
         ways: {
           email: 'Correo electrónico',
           message: 'Mensaje',
@@ -197,64 +207,78 @@ export const EsI18n: ITranslate = {
           snack: 'Snack',
           title: 'Formas de Envío',
         },
-        htmlBody: 'Mensaje HTML',
-        link: 'Enlace',
-        users: 'Usuarios',
+      },
+      person: {
+        errors: {
+          nameAlreadyInUse: 'El nombre ya está en uso',
+          personInUse: 'Persona en uso',
+        },
+        title: 'Personas',
+        titleSingular: 'Persona',
       },
       shared: {
-        multiplyFilterOperator: {
-          title: 'Operador',
-          or: 'O',
-          and: 'Y'
-        },
-        name: 'Nombre',
+        color: 'Color',
+        customColor: 'Color personalizado',
+        customIcon: 'Ícono personalizado',
+        date: 'Fecha',
+        description: 'Descripción',
+        icon: 'Ícono',
         inactivatedFilter: {
           activated: 'Activados',
           inactivated: 'Inactivados',
           title: 'Inactivación',
         },
-        icon: 'Ícono',
-        color: 'Color',
-        customColor: 'Color personalizado',
-        customIcon: 'Ícono personalizado',
-        typeCustomIcon: 'Ingrese el ícono personalizado',
-        description: 'Descripción',
-        date: 'Fecha',
-        type: 'Tipo',
-        value: 'Valor'
-      },
-      wallet: {
-        selfCustody: 'Cartera física',
-        name: 'Nombre',
-        title: 'Carteras',
-        initialBalance: 'Saldo inicial',
-        currentBalance: 'Saldo actual',
-        financialInstitution: 'Institución financiera',
-        errors: {
-          walletInUseByTitles: "Cartera en uso por títulos",
-          walletInUseByCreditCards: "Cartera en uso por tarjetas de crédito",
-          walletInUseByCreditCardsAndTitle: "Cartera en uso por tarjetas de crédito y títulos",
-          walletInUseByActivatedCreditCards: "Cartera en uso por tarjetas de crédito activadas",
-          nameAlreadyInUse: "El nombre ya está en uso",
+        multiplyFilterOperator: {
+          and: 'Y',
+          or: 'O',
+          title: 'Operador',
         },
-        titleSingular: 'Cartera'
-      },
-      creditCard: {
-        title: 'Tarjetas de Crédito',
-        titleSingular: 'Tarjeta de Crédito',
-        debitWallet: 'Cartera de débito',
-        closingDay: 'Día de cierre',
-        dueDay: 'Día de vencimiento',
-        limit: 'Límite',
+        name: 'Nombre',
+        percentage: 'Porcentaje',
+        type: 'Tipo',
+        typeCustomIcon: 'Ingrese el ícono personalizado',
+        value: 'Valor',
       },
       title: {
+        advancedPersonSplit: 'División avanzada por persona',
         title: 'Transferencias',
         titleSingular: 'Transferencia',
         type: {
           expense: 'Gasto',
-          income: 'Ingreso'
-        }
-      }
+          income: 'Ingreso',
+        },
+      },
+      titleCategory: {
+        deleteMessage:
+          'Al eliminar esta categoría, será removida de todos los títulos.',
+        name: 'Nombre',
+        title: 'Categorías de títulos',
+        titleSingular: 'Categoría de título',
+        type: {
+          both: 'Ambos',
+          expense: 'Gasto',
+          income: 'Ingresos',
+          title: 'Tipo',
+        },
+      },
+      wallet: {
+        currentBalance: 'Saldo actual',
+        errors: {
+          nameAlreadyInUse: 'El nombre ya está en uso',
+          walletInUseByActivatedCreditCards:
+            'Cartera en uso por tarjetas de crédito activadas',
+          walletInUseByCreditCards: 'Cartera en uso por tarjetas de crédito',
+          walletInUseByCreditCardsAndTitle:
+            'Cartera en uso por tarjetas de crédito y títulos',
+          walletInUseByTitles: 'Cartera en uso por títulos',
+        },
+        financialInstitution: 'Institución financiera',
+        initialBalance: 'Saldo inicial',
+        name: 'Nombre',
+        selfCustody: 'Cartera física',
+        title: 'Carteras',
+        titleSingular: 'Cartera',
+      },
     },
     grid: {
       confirmDelete: '¿Está seguro de que desea eliminar este elemento?',
@@ -272,7 +296,7 @@ export const EsI18n: ITranslate = {
       settings: 'Configuración',
       termsAndPolicies: 'Términos y políticas',
       unpinnedMenus: 'Menús no fijados',
-      xNotifications: '{{notificationCount}}  notificación(es)',
+      xNotifications: '{{notificationCount}} notificación(es)',
     },
     sharedComponents: {
       grid: {

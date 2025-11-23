@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable, tap } from 'rxjs';
 import { NotifyService } from '../../../core/services/notifications/notify.service';
 import {
   PersonCreateOrUpdateErrorCode,
@@ -58,14 +58,15 @@ export class PeopleService extends CachedEntityService<
   public create(
     input: PersonInput
   ): ObservableValidated<PersonOutput, PersonCreateOrUpdateErrorCode> {
-    return this.apiService
-      .create(input)
-      .pipe(
-        handleFinBackHttpErrorAndDisplayMessage<PersonCreateOrUpdateErrorCode>(
-          personCreateOrUpdateErrorCodeMessages,
-          this.notifyService
-        )
-      );
+    return this.apiService.create(input).pipe(
+      handleFinBackHttpErrorAndDisplayMessage<PersonCreateOrUpdateErrorCode>(
+        personCreateOrUpdateErrorCodeMessages,
+        this.notifyService
+      ),
+      tap((result) => {
+        if (!!result[1]) this.updateOrCreateOnCache(result[1]);
+      })
+    );
   }
 
   /**
@@ -78,14 +79,13 @@ export class PeopleService extends CachedEntityService<
     id: string,
     input: PersonInput
   ): ObservableValidated<void, PersonCreateOrUpdateErrorCode> {
-    return this.apiService
-      .update(id, input)
-      .pipe(
-        handleFinBackHttpErrorAndDisplayMessage<PersonCreateOrUpdateErrorCode>(
-          personCreateOrUpdateErrorCodeMessages,
-          this.notifyService
-        )
-      );
+    return this.apiService.update(id, input).pipe(
+      handleFinBackHttpErrorAndDisplayMessage<PersonCreateOrUpdateErrorCode>(
+        personCreateOrUpdateErrorCodeMessages,
+        this.notifyService
+      ),
+      tap(async () => await this.updateItemOnCache(id))
+    );
   }
 
   /**
@@ -94,7 +94,9 @@ export class PeopleService extends CachedEntityService<
    * @returns An Observable that completes upon successful update.
    */
   public toggleInactivated(id: string): Observable<void> {
-    return this.apiService.toggleInactivated(id);
+    return this.apiService
+      .toggleInactivated(id)
+      .pipe(tap(async () => await this.updateItemOnCache(id)));
   }
 
   /**
@@ -111,6 +113,11 @@ export class PeopleService extends CachedEntityService<
           this.notifyService
         )
       );
+  }
+
+  private async updateItemOnCache(id: string): Promise<void> {
+    const financialInstitution = await firstValueFrom(this.get(id));
+    this.updateOrCreateOnCache(financialInstitution);
   }
 
   protected override applyStructuralFilter(

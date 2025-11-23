@@ -4,6 +4,12 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
+import { SumError } from '../types/errors/sum-error';
+
+type SumRangeValidatorError = ValidationErrors & {
+  sumTooLow?: SumError | undefined;
+  sumTooHigh?: SumError | undefined;
+};
 
 /**
  * Validator to check if the sum of values is within the allowed range
@@ -33,7 +39,7 @@ export function sumRangeValidator(
   max?: number,
   markControls: boolean = false
 ): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
+  return (control: AbstractControl): SumRangeValidatorError | null => {
     if (!(control instanceof FormArray)) {
       return null;
     }
@@ -43,23 +49,23 @@ export function sumRangeValidator(
       return total + (Number(value) || 0);
     }, 0);
 
-    const errors: ValidationErrors = {};
+    const errors: SumRangeValidatorError = {};
     let hasError = false;
 
     if (min !== undefined && sum < min) {
-      errors['sumTooLow'] = {
+      errors.sumTooLow = {
         sum,
         min,
-        message: `Sum must be at least ${min}. Current: ${sum} [TRANSLATE]`,
+        message: `finCore.errors.sumMustBeAtLeast|min:${min}|sum:${sum}`,
       };
       hasError = true;
     }
 
     if (max !== undefined && sum > max) {
-      errors['sumTooHigh'] = {
+      errors.sumTooHigh = {
         sum,
         max,
-        message: `Sum cannot exceed ${max}. Current: ${sum} [TRANSLATE]`,
+        message: `finCore.errors.sumExceed|max:${max}|sum:${sum}`,
       };
       hasError = true;
     }

@@ -34,6 +34,8 @@ export class PersonMultiSelectComponent {
     `fin-person-multi-select-${Math.random().toString(36).substring(2, 9)}`
   );
 
+  public readonly inactivatedFilter = input<boolean | undefined>(undefined);
+
   public readonly selectOptions = new FinSelectComponentOptions<
     string,
     PersonOutput
@@ -48,6 +50,7 @@ export class PersonMultiSelectComponent {
   ): Observable<PagedOutput<FinSelectOption<string, PersonOutput>>> {
     const persons = this.personService.getListCached({
       ...input,
+      inactivated: this.inactivatedFilter(),
     });
 
     return of({

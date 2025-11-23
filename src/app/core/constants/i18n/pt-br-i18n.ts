@@ -3,17 +3,23 @@ import { ITranslate } from './i-translate';
 export const PtBrI18n: ITranslate = {
   finCore: {
     actions: {
+      active: 'Ativar',
+      apply: 'Aplicar',
+      applyFilter: 'Aplicar filtro',
       cancel: 'Cancelar',
       changeOrder: 'Alterar ordem',
+      clearFilter: 'Limpar filtro',
       close: 'Fechar',
-      confirmation: 'Confirmation',
+      confirmation: 'Confirmação',
       creating: 'Criando',
       delete: 'Excluir',
       edit: 'Editar',
       editing: 'Editando',
       editingName: 'Editando {{name}}',
-      loadMore: 'Carregar mais',
+      filter: 'Filtrar',
+      inactive: 'Inativar',
       loading: 'Carregando...',
+      loadMore: 'Carregar mais',
       new: 'Novo',
       noResults: 'Sem resultados',
       ok: 'Ok',
@@ -27,13 +33,7 @@ export const PtBrI18n: ITranslate = {
       toggleToLightMode: 'Mudar para modo claro',
       tryDifferentTerms: 'Tente outros termos',
       unpin: 'Desfixar',
-      active: 'Ativar',
-      inactive: 'Inativar',
-      filter: 'Filtrar',
-      apply: 'Aplicar',
-      applyFilter: 'Aplicar filtro',
-      clearFilter: 'Limpar filtro',
-      xSelected: '{{x}} itens selecionados'
+      xSelected: '{{x}} itens selecionados',
     },
     appName: 'App Fin',
     auth: {
@@ -110,8 +110,7 @@ export const PtBrI18n: ITranslate = {
           title: 'Redefinir senha',
         },
         sendResetEmail: {
-          emailSent:
-            'Se o e-email existir na plataforma ele  foi enviado agora',
+          emailSent: 'Se o e-email existir na plataforma ele foi enviado agora',
           sendLink: 'Enviar link',
           subtitle: 'Digite seu email para receber o link de recuperação',
           title: 'Esqueceu sua senha?',
@@ -124,46 +123,49 @@ export const PtBrI18n: ITranslate = {
       or: 'ou',
     },
     errors: {
+      duplicateValues: 'Valores duplicados: {{duplicateValues}}.',
       email: 'Email inválido',
+      error: 'Erro',
       forbidden: 'Você não ter permissão de acessar essas página',
       googleLoginError: 'Erro ao logar com o Google',
       internalError:
         'Erro interno no servidor, tente novamente ou contate o suporte. Erro código 500.',
+      max: 'O valor deve ser no máximo {{max}}. Valor atual: {{actual}}',
       maxLength: 'Máximo de {{maxLength}} caracteres',
+      min: 'O valor deve ser no mínimo {{min}}. Valor atual: {{actual}}',
       minLength: 'Mínimo de {{minLength}} caracteres',
+      nameAlreadyInUse: "O nome '{{nameAlreadyInUse}}' já está em uso.",
       pattern: 'Formato inválido',
       required: 'Este campo é obrigatório',
       serverError: 'Erro no servidor',
-      error: 'Erro',
-      nameAlreadyInUse: "O nome '{{nameAlreadyInUse}}' já está em uso.",
+      sumExceed:
+        'A soma excede o valor máximo de {{max}}. Valor Atual: {{sum}}',
+      sumMustBeAtLeast:
+        'A soma deve ser no mínimo {{min}}. Valor Atual: {{sum}}',
     },
     features: {
+      cardBrand: {
+        title: 'Bandeiras de Cartão',
+        titleSingular: 'Bandeira do Cartão',
+      },
+      creditCard: {
+        closingDay: 'Dia do fechamento',
+        debitWallet: 'Carteira de débito',
+        dueDay: 'Dia de vencimento',
+        limit: 'Limite',
+        title: 'Cartões de Crédito',
+        titleSingular: 'Cartão de Crédito',
+      },
       financialInstitutions: {
         code: 'Código',
         title: 'Instituições Financeiras',
         titleSingular: 'Instituição Financeira',
         type: {
-          title: 'Tipo de Instituição',
           bank: 'Banco',
           digitalBank: 'Banco digital',
           foodCard: 'Cartão alimentação/refeição',
+          title: 'Tipo de Instituição',
         },
-      },
-      titleCategory: {
-        deleteMessage: 'Ao remover essa categória ela será removida de todos os títulos.',
-        name: 'Nome',
-        title: 'Categorias de títulos',
-        titleSingular: 'Categoria de título',
-        type: {
-          both: 'Ambos',
-          expense: 'Gasto',
-          income: 'Receitas',
-          title: 'Tipo',
-        },
-      },
-      cardBrand: {
-        title: 'Bandeiras de Cartão',
-        titleSingular: 'Bandeira do Cartão',
       },
       menus: {
         frontRoute: 'Rota do front',
@@ -177,19 +179,22 @@ export const PtBrI18n: ITranslate = {
         title: 'Menus',
       },
       notifications: {
-        title: 'Notificações',
-        textBody: 'Mensagem',
         continuous: 'Contínua',
+        htmlBody: 'Mensagem HTML',
+        link: 'Link',
+        severity: {
+          default: 'Normal',
+          error: 'Erro',
+          info: 'Informação',
+          success: 'Sucesso',
+          title: 'Severidade',
+          warning: 'Aviso',
+        },
         startToDelivery: 'Início da Entrega',
         stopToDelivery: 'Fim da Entrega',
-        severity: {
-          title: 'Severidade',
-          success: 'Sucesso',
-          error: 'Erro',
-          warning: 'Aviso',
-          info: 'Informação',
-          default: 'Normal',
-        },
+        textBody: 'Mensagem',
+        title: 'Notificações',
+        users: 'Usuários',
         ways: {
           email: 'E-mail',
           message: 'Mensagem',
@@ -197,64 +202,78 @@ export const PtBrI18n: ITranslate = {
           snack: 'Snack',
           title: 'Formas de Envio',
         },
-        htmlBody: 'Mensagem HTML',
-        link: 'Link',
-        users: 'Usuários',
+      },
+      person: {
+        errors: {
+          nameAlreadyInUse: 'Nome já está em uso',
+          personInUse: 'Pessoa em uso',
+        },
+        title: 'Pessoas',
+        titleSingular: 'Pessoa',
       },
       shared: {
-        name: 'Nome',
+        color: 'Cor',
+        customColor: 'Cor customizado',
+        customIcon: 'Ícone customizado',
+        date: 'Data',
+        description: 'Descrição',
+        icon: 'Ícone',
         inactivatedFilter: {
           activated: 'Ativados',
           inactivated: 'Inativados',
           title: 'Inativação',
         },
-        icon: 'Ícone',
-        color: 'Cor',
-        customColor: 'Cor customizado',
-        customIcon: 'Ícone customizado',
-        typeCustomIcon: 'Dígite o ícone customizado',
-        description: 'Descrição',
-        date: 'Data',
-        type: 'Tipo',
-        value: 'Valor',
         multiplyFilterOperator: {
-          title: 'Operador',
+          and: 'E',
           or: 'Ou',
-          and: 'E'
-        }
-      },
-      wallet: {
-        selfCustody: 'Carteira física',
-        name: 'Nome',
-        title: 'Carteiras',
-        initialBalance: 'Saldo inicial',
-        currentBalance: 'Saldo atual',
-        financialInstitution: 'Instituição financeira',
-        errors: {
-          walletInUseByTitles: "Carteira em uso por títulos",
-          walletInUseByCreditCards: "Carteira em uso por cartões de crédito",
-          walletInUseByCreditCardsAndTitle: "Carteira em uso por cartões de crédito e título",
-          walletInUseByActivatedCreditCards: "Carteira em uso por cartões de crédito ativados",
-          nameAlreadyInUse: "Nome já está em uso",
+          title: 'Operador',
         },
-        titleSingular: 'Carteira'
-      },
-      creditCard: {
-        title: 'Cartões de Crédito',
-        titleSingular: 'Cartão de Crédito',
-        debitWallet: 'Carteira de débito',
-        closingDay: 'Dia do fechamento',
-        dueDay: 'Dia de vencimento',
-        limit: 'Limite',
+        name: 'Nome',
+        percentage: 'Porcentagem',
+        type: 'Tipo',
+        typeCustomIcon: 'Dígite o ícone customizado',
+        value: 'Valor',
       },
       title: {
+        advancedPersonSplit: 'Divisão avançada por pessoa',
         title: 'Transferências',
         titleSingular: 'Transferência',
         type: {
           expense: 'Gasto',
-          income: 'Receita'
-        }
-      }
+          income: 'Receita',
+        },
+      },
+      titleCategory: {
+        deleteMessage:
+          'Ao remover essa categória ela será removida de todos os títulos.',
+        name: 'Nome',
+        title: 'Categorias de títulos',
+        titleSingular: 'Categoria de título',
+        type: {
+          both: 'Ambos',
+          expense: 'Gasto',
+          income: 'Receitas',
+          title: 'Tipo',
+        },
+      },
+      wallet: {
+        currentBalance: 'Saldo atual',
+        errors: {
+          nameAlreadyInUse: 'Nome já está em uso',
+          walletInUseByActivatedCreditCards:
+            'Carteira em uso por cartões de crédito ativados',
+          walletInUseByCreditCards: 'Carteira em uso por cartões de crédito',
+          walletInUseByCreditCardsAndTitle:
+            'Carteira em uso por cartões de crédito e título',
+          walletInUseByTitles: 'Carteira em uso por títulos',
+        },
+        financialInstitution: 'Instituição financeira',
+        initialBalance: 'Saldo inicial',
+        name: 'Nome',
+        selfCustody: 'Carteira física',
+        title: 'Carteiras',
+        titleSingular: 'Carteira',
+      },
     },
     grid: {
       confirmDelete: 'Tem certeza que deseja deletar esse item?',
@@ -272,7 +291,7 @@ export const PtBrI18n: ITranslate = {
       settings: 'Configurações',
       termsAndPolicies: 'Termos e políticas',
       unpinnedMenus: 'Menus não fixados',
-      xNotifications: '{{notificationCount}}  notificação(ões)',
+      xNotifications: '{{notificationCount}} notificação(ões)',
     },
     sharedComponents: {
       grid: {

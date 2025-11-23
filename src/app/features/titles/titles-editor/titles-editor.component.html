@@ -47,11 +47,12 @@
   <fin-person-multi-select
     class="col-12"
     [formControl]="simplePersonFormControl"
+    [inactivatedFilter]="false"
   />
 
   <fin-toggle-switch
     class="col-3"
-    label="finCore.features.titles.advancedPersonSplit"
+    label="finCore.features.title.advancedPersonSplit"
     [formControl]="isAdvancedPersonSplitEnabled"
   />
 
@@ -66,7 +67,7 @@
       [formControl]="personForm.controls.personId"
       class="col-6"
     />
-    <fin-input
+    <fin-percentage-input
       [formControl]="personForm.controls.percentage"
       label="finCore.features.shared.percentage"
       class="col-6"

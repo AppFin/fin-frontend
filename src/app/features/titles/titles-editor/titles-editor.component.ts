@@ -23,6 +23,7 @@ import { FinToggleSwitchComponent } from '../../../shared/components/generics/to
 import { FinMoneyInputComponent } from '../../../shared/components/money-input/fin-money-input.component';
 import { PersonMultiSelectComponent } from '../../../shared/components/people/person-multi-select/person-multi-select.component';
 import { FinPersonSelectComponent } from '../../../shared/components/people/person-select/fin-person-select.component';
+import { FinPercentageInputComponent } from '../../../shared/components/percentage/fin-percentage-input.component';
 import { TitleCategoryMultiSelectComponent } from '../../../shared/components/title-categories/title-category-multi-select/title-category-multi-select.component';
 import { FinWalletSelectComponent } from '../../../shared/components/wallets/wallet-select/fin-wallet-select.component';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
@@ -32,7 +33,7 @@ import { FormGroupFromType } from '../../../shared/types/form/form-group-from-ty
 import { TitleInput } from '../../../shared/types/titles/title-input';
 import { TitleOutput } from '../../../shared/types/titles/title-output';
 import { TitlePersonInput } from '../../../shared/types/titles/title-person-input';
-import { noDuplicatesValidator } from '../../../shared/validators/no-duplicatesV-validator';
+import { noDuplicatesValidator } from '../../../shared/validators/no-duplicates-validator';
 import { sumRangeValidator } from '../../../shared/validators/sum-range-validator';
 
 @Component({
@@ -49,6 +50,7 @@ import { sumRangeValidator } from '../../../shared/validators/sum-range-validato
     PersonMultiSelectComponent,
     FinPersonSelectComponent,
     FinToggleSwitchComponent,
+    FinPercentageInputComponent,
   ],
   templateUrl: './titles-editor.component.html',
   styleUrl: './titles-editor.component.scss',
@@ -303,6 +305,9 @@ export class TitlesEditorComponent implements OnInit {
         nonNullable: true,
       }),
     });
+    personFormGroup.markAllAsDirty();
+    personFormGroup.markAsTouched();
+    personFormGroup.updateValueAndValidity();
     this.advancedPersonFormArray.push(personFormGroup, { emitEvent });
   }
 }

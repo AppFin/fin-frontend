@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { PtBrI18n } from '../../constants/i18n/pt-br-i18n';
 import { EnI18n } from '../../constants/i18n/en-i18n';
-import { LocalizationService } from '../localization/localization.service';
 import { EsI18n } from '../../constants/i18n/es-i18n';
+import { PtBrI18n } from '../../constants/i18n/pt-br-i18n';
+import { LocalizationService } from '../localization/localization.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,14 +23,15 @@ export class FinTranslateService {
   public translate(keyAndProps: string): string {
     if (!keyAndProps) return '';
 
-    const [key, paramString] = keyAndProps.split('|');
-    const params = paramString
-      ? paramString.split(',').reduce((acc, pair) => {
-          const [k, v] = pair.split(':');
-          acc[k.trim()] = isNaN(+v) ? v.trim() : +v;
-          return acc;
-        }, {} as any)
-      : {};
+    const [key, ...propPairs] = keyAndProps.split('|');
+    const params =
+      propPairs.length > 0
+        ? propPairs.reduce((acc, pair) => {
+            const [k, v] = pair.split(':');
+            acc[k.trim()] = isNaN(+v) ? v.trim() : +v;
+            return acc;
+          }, {} as any)
+        : {};
     return this.translateService.instant(key.trim(), params);
   }
 

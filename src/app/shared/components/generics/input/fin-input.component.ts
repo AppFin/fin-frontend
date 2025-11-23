@@ -87,6 +87,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   // mask options
   public readonly mask = input<string>();
   public readonly prefix = input<string>('');
+  public readonly suffix = input<string>('');
   public readonly shownMaskExpression = input<string | null>(null);
   public readonly allowNegativeNumbers = input(false);
   public readonly validationMask = input(false);
@@ -201,6 +202,11 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
       if (errors['pattern']) errorMessage = 'finCore.errors.pattern';
       if (errors['nameAlreadyInUse'])
         errorMessage = `finCore.errors.nameAlreadyInUse|nameAlreadyInUse:${errors['nameAlreadyInUse'].value}`;
+      if (errors['min'])
+        errorMessage = `finCore.errors.min|min:${errors['min'].min}|actual:${errors['min'].actual}`;
+      if (errors['max'])
+        errorMessage = `finCore.errors.max|max:${errors['max'].max}|actual:${errors['max'].actual}`;
+
       if (Object.keys(errors).length > 0 && !errorMessage) {
         for (const key of Object.keys(errors)) {
           if (errors[key]?.message) {

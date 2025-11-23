@@ -4,6 +4,11 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
+import { DuplicatedError } from '../types/errors/duplicated-error';
+
+type noDuplicatesValidatorError = ValidationErrors & {
+  duplicate?: DuplicatedError | undefined;
+};
 
 /**
  * Validator to check for duplicate values in a specific field
@@ -35,7 +40,7 @@ export function noDuplicatesValidator(
   caseSensitive: boolean = false,
   markControls: boolean = false
 ): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
+  return (control: AbstractControl): noDuplicatesValidatorError | null => {
     if (!(control instanceof FormArray)) {
       return null;
     }
@@ -70,11 +75,11 @@ export function noDuplicatesValidator(
       }
     });
 
-    const duplicateError = {
+    const duplicateError: DuplicatedError = {
       field: fieldName,
       duplicatedValues: duplicates,
       indices: duplicateIndices,
-      message: `Duplicate values found: ${duplicates.join(', ')} [TRANSLATE]`,
+      message: `finCore.errors.duplicateValues|duplicateValues:${duplicates.join(', ')}`,
     };
 
     if (markControls) {
