@@ -37,10 +37,15 @@ export function sumRangeValidator(
   fieldName: string,
   min?: number,
   max?: number,
-  markControls: boolean = false
+  markControls: boolean = false,
+  ignoreIfEmpty: boolean = false
 ): ValidatorFn {
   return (control: AbstractControl): SumRangeValidatorError | null => {
     if (!(control instanceof FormArray)) {
+      return null;
+    }
+
+    if (ignoreIfEmpty && control.length === 0) {
       return null;
     }
 

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
+import { LayoutService } from '../../../../core/services/layout/layout.service';
 import { PagedFilteredAndSortedInput } from '../../../models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../models/paginations/paged-output';
 import { TitleCategoryApiService } from '../../../services/title-categories/title-category-api.service';
@@ -29,7 +30,7 @@ export class TitleCategoryMultiSelectComponent {
 
   public readonly label = input('finCore.features.titleCategory.title');
   public readonly readonly = input(false);
-  public readonly maxSelectedLabels = input(10);
+  public readonly maxSelectedLabels = input<number | null>(null);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
   public readonly id = input(
@@ -43,6 +44,16 @@ export class TitleCategoryMultiSelectComponent {
     getOptions: this.getCardBrandOptions.bind(this),
   });
 
+  public get effectiveMaxSelectedLabels(): number {
+    const maxSelectedLabels = this.maxSelectedLabels();
+    return maxSelectedLabels !== null
+      ? maxSelectedLabels
+      : this.layoutService.isMobile
+        ? 3
+        : 10;
+  }
+
+  public readonly layoutService = inject(LayoutService);
   private readonly cardBrandService = inject(TitleCategoryApiService);
 
   private getCardBrandOptions(

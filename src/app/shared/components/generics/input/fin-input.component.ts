@@ -173,6 +173,11 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
       .subscribe(() => {
         this.validStatesChange();
       });
+    this.formControl.statusChanges
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100))
+      .subscribe(() => {
+        this.validStatesChange();
+      });
   }
 
   private setRequired(): void {

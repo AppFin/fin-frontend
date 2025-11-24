@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
+import { LayoutService } from '../../../../core/services/layout/layout.service';
 import { PagedFilteredAndSortedInput } from '../../../models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../models/paginations/paged-output';
 import { PeopleService } from '../../../services/people/person.service';
@@ -27,7 +28,7 @@ export class PersonMultiSelectComponent {
 
   public readonly label = input('finCore.features.person.title');
   public readonly readonly = input(false);
-  public readonly maxSelectedLabels = input(10);
+  public readonly maxSelectedLabels = input<number | null>(null);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
   public readonly id = input(
@@ -35,6 +36,15 @@ export class PersonMultiSelectComponent {
   );
 
   public readonly inactivatedFilter = input<boolean | undefined>(undefined);
+
+  public get effectiveMaxSelectedLabels(): number {
+    const maxSelectedLabels = this.maxSelectedLabels();
+    return maxSelectedLabels !== null
+      ? maxSelectedLabels
+      : this.layoutService.isMobile
+        ? 3
+        : 10;
+  }
 
   public readonly selectOptions = new FinSelectComponentOptions<
     string,
@@ -44,6 +54,7 @@ export class PersonMultiSelectComponent {
   });
 
   private readonly personService = inject(PeopleService);
+  private readonly layoutService = inject(LayoutService);
 
   private getPersonOptions(
     input: PagedFilteredAndSortedInput

@@ -80,7 +80,7 @@ export class TitlesEditorComponent implements OnInit {
     FormGroupFromType<TitlePersonInput>
   >([], {
     validators: [
-      sumRangeValidator('percentage', 0.01, 100, true),
+      sumRangeValidator('percentage', 0.01, 100, true, true),
       noDuplicatesValidator('personId', false, true),
     ],
   });
@@ -92,6 +92,23 @@ export class TitlesEditorComponent implements OnInit {
   private cdr = inject(ChangeDetectorRef);
   private entityEditingId: string;
 
+  public log(): void {
+    console.log({
+      formGroup: this.formGroup,
+      advancedPersonFormArray: this.advancedPersonFormArray,
+      simplePersonFormControl: this.simplePersonFormControl,
+      isAdvancedPersonSplitEnabled: this.isAdvancedPersonSplitEnabled,
+    });
+    console.log({
+      formGroupTouched: this.formGroup?.touched,
+      advancedPersonFormArrayTouched: this.advancedPersonFormArray?.touched,
+      formGroupValid: this.formGroup?.valid,
+      advancedPersonFormArrayValid: this.advancedPersonFormArray?.valid,
+      loading: !this.loading(),
+      saving: !this.saving(),
+    });
+  }
+
   public async ngOnInit(): Promise<void> {
     const editingEntity = await this.setEditing();
     this.setFormGroup(editingEntity);
@@ -99,15 +116,11 @@ export class TitlesEditorComponent implements OnInit {
 
   public get canSave(): boolean {
     return (
+      (this.formGroup?.touched || this.advancedPersonFormArray?.touched) &&
       this.formGroup?.valid &&
-      this.formGroup?.touched &&
+      this.advancedPersonFormArray.valid &&
       !this.loading() &&
-      !this.saving() &&
-      ((this.isAdvancedPersonSplitEnabled.value &&
-        (this.advancedPersonFormArray.valid ||
-          this.advancedPersonFormArray.value.length === 0)) ||
-        (!this.isAdvancedPersonSplitEnabled.value &&
-          this.simplePersonFormControl.valid))
+      !this.saving()
     );
   }
 
@@ -223,6 +236,7 @@ export class TitlesEditorComponent implements OnInit {
         if (!isAdvanced) {
           this.normalizeSplitPercentages();
         }
+        this.cdr.detectChanges();
       });
 
     this.simplePersonFormControl.valueChanges
