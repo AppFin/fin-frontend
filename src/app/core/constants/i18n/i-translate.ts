@@ -127,12 +127,17 @@ export interface ITranslate extends TranslationObject {
       forbidden: string;
       googleLoginError: string;
       internalError: string;
+      max: string;
       maxLength: string;
+      min: string;
       minLength: string;
       pattern: string;
       required: string;
       serverError: string;
       nameAlreadyInUse: string;
+      duplicateValues: string;
+      sumExceed: string;
+      sumMustBeAtLeast: string;
     };
     features: {
       financialInstitutions: {
@@ -149,6 +154,7 @@ export interface ITranslate extends TranslationObject {
       title: {
         title: string;
         titleSingular: string;
+        advancedPersonSplit: string;
         type: {
           expense: string;
           income: string;
@@ -214,9 +220,18 @@ export interface ITranslate extends TranslationObject {
           title: string;
         };
       };
+      person: {
+        title: string;
+        titleSingular: string;
+        errors: {
+          personInUse: string;
+          nameAlreadyInUse: string;
+        };
+      };
       shared: {
         name: string;
         icon: string;
+        percentage: string;
         description: string;
         date: string;
         type: string;

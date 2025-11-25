@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { LoginOutput } from '../../models/authentication/login-output';
-import { ensureTrailingSlash } from '../../functions/ensure-trailing-slash';
 import { environment } from '../../../../environments/environment';
+import getBasePath from '../../../shared/functions/get-base-path';
 import { NotificationSeverity } from '../../enums/notifications/notification-severity';
+import { ensureTrailingSlash } from '../../functions/ensure-trailing-slash';
+import { LoginOutput } from '../../models/authentication/login-output';
 import { NotifyService } from '../notifications/notify.service';
 
 @Injectable({
@@ -100,7 +101,7 @@ export class AuthGoogleService {
   }
 
   private isValidOrigin(origin: string): boolean {
-    const validOrigins = [environment.apiUrl];
+    const validOrigins = [getBasePath(environment.apiUrl)];
     return validOrigins.includes(origin);
   }
 

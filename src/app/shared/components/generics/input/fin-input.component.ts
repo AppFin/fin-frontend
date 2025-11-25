@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +14,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   ControlValueAccessor,
   FormControl,
@@ -20,26 +22,24 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime } from 'rxjs';
-import { FinTextComponent } from '../text/fin-text.component';
-import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
 import { NgxMaskDirective } from 'ngx-mask';
-import { ThousandSeparator } from '../../../../core/types/localizations/thousand-separator';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { IconField } from 'primeng/iconfield';
+import { IftaLabel } from 'primeng/iftalabel';
+import { InputIcon } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { debounceTime } from 'rxjs';
+import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
 import { LocalizationService } from '../../../../core/services/localization/localization.service';
 import { DecimalMark } from '../../../../core/types/localizations/decimal-mark';
-import { InputIcon } from 'primeng/inputicon';
+import { ThousandSeparator } from '../../../../core/types/localizations/thousand-separator';
+import { FinSeverity } from '../../../../core/types/themes/fin-severity';
 import {
   FinFontAwesomeType,
   FinIconComponent,
   FinIconType,
 } from '../icon/fin-icon.component';
-import { IconField } from 'primeng/iconfield';
-import { IftaLabel } from 'primeng/iftalabel';
-import { FinSeverity } from '../../../../core/types/themes/fin-severity';
+import { FinTextComponent } from '../text/fin-text.component';
 
 @Component({
   selector: 'fin-input',
@@ -87,6 +87,7 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
   // mask options
   public readonly mask = input<string>();
   public readonly prefix = input<string>('');
+  public readonly suffix = input<string>('');
   public readonly shownMaskExpression = input<string | null>(null);
   public readonly allowNegativeNumbers = input(false);
   public readonly validationMask = input(false);
@@ -172,6 +173,11 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
       .subscribe(() => {
         this.validStatesChange();
       });
+    this.formControl.statusChanges
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100))
+      .subscribe(() => {
+        this.validStatesChange();
+      });
   }
 
   private setRequired(): void {
@@ -199,14 +205,28 @@ export class FinInputComponent implements OnInit, ControlValueAccessor {
       if (errors['maxlength'])
         errorMessage = `finCore.errors.maxLength|maxLength:${errors['maxlength'].requiredLength}`;
       if (errors['pattern']) errorMessage = 'finCore.errors.pattern';
-      if (errors['nameAlreadyInUse']) errorMessage = `finCore.errors.nameAlreadyInUse|nameAlreadyInUse:${errors['nameAlreadyInUse'].value}`;
+      if (errors['nameAlreadyInUse'])
+        errorMessage = `finCore.errors.nameAlreadyInUse|nameAlreadyInUse:${errors['nameAlreadyInUse'].value}`;
+      if (errors['min'])
+        errorMessage = `finCore.errors.min|min:${errors['min'].min}|actual:${errors['min'].actual}`;
+      if (errors['max'])
+        errorMessage = `finCore.errors.max|max:${errors['max'].max}|actual:${errors['max'].actual}`;
+
+      if (Object.keys(errors).length > 0 && !errorMessage) {
+        for (const key of Object.keys(errors)) {
+          if (errors[key]?.message) {
+            errorMessage = errors[key].message;
+            break;
+          }
+        }
+      }
     }
 
     this.errorMessage.set(errorMessage);
   }
 
-  writeValue(obj: any): void { }
-  registerOnChange(fn: any): void { }
-  registerOnTouched(fn: any): void { }
-  setDisabledState?(isDisabled: boolean): void { }
+  writeValue(obj: any): void {}
+  registerOnChange(fn: any): void {}
+  registerOnTouched(fn: any): void {}
+  setDisabledState?(isDisabled: boolean): void {}
 }

@@ -1,5 +1,6 @@
-import { TitleType } from "../../enums/titles/title-type";
-import { IEntity } from "../../interfaces/entities/i-entity";
+import { TitleType } from '../../enums/titles/title-type';
+import { IEntity } from '../../interfaces/entities/i-entity';
+import { TitlePersonOutput } from './title-person-output';
 
 export class TitleOutput implements IEntity {
   public id: string;
@@ -12,4 +13,5 @@ export class TitleOutput implements IEntity {
   public date: Date;
   public walletId: string;
   public titleCategoriesIds: string[];
+  public titlePeople: TitlePersonOutput[];
 }

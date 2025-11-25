@@ -1,21 +1,81 @@
 <fin-editor-layout
   [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  entityEditingName()"
-  [loading]="loading()" [formGroup]="formGroup" [canSave]="canSave" [isSaving]="saving()" (onSave)="save()"
-  (onCancel)="close()">
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="close()"
+>
   @if (!loading()) {
-  <fin-input class="col-12" label="finCore.features.shared.description"
-    [formControl]="formGroup.controls.description" />
+  <fin-input
+    class="col-12"
+    label="finCore.features.shared.description"
+    [formControl]="formGroup.controls.description"
+  />
 
-  <fin-money-input [allowNegativeNumbers]="false" class="col-6" label="finCore.features.shared.value"
-    [formControl]="formGroup.controls.value" />
+  <fin-money-input
+    [allowNegativeNumbers]="false"
+    class="col-6"
+    label="finCore.features.shared.value"
+    [formControl]="formGroup.controls.value"
+  />
 
-  <fin-select-button [formControl]="formGroup.controls.type" [options]="titleTypeOptions"
-    [label]="'finCore.features.shared.type'" class="col-6" />
+  <fin-select-button
+    [formControl]="formGroup.controls.type"
+    [options]="titleTypeOptions"
+    [label]="'finCore.features.shared.type'"
+    class="col-6"
+  />
 
-  <fin-wallet-select class="col-6" [formControl]="formGroup.controls.walletId" />
+  <fin-wallet-select
+    class="col-6"
+    [formControl]="formGroup.controls.walletId"
+  />
 
-  <fin-datetime class="col-6" label="finCore.features.shared.date" [formControl]="formGroup.controls.date" />
+  <fin-datetime
+    class="col-6"
+    label="finCore.features.shared.date"
+    [formControl]="formGroup.controls.date"
+  />
 
-  <fin-title-category-multi-select class="col-12" [formControl]="formGroup.controls.titleCategoriesIds" />
+  <fin-title-category-multi-select
+    class="col-12"
+    [formControl]="formGroup.controls.titleCategoriesIds"
+  />
+
+  <fin-person-multi-select
+    class="col-12"
+    [formControl]="simplePersonFormControl"
+    [inactivatedFilter]="false"
+  />
+
+  <fin-toggle-switch
+    class="col-3"
+    label="finCore.features.title.advancedPersonSplit"
+    [formControl]="isAdvancedPersonSplitEnabled"
+  />
+
+
+  @if (isAdvancedPersonSplitEnabled.value) {
+  <div
+    [@ifVertical]
+    class="col-12 fin-grid-layout"
+  >
+    @for (personForm of advancedPersonFormArray.controls; track $index) {
+    <fin-person-select
+      [formControl]="personForm.controls.personId"
+      class="col-6"
+    />
+    <fin-percentage-input
+      [formControl]="personForm.controls.percentage"
+      label="finCore.features.shared.percentage"
+      class="col-6"
+    />
+    }
+  </div>
+  }
+
+  <button (click)="log()">Log Form Group</button>
   }
 </fin-editor-layout>

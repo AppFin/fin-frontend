@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,26 +13,25 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime, firstValueFrom } from 'rxjs';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
-import { IftaLabel } from 'primeng/iftalabel';
-import { FinIconComponent } from '../icon/fin-icon.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FinTextComponent } from '../text/fin-text.component';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { IftaLabel } from 'primeng/iftalabel';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { debounceTime, firstValueFrom } from 'rxjs';
+import { FinTranslatePipe } from '../../../../core/pipes/translate/fin-translate.pipe';
 import { FinTranslateService } from '../../../../core/services/translate/fin-translate.service';
 import { PagedFilteredAndSortedInput } from '../../../models/paginations/paged-filtered-and-sorted-input';
+import { FinIconComponent } from '../icon/fin-icon.component';
 import { FinSelectComponentOptions } from '../select/fin-select-component-options';
 import { FinSelectOptionWithTranslation } from '../select/fin-select-option';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { NgTemplateOutlet } from '@angular/common';
+import { FinTextComponent } from '../text/fin-text.component';
 
 @Component({
   selector: 'fin-multi-select',
@@ -45,7 +45,7 @@ import { NgTemplateOutlet } from '@angular/common';
     MatProgressSpinnerModule,
     FinTextComponent,
     FloatLabelModule,
-    NgTemplateOutlet
+    NgTemplateOutlet,
   ],
   templateUrl: './fin-multi-select.component.html',
   styleUrl: './fin-multi-select.component.scss',
@@ -59,9 +59,9 @@ export class FinMultiSelectComponent<T = any, C = null> implements OnInit {
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
   public readonly helpText = input('');
-  public readonly selectComponentOptions = input.required<FinSelectComponentOptions<T, C>>(
-    { alias: 'options' }
-  );
+  public readonly selectComponentOptions = input.required<
+    FinSelectComponentOptions<T, C>
+  >({ alias: 'options' });
 
   public readonly id = input(
     `fin-multi-select-${Math.random().toString(36).substring(2, 9)}`

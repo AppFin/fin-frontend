@@ -1,4 +1,5 @@
-import { TitleType } from "../../enums/titles/title-type";
+import { TitleType } from '../../enums/titles/title-type';
+import { TitlePersonInput } from './title-person-input';
 
 export type TitleInput = {
   value: number;
@@ -7,4 +8,5 @@ export type TitleInput = {
   date: Date;
   walletId: string;
   titleCategoriesIds: string[];
-}
+  titlePeople: TitlePersonInput[];
+};

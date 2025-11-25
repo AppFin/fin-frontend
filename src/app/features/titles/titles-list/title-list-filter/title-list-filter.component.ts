@@ -1,25 +1,37 @@
-import { ChangeDetectionStrategy, Component, inject, input, OnInit, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  output,
+} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { FinButtonComponent } from "../../../../shared/components/generics/button/fin-button.component";
-import { FinDialogFooterDirective } from "../../../../shared/components/generics/dialog/fin-dialog-footer.directive";
-import { SideModalLayoutComponent } from "../../../../shared/components/generics/side-modal-layout/side-modal-layout.component";
-import { FinMultiplyFilterOperatorFilterSelectComponent } from "../../../../shared/components/multiply-filter-operator-filter-select/fin-multiply-filter-operator-filter-select.component";
-import { TitleCategoryMultiSelectComponent } from "../../../../shared/components/title-categories/title-category-multi-select/title-category-multi-select.component";
+import { LayoutService } from '../../../../core/services/layout/layout.service';
+import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
+import { FinDialogFooterDirective } from '../../../../shared/components/generics/dialog/fin-dialog-footer.directive';
+import { FinInputComponent } from '../../../../shared/components/generics/input/fin-input.component';
+import { SideModalLayoutComponent } from '../../../../shared/components/generics/side-modal-layout/side-modal-layout.component';
+import { FinMultiplyFilterOperatorFilterSelectComponent } from '../../../../shared/components/multiply-filter-operator-filter-select/fin-multiply-filter-operator-filter-select.component';
+import { PersonMultiSelectComponent } from '../../../../shared/components/people/person-multi-select/person-multi-select.component';
+import { TitleCategoryMultiSelectComponent } from '../../../../shared/components/title-categories/title-category-multi-select/title-category-multi-select.component';
+import { FinTitlesTypeSelectComponent } from '../../../../shared/components/titles/titles-type-select/fin-titles-type-select.component';
+import { FinWalletSelectComponent } from '../../../../shared/components/wallets/wallet-multi-select/fin-wallet-multi-select.component';
 import { MultiplyFilterOperator } from '../../../../shared/enums/filters/multiply-filter-operator';
 import { TitleType } from '../../../../shared/enums/titles/title-type';
 import { FormGroupFromType } from '../../../../shared/types/form/form-group-from-type';
-import { FinInputComponent } from "../../../../shared/components/generics/input/fin-input.component";
-import { FinTitlesTypeSelectComponent } from "../../../../shared/components/titles/titles-type-select/fin-titles-type-select.component";
-import { FinWalletSelectComponent } from "../../../../shared/components/wallets/wallet-multi-select/fin-wallet-multi-select.component";
-import { LayoutService } from '../../../../core/services/layout/layout.service';
 
 export type TitleFilter = {
-  categoryIds: string[];
-  categoryOperator: MultiplyFilterOperator;
   walletIds: string[];
   type: TitleType | null;
   filter: string;
-}
+
+  categoryIds: string[];
+  categoryOperator: MultiplyFilterOperator;
+
+  personIds: string[];
+  personOperator: MultiplyFilterOperator;
+};
 
 @Component({
   selector: 'fin-title-list-filter',
@@ -31,11 +43,12 @@ export type TitleFilter = {
     FinMultiplyFilterOperatorFilterSelectComponent,
     FinInputComponent,
     FinTitlesTypeSelectComponent,
-    FinWalletSelectComponent
+    FinWalletSelectComponent,
+    PersonMultiSelectComponent,
   ],
   templateUrl: './title-list-filter.component.html',
   styleUrl: './title-list-filter.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleListFilterComponent implements OnInit {
   public readonly applyFilter = output<TitleFilter | null>();
@@ -57,23 +70,39 @@ export class TitleListFilterComponent implements OnInit {
   }
 
   public clear(): void {
-    this.applyFilter.emit({ categoryIds: [], categoryOperator: MultiplyFilterOperator.Or, walletIds: [], type: null, filter: '' });
+    this.applyFilter.emit({
+      categoryIds: [],
+      categoryOperator: MultiplyFilterOperator.Or,
+      walletIds: [],
+      type: null,
+      filter: '',
+      personIds: [],
+      personOperator: MultiplyFilterOperator.Or,
+    });
   }
 
   public apply(): void {
     this.form.updateValueAndValidity();
     if (this.form.invalid) return;
     const filter = this.form.getRawValue();
-    this.applyFilter.emit(filter)
+    this.applyFilter.emit(filter);
   }
 
   public setForm(): void {
     this.form = new FormGroupFromType<TitleFilter>({
       categoryIds: new FormControl<string[]>([], { nonNullable: true }),
-      categoryOperator: new FormControl<MultiplyFilterOperator>(MultiplyFilterOperator.Or, { validators: Validators.required, nonNullable: true }),
+      categoryOperator: new FormControl<MultiplyFilterOperator>(
+        MultiplyFilterOperator.Or,
+        { validators: Validators.required, nonNullable: true }
+      ),
+      personIds: new FormControl<string[]>([], { nonNullable: true }),
+      personOperator: new FormControl<MultiplyFilterOperator>(
+        MultiplyFilterOperator.Or,
+        { validators: Validators.required, nonNullable: true }
+      ),
       walletIds: new FormControl<string[]>([], { nonNullable: true }),
       type: new FormControl<TitleType | null>(null),
-      filter: new FormControl<string>('', { nonNullable: true })
+      filter: new FormControl<string>('', { nonNullable: true }),
     });
 
     const appliedFIlter = this.currentAppliedFIlter();

@@ -1,25 +1,25 @@
 @let item = walletItem();
 
 @if (item) {
-  <div class="wallet-icon-wrapper">
-    <div class="wallet-icon-main">
-      <fin-icon
-        [icon]="item.icon"
-        [iconColor]="item.color"
-        size="xl"
-        [padding]="0"
-      />
-    </div>
-
-    @let institutionItem = financialInstitutionItem();
-    @if (institutionItem) {
-      <div class="wallet-icon-badge">
-        <fin-icon
-          [icon]="institutionItem.icon"
-          type="bank"
-          size="md"
-        />
-      </div>
-    }
+<div class="wallet-icon-wrapper">
+  <div class="wallet-icon-main">
+    <fin-icon
+      [icon]="item.icon"
+      [iconColor]="item.color"
+      size="lg"
+      [padding]="0"
+    />
   </div>
+
+  @let institutionItem = financialInstitutionItem();
+  @if (institutionItem) {
+  <div class="wallet-icon-badge">
+    <fin-icon
+      [icon]="institutionItem.icon"
+      type="bank"
+      size="lg"
+    />
+  </div>
+  }
+</div>
 }

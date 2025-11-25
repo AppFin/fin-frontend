@@ -5,6 +5,8 @@ import { PagedFilteredAndSortedInput } from '../../models/paginations/paged-filt
 export type TitleGetListInput = PagedFilteredAndSortedInput & {
   categoryIds: string[];
   categoryOperator: MultiplyFilterOperator;
+  personIds: string[];
+  personOperator: MultiplyFilterOperator;
   walletIds: string[];
   type?: TitleType;
 };

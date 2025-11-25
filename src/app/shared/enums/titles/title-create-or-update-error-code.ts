@@ -11,10 +11,26 @@ export enum TitleCreateOrUpdateErrorCode {
   SomeCategoriesInactive = 7,
   SomeCategoriesHasIncompatibleTypes = 8,
   ValueMustBeGraterThanZero = 9,
-  DuplicateTitleInSameDateTimeMinute = 10
+  DuplicateTitleInSameDateTimeMinute = 10,
+  SomePeopleNotFound = 11,
+  SomePeopleInactive = 12,
+  PeopleSplitRange = 13,
 }
 
-export const titleCreateOrUpdateErrorCodeMessages: ErrorMessagesMap<TitleCreateOrUpdateErrorCode> = new Map([
-  [TitleCreateOrUpdateErrorCode.TitleDateMustBeEqualOrAfterWalletCreation, { message: 'finCore.features.title.errors.dateMustBeEqualOrAfterWalletCreation' }],
-  [TitleCreateOrUpdateErrorCode.DuplicateTitleInSameDateTimeMinute, { message: 'finCore.features.title.errors.duplicateTitleInSameDateTimeMinute' }],
-]);
+export const titleCreateOrUpdateErrorCodeMessages: ErrorMessagesMap<TitleCreateOrUpdateErrorCode> =
+  new Map([
+    [
+      TitleCreateOrUpdateErrorCode.TitleDateMustBeEqualOrAfterWalletCreation,
+      {
+        message:
+          'finCore.features.title.errors.dateMustBeEqualOrAfterWalletCreation',
+      },
+    ],
+    [
+      TitleCreateOrUpdateErrorCode.DuplicateTitleInSameDateTimeMinute,
+      {
+        message:
+          'finCore.features.title.errors.duplicateTitleInSameDateTimeMinute',
+      },
+    ],
+  ]);
