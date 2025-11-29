@@ -8,8 +8,9 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { FinButtonComponent } from '../../../../../shared/components/generics/button/fin-button.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LocalizationService } from '../../../../../core/services/localization/localization.service';
+import { FinButtonComponent } from '../../../../../shared/components/generics/button/fin-button.component';
 import { FinInputComponent } from '../../../../../shared/components/generics/input/fin-input.component';
 import { UserCreateForm } from '../../../models/user-create-form';
 import { UserCreateService } from '../../../services/user-create.service';
@@ -27,6 +28,7 @@ export class AuthCreatePersonalStepComponent implements OnInit {
 
   public readonly loading = signal(false);
   public readonly userCreateService = inject(UserCreateService);
+  public readonly localizationService = inject(LocalizationService);
 
   public form: FormGroup<UserCreateForm>;
 
@@ -49,7 +51,11 @@ export class AuthCreatePersonalStepComponent implements OnInit {
     const form = this.form.getRawValue();
     const result = await this.userCreateService.createUser(
       this.creationToken(),
-      form
+      {
+        ...form,
+        locale: this.localizationService.getLang(),
+        timezone: this.localizationService.getTimezone(),
+      }
     );
 
     if (result) {

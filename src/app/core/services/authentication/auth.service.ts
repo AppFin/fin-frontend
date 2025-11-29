@@ -1,6 +1,7 @@
-import { inject, Injectable, signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 import {
   BehaviorSubject,
   catchError,
@@ -9,18 +10,17 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { UserProps } from '../../models/authentication/user-props';
-import { LoginOutput } from '../../models/authentication/login-output';
-import { LoginInput } from '../../models/authentication/login-input';
-import { AuthGoogleService } from './auth-google.service';
-import { ResetPasswordInput } from '../../models/authentication/reset-password-input';
+import { LoginErrorCode } from '../../enums/authentication/login-error-code';
 import { ResetPasswordErrorCode } from '../../enums/authentication/reset-password-error-code';
-import { AuthApiService } from './auth-api.service';
-import { jwtDecode } from 'jwt-decode';
+import { NotificationSeverity } from '../../enums/notifications/notification-severity';
+import { LoginInput } from '../../models/authentication/login-input';
+import { LoginOutput } from '../../models/authentication/login-output';
+import { ResetPasswordInput } from '../../models/authentication/reset-password-input';
+import { UserProps } from '../../models/authentication/user-props';
 import { StorageService } from '../app/storage.service';
 import { NotifyService } from '../notifications/notify.service';
-import { NotificationSeverity } from '../../enums/notifications/notification-severity';
-import { LoginErrorCode } from '../../enums/authentication/login-error-code';
+import { AuthApiService } from './auth-api.service';
+import { AuthGoogleService } from './auth-google.service';
 
 export type ExternalLoginProvider = 'Google';
 
@@ -43,7 +43,6 @@ export class AuthService {
   public get authStarted(): boolean {
     return this.authStartedSubject.value;
   }
-
 
   private readonly api = inject(AuthApiService);
   private readonly router = inject(Router);

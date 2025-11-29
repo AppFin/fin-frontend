@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { EnI18n } from '../../constants/i18n/en-i18n';
 import { EsI18n } from '../../constants/i18n/es-i18n';
 import { PtBrI18n } from '../../constants/i18n/pt-br-i18n';
+import { SupportedLocalizations } from '../../constants/localizations/supported-localizations';
 import { LocalizationService } from '../localization/localization.service';
 
 @Injectable({
@@ -13,9 +14,9 @@ export class FinTranslateService {
   private readonly localizationService = inject(LocalizationService);
 
   public loadTranslations(): void {
-    this.translateService.setTranslation('pt-BR', PtBrI18n);
-    this.translateService.setTranslation('en-US', EnI18n);
-    this.translateService.setTranslation('es', EsI18n);
+    this.translateService.setTranslation(SupportedLocalizations.ptBR, PtBrI18n);
+    this.translateService.setTranslation(SupportedLocalizations.enUS, EnI18n);
+    this.translateService.setTranslation(SupportedLocalizations.esES, EsI18n);
 
     this.setDefaultLanguage();
   }
