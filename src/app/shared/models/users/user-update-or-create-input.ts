@@ -7,4 +7,6 @@ export type UserUpdateOrCreateInput = {
   imagePublicUrl?: string | null;
   birthDate?: Date | null;
   gender?: UserGender | null;
+  locale: string;
+  timezone: string;
 };
