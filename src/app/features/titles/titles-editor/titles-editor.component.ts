@@ -92,23 +92,6 @@ export class TitlesEditorComponent implements OnInit {
   private cdr = inject(ChangeDetectorRef);
   private entityEditingId: string;
 
-  public log(): void {
-    console.log({
-      formGroup: this.formGroup,
-      advancedPersonFormArray: this.advancedPersonFormArray,
-      simplePersonFormControl: this.simplePersonFormControl,
-      isAdvancedPersonSplitEnabled: this.isAdvancedPersonSplitEnabled,
-    });
-    console.log({
-      formGroupTouched: this.formGroup?.touched,
-      advancedPersonFormArrayTouched: this.advancedPersonFormArray?.touched,
-      formGroupValid: this.formGroup?.valid,
-      advancedPersonFormArrayValid: this.advancedPersonFormArray?.valid,
-      loading: !this.loading(),
-      saving: !this.saving(),
-    });
-  }
-
   public async ngOnInit(): Promise<void> {
     const editingEntity = await this.setEditing();
     this.setFormGroup(editingEntity);
