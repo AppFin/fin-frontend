@@ -10,4 +10,3 @@ export class FinancialInstitutionOutput implements IEntity {
   public color: string;
   public inactive: boolean;
 }
-

@@ -147,7 +147,7 @@ export class NotifyService {
     text: string,
     severity: FinSeverity = 'primary',
     icon: string | null = null,
-    title = 'finCore.actions.confirmation',
+    title = 'finCore.actions.confirmation'
   ): Observable<boolean> {
     const dialogRef = this.matDialog.open<
       FinConfirmationComponent,
@@ -164,7 +164,7 @@ export class NotifyService {
         title,
         severity,
         text,
-        icon
+        icon,
       } as FinConfirmationData,
     });
 

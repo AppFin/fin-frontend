@@ -29,16 +29,14 @@ export class FinMonthDaySelectComponent {
     `fin-month-day-select-${Math.random().toString(36).substring(2, 9)}`
   );
 
-  public readonly inactivatedSelectOptions =
-    new FinSelectComponentOptions({
-      getOptions: this.getInactivatedOptions.bind(this),
-    });
+  public readonly inactivatedSelectOptions = new FinSelectComponentOptions({
+    getOptions: this.getInactivatedOptions.bind(this),
+  });
 
   private getInactivatedOptions(): Observable<
     PagedOutput<FinSelectOption<number>>
   > {
     const days = Array.from({ length: 31 }, (_, i) => i + 1);
-
 
     return of({
       totalCount: days.length,

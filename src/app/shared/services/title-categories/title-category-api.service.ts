@@ -16,8 +16,12 @@ import { CachedEntityService } from '../abstractions/cached-entities/cached-enti
 @Injectable({
   providedIn: 'root',
 })
-export class TitleCategoryApiService extends CachedEntityService<TitleCategoryOutput, TitleCategoryGetListInput> {
-  private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'title-categories/';
+export class TitleCategoryApiService extends CachedEntityService<
+  TitleCategoryOutput,
+  TitleCategoryGetListInput
+> {
+  private readonly API_URL =
+    ensureTrailingSlash(environment.apiUrl) + 'title-categories/';
   private readonly http = inject(HttpClient);
 
   /**
@@ -29,7 +33,9 @@ export class TitleCategoryApiService extends CachedEntityService<TitleCategoryOu
     input: TitleCategoryGetListInput
   ): Observable<PagedOutput<TitleCategoryOutput>> {
     const params = toHttpParams(input);
-    return this.http.get<PagedOutput<TitleCategoryOutput>>(this.API_URL, { params });
+    return this.http.get<PagedOutput<TitleCategoryOutput>>(this.API_URL, {
+      params,
+    });
   }
 
   /**
@@ -47,7 +53,8 @@ export class TitleCategoryApiService extends CachedEntityService<TitleCategoryOu
    * @returns An Observable of the created category data.
    */
   public create(input: TitleCategoryInput): Observable<TitleCategoryOutput> {
-    return this.http.post<TitleCategoryOutput>(this.API_URL, input)
+    return this.http
+      .post<TitleCategoryOutput>(this.API_URL, input)
       .pipe(tap((entity) => this.updateOrCreateOnCache(entity)));
   }
 
@@ -81,12 +88,17 @@ export class TitleCategoryApiService extends CachedEntityService<TitleCategoryOu
    * @returns An Observable that completes upon successful deletion.
    */
   public delete(id: string): Observable<void> {
-    return this.http.delete<void>(this.API_URL + id)
+    return this.http
+      .delete<void>(this.API_URL + id)
       .pipe(tap(() => this.delete(id)));
   }
 
-  protected override applyStructuralFilter(entity: TitleCategoryOutput, filter: TitleCategoryGetListInput) {
-    const filterByInactivated = filter.inactivated !== undefined && entity.inactivated === null;
+  protected override applyStructuralFilter(
+    entity: TitleCategoryOutput,
+    filter: TitleCategoryGetListInput
+  ) {
+    const filterByInactivated =
+      filter.inactivated !== undefined && entity.inactivated === null;
     return !filterByInactivated || entity.inactivated === filter.inactivated;
   }
 }

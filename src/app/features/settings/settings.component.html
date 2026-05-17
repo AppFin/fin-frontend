@@ -1,0 +1,40 @@
+<fin-editor-layout
+  title="finCore.layout.settings"
+  [loading]="loading()"
+  [formGroup]="formGroup"
+  [canSave]="canSave"
+  [isSaving]="saving()"
+  (onSave)="save()"
+  (onCancel)="close()"
+>
+  @if (!loading()) {
+  <fin-input
+    class="col-6"
+    [formControl]="formGroup.controls.firstName"
+    label="finCore.auth.pages.createAccount.steps.personal.firstName"
+  />
+  <fin-input
+    class="col-6"
+    [formControl]="formGroup.controls.lastName"
+    label="finCore.auth.pages.createAccount.steps.personal.lastName"
+  />
+  <fin-input
+    class="col-6"
+    [formControl]="formGroup.controls.displayName"
+    label="finCore.auth.pages.createAccount.steps.personal.displayName"
+  />
+
+  <fin-select
+    [formControl]="formGroup.controls.locale"
+    [options]="lacalizationsSelectOptions"
+    [label]="'finCore.features.shared.locale'"
+    class="col-6"
+  />
+
+  <fin-input
+    class="col-12"
+    [formControl]="formGroup.controls.imagePublicUrl"
+    label="finCore.auth.pages.createAccount.steps.personal.imagePublicUrl"
+  />
+  }
+</fin-editor-layout>

@@ -4,7 +4,10 @@
   iconSize="md"
   [title]="data.title"
 >
-  <fin-text [text]="data.text" type="paragraph" />
+  <fin-text
+    [text]="data.text"
+    type="paragraph"
+  />
 
   <div footer>
     <fin-button
@@ -20,6 +23,4 @@
       (onClick)="confirm(true)"
     />
   </div>
-
 </fin-dialog>
-

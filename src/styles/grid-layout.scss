@@ -4,7 +4,6 @@
   justify-content: space-between;
 }
 
-
 .col-1 {
   flex: 0 0 calc((100% / 12) * 1);
 }
@@ -53,12 +52,11 @@
   flex: 0 0 calc(100%);
 }
 
-[class*="col-"] {
+[class*='col-'] {
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-
+@media (width <= 768px) {
   .col-1,
   .col-2,
   .col-3,
@@ -126,8 +124,8 @@
   }
 }
 
-@media (max-width: 480px) {
-  [class*="col-"] {
+@media (width <= 480px) {
+  [class*='col-'] {
     flex: 0 0 calc(100% - 0rem);
   }
 

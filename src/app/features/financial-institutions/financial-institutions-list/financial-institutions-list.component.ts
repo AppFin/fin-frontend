@@ -1,10 +1,4 @@
-import {
-
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
 import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
@@ -23,11 +17,7 @@ import { FinancialInstitutionApiService } from '../../../shared/services/financi
 
 @Component({
   selector: 'fin-financial-institutions-list',
-  imports: [
-    FinPageLayoutComponent,
-    FinGridComponent,
-    FinButtonComponent,
-  ],
+  imports: [FinPageLayoutComponent, FinGridComponent, FinButtonComponent],
   templateUrl: './financial-institutions-list.component.html',
   styleUrl: './financial-institutions-list.component.scss',
 })
@@ -60,11 +50,16 @@ export class FinancialInstitutionsListComponent implements OnInit {
       id: 'FINANCIAL_INSTITUTIONS_LIST',
       getColumns: () => of(this.getColumns()),
       onEdit: (item) => {
-        this.router.navigate([`./${item.id}`], { relativeTo: this.activatedRoute });
+        this.router.navigate([`./${item.id}`], {
+          relativeTo: this.activatedRoute,
+        });
         return of();
       },
       deleteOptions: {
-        onDelete: (item) => this.apiService.delete(item.id.toString()).pipe(tap(() => this.reloadItens.next())),
+        onDelete: (item) =>
+          this.apiService
+            .delete(item.id.toString())
+            .pipe(tap(() => this.reloadItens.next())),
         confirmDeleteMessage: 'finCore.features.titleCategory.deleteMessage',
       },
       onToggleInactive: this.toggleInactive.bind(this),
@@ -94,7 +89,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
             icon: item.icon,
             type: 'bank',
             tooltip: item.icon,
-            size: 'xl'
+            size: 'xl',
           });
         },
         header: 'finCore.features.shared.icon',
@@ -118,7 +113,7 @@ export class FinancialInstitutionsListComponent implements OnInit {
           const name = FinancialInstitutionType[item.type];
           return `finCore.features.financialInstitutions.type.${name.charAt(0).toLowerCase() + name.slice(1)}`;
         },
-      })
+      }),
     ];
   }
 }

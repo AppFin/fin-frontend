@@ -16,7 +16,8 @@ import { TitleInput } from '../../types/titles/title-input';
   providedIn: 'root',
 })
 export class TitleApiService {
-  private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'titles/';
+  private readonly API_URL =
+    ensureTrailingSlash(environment.apiUrl) + 'titles/';
   private readonly http = inject(HttpClient);
 
   /**
@@ -28,10 +29,11 @@ export class TitleApiService {
     input: TitleGetListInput
   ): Observable<PagedOutput<TitleOutput>> {
     const params = toHttpParams(input);
-    return this.http.get<PagedOutput<TitleOutput>>(this.API_URL, { params })
+    return this.http
+      .get<PagedOutput<TitleOutput>>(this.API_URL, { params })
       .pipe(
-        map(result => {
-          result.items = result.items.map(title => {
+        map((result) => {
+          result.items = result.items.map((title) => {
             title.date = new Date(title.date);
             return title;
           });
@@ -47,7 +49,7 @@ export class TitleApiService {
    */
   public get(id: string): Observable<TitleOutput> {
     return this.http.get<TitleOutput>(this.API_URL + id).pipe(
-      map(title => {
+      map((title) => {
         title.date = new Date(title.date);
         return title;
       })

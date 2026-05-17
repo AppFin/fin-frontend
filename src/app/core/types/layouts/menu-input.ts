@@ -8,4 +8,4 @@ export type MenuInput = {
   keyWords: string;
   onlyForAdmin: boolean;
   position: MenuPosition;
-}
+};

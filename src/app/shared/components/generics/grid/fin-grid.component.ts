@@ -99,7 +99,8 @@ export class FinGridComponent<T> implements OnInit {
     const rowStyleFn = this.options()?.rowStyle;
     if (rowStyleFn) return rowStyleFn(item);
     const getInactiveFn = this.options()?.getInactive;
-    if (getInactiveFn && getInactiveFn(item)) return { backgroundColor: 'var(--color-error-50)' };
+    if (getInactiveFn && getInactiveFn(item))
+      return { backgroundColor: 'var(--color-error-50)' };
     return null;
   }
   private async loadColumns(): Promise<void> {
@@ -179,7 +180,9 @@ export class FinGridComponent<T> implements OnInit {
           {
             icon: (i) =>
               new FinIconOptions({
-                icon: this.options().getInactive?.(i) ? 'toggle-off' : 'toggle-on',
+                icon: this.options().getInactive?.(i)
+                  ? 'toggle-off'
+                  : 'toggle-on',
                 tooltip: `finCore.actions.${this.options().getInactive?.(i) ? 'active' : 'inactive'}`,
               }),
             canShow: () => of(true),
@@ -234,7 +237,7 @@ export class FinGridComponent<T> implements OnInit {
     return this.notifyService
       .confirm(
         this.options().deleteOptions?.confirmDeleteMessage ??
-        'finCore.grid.confirmDelete',
+          'finCore.grid.confirmDelete',
         'danger',
         'trash'
       )

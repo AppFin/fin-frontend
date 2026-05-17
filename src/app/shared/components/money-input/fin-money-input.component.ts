@@ -4,7 +4,8 @@ import {
   inject,
   input,
   Input,
-  OnInit, signal,
+  OnInit,
+  signal,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FinInputComponent } from '../generics/input/fin-input.component';
@@ -43,9 +44,10 @@ export class FinMoneyInputComponent implements OnInit {
     this.normalizeValue();
   }
 
-  public outputTransformFn = (value: string | number | null | undefined): number | null => {
+  public outputTransformFn = (
+    value: string | number | null | undefined
+  ): number | null => {
     if (value === null || value === undefined || value == '') {
-
       return null;
     }
     const strValue = value.toString();
@@ -67,6 +69,6 @@ export class FinMoneyInputComponent implements OnInit {
     const value = this.formControl.value;
     if (value === null || value === undefined) return;
     const valueStr = Number(value).toFixed(2);
-    this.formControl.setValue(valueStr)
+    this.formControl.setValue(valueStr);
   }
 }

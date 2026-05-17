@@ -3,9 +3,9 @@
 }
 
 div[footer] {
-  display: flex;
-  width: 100%;
   align-items: center;
-  justify-content: flex-end;
+  display: flex;
   gap: 1rem;
+  justify-content: flex-end;
+  width: 100%;
 }

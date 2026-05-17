@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { CreditCardInput } from '../../../shared/types/credit-cards/credit-card-input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
@@ -8,24 +14,34 @@ import { CreditCardOutput } from '../../../shared/types/credit-cards/credit-card
 import { finalize, first, firstValueFrom, iif, tap } from 'rxjs';
 import { FormControl, Validators } from '@angular/forms';
 import { nameAlreadyInUseValidator } from '../../../shared/validators/name-already-in-use-validator';
-import { EditorLayoutComponent } from "../../../shared/components/generics/page-layout/editor-layout/editor-layout.component";
-import { FinInputComponent } from "../../../shared/components/generics/input/fin-input.component";
-import { FinFinancialInstitutionSelectComponent } from "../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component";
-import { FinMoneyInputComponent } from "../../../shared/components/money-input/fin-money-input.component";
-import { FinUserFriendlyColorPickerComponent } from "../../../shared/components/user-friendly-color-picker/fin-user-friendly-color-picker.component";
-import { FinUserFriendlyIconPickerComponent } from "../../../shared/components/user-friendly-icon-picker/fin-user-friendly-icon-picker.component";
+import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
+import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
+import { FinFinancialInstitutionSelectComponent } from '../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component';
+import { FinMoneyInputComponent } from '../../../shared/components/money-input/fin-money-input.component';
+import { FinUserFriendlyColorPickerComponent } from '../../../shared/components/user-friendly-color-picker/fin-user-friendly-color-picker.component';
+import { FinUserFriendlyIconPickerComponent } from '../../../shared/components/user-friendly-icon-picker/fin-user-friendly-icon-picker.component';
 import { CreditCardCreateOrUpdateErrorCode } from '../../../shared/enums/credit-cards/credit-card-create-or-update-error-code';
 import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-back-http-error';
-import { FinCardBrandSelectComponent } from "../../../shared/components/card-brands/card-brand-select/fin-card-brand-select.component";
-import { FinWalletSelectComponent } from "../../../shared/components/wallets/wallet-select/fin-wallet-select.component";
-import { FinMonthDaySelectComponent } from "../../../shared/components/month-day-select/fin-month-day-select.component";
+import { FinCardBrandSelectComponent } from '../../../shared/components/card-brands/card-brand-select/fin-card-brand-select.component';
+import { FinWalletSelectComponent } from '../../../shared/components/wallets/wallet-select/fin-wallet-select.component';
+import { FinMonthDaySelectComponent } from '../../../shared/components/month-day-select/fin-month-day-select.component';
 
 @Component({
   selector: 'fin-credit-cards-editor',
-  imports: [EditorLayoutComponent, FinInputComponent, FinFinancialInstitutionSelectComponent, FinMoneyInputComponent, FinUserFriendlyColorPickerComponent, FinUserFriendlyIconPickerComponent, FinCardBrandSelectComponent, FinWalletSelectComponent, FinMonthDaySelectComponent],
+  imports: [
+    EditorLayoutComponent,
+    FinInputComponent,
+    FinFinancialInstitutionSelectComponent,
+    FinMoneyInputComponent,
+    FinUserFriendlyColorPickerComponent,
+    FinUserFriendlyIconPickerComponent,
+    FinCardBrandSelectComponent,
+    FinWalletSelectComponent,
+    FinMonthDaySelectComponent,
+  ],
   templateUrl: './credit-cards-editor.component.html',
   styleUrl: './credit-cards-editor.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreditCardsEditorComponent implements OnInit {
   public formGroup: FormGroupFromType<CreditCardInput>;
@@ -42,7 +58,6 @@ export class CreditCardsEditorComponent implements OnInit {
   private router = inject(Router);
   private apiService = inject(CreditCardService);
   private entityEditingId: string;
-
 
   public async ngOnInit(): Promise<void> {
     const editingEntity = await this.setEditing();
@@ -127,37 +142,38 @@ export class CreditCardsEditorComponent implements OnInit {
         entityEditing?.financialInstitutionId ?? '',
         {
           validators: Validators.required,
-          nonNullable: true
+          nonNullable: true,
         }
       ),
-      debitWalletId: new FormControl(
-        entityEditing?.debitWalletId ?? '',
-        {
-          validators: Validators.required,
-          nonNullable: true
-        }
-      ),
-      cardBrandId: new FormControl(
-        entityEditing?.cardBrandId ?? '',
-        {
-          validators: Validators.required,
-          nonNullable: true
-        }
-      ),
+      debitWalletId: new FormControl(entityEditing?.debitWalletId ?? '', {
+        validators: Validators.required,
+        nonNullable: true,
+      }),
+      cardBrandId: new FormControl(entityEditing?.cardBrandId ?? '', {
+        validators: Validators.required,
+        nonNullable: true,
+      }),
       limit: new FormControl(entityEditing?.limit ?? 1, {
         validators: [Validators.min(1), Validators.required],
         nonNullable: true,
       }),
       closingDay: new FormControl(entityEditing?.closingDay ?? 0, {
-        validators: [Validators.min(1), Validators.max(31), Validators.required],
+        validators: [
+          Validators.min(1),
+          Validators.max(31),
+          Validators.required,
+        ],
         nonNullable: true,
       }),
       dueDay: new FormControl(entityEditing?.dueDay ?? 0, {
-        validators: [Validators.min(1), Validators.max(31), Validators.required],
+        validators: [
+          Validators.min(1),
+          Validators.max(31),
+          Validators.required,
+        ],
         nonNullable: true,
       }),
     });
     this.loading.set(false);
   }
 }
-

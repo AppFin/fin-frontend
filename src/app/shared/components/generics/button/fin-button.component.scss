@@ -1,15 +1,15 @@
 fin-button {
-  width: fit-content;
   display: flex;
+  width: fit-content;
 
-  .p-overlaybadge .p-badge  {
-    right: 8px;
-    top: 8px;
-    outline: none;
+  .p-overlaybadge .p-badge {
     font-size: 9px;
-    min-width: 0.9rem;
     height: 0.9rem;
     line-height: 0.9rem;
+    min-width: 0.9rem;
+    outline: none;
+    right: 8px;
+    top: 8px;
   }
 
   p-button:not(.icon-only),
@@ -18,8 +18,8 @@ fin-button {
   }
 
   p-button:not(.icon-only) > button {
-    padding: 0.25rem 0.75rem;
     height: 38px;
+    padding: 0.25rem 0.75rem;
 
     span {
       padding: 0 4px;
@@ -29,7 +29,7 @@ fin-button {
   // Spinner padding combos
   p-button.maybe-has-spin:not(.icon-only) {
     &:not(.has-spin) {
-      &:not(.has-icon):not(.has-icon-suffix) > button span {
+      &:not(.has-icon, .has-icon-suffix) > button span {
         padding: 0 40px;
       }
 
@@ -72,8 +72,8 @@ fin-button {
 
   // Icon-only buttons
   p-button.icon-only > button {
-    width: 40px;
     height: 40px;
+    width: 40px;
 
     // Core color classes
     @each $type in primary, secondary, success, info, danger {

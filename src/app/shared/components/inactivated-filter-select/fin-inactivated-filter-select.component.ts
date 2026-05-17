@@ -28,10 +28,9 @@ export class FinInactivatedFilterSelectComponent {
     `fin-inactivated-filter-select-${Math.random().toString(36).substring(2, 9)}`
   );
 
-  public readonly inactivatedSelectOptions =
-    new FinSelectComponentOptions({
-      getOptions: this.getInactivatedOptions.bind(this),
-    });
+  public readonly inactivatedSelectOptions = new FinSelectComponentOptions({
+    getOptions: this.getInactivatedOptions.bind(this),
+  });
 
   private getInactivatedOptions(): Observable<
     PagedOutput<FinSelectOption<boolean | null>>

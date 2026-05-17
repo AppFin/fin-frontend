@@ -1,4 +1,4 @@
-import { IEntity } from "../../interfaces/entities/i-entity";
+import { IEntity } from '../../interfaces/entities/i-entity';
 
 export class CreditCardOutput implements IEntity {
   public id: string;

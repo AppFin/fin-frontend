@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, input, output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { FinButtonComponent } from '../button/fin-button.component';
 
 @Component({
@@ -6,7 +11,7 @@ import { FinButtonComponent } from '../button/fin-button.component';
   imports: [FinButtonComponent],
   templateUrl: './fin-save-button.component.html',
   styleUrl: './fin-save-button.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FinSaveButtonComponent {
   public saving = input(false);

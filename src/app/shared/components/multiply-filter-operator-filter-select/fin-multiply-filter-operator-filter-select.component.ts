@@ -23,17 +23,18 @@ export class FinMultiplyFilterOperatorFilterSelectComponent {
   @Input() public formControl: FormControl<MultiplyFilterOperator | null>;
 
   public readonly readonly = input(false);
-  public readonly label = input('finCore.features.shared.multiplyFilterOperator.title');
+  public readonly label = input(
+    'finCore.features.shared.multiplyFilterOperator.title'
+  );
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
   public readonly id = input(
     `fin-multiply-filter-operator-filter-select-${Math.random().toString(36).substring(2, 9)}`
   );
 
-  public readonly inactivatedSelectOptions =
-    new FinSelectComponentOptions({
-      getOptions: this.getInactivatedOptions.bind(this),
-    });
+  public readonly inactivatedSelectOptions = new FinSelectComponentOptions({
+    getOptions: this.getInactivatedOptions.bind(this),
+  });
 
   private getInactivatedOptions(): Observable<
     PagedOutput<FinSelectOption<MultiplyFilterOperator>>

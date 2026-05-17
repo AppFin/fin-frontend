@@ -8,9 +8,8 @@ describe('MonthDayFilterSelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinMonthDaySelectComponent]
-    })
-      .compileComponents();
+      imports: [FinMonthDaySelectComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinMonthDaySelectComponent);
     component = fixture.componentInstance;

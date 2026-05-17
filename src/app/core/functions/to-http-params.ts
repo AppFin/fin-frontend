@@ -21,8 +21,8 @@ export function toHttpParams(obj: any, prefix?: string): HttpParams {
           if (item !== null && item !== undefined) {
             if (typeof item === 'object') {
               const nestedParams = toHttpParams(item, `${paramKey}[${index}]`);
-              nestedParams.keys().forEach(nestedKey => {
-                nestedParams.getAll(nestedKey)?.forEach(nestedValue => {
+              nestedParams.keys().forEach((nestedKey) => {
+                nestedParams.getAll(nestedKey)?.forEach((nestedValue) => {
                   params = params.append(nestedKey, nestedValue);
                 });
               });
@@ -35,8 +35,8 @@ export function toHttpParams(obj: any, prefix?: string): HttpParams {
         params = params.append(paramKey, value.toISOString());
       } else if (typeof value === 'object') {
         const nestedParams = toHttpParams(value, paramKey);
-        nestedParams.keys().forEach(nestedKey => {
-          nestedParams.getAll(nestedKey)?.forEach(nestedValue => {
+        nestedParams.keys().forEach((nestedKey) => {
+          nestedParams.getAll(nestedKey)?.forEach((nestedValue) => {
             params = params.append(nestedKey, nestedValue);
           });
         });

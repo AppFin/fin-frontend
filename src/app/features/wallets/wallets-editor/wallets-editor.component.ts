@@ -8,7 +8,7 @@ import {
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize, first, firstValueFrom, iif, tap } from 'rxjs';
-import { FinFinancialInstitutionSelectComponent } from "../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component";
+import { FinFinancialInstitutionSelectComponent } from '../../../shared/components/financial-institution/financial-institution-select/fin-financial-institution-select.component';
 import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
 import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
 import { FinMoneyInputComponent } from '../../../shared/components/money-input/fin-money-input.component';
@@ -30,7 +30,7 @@ import { nameAlreadyInUseValidator } from '../../../shared/validators/name-alrea
     FinMoneyInputComponent,
     FinUserFriendlyColorPickerComponent,
     FinUserFriendlyIconPickerComponent,
-    FinFinancialInstitutionSelectComponent
+    FinFinancialInstitutionSelectComponent,
   ],
   templateUrl: './wallets-editor.component.html',
   styleUrl: './wallets-editor.component.scss',

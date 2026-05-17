@@ -16,15 +16,15 @@ export function nameAlreadyInUseValidator(
     }
 
     const namesInUse = getNamesInUse();
-    const value = caseSensitive
-      ? control.value
-      : control.value.toLowerCase();
+    const value = caseSensitive ? control.value : control.value.toLowerCase();
 
-    const isInUse = namesInUse.some(name => {
+    const isInUse = namesInUse.some((name) => {
       const compareName = caseSensitive ? name : name.toLowerCase();
       return compareName === value;
     });
 
-    return isInUse ? { nameAlreadyInUse: { value: control.value, namesInUse } } : null;
+    return isInUse
+      ? { nameAlreadyInUse: { value: control.value, namesInUse } }
+      : null;
   };
 }

@@ -8,6 +8,7 @@ import { FINANCIAL_INSTITUTIONS_ROUTES } from './features/financial-institutions
 import { MENUS_ROUTES } from './features/menus/menus-routes';
 import { NOTIFICATIONS_ROUTES } from './features/notifications/notifications-routes';
 import { PEOPLE_ROUTES } from './features/people/people-routes';
+import { SETTINGS_ROUTES } from './features/settings/titles-routes';
 import { TITLE_CATEGORIES_ROUTES } from './features/title-categories/title-categories-routes';
 import { TITLES_ROUTES } from './features/titles/titles-routes';
 import { WALLETS_ROUTES } from './features/wallets/wallets-routes';
@@ -41,6 +42,7 @@ export const routes: Routes = [
           ...CREDIT_CARDS_ROUTES,
           ...TITLES_ROUTES,
           ...PEOPLE_ROUTES,
+          ...SETTINGS_ROUTES,
         ],
       },
       {

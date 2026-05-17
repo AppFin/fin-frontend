@@ -1,8 +1,13 @@
 import {
   ChangeDetectionStrategy,
-  Component, HostListener, inject,
+  Component,
+  HostListener,
+  inject,
   input,
-  output, signal, ElementRef, AfterViewInit,
+  output,
+  signal,
+  ElementRef,
+  AfterViewInit,
 } from '@angular/core';
 import { FinIconComponent } from '../../../../../shared/components/generics/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../../shared/components/generics/text/fin-text.component';
@@ -12,7 +17,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'fin-filter-results',
-  imports: [FinIconComponent, FinTextComponent, RouterLink, MatProgressSpinnerModule],
+  imports: [
+    FinIconComponent,
+    FinTextComponent,
+    RouterLink,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './filter-results.component.html',
   styleUrl: './filter-results.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,7 +62,12 @@ export class FilterResultsComponent implements AfterViewInit {
     const key = event.key;
 
     // Only handle navigation keys
-    if (key !== 'ArrowDown' && key !== 'ArrowUp' && key !== 'Enter' && key !== 'Escape') {
+    if (
+      key !== 'ArrowDown' &&
+      key !== 'ArrowUp' &&
+      key !== 'Enter' &&
+      key !== 'Escape'
+    ) {
       return;
     }
 
@@ -63,7 +78,8 @@ export class FilterResultsComponent implements AfterViewInit {
     }
 
     const menuItems = this.menus();
-    const hasLoadMore = menuItems.length < this.totalResult() && !this.loading();
+    const hasLoadMore =
+      menuItems.length < this.totalResult() && !this.loading();
     const totalItems = menuItems.length + (hasLoadMore ? 1 : 0);
 
     // Prevent default behavior and stop propagation
@@ -72,13 +88,13 @@ export class FilterResultsComponent implements AfterViewInit {
 
     switch (key) {
       case 'ArrowDown':
-        this.selectedIndex.update(current =>
+        this.selectedIndex.update((current) =>
           current < totalItems - 1 ? current + 1 : current
         );
         break;
 
       case 'ArrowUp':
-        this.selectedIndex.update(current =>
+        this.selectedIndex.update((current) =>
           current > 0 ? current - 1 : current
         );
         break;
@@ -124,11 +140,8 @@ export class FilterResultsComponent implements AfterViewInit {
     if (currentIndex < menuItems.length) {
       const selectedItem = menuItems[currentIndex];
       this.router.navigate([selectedItem.frontRoute]);
-    }
-
-    else if (currentIndex === menuItems.length) {
+    } else if (currentIndex === menuItems.length) {
       this.loadMore();
     }
   }
-
 }

@@ -4,4 +4,4 @@ export type WalletInput = {
   icon: string;
   financialInstitutionId: string | null;
   initialBalance: number;
-}
+};

@@ -8,9 +8,8 @@ describe('SideNotificationsContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinSideNotificationsContainerComponent]
-    })
-    .compileComponents();
+      imports: [FinSideNotificationsContainerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinSideNotificationsContainerComponent);
     component = fixture.componentInstance;

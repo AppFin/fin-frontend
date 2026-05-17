@@ -27,7 +27,10 @@ import { CachedEntityService } from '../abstractions/cached-entities/cached-enti
 @Injectable({
   providedIn: 'root',
 })
-export class WalletService extends CachedEntityService<WalletOutput, WalletGetListInput> {
+export class WalletService extends CachedEntityService<
+  WalletOutput,
+  WalletGetListInput
+> {
   private apiService = inject(WalletApiService);
   private notifyService = inject(NotifyService);
 
@@ -56,7 +59,9 @@ export class WalletService extends CachedEntityService<WalletOutput, WalletGetLi
    * @param input The data for creating the wallet.
    * @returns An Observable of the created wallet data.
    */
-  public create(input: WalletInput): ObservableValidated<WalletOutput, WalletCreateOrUpdateErrorCode> {
+  public create(
+    input: WalletInput
+  ): ObservableValidated<WalletOutput, WalletCreateOrUpdateErrorCode> {
     return this.apiService
       .create(input)
       .pipe(
@@ -73,7 +78,10 @@ export class WalletService extends CachedEntityService<WalletOutput, WalletGetLi
    * @param input The updated wallet data.
    * @returns An Observable that completes upon successful update.
    */
-  public update(id: string, input: WalletInput): ObservableValidated<void, WalletCreateOrUpdateErrorCode> {
+  public update(
+    id: string,
+    input: WalletInput
+  ): ObservableValidated<void, WalletCreateOrUpdateErrorCode> {
     return this.apiService
       .update(id, input)
       .pipe(
@@ -89,7 +97,9 @@ export class WalletService extends CachedEntityService<WalletOutput, WalletGetLi
    * @param id The ID of the wallet to toggle.
    * @returns An Observable that completes upon successful update.
    */
-  public toggleInactivated(id: string): ObservableValidated<void, WalletToggleInactiveErrorCode> {
+  public toggleInactivated(
+    id: string
+  ): ObservableValidated<void, WalletToggleInactiveErrorCode> {
     return this.apiService
       .toggleInactivated(id)
       .pipe(
@@ -116,8 +126,12 @@ export class WalletService extends CachedEntityService<WalletOutput, WalletGetLi
       );
   }
 
-  protected override applyStructuralFilter(entity: WalletOutput, filter: WalletGetListInput): boolean {
-    const filterByInactivated = filter.inactivated !== undefined && entity.inactivated !== null;
+  protected override applyStructuralFilter(
+    entity: WalletOutput,
+    filter: WalletGetListInput
+  ): boolean {
+    const filterByInactivated =
+      filter.inactivated !== undefined && entity.inactivated !== null;
     return !filterByInactivated || entity.inactivated === filter.inactivated;
   }
 }

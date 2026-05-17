@@ -93,6 +93,7 @@ export const EsI18n: ITranslate = {
               firstName: 'Primer nombre',
               lastName: 'Segundo nombre',
               title: 'Usted',
+              imagePublicUrl: 'URL de la foto de perfil',
             },
           },
           subtitle: 'Complete los datos a continuación para comenzar',
@@ -119,6 +120,12 @@ export const EsI18n: ITranslate = {
           subtitle:
             'Ingrese su correo electrónico para recibir el enlace de recuperación',
           title: '¿Olvidó su contraseña?',
+        },
+        settings: {
+          title: 'Configuración',
+          ptBr: '🇧🇷 Brasil',
+          enUs: '🇺🇸 Estados Unidos',
+          esEs: '🇪🇸 España',
         },
       },
       password: 'Contraseña',
@@ -238,6 +245,7 @@ export const EsI18n: ITranslate = {
         type: 'Tipo',
         typeCustomIcon: 'Ingrese el ícono personalizado',
         value: 'Valor',
+        locale: 'Configuración regional',
       },
       title: {
         advancedPersonSplit: 'División avanzada por persona',

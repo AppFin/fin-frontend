@@ -127,6 +127,13 @@ export class AuthService {
     return this.storageService.loadFromLocalStorage<string>(this.TOKEN_KEY);
   }
 
+  public async performTokenRefresh(): Promise<void> {
+    await this.refreshToken().catch((error) => {
+      console.error('Token refresh failed:', error);
+      this.logout();
+    });
+  }
+
   private startTokenRefreshTimer(): void {
     this.clearTokenRefreshTimer();
 
@@ -149,13 +156,6 @@ export class AuthService {
     } catch (error) {
       console.error('Error setting refresh timer:', error);
     }
-  }
-
-  private async performTokenRefresh(): Promise<void> {
-    await this.refreshToken().catch((error) => {
-      console.error('Token refresh failed:', error);
-      this.logout();
-    });
   }
 
   private clearTokenRefreshTimer(): void {

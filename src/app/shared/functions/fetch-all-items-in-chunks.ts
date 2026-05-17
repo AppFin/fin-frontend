@@ -16,10 +16,10 @@ import { firstValueFrom, Observable } from 'rxjs';
  * @param filter The filter object, including skipCount and maxResultCount.
  * @returns A Promise resolving to the paginated result (PagedOutput<TEntity>).
  */
-export type ApiFetchFunction<TEntity extends object, TFilter extends PagedFilteredAndSortedInput> = (
-  filter: TFilter
-) => Observable<PagedOutput<TEntity>>;
-
+export type ApiFetchFunction<
+  TEntity extends object,
+  TFilter extends PagedFilteredAndSortedInput,
+> = (filter: TFilter) => Observable<PagedOutput<TEntity>>;
 
 // -------------------------------------------------------------------
 // GENERIC CHUNK-FETCHING METHOD
@@ -41,7 +41,7 @@ export async function fetchAllItemsInChunks<
   TFilter extends PagedFilteredAndSortedInput,
 >(
   fetcher: ApiFetchFunction<TEntity, TFilter>,
-  initialFilter: TFilter,
+  initialFilter: TFilter
 ): Promise<TEntity[]> {
   const allItems: TEntity[] = [];
   let currentSkipCount = initialFilter.skipCount || 0;

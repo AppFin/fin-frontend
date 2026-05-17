@@ -1,5 +1,9 @@
 <fin-editor-layout
-  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editingName|name:' +  personEditingName()"
+  [title]="
+    this.editorType() == editorTypes.Create
+      ? 'finCore.actions.creating'
+      : 'finCore.actions.editingName|name:' + personEditingName()
+  "
   [loading]="loading()"
   [formGroup]="formGroup"
   [canSave]="canSave"
@@ -8,10 +12,10 @@
   (onCancel)="close()"
 >
   @if (!loading()) {
-  <fin-input
-    class="col-12"
-    label="finCore.features.shared.name"
-    [formControl]="formGroup.controls.name"
-  />
+    <fin-input
+      class="col-12"
+      label="finCore.features.shared.name"
+      [formControl]="formGroup.controls.name"
+    />
   }
 </fin-editor-layout>

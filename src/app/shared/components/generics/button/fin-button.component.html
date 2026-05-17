@@ -1,31 +1,23 @@
 <p-button
-        (click)="onClick.emit($event)"
-        [disabled]="disabled()"
-        [severity]="severity()"
-        [variant]="variant()"
-        [text]="isIconOnly() ? true : undefined"
-        [rounded]="isIconOnly() ? true : undefined"
-        [class.icon-only]="isIconOnly()"
-        [class.maybe-has-spin]="maybeHasSpin()"
-        [class.has-spin]="spinner()"
-        [class.has-icon-suffix]="!!iconSuffix()"
-        [class.has-icon]="!!icon()"
+  (click)="onClick.emit($event)"
+  [disabled]="disabled()"
+  [severity]="severity()"
+  [variant]="variant()"
+  [text]="isIconOnly() ? true : undefined"
+  [rounded]="isIconOnly() ? true : undefined"
+  [class.icon-only]="isIconOnly()"
+  [class.maybe-has-spin]="maybeHasSpin()"
+  [class.has-spin]="spinner()"
+  [class.has-icon-suffix]="!!iconSuffix()"
+  [class.has-icon]="!!icon()"
 >
-    @if (!!icon() && !spinner()) {
-      @if (iconBadge()) {
-        <p-overlaybadge [value]="iconBadge()" badgeSize="small"  [severity]="iconBadgeSeverity()">
-          <fin-icon
-            [icon]="icon()"
-            [iconColor]="iconColor()"
-            [fontAwesomeType]="iconFontAwesomeType()"
-            [type]="iconType()"
-            [imageFolder]="iconImageFolder()"
-            [imageExtension]="iconImageExtension()"
-            [tooltip]="iconTooltip()"
-            [size]="iconSize()"
-          />
-        </p-overlaybadge>
-      } @else {
+  @if (!!icon() && !spinner()) {
+    @if (iconBadge()) {
+      <p-overlaybadge
+        [value]="iconBadge()"
+        badgeSize="small"
+        [severity]="iconBadgeSeverity()"
+      >
         <fin-icon
           [icon]="icon()"
           [iconColor]="iconColor()"
@@ -36,26 +28,41 @@
           [tooltip]="iconTooltip()"
           [size]="iconSize()"
         />
-      }
+      </p-overlaybadge>
+    } @else {
+      <fin-icon
+        [icon]="icon()"
+        [iconColor]="iconColor()"
+        [fontAwesomeType]="iconFontAwesomeType()"
+        [type]="iconType()"
+        [imageFolder]="iconImageFolder()"
+        [imageExtension]="iconImageExtension()"
+        [tooltip]="iconTooltip()"
+        [size]="iconSize()"
+      />
     }
-    @if (spinner()) {
-        <mat-spinner class="spinner" [diameter]="isIconOnly() ? 28 : 20" [strokeWidth]="isIconOnly() ? 5 : 3"/>
-    }
+  }
+  @if (spinner()) {
+    <mat-spinner
+      class="spinner"
+      [diameter]="isIconOnly() ? 28 : 20"
+      [strokeWidth]="isIconOnly() ? 5 : 3"
+    />
+  }
 
-    @if (effectiveText()) {
-        <span pButtonLabel>{{ effectiveText() | finTranslate }}</span>
-    }
+  @if (effectiveText()) {
+    <span pButtonLabel>{{ effectiveText() | finTranslate }}</span>
+  }
 
-    @if (!!effectiveText() && !!iconSuffix()) {
-        <fin-icon
-                [icon]="iconSuffix()"
-                [iconColor]="iconSuffixColor()"
-                [fontAwesomeType]="iconSuffixFontAwesomeType()"
-                [type]="iconSuffixType()"
-                [imageFolder]="iconSuffixImageFolder()"
-                [imageExtension]="iconSuffixImageExtension()"
-                [size]="iconSuffixSize()"
-        />
-    }
+  @if (!!effectiveText() && !!iconSuffix()) {
+    <fin-icon
+      [icon]="iconSuffix()"
+      [iconColor]="iconSuffixColor()"
+      [fontAwesomeType]="iconSuffixFontAwesomeType()"
+      [type]="iconSuffixType()"
+      [imageFolder]="iconSuffixImageFolder()"
+      [imageExtension]="iconSuffixImageExtension()"
+      [size]="iconSuffixSize()"
+    />
+  }
 </p-button>
-

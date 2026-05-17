@@ -1,17 +1,27 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, Observable, of, Subject, tap } from 'rxjs';
-import { FinButtonComponent } from "../../../shared/components/generics/button/fin-button.component";
-import { FinGridComponent } from "../../../shared/components/generics/grid/fin-grid.component";
-import { FinGridIconColumnOption, FinIconOptions } from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
+import { FinButtonComponent } from '../../../shared/components/generics/button/fin-button.component';
+import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
+import {
+  FinGridIconColumnOption,
+  FinIconOptions,
+} from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
 import { FinGridMoneyColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-money-column-option';
 import { FinGridSimpleColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
 import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
 import { FinGridOptions } from '../../../shared/components/generics/grid/models/fin-grid-options';
-import { FinPageLayoutComponent } from "../../../shared/components/generics/page-layout/fin-page-layout.component";
-import { FinInactivatedFilterSelectComponent } from "../../../shared/components/inactivated-filter-select/fin-inactivated-filter-select.component";
+import { FinPageLayoutComponent } from '../../../shared/components/generics/page-layout/fin-page-layout.component';
+import { FinInactivatedFilterSelectComponent } from '../../../shared/components/inactivated-filter-select/fin-inactivated-filter-select.component';
 import { PagedFilteredAndSortedInput } from '../../../shared/models/paginations/paged-filtered-and-sorted-input';
 import { PagedOutput } from '../../../shared/models/paginations/paged-output';
 import { ObservableValidated } from '../../../shared/rxjs-operators/handle-fin-back-http-error';
@@ -27,13 +37,17 @@ type CreditCardsListFilterForm = {
   inactivated: FormControl<boolean | null>;
 };
 
-
 @Component({
   selector: 'fin-credit-cards-list',
-  imports: [FinPageLayoutComponent, FinButtonComponent, FinInactivatedFilterSelectComponent, FinGridComponent],
+  imports: [
+    FinPageLayoutComponent,
+    FinButtonComponent,
+    FinInactivatedFilterSelectComponent,
+    FinGridComponent,
+  ],
   templateUrl: './credit-cards-list.component.html',
   styleUrl: './credit-cards-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreditCardsListComponent implements OnInit {
   public readonly gridOptions = signal<FinGridOptions<CreditCardOutput>>(
@@ -103,30 +117,30 @@ export class CreditCardsListComponent implements OnInit {
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.debitWalletId,
         header: 'finCore.features.creditCard.debitWallet',
-        customColumn: () => WalletColumnComponent
+        customColumn: () => WalletColumnComponent,
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.financialInstitutionId,
         header: 'finCore.features.financialInstitutions.titleSingular',
-        customColumn: () => FinancialInstitutionColumnComponent
+        customColumn: () => FinancialInstitutionColumnComponent,
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         getValue: (item) => item.cardBrandId,
         header: 'finCore.features.cardBrand.titleSingular',
-        customColumn: () => CardBrandColumnComponent
+        customColumn: () => CardBrandColumnComponent,
       }),
       new FinGridMoneyColumnOption<CreditCardOutput>({
         header: 'finCore.features.creditCard.limit',
-        getValue: item => item.limit
+        getValue: (item) => item.limit,
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         header: 'finCore.features.creditCard.closingDay',
-        getValue: item => item.closingDay
+        getValue: (item) => item.closingDay,
       }),
       new FinGridSimpleColumnOption<CreditCardOutput>({
         header: 'finCore.features.creditCard.dueDay',
-        getValue: item => item.dueDay
-      })
+        getValue: (item) => item.dueDay,
+      }),
     ];
   }
 

@@ -8,9 +8,8 @@ describe('FinSideModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinSideModalComponent]
-    })
-      .compileComponents();
+      imports: [FinSideModalComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinSideModalComponent);
     component = fixture.componentInstance;

@@ -1,7 +1,14 @@
 <fin-button
-  [iconBadge]="hasUnreadNotification() ? unreadNotificationsCount().toString() : null"
+  [iconBadge]="
+    hasUnreadNotification() ? unreadNotificationsCount().toString() : null
+  "
   iconBadgeSeverity="danger"
   icon="bell"
-  [iconTooltip]="hasUnreadNotification() ? 'finCore.layout.xNotifications|notificationCount:' + unreadNotificationsCount() : 'finCore.layout.notifications'"
+  [iconTooltip]="
+    hasUnreadNotification()
+      ? 'finCore.layout.xNotifications|notificationCount:' +
+        unreadNotificationsCount()
+      : 'finCore.layout.notifications'
+  "
   (onClick)="toggleSideNotifications()"
 />

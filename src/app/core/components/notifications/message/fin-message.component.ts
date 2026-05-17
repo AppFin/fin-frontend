@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, TemplateRef, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  TemplateRef,
+} from '@angular/core';
 import { NotificationSeverity } from '../../../enums/notifications/notification-severity';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';

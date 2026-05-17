@@ -9,6 +9,9 @@ export const WalletToggleInactiveErrorCodeMessages: ErrorMessagesMap<WalletToggl
   new Map([
     [
       WalletToggleInactiveErrorCode.WalletInUseByActivatedCreditCards,
-      { message: 'finCore.features.wallet.errors.walletInUseByActivatedCreditCards' },
+      {
+        message:
+          'finCore.features.wallet.errors.walletInUseByActivatedCreditCards',
+      },
     ],
   ]);

@@ -75,7 +75,7 @@ export class FinancialInstitutionsEditorComponent implements OnInit {
     }
     const request =
       this.editorType() === EditorType.Create
-        ? this.apiService.create(formValue).pipe(map(() => { }))
+        ? this.apiService.create(formValue).pipe(map(() => {}))
         : this.apiService.update(this.institutionEditingId, formValue);
 
     request

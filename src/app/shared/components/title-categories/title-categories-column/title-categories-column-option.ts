@@ -1,5 +1,5 @@
-import { IFinGridColumnOption } from "../../generics/grid/models/columns/i-fin-grid-column-option";
-import { TitleCategoriesColumnComponent } from "./title-categories-column.component";
+import { IFinGridColumnOption } from '../../generics/grid/models/columns/i-fin-grid-column-option';
+import { TitleCategoriesColumnComponent } from './title-categories-column.component';
 
 export class TitleCategoriesColumnOption<T> implements IFinGridColumnOption<T> {
   public header: string;

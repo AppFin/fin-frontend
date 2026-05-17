@@ -89,9 +89,12 @@ export abstract class CachedEntityService<
    * to the external fetch operation. Uses a default empty filter if not provided.
    */
   public async loadCache(filter = {} as TFilter): Promise<void> {
-    const items = await fetchAllItemsInChunks<TEntity, TFilter>(this.getList.bind(this), filter);
+    const items = await fetchAllItemsInChunks<TEntity, TFilter>(
+      this.getList.bind(this),
+      filter
+    );
     this.cachedEntities.clear();
-    items.forEach(item => this.updateOrCreateOnCache(item));
+    items.forEach((item) => this.updateOrCreateOnCache(item));
   }
 
   // -------------------------------------------------------------------
@@ -136,5 +139,5 @@ export abstract class CachedEntityService<
    */
   protected applyStructuralFilter(entity: TEntity, filter: TFilter): boolean {
     return true; // Default implementation: no structural filtering
-  };
+  }
 }

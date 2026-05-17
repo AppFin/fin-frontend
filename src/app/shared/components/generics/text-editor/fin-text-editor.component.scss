@@ -6,10 +6,10 @@
 }
 
 .fin-editor-label {
-  display: block;
-  margin-bottom: 4px;
-  font-weight: 600;
   color: var(--text-color);
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
   transition: color 0.2s;
 }
 
@@ -18,12 +18,12 @@
   color: var(--p-iftalabel-invalid-color);
 }
 
-
 .disabled {
   .p-editor {
     opacity: 0.8;
     pointer-events: none;
   }
+
   .fin-editor-label {
     opacity: 0.6;
   }
@@ -36,12 +36,11 @@
   }
 }
 
-
 .sub-text {
-  min-height: 30px;
-  max-width: 100%;
-  width: 100%;
   margin-top: 4px;
+  max-width: 100%;
+  min-height: 30px;
+  width: 100%;
 
   .error-sub {
     color: var(--color-error);
@@ -50,10 +49,10 @@
 }
 
 .input-container {
+  color: var(--text-color);
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 6px;
-  color: var(--text-color);
   width: 100%;
 }
 

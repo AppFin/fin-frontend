@@ -5,7 +5,6 @@
   [title]="data.title"
   [onClose]="data.showCloseButton ? close.bind(this) : null"
 >
-
   @if (data.bodyTemplate) {
     <ng-container *ngTemplateOutlet="data.bodyTemplate" />
   } @else if (isHtml()) {
@@ -13,11 +12,19 @@
       <div [innerHTML]="data.bodyTextOrHtml | safeHtml"></div>
     </fin-text>
   } @else {
-    <fin-text [text]="data.bodyTextOrHtml" type="paragraph" />
+    <fin-text
+      [text]="data.bodyTextOrHtml"
+      type="paragraph"
+    />
   }
 
   @if (data.footerTemplate) {
-    <ng-container footer *ngTemplateOutlet="data.footerTemplate; context: { closeFn: close.bind(this) }" />
+    <ng-container
+      footer
+      *ngTemplateOutlet="
+        data.footerTemplate;
+        context: { closeFn: close.bind(this) }
+      "
+    />
   }
 </fin-dialog>
-

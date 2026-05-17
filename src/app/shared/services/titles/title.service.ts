@@ -89,9 +89,7 @@ export class TitleService {
    * @param id The ID of the title to be deleted.
    * @returns An Observable that completes upon successful deletion.
    */
-  public delete(
-    id: string
-  ): ObservableValidated<void, TitleDeleteErrorCode> {
+  public delete(id: string): ObservableValidated<void, TitleDeleteErrorCode> {
     return this.apiService
       .delete(id)
       .pipe(

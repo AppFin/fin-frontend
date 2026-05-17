@@ -19,15 +19,20 @@ import { FinTextComponent } from '../../generics/text/fin-text.component';
   styleUrl: './financial-institution-column.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FinancialInstitutionColumnComponent<T> implements IFinGridCustomColumn<T> {
-  public readonly financialInstitution = signal<FinancialInstitutionOutput | null>(null);
+export class FinancialInstitutionColumnComponent<T>
+  implements IFinGridCustomColumn<T>
+{
+  public readonly financialInstitution =
+    signal<FinancialInstitutionOutput | null>(null);
   private readonly service = inject(FinancialInstitutionApiService);
 
   public async setItem(
     item: T,
     options: IFinGridColumnOption<T>
   ): Promise<void> {
-    const id = (options as FinGridSimpleColumnOption<T>).getValue(item)?.toString();
+    const id = (options as FinGridSimpleColumnOption<T>)
+      .getValue(item)
+      ?.toString();
     if (!id) return;
 
     const financialInstitution = this.service.getCached(id);

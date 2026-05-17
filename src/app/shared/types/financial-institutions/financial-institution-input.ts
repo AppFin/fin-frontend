@@ -1,4 +1,4 @@
-import { FinancialInstitutionType } from "../../enums/financial-institutions/financial-institution-type";
+import { FinancialInstitutionType } from '../../enums/financial-institutions/financial-institution-type';
 
 export type FinancialInstitutionInput = {
   name: string;

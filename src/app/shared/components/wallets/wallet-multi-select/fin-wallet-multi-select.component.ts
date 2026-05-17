@@ -12,7 +12,7 @@ import { PagedOutput } from '../../../models/paginations/paged-output';
 import { WalletService } from '../../../services/wallets/wallet.service';
 import { WalletOutput } from '../../../types/wallets/wallet-output';
 import { FinIconComponent } from '../../generics/icon/fin-icon.component';
-import { FinMultiSelectComponent } from "../../generics/multi-select/fin-multi-select.component";
+import { FinMultiSelectComponent } from '../../generics/multi-select/fin-multi-select.component';
 import { FinSelectComponentOptions } from '../../generics/select/fin-select-component-options';
 import { FinSelectOption } from '../../generics/select/fin-select-option';
 import { FinTextComponent } from '../../generics/text/fin-text.component';
@@ -38,26 +38,22 @@ export class FinWalletSelectComponent {
 
   public readonly inactivatedFilter = input<boolean | undefined>(undefined);
 
+  public readonly selectOptions = new FinSelectComponentOptions<
+    string,
+    WalletOutput
+  >({
+    getOptions: this.getWalletOptions.bind(this),
+  });
 
-  public readonly selectOptions =
-    new FinSelectComponentOptions<string, WalletOutput>({
-      getOptions: this.getWalletOptions.bind(this),
-    });
-
-  private readonly walletService = inject(
-    WalletService
-  );
+  private readonly walletService = inject(WalletService);
 
   private getWalletOptions(
     input: PagedFilteredAndSortedInput
-  ): Observable<
-    PagedOutput<FinSelectOption<string, WalletOutput>>
-  > {
-    const wallets =
-      this.walletService.getListCached({
-        ...input,
-        inactivated: this.inactivatedFilter(),
-      });
+  ): Observable<PagedOutput<FinSelectOption<string, WalletOutput>>> {
+    const wallets = this.walletService.getListCached({
+      ...input,
+      inactivated: this.inactivatedFilter(),
+    });
 
     return of({
       totalCount: wallets.totalCount,
@@ -66,7 +62,9 @@ export class FinWalletSelectComponent {
           ({
             label: item.name,
             value: item.id,
-            disabled: this.formControl.value?.includes(item.id) ? false : item.inactivated,
+            disabled: this.formControl.value?.includes(item.id)
+              ? false
+              : item.inactivated,
             customValue: item,
           }) as FinSelectOption<string, WalletOutput>
       ),

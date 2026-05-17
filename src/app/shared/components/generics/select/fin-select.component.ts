@@ -56,18 +56,17 @@ export class FinSelectComponent<T = any, C = null> implements OnInit {
   public itemTemplateContent = contentChild<TemplateRef<any> | undefined>(
     'itemTemplate'
   );
-  public selectedItemTemplateContent = contentChild<TemplateRef<any> | undefined>(
-    'selectedItemTemplate'
-  );
+  public selectedItemTemplateContent = contentChild<
+    TemplateRef<any> | undefined
+  >('selectedItemTemplate');
 
   public readonly label = input('');
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
-  public readonly selectComponentOptions = input<FinSelectComponentOptions<T, C>>(
-    undefined,
-    { alias: 'options' }
-  );
+  public readonly selectComponentOptions = input<
+    FinSelectComponentOptions<T, C>
+  >(undefined, { alias: 'options' });
 
   public readonly id = input(
     `fin-select-${Math.random().toString(36).substring(2, 9)}`

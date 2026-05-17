@@ -7,8 +7,8 @@ fin-user-friendly-color-picker {
   }
 
   .disabled .color-display-wrapper {
-    filter: brightness(0.9);
     cursor: not-allowed;
+    filter: brightness(0.9);
   }
 
   .p-iftalabel:has(.ng-invalid.ng-touched) label,
@@ -28,24 +28,24 @@ fin-user-friendly-color-picker {
   }
 
   .color-picker-container {
+    color: var(--text-color);
     margin-left: 8px;
     margin-right: 8px;
     margin-top: 6px;
-    color: var(--text-color);
 
     .color-display-wrapper {
-      display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 1.2rem 1rem 0.3rem 1rem;
       background: var(--p-inputtext-background);
       border: 1px solid var(--p-inputtext-border-color);
       border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s;
+      display: flex;
+      gap: 12px;
       min-height: 60px;
+      padding: 1.2rem 1rem 0.3rem;
+      transition: all 0.2s;
 
-      &:not(.readonly):not(.disabled-state):hover {
+      &:not(.readonly, .disabled-state):hover {
         border-color: var(--p-inputtext-hover-border-color);
       }
 
@@ -56,19 +56,19 @@ fin-user-friendly-color-picker {
       }
 
       .color-preview {
-        width: 32px;
-        height: 32px;
-        border-radius: 6px;
         border: 2px solid var(--p-inputtext-border-color);
+        border-radius: 6px;
         flex-shrink: 0;
+        height: 32px;
+        width: 32px;
       }
 
       .color-value {
-        flex: 1;
         color: var(--p-inputtext-color);
+        flex: 1;
         font-size: 0.875rem;
-        text-transform: uppercase;
         font-weight: 500;
+        text-transform: uppercase;
       }
 
       .dropdown-icon {
@@ -91,33 +91,33 @@ fin-user-friendly-color-picker {
   }
 
   .color-picker-content {
-    padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     min-width: 280px;
+    padding: 1rem;
 
     .color-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
       gap: 8px;
+      grid-template-columns: repeat(4, 1fr);
       justify-items: center;
 
       .color-option {
-        width: 2.5rem;
-        height: 2.5rem;
+        align-items: center;
+        border: 2px solid transparent;
         border-radius: 8px;
         cursor: pointer;
-        border: 2px solid transparent;
-        transition: all 0.2s;
-        position: relative;
         display: flex;
-        align-items: center;
+        height: 2.5rem;
         justify-content: center;
+        position: relative;
+        transition: all 0.2s;
+        width: 2.5rem;
 
         &:hover {
-          transform: scale(1.1);
           border-color: var(--p-inputtext-focus-border-color);
+          transform: scale(1.1);
         }
 
         &.selected {
@@ -126,38 +126,38 @@ fin-user-friendly-color-picker {
 
           .check-icon {
             color: white;
+            filter: drop-shadow(0 2px 4px rgb(0 0 0 / 30%));
             font-size: 1.5rem;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
           }
         }
       }
     }
 
     .custom-color-section {
+      border-top: 1px solid var(--p-inputtext-border-color);
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
       padding-top: 0.5rem;
-      border-top: 1px solid var(--p-inputtext-border-color);
 
       .custom-color-label {
+        color: var(--p-inputtext-color);
         font-size: 0.875rem;
         font-weight: 600;
-        color: var(--p-inputtext-color);
       }
 
       .custom-color-input-wrapper {
+        align-items: center;
         display: flex;
         gap: 8px;
-        align-items: center;
 
         .native-color-input {
-          width: 48px;
-          height: 48px;
           border: 1px solid var(--p-inputtext-border-color);
           border-radius: 6px;
           cursor: pointer;
+          height: 48px;
           padding: 0;
+          width: 48px;
 
           &::-webkit-color-swatch-wrapper {
             padding: 0;

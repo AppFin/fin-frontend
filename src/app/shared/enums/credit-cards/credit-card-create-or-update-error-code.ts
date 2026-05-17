@@ -1,7 +1,6 @@
 import { ErrorMessagesMap } from '../../rxjs-operators/handle-fin-back-http-error';
 
-export enum CreditCardCreateOrUpdateErrorCode
-{
+export enum CreditCardCreateOrUpdateErrorCode {
   NameIsRequired = 0,
   NameAlreadyInUse = 1,
   NameTooLong = 2,
@@ -11,19 +10,23 @@ export enum CreditCardCreateOrUpdateErrorCode
   IconTooLong = 6,
   CreditCardNotFound = 7,
 
-  FinancialInstitutionNotFound =  8,
-  FinancialInstitutionInactivated =  9,
+  FinancialInstitutionNotFound = 8,
+  FinancialInstitutionInactivated = 9,
 
-  DebitWalletNotFound =  10,
-  DebitWalletInactivated =  11,
+  DebitWalletNotFound = 10,
+  DebitWalletInactivated = 11,
 
-  CardBrandNotFound =  12,
+  CardBrandNotFound = 12,
 
-  LimitMinValueZero =  13,
-  DueDayOutOfRange =  14,
-  ClosingDayOutOfRange =  15
+  LimitMinValueZero = 13,
+  DueDayOutOfRange = 14,
+  ClosingDayOutOfRange = 15,
 }
 
-export const creditCardCreateOrUpdateErrorCodeMessages: ErrorMessagesMap<CreditCardCreateOrUpdateErrorCode> = new Map([
-  [CreditCardCreateOrUpdateErrorCode.NameAlreadyInUse, { message: 'finCore.features.creditCard.errors.nameAlreadyInUse' }],
-]);
+export const creditCardCreateOrUpdateErrorCodeMessages: ErrorMessagesMap<CreditCardCreateOrUpdateErrorCode> =
+  new Map([
+    [
+      CreditCardCreateOrUpdateErrorCode.NameAlreadyInUse,
+      { message: 'finCore.features.creditCard.errors.nameAlreadyInUse' },
+    ],
+  ]);

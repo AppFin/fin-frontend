@@ -1,4 +1,5 @@
 import { registerLocaleData } from '@angular/common';
+import localeEn from '@angular/common/locales/en';
 import localeEs from '@angular/common/locales/es';
 import localePt from '@angular/common/locales/pt';
 import { Injectable } from '@angular/core';
@@ -69,12 +70,9 @@ export class LocalizationService {
   }
 
   public registerLocalization(): void {
-    const lang = this.getLang();
-    if (lang.includes('pt')) {
-      registerLocaleData(localePt, SupportedLocalizations.ptBR);
-    } else if (lang.includes('es')) {
-      registerLocaleData(localeEs, SupportedLocalizations.esES);
-    }
+    registerLocaleData(localePt, SupportedLocalizations.ptBR);
+    registerLocaleData(localeEs, SupportedLocalizations.esES);
+    registerLocaleData(localeEn, SupportedLocalizations.enUS);
   }
 
   public setUserLang(userLang: string): void {

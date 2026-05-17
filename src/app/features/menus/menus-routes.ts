@@ -17,16 +17,22 @@ export const MENUS_ROUTES: Routes = [
       },
       {
         path: 'new',
-        loadComponent: () => import('./menus-editor/menus-editor.component').then(m => m.MenusEditorComponent),
+        loadComponent: () =>
+          import('./menus-editor/menus-editor.component').then(
+            (m) => m.MenusEditorComponent
+          ),
       },
       {
         path: ':menuId',
-        loadComponent: () => import('./menus-editor/menus-editor.component').then(m => m.MenusEditorComponent),
+        loadComponent: () =>
+          import('./menus-editor/menus-editor.component').then(
+            (m) => m.MenusEditorComponent
+          ),
       },
       {
         path: '**',
-        redirectTo: ''
-      }
+        redirectTo: '',
+      },
     ],
   },
 ];

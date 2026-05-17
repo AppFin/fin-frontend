@@ -89,12 +89,10 @@ export class MenuService {
   }
 
   public startLoadMenuMetadataSub(): void {
-    this.authService.isAuthenticatedSub.subscribe(
-      async (isAuthenticated) => {
-        if (isAuthenticated) await this.loadMenuMetadata();
-        else this._menusMetadata.set([]);
-      }
-    );
+    this.authService.isAuthenticatedSub.subscribe(async (isAuthenticated) => {
+      if (isAuthenticated) await this.loadMenuMetadata();
+      else this._menusMetadata.set([]);
+    });
   }
 
   private async loadMenuMetadata(): Promise<void> {

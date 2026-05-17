@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, signal, Signal, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+  Signal,
+} from '@angular/core';
 import { ButtonFilterComponent } from '../button-filter/button-filter.component';
 import { FinIconComponent } from '../../../../shared/components/generics/icon/fin-icon.component';
 import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
@@ -11,9 +17,7 @@ import { AuthService } from '../../../services/authentication/auth.service';
 import { UserProps } from '../../../models/authentication/user-props';
 import { Divider } from 'primeng/divider';
 import { RouterModule } from '@angular/router';
-import {
-  FinSideNotificationTogglerComponent
-} from '../../notifications/side-notification-toggler/fin-side-notification-toggler.component';
+import { FinSideNotificationTogglerComponent } from '../../notifications/side-notification-toggler/fin-side-notification-toggler.component';
 
 @Component({
   selector: 'fin-header',

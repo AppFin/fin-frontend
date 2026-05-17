@@ -69,6 +69,12 @@ export const PtBrI18n: ITranslate = {
         title: 'Erro',
       },
       pages: {
+        settings: {
+          title: 'Configurações',
+          ptBr: '🇧🇷 Brasil',
+          enUs: '🇺🇸 Estados Unidos',
+          esEs: '🇪🇸 Espanha',
+        },
         createAccount: {
           next: 'Próximo',
           steps: {
@@ -89,6 +95,7 @@ export const PtBrI18n: ITranslate = {
               firstName: 'Primeiro nome',
               lastName: 'Segundo nome',
               title: 'Você',
+              imagePublicUrl: 'URL da imagem de perfil',
             },
           },
           subtitle: 'Preencha os dados abaixo para começar',
@@ -233,6 +240,7 @@ export const PtBrI18n: ITranslate = {
         type: 'Tipo',
         typeCustomIcon: 'Dígite o ícone customizado',
         value: 'Valor',
+        locale: 'Localização',
       },
       title: {
         advancedPersonSplit: 'Divisão avançada por pessoa',

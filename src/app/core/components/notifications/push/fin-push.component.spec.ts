@@ -8,9 +8,8 @@ describe('SnackComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinPushComponent]
-    })
-    .compileComponents();
+      imports: [FinPushComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinPushComponent);
     component = fixture.componentInstance;

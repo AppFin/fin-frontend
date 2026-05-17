@@ -8,9 +8,8 @@ describe('FinGridColumnRendererComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinGridColumnRendererComponent]
-    })
-    .compileComponents();
+      imports: [FinGridColumnRendererComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinGridColumnRendererComponent);
     component = fixture.componentInstance;

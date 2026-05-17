@@ -66,7 +66,7 @@ export class NotificationService {
       });
     }
 
-    return await this.notify(notifyUserDTO)
+    return await this.notify(notifyUserDTO);
   }
 
   public async notify(

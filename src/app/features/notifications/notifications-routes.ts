@@ -17,16 +17,22 @@ export const NOTIFICATIONS_ROUTES: Routes = [
       },
       {
         path: 'new',
-        loadComponent: () => import('./notifications-editor/notifications-editor.component').then(m => m.NotificationsEditorComponent),
+        loadComponent: () =>
+          import('./notifications-editor/notifications-editor.component').then(
+            (m) => m.NotificationsEditorComponent
+          ),
       },
       {
         path: ':notificationId',
-        loadComponent: () => import('./notifications-editor/notifications-editor.component').then(m => m.NotificationsEditorComponent),
+        loadComponent: () =>
+          import('./notifications-editor/notifications-editor.component').then(
+            (m) => m.NotificationsEditorComponent
+          ),
       },
       {
         path: '**',
-        redirectTo: ''
-      }
+        redirectTo: '',
+      },
     ],
   },
 ];

@@ -85,15 +85,15 @@ export class FinGridColumnRendererComponent<T> implements OnDestroy {
     if (customColumn !== undefined && customColumn !== null) {
       try {
         if (typeof customColumn === 'function') {
-          const isClass = customColumn.toString().startsWith('class') ||
+          const isClass =
+            customColumn.toString().startsWith('class') ||
             customColumn.prototype !== undefined;
-
 
           return isClass ? customColumn : customColumn();
         } else {
           return customColumn;
         }
-      } catch { }
+      } catch {}
     }
     return null;
   }

@@ -12,4 +12,4 @@ export type NotificationInput = {
   userIds: string[];
   link: string;
   severity: NotificationSeverity;
-}
+};

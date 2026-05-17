@@ -6,25 +6,24 @@ $cell-padding-horizontal: 0.5rem;
 $cell-padding-vertical: 0.1rem;
 $paginator-height: 2rem;
 $background-color: var(--p-surface-100);
-
 $mobile: 768px;
 $tablet: 1024px;
 
 @mixin flex-center {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 @mixin hide-scrollbar {
-  scrollbar-width: none;
   -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
     background: transparent;
+    display: none;
+    height: 0;
+    width: 0;
   }
 
   &::-webkit-scrollbar-track,
@@ -36,57 +35,55 @@ $tablet: 1024px;
 @mixin table-cell-base {
   color: var(--text-color);
   height: $row-height;
-  min-height: $row-height;
   max-height: $row-height;
+  min-height: $row-height;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 @mixin mobile-card {
-  display: block;
   background: var(--p-surface-0);
   border: 1px solid var(--p-content-border-color);
   border-radius: $border-radius-default;
+  box-shadow: rgb(0 0 0 / 5%) 0 2px 4px;
+  display: block;
   margin-bottom: 1rem;
   padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.05) 0 2px 4px;
 }
 
 fin-grid {
+  display: flex;
   height: 100%;
   width: 100%;
-  display: flex;
 
   p-table {
-    height: 100%;
-    display: flex !important;
-    max-height: 100%;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     background: $background-color;
     border: 1px solid var(--p-content-border-color);
     border-radius: $border-radius-large;
+    display: flex !important;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    width: 100%;
 
     @media (max-width: $mobile) {
+      background: transparent;
+      border: none;
       border-radius: $border-radius-default;
       box-shadow: none;
-      border: none;
-      background: transparent;
     }
 
     .p-datatable-table-container {
-      flex: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      padding: 0;
-      margin: 0;
       box-sizing: border-box;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      margin: 0;
+      overflow-y: auto;
+      padding: 0;
       @include hide-scrollbar;
-
 
       @media (max-width: $mobile) {
         overflow: visible;
@@ -94,24 +91,24 @@ fin-grid {
       }
 
       .p-datatable-table {
-        height: auto !important;
         flex-shrink: 0;
-        width: 100%;
+        height: auto !important;
         margin: 0;
-
+        width: 100%;
 
         @media (min-width: $mobile + 1px) {
           thead {
-            z-index: 2;
             overflow: hidden;
+            z-index: 2;
 
             th {
               @include table-cell-base;
+
               background: $background-color;
-              font-weight: 700;
-              padding: $header-padding $cell-padding-horizontal;
               border: none;
               border-bottom: 1px solid var(--p-content-border-color);
+              font-weight: 700;
+              padding: $header-padding $cell-padding-horizontal;
               position: sticky;
               top: 0;
               z-index: 10;
@@ -132,6 +129,7 @@ fin-grid {
 
               td {
                 @include table-cell-base;
+
                 padding: $cell-padding-vertical 1rem;
                 vertical-align: middle;
               }
@@ -145,12 +143,11 @@ fin-grid {
               }
 
               &:last-child {
-                box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+                box-shadow: rgb(0 0 0 / 10%) 0 4px 12px;
               }
             }
           }
         }
-
 
         @media (max-width: $mobile) {
           display: block;
@@ -164,12 +161,13 @@ fin-grid {
 
             tr {
               @include mobile-card;
+
               display: block;
               height: auto !important;
-              min-height: auto !important;
               max-height: none !important;
-              white-space: normal !important;
+              min-height: auto !important;
               position: relative;
+              white-space: normal !important;
 
               &:nth-child(odd),
               &:nth-child(even) {
@@ -177,43 +175,41 @@ fin-grid {
               }
 
               &:last-child {
-                box-shadow: rgba(0, 0, 0, 0.05) 0 2px 4px;
+                box-shadow: rgb(0 0 0 / 5%) 0 2px 4px;
               }
 
               td {
+                border: none !important;
                 display: block !important;
                 height: auto !important;
-                min-height: auto !important;
                 max-height: none !important;
-                padding: 0.5rem 0 !important;
-                border: none !important;
-                white-space: normal !important;
+                min-height: auto !important;
                 overflow: visible !important;
-                text-overflow: initial !important;
-                position: relative;
+                padding: 0.5rem 0 !important;
                 padding-left: 40% !important;
+                position: relative;
+                text-overflow: initial !important;
+                white-space: normal !important;
 
-
-                &:not(:empty):before {
+                &:not(:empty)::before {
+                  color: var(--text-color);
                   content: attr(data-label);
-                  position: absolute;
+                  font-size: 0.875rem;
+                  font-weight: 600;
                   left: 0;
+                  position: absolute;
                   top: 0.5rem;
                   width: 35%;
-                  font-weight: 600;
-                  color: var(--text-color);
-                  font-size: 0.875rem;
                 }
 
-
                 &:has(fin-grid-actions-renderer) {
-                  padding-left: 0 !important;
-                  text-align: right;
-                  margin-top: 1rem;
-                  padding-top: 1rem;
                   border-top: 1px solid var(--p-content-border-color);
+                  margin-top: 1rem;
+                  padding-left: 0 !important;
+                  padding-top: 1rem;
+                  text-align: right;
 
-                  &:before {
+                  &::before {
                     display: none;
                   }
                 }
@@ -223,29 +219,26 @@ fin-grid {
         }
       }
 
-
       .p-datatable .p-datatable-emptymessage {
-        position: relative !important;
         height: 100% !important;
+        position: relative !important;
         width: 100% !important;
 
         td {
+          height: 100% !important;
           padding: 0 !important;
           position: relative !important;
-          height: 100% !important;
         }
       }
 
       .empty-placeholder {
         @include flex-center;
+
         height: 400px;
-        width: 100% !important;
+        inset: 0;
         padding: 2rem !important;
         position: absolute !important;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        width: 100% !important;
 
         @media (max-width: $mobile) {
           height: 300px;
@@ -254,16 +247,16 @@ fin-grid {
       }
 
       .empty-content {
-        text-align: center;
-        max-width: 400px;
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
         gap: 1rem;
+        max-width: 400px;
+        text-align: center;
 
         @media (max-width: $mobile) {
-          max-width: 300px;
           gap: 0.75rem;
+          max-width: 300px;
         }
 
         .empty-icon {
@@ -278,7 +271,7 @@ fin-grid {
           color: var(--p-text-color);
           font-size: 1.5rem;
           font-weight: 600;
-          margin: 0 0 0.5rem 0;
+          margin: 0 0 0.5rem;
 
           @media (max-width: $mobile) {
             font-size: 1.25rem;
@@ -287,12 +280,12 @@ fin-grid {
 
         .empty-message {
           color: var(--p-text-muted-color);
-          margin: 0 0 1.5rem 0;
           line-height: 1.5;
+          margin: 0 0 1.5rem;
 
           @media (max-width: $mobile) {
             font-size: 0.875rem;
-            margin: 0 0 1rem 0;
+            margin: 0 0 1rem;
           }
         }
 
@@ -306,29 +299,27 @@ fin-grid {
       }
     }
 
-
     .p-paginator {
       background: transparent;
-      border-top: 1px solid var(--p-content-border-color);
-      padding: 0.1rem;
       border-radius: 0;
+      border-top: 1px solid var(--p-content-border-color);
       flex-shrink: 0;
+      padding: 0.1rem;
 
       @media (max-width: $mobile) {
-        padding: 0.5rem;
-        border: none;
         background: var(--p-surface-0);
+        border: none;
         border-radius: $border-radius-default;
+        box-shadow: rgb(0 0 0 / 5%) 0 2px 4px;
         margin: 0 0.5rem 0.5rem;
-        box-shadow: rgba(0, 0, 0, 0.05) 0 2px 4px;
+        padding: 0.5rem;
       }
 
       .p-paginator-rpp-dropdown {
-
-        >div,
-        >span {
-          padding: 0.3rem;
+        > div,
+        > span {
           color: var(--text-color);
+          padding: 0.3rem;
 
           @media (max-width: $mobile) {
             font-size: 0.875rem;
@@ -336,11 +327,11 @@ fin-grid {
         }
 
         .p-select-overlay {
-          transform: translateY(-100%) !important;
-          margin-top: -0.5rem !important;
-          top: auto !important;
           bottom: 100% !important;
           color: var(--text-color);
+          margin-top: -0.5rem !important;
+          top: auto !important;
+          transform: translateY(-100%) !important;
         }
       }
 
@@ -350,13 +341,13 @@ fin-grid {
       .p-paginator-first,
       .p-paginator-last {
         color: var(--text-color);
-        min-width: $paginator-height;
         height: $paginator-height;
+        min-width: $paginator-height;
 
         @media (max-width: $mobile) {
-          min-width: 2.5rem;
-          height: 2.5rem;
           font-size: 0.875rem;
+          height: 2.5rem;
+          min-width: 2.5rem;
         }
 
         &.p-paginator-page-active {
@@ -365,9 +356,7 @@ fin-grid {
         }
       }
 
-
-      @media (max-width: 480px) {
-
+      @media (width <= 480px) {
         .p-paginator-first,
         .p-paginator-last {
           display: none;

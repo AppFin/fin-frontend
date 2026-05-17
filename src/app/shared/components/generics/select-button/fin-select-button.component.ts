@@ -40,8 +40,8 @@ export interface FinSelectButtonOption<T = any> {
     SelectButtonModule,
     FinTextComponent,
     FinTranslatePipe,
-    IftaLabel
-],
+    IftaLabel,
+  ],
   templateUrl: './fin-select-button.component.html',
   styleUrl: './fin-select-button.component.scss',
   providers: [
@@ -53,7 +53,9 @@ export interface FinSelectButtonOption<T = any> {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FinSelectButtonComponent<T = any> implements OnInit, ControlValueAccessor {
+export class FinSelectButtonComponent<T = any>
+  implements OnInit, ControlValueAccessor
+{
   @Input() public formControl!: FormControl<T | null>;
 
   public readonly label = input('');
@@ -74,12 +76,12 @@ export class FinSelectButtonComponent<T = any> implements OnInit, ControlValueAc
   );
 
   public readonly effectiveOptions = computed(() => {
-    return this.options().map(option => {
+    return this.options().map((option) => {
       return {
         ...option,
-        label: this.translateService.translate(option.label)
-      } as FinSelectButtonOption
-    })
+        label: this.translateService.translate(option.label),
+      } as FinSelectButtonOption;
+    });
   });
 
   private readonly _hasError = signal(false);
@@ -142,8 +144,8 @@ export class FinSelectButtonComponent<T = any> implements OnInit, ControlValueAc
     this.errorMessage.set(errorMessage);
   }
 
-  writeValue(obj: any): void { }
-  registerOnChange(fn: any): void { }
-  registerOnTouched(fn: any): void { }
-  setDisabledState?(isDisabled: boolean): void { }
+  writeValue(obj: any): void {}
+  registerOnChange(fn: any): void {}
+  registerOnTouched(fn: any): void {}
+  setDisabledState?(isDisabled: boolean): void {}
 }

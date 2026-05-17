@@ -1,16 +1,22 @@
 <div class="side-modal-conteiner">
   @if (title()) {
-  <fin-text type="label" [text]="title()" />
+    <fin-text
+      type="label"
+      [text]="title()"
+    />
   }
 
   @if (hasFormGroup()) {
-  <form [formGroup]="effectiveFormGroup()" class="fin-grid-layout">
-    <ng-content />
-  </form>
+    <form
+      [formGroup]="effectiveFormGroup()"
+      class="fin-grid-layout"
+    >
+      <ng-content />
+    </form>
   } @else {
-  <div class="fin-grid-layout">
-    <ng-content />
-  </div>
+    <div class="fin-grid-layout">
+      <ng-content />
+    </div>
   }
 </div>
 

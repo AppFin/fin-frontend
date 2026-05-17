@@ -68,6 +68,12 @@ export interface ITranslate extends TranslationObject {
         title: string;
       };
       pages: {
+        settings: {
+          title: string;
+          ptBr: string;
+          enUs: string;
+          esEs: string;
+        };
         createAccount: {
           next: string;
           steps: {
@@ -87,6 +93,7 @@ export interface ITranslate extends TranslationObject {
               displayName: string;
               firstName: string;
               lastName: string;
+              imagePublicUrl: string;
               title: string;
             };
           };
@@ -230,6 +237,7 @@ export interface ITranslate extends TranslationObject {
       };
       shared: {
         name: string;
+        locale: string;
         icon: string;
         percentage: string;
         description: string;

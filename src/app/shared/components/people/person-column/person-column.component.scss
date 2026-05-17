@@ -1,7 +1,6 @@
 :host {
   display: flex;
-  align-items: center;
-  justify-items: flex-start;
-  overflow: auto;
   gap: 0.5rem;
+  overflow: auto;
+  place-items: center flex-start;
 }

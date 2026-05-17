@@ -26,7 +26,7 @@ export class CardBrandApiService extends CachedEntityService<CardBrandOutput> {
   ): Observable<PagedOutput<CardBrandOutput>> {
     const params = toHttpParams(input);
     return this.http.get<PagedOutput<CardBrandOutput>>(this.apiUrl, { params });
-  };
+  }
 
   public create(input: CardBrandInput): Observable<CardBrandOutput> {
     return this.http

@@ -8,9 +8,8 @@ describe('FinSelectButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinSelectButtonComponent]
-    })
-      .compileComponents();
+      imports: [FinSelectButtonComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinSelectButtonComponent);
     component = fixture.componentInstance;

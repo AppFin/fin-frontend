@@ -36,7 +36,7 @@ export class FinTranslateService {
     return this.translateService.instant(key.trim(), params);
   }
 
-  private setDefaultLanguage(): void {
+  public setDefaultLanguage(): void {
     this.translateService.use(this.localizationService.getLang());
   }
 }

@@ -27,7 +27,10 @@ import { CachedEntityService } from '../abstractions/cached-entities/cached-enti
 @Injectable({
   providedIn: 'root',
 })
-export class CreditCardService extends CachedEntityService<CreditCardOutput, CreditCardGetListInput> {
+export class CreditCardService extends CachedEntityService<
+  CreditCardOutput,
+  CreditCardGetListInput
+> {
   private apiService = inject(CreditCardApiService);
   private notifyService = inject(NotifyService);
 
@@ -125,8 +128,12 @@ export class CreditCardService extends CachedEntityService<CreditCardOutput, Cre
       );
   }
 
-  protected override applyStructuralFilter(entity: CreditCardOutput, filter: CreditCardGetListInput): boolean {
-    const filterByInactivated = filter.inactivated !== undefined && entity.inactivated === null;
+  protected override applyStructuralFilter(
+    entity: CreditCardOutput,
+    filter: CreditCardGetListInput
+  ): boolean {
+    const filterByInactivated =
+      filter.inactivated !== undefined && entity.inactivated === null;
     return !filterByInactivated || entity.inactivated === filter.inactivated;
   }
 }

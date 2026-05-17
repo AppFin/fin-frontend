@@ -8,11 +8,12 @@ describe('FinMultiplyFilterOperatorFilterSelectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinMultiplyFilterOperatorFilterSelectComponent]
-    })
-      .compileComponents();
+      imports: [FinMultiplyFilterOperatorFilterSelectComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(FinMultiplyFilterOperatorFilterSelectComponent);
+    fixture = TestBed.createComponent(
+      FinMultiplyFilterOperatorFilterSelectComponent
+    );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

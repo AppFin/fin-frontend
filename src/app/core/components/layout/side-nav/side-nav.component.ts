@@ -18,9 +18,7 @@ import { LayoutService } from '../../../services/layout/layout.service';
 import { SideNavExpandedComponent } from './side-nav-expanded/side-nav-expanded.component';
 import { MenuMetadata } from '../../../types/layouts/menu-metadata';
 import { FinTranslatePipe } from '../../../pipes/translate/fin-translate.pipe';
-import {
-  FinSideNotificationsContainerComponent
-} from '../../notifications/side-notifications-container/fin-side-notifications-container.component';
+import { FinSideNotificationsContainerComponent } from '../../notifications/side-notifications-container/fin-side-notifications-container.component';
 
 @Component({
   selector: 'fin-side-nav',

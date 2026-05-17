@@ -10,7 +10,7 @@ import { IFinGridCustomColumn } from '../../generics/grid/interface/i-fin-grid-c
 import { FinGridSimpleColumnOption } from '../../generics/grid/models/columns/fin-grid-simple-column-option';
 import { IFinGridColumnOption } from '../../generics/grid/models/columns/i-fin-grid-column-option';
 import { FinTextComponent } from '../../generics/text/fin-text.component';
-import { WalletIconComponent } from "../wallet-icon/wallet-icon.component";
+import { WalletIconComponent } from '../wallet-icon/wallet-icon.component';
 
 @Component({
   selector: 'fin-wallet-column',
@@ -27,7 +27,9 @@ export class WalletColumnComponent<T> implements IFinGridCustomColumn<T> {
     item: T,
     options: IFinGridColumnOption<T>
   ): Promise<void> {
-    const id = (options as FinGridSimpleColumnOption<T>).getValue?.(item)?.toString();
+    const id = (options as FinGridSimpleColumnOption<T>)
+      .getValue?.(item)
+      ?.toString();
     if (!id) return;
 
     const wallet = this.service.getCached(id);

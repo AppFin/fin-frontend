@@ -27,7 +27,9 @@ export class CardBrandColumnComponent<T> implements IFinGridCustomColumn<T> {
     item: T,
     options: IFinGridColumnOption<T>
   ): Promise<void> {
-    const id = (options as FinGridSimpleColumnOption<T>).getValue(item)?.toString();
+    const id = (options as FinGridSimpleColumnOption<T>)
+      .getValue(item)
+      ?.toString();
     if (!id) return;
 
     const cardBrand = this.service.getCached(id);

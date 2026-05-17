@@ -1,15 +1,15 @@
 fin-multi-select {
   .select-container {
+    color: var(--text-color);
     margin-left: 8px;
     margin-right: 8px;
     margin-top: 6px;
-    color: var(--text-color);
 
     p-multiselect {
-      width: 100%;
-      min-height: 60px;
       background-color: var(--p-inputtext-background);
       border: 1px solid var(--p-inputtext-border-color);
+      min-height: 60px;
+      width: 100%;
 
       &:hover {
         border-color: var(--p-inputtext-hover-border-color);
@@ -20,8 +20,8 @@ fin-multi-select {
       }
 
       &.p-disabled {
-        filter: brightness(0.9);
         background-color: var(--p-inputtext-background);
+        filter: brightness(0.9);
 
         .dropdownicon {
           display: none;
@@ -75,9 +75,7 @@ li.p-multiselect-item.p-multiselect-item-selected {
   background-color: var(--p-inputtext-hover-border-color) !important;
 }
 
-li.p-multiselect-item:not(.p-multiselect-item-selected):not(
-    .p-disabled
-  ).p-focus {
+li.p-multiselect-item:not(.p-multiselect-item-selected, .p-disabled).p-focus {
   background-color: var(--p-inputtext-hover-border-color);
   filter: brightness(1.2);
 }

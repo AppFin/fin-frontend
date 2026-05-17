@@ -33,17 +33,18 @@
 }
 
 .select-button-container {
+  color: var(--text-color);
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 6px;
-  color: var(--text-color);
 }
+
 p-selectbutton {
+  align-items: flex-end;
   display: flex;
   gap: 0;
-  min-height: 60px;
-  align-items: flex-end;
   justify-content: center;
+  min-height: 60px;
 }
 
 ::ng-deep p-togglebutton {

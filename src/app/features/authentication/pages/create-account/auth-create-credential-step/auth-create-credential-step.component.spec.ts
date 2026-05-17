@@ -8,9 +8,8 @@ describe('AuthCreateCredentialStepComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthCreateCredentialStepComponent]
-    })
-    .compileComponents();
+      imports: [AuthCreateCredentialStepComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AuthCreateCredentialStepComponent);
     component = fixture.componentInstance;

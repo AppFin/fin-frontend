@@ -8,8 +8,16 @@
       />
     </div>
   }
-  @for (notification of unreadNotifications(); track notification.notificationId; let first = $first) {
-    <fin-side-notification-item [@slideOut] [notification]="notification" [class.first-item]="first" />
+  @for (
+    notification of unreadNotifications();
+    track notification.notificationId;
+    let first = $first
+  ) {
+    <fin-side-notification-item
+      [@slideOut]
+      [notification]="notification"
+      [class.first-item]="first"
+    />
   } @empty {
     <div class="empty-placeholder">
       <fin-text

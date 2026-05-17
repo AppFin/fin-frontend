@@ -17,7 +17,6 @@ export class ThemeService {
   private readonly darkModeSignal = signal(this.getInitialTheme());
   public readonly darkMode = this.darkModeSignal.asReadonly();
 
-
   constructor() {
     effect(() => {
       this.applyTheme(this.darkModeSignal());
@@ -26,7 +25,11 @@ export class ThemeService {
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', (e) => {
-        if (!this.storageService.loadFromLocalStorage<boolean>(this.MANUALLY_SET_THEME_KEY)) {
+        if (
+          !this.storageService.loadFromLocalStorage<boolean>(
+            this.MANUALLY_SET_THEME_KEY
+          )
+        ) {
           this.setDarkMode(e.matches);
         }
       });
@@ -46,7 +49,9 @@ export class ThemeService {
   }
 
   private getInitialTheme(): boolean {
-    const savedTheme = this.storageService.loadFromLocalStorage<string>(this.THEME_KEY);
+    const savedTheme = this.storageService.loadFromLocalStorage<string>(
+      this.THEME_KEY
+    );
     if (savedTheme) {
       return savedTheme === 'dark';
     }

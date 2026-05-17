@@ -1,4 +1,4 @@
 export enum TitleType {
   Expense = 0,
-  Income = 1
+  Income = 1,
 }

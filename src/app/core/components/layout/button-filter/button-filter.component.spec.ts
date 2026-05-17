@@ -8,9 +8,8 @@ describe('ButtonFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ButtonFilterComponent]
-    })
-    .compileComponents();
+      imports: [ButtonFilterComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ButtonFilterComponent);
     component = fixture.componentInstance;

@@ -1,5 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize, first, firstValueFrom, map } from 'rxjs';
 import { CardBrandApiService } from '../../../core/services/card-brand/card-brand-api.service';
@@ -7,11 +12,8 @@ import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { CardBrandOutput } from '../../../core/types/card-brands/card-brand-output';
 import { CardBrandInput } from '../../../core/types/card-brands/card-brand-input';
 import { FinColorPickerComponent } from '../../../shared/components/generics/color-picker/fin-color-picker.component';
-import {
-  EditorLayoutComponent
-} from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
+import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
 import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
-
 
 type CardBrandInputForm = {
   name: FormControl<string>;
@@ -64,7 +66,7 @@ export class CardBrandEditorComponent implements OnInit {
 
     const request =
       this.editorType() === EditorType.Create
-        ? this.apiService.create(input).pipe(map(() => { }))
+        ? this.apiService.create(input).pipe(map(() => {}))
         : this.apiService.update(this.cardBrandEditingId, input);
 
     request

@@ -8,9 +8,8 @@ describe('FinGridActionsRendererComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinGridActionsRendererComponent]
-    })
-    .compileComponents();
+      imports: [FinGridActionsRendererComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinGridActionsRendererComponent);
     component = fixture.componentInstance;

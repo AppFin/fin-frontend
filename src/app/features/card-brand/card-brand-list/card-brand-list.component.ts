@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subject, tap } from 'rxjs';
 import { CardBrandApiService } from '../../../core/services/card-brand/card-brand-api.service';
@@ -11,12 +17,10 @@ import { FinPageLayoutComponent } from '../../../shared/components/generics/page
 import { FinGridComponent } from '../../../shared/components/generics/grid/fin-grid.component';
 import { IFinGridColumnOption } from '../../../shared/components/generics/grid/models/columns/i-fin-grid-column-option';
 import {
-  FinGridIconColumnOption, FinIconOptions,
+  FinGridIconColumnOption,
+  FinIconOptions,
 } from '../../../shared/components/generics/grid/models/columns/fin-grid-icon-column-option';
-import {
-  FinGridSimpleColumnOption
-} from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
-
+import { FinGridSimpleColumnOption } from '../../../shared/components/generics/grid/models/columns/fin-grid-simple-column-option';
 
 @Component({
   selector: 'fin-card-brand-list',
@@ -68,7 +72,7 @@ export class CardBrandListComponent implements OnInit {
             type: 'brand',
             icon: item.icon,
             tooltip: item.name,
-            size: 'xl'
+            size: 'xl',
           }),
         header: 'finCore.features.shared.icon',
         width: '5%',

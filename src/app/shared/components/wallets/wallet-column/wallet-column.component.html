@@ -1,8 +1,11 @@
 @let item = wallet();
 
 @if (item) {
-<div class="item-container">
-  <fin-wallet-icon [walletId]="item.id" />
-  <fin-text [text]="item.name" type="paragraph" />
-</div>
+  <div class="item-container">
+    <fin-wallet-icon [walletId]="item.id" />
+    <fin-text
+      [text]="item.name"
+      type="paragraph"
+    />
+  </div>
 }

@@ -27,7 +27,9 @@ import { FinIconComponent } from '../../generics/icon/fin-icon.component';
 export class FinFinancialInstitutionSelectComponent {
   @Input() public formControl: FormControl<string | null>;
 
-  public readonly label = input('finCore.features.financialInstitutions.titleSingular');
+  public readonly label = input(
+    'finCore.features.financialInstitutions.titleSingular'
+  );
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');

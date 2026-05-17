@@ -38,8 +38,8 @@ import { FinIconComponent } from '../generics/icon/fin-icon.component';
     FinTranslatePipe,
     IftaLabel,
     FinIconComponent,
-    MatMenuModule
-],
+    MatMenuModule,
+  ],
   templateUrl: './fin-user-friendly-icon-picker.component.html',
   styleUrl: './fin-user-friendly-icon-picker.component.scss',
   providers: [
@@ -53,7 +53,8 @@ import { FinIconComponent } from '../generics/icon/fin-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class FinUserFriendlyIconPickerComponent
-  implements OnInit, ControlValueAccessor {
+  implements OnInit, ControlValueAccessor
+{
   @Input() public formControl: FormControl<string | null>;
 
   public readonly label = input('');
@@ -83,7 +84,7 @@ export class FinUserFriendlyIconPickerComponent
     'graduation-cap',
     'plane',
     'dollar-sign',
-    'euro-sign'
+    'euro-sign',
   ];
 
   public readonly customIconInput = signal<string>('');
@@ -107,7 +108,7 @@ export class FinUserFriendlyIconPickerComponent
 
   public ngOnInit(): void {
     this.startRequiredSub();
-    if (!this.formControl.value) this.formControl.setValue('circle')
+    if (!this.formControl.value) this.formControl.setValue('circle');
     this.customIconInput.set(this.formControl.value || '');
   }
 
@@ -195,7 +196,7 @@ export class FinUserFriendlyIconPickerComponent
     }
   }
 
-  registerOnChange(fn: any): void { }
-  registerOnTouched(fn: any): void { }
-  setDisabledState?(isDisabled: boolean): void { }
+  registerOnChange(fn: any): void {}
+  registerOnTouched(fn: any): void {}
+  setDisabledState?(isDisabled: boolean): void {}
 }

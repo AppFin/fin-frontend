@@ -1,6 +1,8 @@
 @if (!customComponent()) {
-    <fin-text type="paragraph" [text]="value()" />
+  <fin-text
+    type="paragraph"
+    [text]="value()"
+  />
 } @else {
-    <ng-container #dynamicContainer/>
+  <ng-container #dynamicContainer />
 }
-

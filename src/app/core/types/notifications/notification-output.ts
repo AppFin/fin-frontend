@@ -13,4 +13,4 @@ export type NotificationOutput = {
   link: string;
   userIds: string[];
   severity: NotificationSeverity;
-}
+};

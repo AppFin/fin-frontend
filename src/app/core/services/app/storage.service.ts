@@ -3,27 +3,30 @@ import { Injectable } from '@angular/core';
 type StoredValue = string | number | boolean | object | null;
 
 interface TypedStorage<T = StoredValue> {
-  type: "string" | "number" | "boolean" | "object" | "null";
+  type: 'string' | 'number' | 'boolean' | 'object' | 'null';
   value: T;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
-  public saveToLocalStorage<T extends StoredValue>(key: string, value: T): void {
+  public saveToLocalStorage<T extends StoredValue>(
+    key: string,
+    value: T
+  ): void {
     let entry: TypedStorage;
 
-    if (typeof value === "boolean") {
-      entry = { type: "boolean", value: value ? 1 : 0 };
-    } else if (typeof value === "number") {
-      entry = { type: "number", value };
-    } else if (typeof value === "object" && value !== null) {
-      entry = { type: "object", value };
+    if (typeof value === 'boolean') {
+      entry = { type: 'boolean', value: value ? 1 : 0 };
+    } else if (typeof value === 'number') {
+      entry = { type: 'number', value };
+    } else if (typeof value === 'object' && value !== null) {
+      entry = { type: 'object', value };
     } else if (value === null) {
-      entry = { type: "null", value: null };
+      entry = { type: 'null', value: null };
     } else {
-      entry = { type: "string", value };
+      entry = { type: 'string', value };
     }
 
     localStorage.setItem(this.buildKey(key), JSON.stringify(entry));
@@ -36,15 +39,15 @@ export class StorageService {
     try {
       const entry = JSON.parse(raw) as TypedStorage;
       switch (entry.type) {
-        case "boolean":
+        case 'boolean':
           return (entry.value === 1) as T;
-        case "number":
+        case 'number':
           return Number(entry.value) as T;
-        case "object":
+        case 'object':
           return entry.value as T;
-        case "string":
+        case 'string':
           return entry.value as T;
-        case "null":
+        case 'null':
           return null;
         default:
           return null;

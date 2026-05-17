@@ -1,31 +1,31 @@
 .search-dialog {
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   height: 100vh;
   max-height: 100vh;
-  background-color: var(--background-color);
 }
 
 .dialog-header {
-  display: flex;
   align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
 .dialog-title {
-  margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
+  margin: 0;
 }
 
 .search-input-container {
-  padding: 1rem;
   border-bottom: 1px solid var(--color-border);
+  padding: 1rem;
 }
 
 .search-field {
@@ -54,12 +54,12 @@
 }
 
 .loading-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 1rem;
   justify-content: center;
   padding: 2rem;
-  gap: 1rem;
 }
 
 .results-list {
@@ -68,12 +68,12 @@
 }
 
 .result-item {
-  display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
   border-bottom: 1px solid var(--color-border);
   cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
   transition: background-color 0.2s ease;
 
   &:hover:not(.load-more) {
@@ -90,8 +90,8 @@
   }
 
   &.load-more {
-    justify-content: center;
     font-style: italic;
+    justify-content: center;
 
     &:hover {
       background-color: var(--color-hover);
@@ -100,29 +100,29 @@
 }
 
 .result-content {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 0.25rem;
 }
 
 .empty-state {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 1rem;
   justify-content: center;
   padding: 3rem 2rem;
   text-align: center;
-  gap: 1rem;
 }
 
 .empty-icon {
   font-size: 3rem;
-  width: 3rem;
   height: 3rem;
+  width: 3rem;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .dialog-header {
     padding: 0.75rem;
   }
@@ -136,8 +136,8 @@
   }
 
   .result-item {
-    padding: 0.75rem;
     gap: 0.75rem;
+    padding: 0.75rem;
   }
 
   .empty-state {

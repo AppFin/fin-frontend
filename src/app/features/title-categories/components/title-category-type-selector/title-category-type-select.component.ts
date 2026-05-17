@@ -15,7 +15,7 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleCategoryTypeSelectComponent {
-  @Input() public formControl: FormControl<TitleCategoryType|null>;
+  @Input() public formControl: FormControl<TitleCategoryType | null>;
 
   public readonly titleCategorySelectOptions = new FinSelectComponentOptions({
     getOptions: this.getTitleCategoryOptions.bind(this),

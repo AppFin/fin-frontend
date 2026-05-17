@@ -30,7 +30,9 @@ export class NotificationApiService {
   public get(id: string): Observable<NotificationOutput> {
     return this.http.get<NotificationOutput>(this.API_URL + id).pipe(
       map((result) => {
-        result.stopToDelivery = result.stopToDelivery ? new Date(result.stopToDelivery) : null;
+        result.stopToDelivery = result.stopToDelivery
+          ? new Date(result.stopToDelivery)
+          : null;
         result.startToDelivery = new Date(result.startToDelivery);
         return result;
       })

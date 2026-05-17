@@ -13,8 +13,9 @@
     "lint:styles:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "format": "prettier --write \"src/**/*.{ts,html,css,scss}\"",
     "format:check": "prettier --check \"src/**/*.{ts,html,css,scss}\"",
-    "lint:all": "npm run lint && npm run lint:styles",
-    "lint:all:fix": "npm run lint:fix && npm run lint:styles:fix"
+    "lint:all": "bun run lint && bun run lint:styles",
+    "lint:all:fix": "bun run lint:fix && bun run lint:styles:fix",
+    "format:all": "bun run format && bun run lint:all:fix"
   },
   "private": true,
   "dependencies": {

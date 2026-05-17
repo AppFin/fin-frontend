@@ -8,9 +8,8 @@ describe('TitleCategoryInactivatedFilterSelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinInactivatedFilterSelectComponent]
-    })
-    .compileComponents();
+      imports: [FinInactivatedFilterSelectComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinInactivatedFilterSelectComponent);
     component = fixture.componentInstance;

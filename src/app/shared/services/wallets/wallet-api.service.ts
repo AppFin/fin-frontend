@@ -16,7 +16,8 @@ import { WalletInput } from '../../types/wallets/wallet-input';
   providedIn: 'root',
 })
 export class WalletApiService {
-  private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'wallets/';
+  private readonly API_URL =
+    ensureTrailingSlash(environment.apiUrl) + 'wallets/';
   private readonly http = inject(HttpClient);
 
   /**

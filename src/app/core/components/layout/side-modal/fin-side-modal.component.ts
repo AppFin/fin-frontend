@@ -1,13 +1,23 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { MatSidenavModule } from "@angular/material/sidenav";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+  TemplateRef,
+  ViewEncapsulation,
+} from '@angular/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutService } from '../../../services/layout/layout.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgTemplateOutlet } from '@angular/common';
 import { debounceTime } from 'rxjs';
 
 export type SideModalConfig = {
-  width?: string
-}
+  width?: string;
+};
 
 @Component({
   selector: 'fin-side-modal',
@@ -15,7 +25,7 @@ export type SideModalConfig = {
   templateUrl: './fin-side-modal.component.html',
   styleUrl: './fin-side-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class FinSideModalComponent implements OnInit {
   public readonly isOpened = signal(false);
@@ -31,7 +41,9 @@ export class FinSideModalComponent implements OnInit {
   }
 
   public get width(): string {
-    return this.layoutService.isMobile ? '100%' : (this.config()?.width ?? '30%');
+    return this.layoutService.isMobile
+      ? '100%'
+      : (this.config()?.width ?? '30%');
   }
 
   public close(result: any = null): void {
@@ -45,11 +57,8 @@ export class FinSideModalComponent implements OnInit {
 
   private startOpenedSideModalSub(): void {
     this.layoutService.sideModalOpened
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        debounceTime(200)
-      )
-      .subscribe(options => {
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(200))
+      .subscribe((options) => {
         this.config.set(options.config);
         this.isOpened.set(options.opened);
         this.template.set(options.template);

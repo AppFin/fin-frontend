@@ -35,24 +35,21 @@ export class FinCardBrandSelectComponent {
     `fin-card-brand-select-${Math.random().toString(36).substring(2, 9)}`
   );
 
-  public readonly selectOptions =
-    new FinSelectComponentOptions<string, CardBrandOutput>({
-      getOptions: this.getCardBrandOptions.bind(this),
-    });
+  public readonly selectOptions = new FinSelectComponentOptions<
+    string,
+    CardBrandOutput
+  >({
+    getOptions: this.getCardBrandOptions.bind(this),
+  });
 
-  private readonly cardBrandService = inject(
-    CardBrandApiService
-  );
+  private readonly cardBrandService = inject(CardBrandApiService);
 
   private getCardBrandOptions(
     input: PagedFilteredAndSortedInput
-  ): Observable<
-    PagedOutput<FinSelectOption<string, CardBrandOutput>>
-  > {
-    const cardBrands =
-      this.cardBrandService.getListCached({
-        ...input
-      });
+  ): Observable<PagedOutput<FinSelectOption<string, CardBrandOutput>>> {
+    const cardBrands = this.cardBrandService.getListCached({
+      ...input,
+    });
 
     return of({
       totalCount: cardBrands.totalCount,

@@ -6,11 +6,11 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { SideModalConfig } from '../../components/layout/side-modal/fin-side-modal.component';
 
 type SideModalOpenedProps = {
-  opened: boolean,
-  template?: TemplateRef<any>,
-  config?: SideModalConfig
-  input?: any
-}
+  opened: boolean;
+  template?: TemplateRef<any>;
+  config?: SideModalConfig;
+  input?: any;
+};
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,9 @@ export class LayoutService {
   private _sideNotificationsOpened = signal(false);
   public sideNotificationsOpened = this._sideNotificationsOpened.asReadonly();
 
-  private _sideModalOpened = new BehaviorSubject<SideModalOpenedProps>({ opened: false });
+  private _sideModalOpened = new BehaviorSubject<SideModalOpenedProps>({
+    opened: false,
+  });
   public sideModalOpened = this._sideModalOpened.asObservable();
 
   private readonly storageService = inject(StorageService);
@@ -55,7 +57,6 @@ export class LayoutService {
     this._sideNotificationsOpened.set(!this._sideNotificationsOpened());
   }
 
-
   public setPageName(pageName: string): void {
     this._pageName.set(pageName);
 
@@ -68,7 +69,11 @@ export class LayoutService {
     return window.innerWidth <= 768;
   }
 
-  public openSideModal<TResult = null, TInput = undefined>(template: TemplateRef<any>, config: SideModalConfig | undefined = undefined, input: TInput | undefined = undefined): Observable<TResult> {
+  public openSideModal<TResult = null, TInput = undefined>(
+    template: TemplateRef<any>,
+    config: SideModalConfig | undefined = undefined,
+    input: TInput | undefined = undefined
+  ): Observable<TResult> {
     if (this.sideModalResult) this.sideModalResult.next(null);
     this.sideModalResult = new Subject<TResult>();
     this._sideModalOpened.next({ opened: true, template, config, input });
@@ -76,13 +81,15 @@ export class LayoutService {
   }
 
   public closeSideModal<TResult = null>(result: TResult | null = null) {
-    this._sideModalOpened.next({ opened: false })
+    this._sideModalOpened.next({ opened: false });
     this.sideModalResult?.next(result);
     this.sideModalResult = null;
   }
 
   private loadFromStorage(): void {
-    const opened = this.storageService.loadFromLocalStorage<boolean>(this.sidenavOpenedKey);
+    const opened = this.storageService.loadFromLocalStorage<boolean>(
+      this.sidenavOpenedKey
+    );
     this._sideNavOpened.set(!!opened);
   }
 }

@@ -152,19 +152,22 @@ export class NotificationsEditorComponent implements OnInit {
     } as PagedOutput<FinSelectOption<NotificationWay>>);
   }
 
-  private getUsersOptions(input: PagedFilteredAndSortedInput): Observable<PagedOutput<FinSelectOption<string>>> {
-    return this.userApiService.getList(input)
-      .pipe(map(result => {
+  private getUsersOptions(
+    input: PagedFilteredAndSortedInput
+  ): Observable<PagedOutput<FinSelectOption<string>>> {
+    return this.userApiService.getList(input).pipe(
+      map((result) => {
         return {
           totalCount: result.totalCount,
-          items: result.items.map(user => {
+          items: result.items.map((user) => {
             return {
               value: user.id,
               label: `${user.displayName} (${user.firstName} ${user.lastName})`,
-            } as FinSelectOption<string>
+            } as FinSelectOption<string>;
           }),
-        }
-      }));
+        };
+      })
+    );
   }
 
   private setFormGroup(notificationsEditing: NotificationOutput | null): void {

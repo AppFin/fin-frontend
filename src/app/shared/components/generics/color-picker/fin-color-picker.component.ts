@@ -35,8 +35,8 @@ import { IftaLabel } from 'primeng/iftalabel';
     InputTextModule,
     FinTextComponent,
     FinTranslatePipe,
-    IftaLabel
-],
+    IftaLabel,
+  ],
   templateUrl: './fin-color-picker.component.html',
   styleUrl: './fin-color-picker.component.scss',
   providers: [

@@ -1,16 +1,15 @@
 <div class="finished-icon-container">
-    <fin-icon
-            icon="thumbs-up"
-            iconColor="var(--color-secondary)"
-            size="15xl"
-    />
+  <fin-icon
+    icon="thumbs-up"
+    iconColor="var(--color-secondary)"
+    size="15xl"
+  />
 </div>
 
-
 <fin-button
-        iconSuffix="arrow-right"
-        (onClick)="finish()"
-        [spinner]="loading()"
-        [disabled]="loading()"
-        text="finCore.auth.pages.createAccount.steps.finished.goToFin"
+  iconSuffix="arrow-right"
+  (onClick)="finish()"
+  [spinner]="loading()"
+  [disabled]="loading()"
+  text="finCore.auth.pages.createAccount.steps.finished.goToFin"
 />

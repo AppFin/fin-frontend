@@ -2,7 +2,7 @@ import { ErrorMessagesMap } from '../../rxjs-operators/handle-fin-back-http-erro
 
 export enum CreditCardDeleteErrorCode {
   CreditCardNotFound = 0,
-  CreditCardInUse = 1
+  CreditCardInUse = 1,
 }
 
 export const CreditCardDeleteErrorCodeMessages: ErrorMessagesMap<CreditCardDeleteErrorCode> =
@@ -10,5 +10,5 @@ export const CreditCardDeleteErrorCodeMessages: ErrorMessagesMap<CreditCardDelet
     [
       CreditCardDeleteErrorCode.CreditCardInUse,
       { message: 'finCore.features.creditCard.errors.creditCardInUse' },
-    ]
+    ],
   ]);

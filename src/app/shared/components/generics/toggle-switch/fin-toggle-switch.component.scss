@@ -11,7 +11,7 @@
 
 .p-iftalabel:has(.ng-invalid.ng-touched) label,
 .p-iftalabel:has(.ng-invalid.ng-dirty) label {
-  color: var(--p-iftalabel-invalid-color)
+  color: var(--p-iftalabel-invalid-color);
 }
 
 .sub-text {
@@ -26,14 +26,14 @@
 }
 
 .input-container {
+  color: var(--text-color);
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 6px;
-  color: var(--text-color);
 
   p-iftalabel {
-    display: flex;
     align-items: center;
+    display: flex;
     gap: 10px;
 
     label {

@@ -5,4 +5,4 @@ export type TitleCategoryInput = {
   color: string;
   icon: string;
   type: TitleCategoryType;
-}
+};

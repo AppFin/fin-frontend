@@ -14,7 +14,9 @@ export class AppService {
   public async startAppAsync(destroyRef: DestroyRef): Promise<void> {
     const authStated = this.authService.authStarted;
     if (!authStated) {
-      const observable = this.authService.authStartedSub.pipe(filter(started => started))
+      const observable = this.authService.authStartedSub.pipe(
+        filter((started) => started)
+      );
       await firstValueFrom(observable);
     }
     await this.startUseCaches(destroyRef);
@@ -33,7 +35,7 @@ export class AppService {
     if (logged) await this.loadCaches();
     this.authService.isAuthenticatedSub
       .pipe(takeUntilDestroyed(destroyRef))
-      .subscribe(authenticated => {
+      .subscribe((authenticated) => {
         if (authenticated && this.loadedCache) this.loadCaches();
         else this.invalidateCaches();
       });
@@ -48,7 +50,7 @@ export class AppService {
   }
 
   private invalidateCaches(): void {
-    this.cachedServices.map(service => {
+    this.cachedServices.map((service) => {
       service.invalidateCache();
     });
     this.loadedCache = false;

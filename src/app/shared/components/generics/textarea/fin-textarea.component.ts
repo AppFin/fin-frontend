@@ -12,7 +12,13 @@ import {
   signal,
   ViewChild,
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators, } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormControl,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -30,8 +36,8 @@ import { FinTextComponent } from '../text/fin-text.component';
     IftaLabel,
     TextareaModule,
     FinTranslatePipe,
-    FinTextComponent
-],
+    FinTextComponent,
+  ],
   templateUrl: './fin-textarea.component.html',
   styleUrl: './fin-textarea.component.scss',
   providers: [

@@ -1,4 +1,3 @@
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -31,8 +30,8 @@ import { LoginInput } from '../../../../core/models/authentication/login-input';
     FinTextComponent,
     ReactiveFormsModule,
     FinInputComponent,
-    FinButtonComponent
-],
+    FinButtonComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

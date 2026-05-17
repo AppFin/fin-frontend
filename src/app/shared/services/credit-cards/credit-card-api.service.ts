@@ -16,7 +16,8 @@ import { CreditCardInput } from '../../types/credit-cards/credit-card-input';
   providedIn: 'root',
 })
 export class CreditCardApiService {
-  private readonly API_URL = ensureTrailingSlash(environment.apiUrl) + 'credit-cards/';
+  private readonly API_URL =
+    ensureTrailingSlash(environment.apiUrl) + 'credit-cards/';
   private readonly http = inject(HttpClient);
 
   /**
@@ -28,7 +29,9 @@ export class CreditCardApiService {
     input: CreditCardGetListInput
   ): Observable<PagedOutput<CreditCardOutput>> {
     const params = toHttpParams(input);
-    return this.http.get<PagedOutput<CreditCardOutput>>(this.API_URL, { params });
+    return this.http.get<PagedOutput<CreditCardOutput>>(this.API_URL, {
+      params,
+    });
   }
 
   /**

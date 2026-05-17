@@ -8,9 +8,8 @@ describe('CardBrandEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardBrandEditorComponent]
-    })
-    .compileComponents();
+      imports: [CardBrandEditorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CardBrandEditorComponent);
     component = fixture.componentInstance;

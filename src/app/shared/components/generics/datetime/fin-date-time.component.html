@@ -1,5 +1,8 @@
 <div class="input-container">
-  <p-iftalabel [class.disabled]="disabled()" [class.required]="required()">
+  <p-iftalabel
+    [class.disabled]="disabled()"
+    [class.required]="required()"
+  >
     <p-datepicker
       [style.width]="width()"
       [style.max-width]="width()"
@@ -22,9 +25,17 @@
 
   <div class="sub-text">
     @if (!hasError()) {
-      <fin-text [text]="helpText()" class="info-sub" type="info" />
+      <fin-text
+        [text]="helpText()"
+        class="info-sub"
+        type="info"
+      />
     } @else {
-      <fin-text [text]="errorMessageEffective()" class="error-sub" type="info" />
+      <fin-text
+        [text]="errorMessageEffective()"
+        class="error-sub"
+        type="info"
+      />
     }
   </div>
 </div>

@@ -1,4 +1,4 @@
-<mat-drawer-container [hasBackdrop]="false" >
+<mat-drawer-container [hasBackdrop]="false">
   <mat-drawer-content (click)="closeSideNotifications()">
     <mat-drawer-container [hasBackdrop]="false">
       <mat-drawer
@@ -10,7 +10,10 @@
       <mat-drawer-content>
         @if (!sideNavOpened()) {
           <div class="menus-container">
-            <button class="menu-item" (click)="toggleSideNav()">
+            <button
+              class="menu-item"
+              (click)="toggleSideNav()"
+            >
               <fin-icon
                 tooltip="finCore.layout.openMenu"
                 icon="chevron-right"
@@ -18,12 +21,17 @@
               />
             </button>
             @for (menuMetadata of menuMetadataPinned(); track menuMetadata.id) {
-              <ng-container *ngTemplateOutlet="btn; context: {menu: menuMetadata.menu}" />
+              <ng-container
+                *ngTemplateOutlet="btn; context: { menu: menuMetadata.menu }"
+              />
             }
           </div>
         }
 
-        <div class="app-container" [class.opened]="sideNavOpened() && !isMobile">
+        <div
+          class="app-container"
+          [class.opened]="sideNavOpened() && !isMobile"
+        >
           <ng-content />
         </div>
       </mat-drawer-content>
@@ -38,9 +46,19 @@
   </mat-drawer>
 </mat-drawer-container>
 
-
-<ng-template #btn let-menu="menu">
-  <button [routerLink]="menu.frontRoute" class="menu-item">
-    <fin-icon [tooltip]="menu.name | finTranslate" [icon]="menu.icon" [iconColor]="menu.color" size="md" />
+<ng-template
+  #btn
+  let-menu="menu"
+>
+  <button
+    [routerLink]="menu.frontRoute"
+    class="menu-item"
+  >
+    <fin-icon
+      [tooltip]="menu.name | finTranslate"
+      [icon]="menu.icon"
+      [iconColor]="menu.color"
+      size="md"
+    />
   </button>
 </ng-template>

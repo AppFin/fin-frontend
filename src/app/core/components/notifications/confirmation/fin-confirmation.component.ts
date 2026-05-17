@@ -35,4 +35,3 @@ export class FinConfirmationComponent {
     this.dialogRef.close(confirmed);
   }
 }
-

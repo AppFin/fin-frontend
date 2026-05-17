@@ -8,9 +8,8 @@ describe('SideNotificationTogglerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinSideNotificationTogglerComponent]
-    })
-    .compileComponents();
+      imports: [FinSideNotificationTogglerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinSideNotificationTogglerComponent);
     component = fixture.componentInstance;

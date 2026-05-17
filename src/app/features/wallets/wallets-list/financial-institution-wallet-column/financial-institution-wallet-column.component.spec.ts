@@ -8,11 +8,12 @@ describe('FinancialInstitutionWalletColumnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinancialInstitutionWalletColumnComponent]
-    })
-    .compileComponents();
+      imports: [FinancialInstitutionWalletColumnComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(FinancialInstitutionWalletColumnComponent);
+    fixture = TestBed.createComponent(
+      FinancialInstitutionWalletColumnComponent
+    );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

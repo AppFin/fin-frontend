@@ -66,9 +66,11 @@ export type ValidationReturn<SuccessD, ErrorD, ErrorE> = [
  * const user$: ObservableValidated<UserDto, FieldError, Metadata> = this.http.get<UserDto>('/api/user')
  * .pipe(handleFinBackHttpError());
  */
-export type ObservableValidated<SuccessD=any, ErrorD=any, ErrorE=any> = Observable<
-  ValidationReturn<SuccessD, ErrorD, ErrorE>
->;
+export type ObservableValidated<
+  SuccessD = any,
+  ErrorD = any,
+  ErrorE = any,
+> = Observable<ValidationReturn<SuccessD, ErrorD, ErrorE>>;
 
 /**
  * RxJS operator that catches HTTP 422 (Unprocessable Entity) and 404 (Not Found) errors,
@@ -124,12 +126,17 @@ export function handleFinBackHttpError<
       return [true, result, null];
     }),
     catchError(
-      (err: HttpErrorResponse): ObservableValidated<SuccessD, ErrorD, ErrorE> => {
+      (
+        err: HttpErrorResponse
+      ): ObservableValidated<SuccessD, ErrorD, ErrorE> => {
         const isUnprocessableEntityErr = err.status == 422;
         const isNotFoundErr = err.status == 404;
-        const errorObj = err.error as ValidationResultDto<ErrorD, ErrorE> | null;
+        const errorObj = err.error as ValidationResultDto<
+          ErrorD,
+          ErrorE
+        > | null;
 
-        if ((isUnprocessableEntityErr || isNotFoundErr)) {
+        if (isUnprocessableEntityErr || isNotFoundErr) {
           // 1. Execute optional callback if the error object is valid and 'success' is false
           if (
             handleErrFn &&

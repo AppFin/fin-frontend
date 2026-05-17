@@ -8,9 +8,8 @@ describe('FinUserFriendlyIconPickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinUserFriendlyIconPickerComponent]
-    })
-    .compileComponents();
+      imports: [FinUserFriendlyIconPickerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinUserFriendlyIconPickerComponent);
     component = fixture.componentInstance;

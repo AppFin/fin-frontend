@@ -1,4 +1,3 @@
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,7 @@ import { ThemeService } from './core/services/theme/theme.service';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslateModule, RouterOutlet],
-  providers: [AppService]
+  providers: [AppService],
 })
 export class AppComponent implements OnInit {
   private readonly themeService = inject(ThemeService);
@@ -27,7 +26,7 @@ export class AppComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
 
   public ngOnInit(): void {
-    this.appService.startAppAsync(this.destroyRef)
+    this.appService.startAppAsync(this.destroyRef);
   }
 
   public get isDarkMode(): boolean {

@@ -10,12 +10,18 @@
       size="sm"
       [iconColor]="item.color"
     />
-    <fin-text [text]="item.name" type="info" />
+    <fin-text
+      [text]="item.name"
+      type="info"
+    />
   </div>
 } @empty {
   @if (!loading()) {
     <div class="result empty">
-      <fin-text text="finCore.actions.noResults" type="info" />
+      <fin-text
+        text="finCore.actions.noResults"
+        type="info"
+      />
     </div>
   }
 }
@@ -27,7 +33,10 @@
     (click)="loadMore()"
     (mouseenter)="onLoadMoreMouseEnter()"
   >
-    <fin-text text="finCore.actions.loadMore" type="info" />
+    <fin-text
+      text="finCore.actions.loadMore"
+      type="info"
+    />
   </div>
 }
 

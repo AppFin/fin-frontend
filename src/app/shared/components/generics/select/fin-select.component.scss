@@ -1,23 +1,23 @@
 fin-select {
   .select-container {
+    color: var(--text-color);
     margin-left: 8px;
     margin-right: 8px;
     margin-top: 6px;
-    color: var(--text-color);
 
     p-select {
-      min-height: 60px;
-      width: 100%;
       background-color: var(--p-inputtext-background);
       border: 1px solid var(--p-inputtext-border-color);
+      min-height: 60px;
+      width: 100%;
 
       .dropdownicon i {
         color: var(--p-inputtext-hover-color);
       }
 
       &.p-disabled {
-        filter: brightness(0.9);
         background-color: var(--p-inputtext-background);
+        filter: brightness(0.9);
 
         .dropdownicon {
           display: none;
@@ -69,6 +69,6 @@ div.p-select-overlay {
 li.p-select-option.p-select-option-selected {
 }
 
-li.p-select-option:not(.p-select-option-selected):not(.p-disabled).p-focus {
+li.p-select-option:not(.p-select-option-selected, .p-disabled).p-focus {
   filter: brightness(1.2);
 }

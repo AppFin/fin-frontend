@@ -1,10 +1,8 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[footer]'
+  selector: '[footer]',
 })
 export class FinDialogFooterDirective {
-
-  constructor() { }
-
+  constructor() {}
 }

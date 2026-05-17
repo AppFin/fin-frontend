@@ -8,9 +8,8 @@ describe('MoneyColumnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinGridMoneyColumnComponent]
-    })
-    .compileComponents();
+      imports: [FinGridMoneyColumnComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinGridMoneyColumnComponent);
     component = fixture.componentInstance;

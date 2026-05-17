@@ -8,27 +8,31 @@
   }
 
   .link-disabled {
-    cursor: auto;
     color: var(--color-disabled);
+    cursor: auto;
   }
 }
 
 .fin-text {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
   line-height: 1.5;
   margin: 0;
   transition: all 0.2s ease;
 
   &.fixed-size {
-    white-space: nowrap;
+    max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%;
+    white-space: nowrap;
     width: fit-content;
   }
 }
 
-.fin-text h1, .fin-text h2, .fin-text p {
+.fin-text h1,
+.fin-text h2,
+.fin-text p {
   margin: 0;
 }
 

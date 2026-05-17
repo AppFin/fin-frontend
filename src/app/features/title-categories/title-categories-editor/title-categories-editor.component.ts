@@ -1,7 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, } from '@angular/core';
 import {
-  EditorLayoutComponent
-} from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { EditorLayoutComponent } from '../../../shared/components/generics/page-layout/editor-layout/editor-layout.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorType } from '../../../shared/enums/layouts/editor-type';
 import { TitleCategoryType } from '../../../shared/enums/title-categories/title-category-type';
@@ -11,15 +15,9 @@ import { finalize, first, firstValueFrom, map } from 'rxjs';
 import { TitleCategoryInput } from '../../../shared/types/title-categories/title-category-input';
 import { TitleCategoryOutput } from '../../../shared/types/title-categories/title-category-output';
 import { FinInputComponent } from '../../../shared/components/generics/input/fin-input.component';
-import {
-  TitleCategoryTypeSelectComponent
-} from '../components/title-category-type-selector/title-category-type-select.component';
-import {
-  FinUserFriendlyColorPickerComponent
-} from '../../../shared/components/user-friendly-color-picker/fin-user-friendly-color-picker.component';
-import {
-  FinUserFriendlyIconPickerComponent
-} from '../../../shared/components/user-friendly-icon-picker/fin-user-friendly-icon-picker.component';
+import { TitleCategoryTypeSelectComponent } from '../components/title-category-type-selector/title-category-type-select.component';
+import { FinUserFriendlyColorPickerComponent } from '../../../shared/components/user-friendly-color-picker/fin-user-friendly-color-picker.component';
+import { FinUserFriendlyIconPickerComponent } from '../../../shared/components/user-friendly-icon-picker/fin-user-friendly-icon-picker.component';
 
 type TitleCategoryInputForm = {
   name: FormControl<string>;

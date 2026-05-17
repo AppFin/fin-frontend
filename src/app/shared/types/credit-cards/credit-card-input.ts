@@ -8,4 +8,4 @@ export type CreditCardInput = {
   dueDay: number;
   closingDay: number;
   limit: number;
-}
+};

@@ -69,6 +69,12 @@ export const EnI18n: ITranslate = {
         title: 'Error',
       },
       pages: {
+        settings: {
+          title: 'Settings',
+          ptBr: '🇧🇷 Brazil',
+          enUs: '🇺🇸 United States',
+          esEs: '🇪🇸 Spain',
+        },
         createAccount: {
           next: 'Next',
           steps: {
@@ -89,6 +95,7 @@ export const EnI18n: ITranslate = {
               firstName: 'First name',
               lastName: 'Last name',
               title: 'You',
+              imagePublicUrl: 'Profile picture URL',
             },
           },
           subtitle: 'Fill in the information below to get started',
@@ -232,6 +239,7 @@ export const EnI18n: ITranslate = {
         type: 'Type',
         typeCustomIcon: 'Type custom icon',
         value: 'Value',
+        locale: 'Locale',
       },
       title: {
         advancedPersonSplit: 'Advanced person split',

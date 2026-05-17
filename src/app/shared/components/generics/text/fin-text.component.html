@@ -5,7 +5,7 @@
     class="link"
     [target]="target()"
     [routerLink]="routerLink()"
-    [rel]="target() === '_blank' ? (rel() || 'noopener noreferrer') : rel()"
+    [rel]="target() === '_blank' ? rel() || 'noopener noreferrer' : rel()"
   >
     <ng-container *ngTemplateOutlet="textElement" />
   </a>
@@ -13,13 +13,17 @@
   <a
     class="link"
     [target]="target()"
-    [rel]="target() === '_blank' ? (rel() || 'noopener noreferrer') : rel()"
+    [rel]="target() === '_blank' ? rel() || 'noopener noreferrer' : rel()"
     [href]="href()"
   >
     <ng-container *ngTemplateOutlet="textElement" />
   </a>
 } @else {
-  <div class="link" [class.link-disabled]="disabledClick()" (click)="clicked($event)">
+  <div
+    class="link"
+    [class.link-disabled]="disabledClick()"
+    (click)="clicked($event)"
+  >
     <ng-container *ngTemplateOutlet="textElement" />
   </div>
 }
@@ -33,8 +37,14 @@
         [class.fixed-size]="fixedSize()"
         [style.color]="textEffectiveColor()"
         [style.background-color]="backgroundColor()"
-        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+        [style.padding]="
+          backgroundColor() && backgroundColor() !== 'transparent'
+            ? '4px 8px'
+            : '0'
+        "
+        [style.border-radius]="
+          backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'
+        "
       >
         <ng-container *ngTemplateOutlet="textContent" />
       </h1>
@@ -46,8 +56,14 @@
         [class.fixed-size]="fixedSize()"
         [style.color]="textEffectiveColor()"
         [style.background-color]="backgroundColor()"
-        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+        [style.padding]="
+          backgroundColor() && backgroundColor() !== 'transparent'
+            ? '4px 8px'
+            : '0'
+        "
+        [style.border-radius]="
+          backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'
+        "
       >
         <ng-container *ngTemplateOutlet="textContent" />
       </h2>
@@ -59,8 +75,14 @@
         [class.fixed-size]="fixedSize()"
         [style.color]="textEffectiveColor()"
         [style.background-color]="backgroundColor()"
-        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+        [style.padding]="
+          backgroundColor() && backgroundColor() !== 'transparent'
+            ? '4px 8px'
+            : '0'
+        "
+        [style.border-radius]="
+          backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'
+        "
       >
         <ng-container *ngTemplateOutlet="textContent" />
       </p>
@@ -72,8 +94,14 @@
         [class.fixed-size]="fixedSize()"
         [style.color]="textEffectiveColor()"
         [style.background-color]="backgroundColor()"
-        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
+        [style.padding]="
+          backgroundColor() && backgroundColor() !== 'transparent'
+            ? '4px 8px'
+            : '0'
+        "
+        [style.border-radius]="
+          backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'
+        "
       >
         <ng-container *ngTemplateOutlet="textContent" />
       </p>
@@ -85,9 +113,19 @@
         [class.fixed-size]="fixedSize()"
         [style.color]="textEffectiveColor()"
         [style.background-color]="backgroundColor()"
-        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
-        [style.display]="backgroundColor() && backgroundColor() !== 'transparent' ? 'inline-block' : 'inline'"
+        [style.padding]="
+          backgroundColor() && backgroundColor() !== 'transparent'
+            ? '4px 8px'
+            : '0'
+        "
+        [style.border-radius]="
+          backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'
+        "
+        [style.display]="
+          backgroundColor() && backgroundColor() !== 'transparent'
+            ? 'inline-block'
+            : 'inline'
+        "
       >
         <ng-container *ngTemplateOutlet="textContent" />
       </small>
@@ -100,19 +138,28 @@
         [for]="for()"
         [style.color]="textEffectiveColor()"
         [style.background-color]="backgroundColor()"
-        [style.padding]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px 8px' : '0'"
-        [style.border-radius]="backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'"
-        [style.display]="backgroundColor() && backgroundColor() !== 'transparent' ? 'inline-block' : 'inline'"
+        [style.padding]="
+          backgroundColor() && backgroundColor() !== 'transparent'
+            ? '4px 8px'
+            : '0'
+        "
+        [style.border-radius]="
+          backgroundColor() && backgroundColor() !== 'transparent' ? '4px' : '0'
+        "
+        [style.display]="
+          backgroundColor() && backgroundColor() !== 'transparent'
+            ? 'inline-block'
+            : 'inline'
+        "
       >
         <ng-container *ngTemplateOutlet="textContent" />
       </label>
     }
   }
 
-
   <ng-template #textContent>
     @if (!!text()) {
-      {{ (text() ?? '') | finTranslate }}
+      {{ text() ?? '' | finTranslate }}
     } @else {
       <ng-content />
     }

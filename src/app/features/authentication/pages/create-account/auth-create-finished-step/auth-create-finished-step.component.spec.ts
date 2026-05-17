@@ -8,9 +8,8 @@ describe('AuthCreateFinishedStepComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthCreateFinishedStepComponent]
-    })
-    .compileComponents();
+      imports: [AuthCreateFinishedStepComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AuthCreateFinishedStepComponent);
     component = fixture.componentInstance;

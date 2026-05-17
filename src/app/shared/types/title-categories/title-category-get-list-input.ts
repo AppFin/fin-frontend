@@ -4,4 +4,4 @@ import { TitleCategoryType } from '../../enums/title-categories/title-category-t
 export type TitleCategoryGetListInput = PagedFilteredAndSortedInput & {
   inactivated?: boolean;
   type?: TitleCategoryType;
-}
+};

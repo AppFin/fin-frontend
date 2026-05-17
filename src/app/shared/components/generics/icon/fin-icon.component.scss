@@ -13,13 +13,13 @@ img {
 
 i {
   align-items: center;
+  color: var(--text-color);
   display: flex;
   justify-content: center;
-  color: var(--text-color);
 }
 
 :host {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }

@@ -1,6 +1,11 @@
 import { Component, computed, input, ViewEncapsulation } from '@angular/core';
 import { FinButtonComponent } from '../button/fin-button.component';
-import { FinFontAwesomeType, FinIconComponent, FinIconSize, FinIconType, } from '../icon/fin-icon.component';
+import {
+  FinFontAwesomeType,
+  FinIconComponent,
+  FinIconSize,
+  FinIconType,
+} from '../icon/fin-icon.component';
 import { FinTextComponent } from '../text/fin-text.component';
 import { FinSeverity } from '../../../../core/types/themes/fin-severity';
 import { getSeverityColor } from '../../../functions/get-severity-color';
@@ -19,7 +24,7 @@ export class FinDialogComponent {
   public readonly onClose = input<((ev: MouseEvent) => void) | null>(null);
 
   // icon
-  public readonly icon = input<string|null>(null);
+  public readonly icon = input<string | null>(null);
   public readonly iconColor = input<string | undefined>(undefined);
   public readonly iconFontAwesomeType = input<FinFontAwesomeType>('fa-solid');
   public readonly iconType = input<FinIconType>('fontAwesome');

@@ -31,8 +31,8 @@ export type FinIconType = 'fontAwesome' | 'image' | 'bank' | 'brand';
     MatTooltipModule,
     TranslateModule,
     NgOptimizedImage,
-    FinTranslatePipe
-],
+    FinTranslatePipe,
+  ],
   templateUrl: './fin-icon.component.html',
   styleUrl: './fin-icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

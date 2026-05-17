@@ -8,9 +8,8 @@ describe('SideModalLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SideModalLayoutComponent]
-    })
-    .compileComponents();
+      imports: [SideModalLayoutComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SideModalLayoutComponent);
     component = fixture.componentInstance;

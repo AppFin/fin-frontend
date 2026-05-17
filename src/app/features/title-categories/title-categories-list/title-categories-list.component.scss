@@ -1,11 +1,11 @@
 div[header] {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
 
   > form {
-    display: flex;
     align-items: center;
+    display: flex;
     width: 50%;
 
     > * {

@@ -5,6 +5,8 @@ import { RouterOutlet } from '@angular/router';
   selector: 'fin-card-brand',
   standalone: true,
   imports: [RouterOutlet],
-  template: `<router-outlet />`,
+  template: `
+    <router-outlet />
+  `,
 })
 export class CardBrandComponent {}

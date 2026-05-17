@@ -8,9 +8,8 @@ describe('UserFriendlyColorPickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinUserFriendlyColorPickerComponent]
-    })
-    .compileComponents();
+      imports: [FinUserFriendlyColorPickerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FinUserFriendlyColorPickerComponent);
     component = fixture.componentInstance;

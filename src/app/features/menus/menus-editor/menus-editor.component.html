@@ -1,5 +1,9 @@
 <fin-editor-layout
-  [title]="this.editorType() == editorTypes.Create ? 'finCore.actions.creating' : 'finCore.actions.editing'"
+  [title]="
+    this.editorType() == editorTypes.Create
+      ? 'finCore.actions.creating'
+      : 'finCore.actions.editing'
+  "
   [loading]="loading()"
   [formGroup]="formGroup"
   [canSave]="canSave"
@@ -8,13 +12,21 @@
   (onCancel)="close()"
 >
   @if (!loading()) {
-    <fin-input class="col-6" label="finCore.features.menus.name" [formControl]="formGroup.controls.name" />
+    <fin-input
+      class="col-6"
+      label="finCore.features.menus.name"
+      [formControl]="formGroup.controls.name"
+    />
     <fin-input
       class="col-6"
       label="finCore.features.menus.frontRoute"
       [formControl]="formGroup.controls.frontRoute"
     />
-    <fin-color-picker class="col-6" label="finCore.features.shared.color" [formControl]="formGroup.controls.color" />
+    <fin-color-picker
+      class="col-6"
+      label="finCore.features.shared.color"
+      [formControl]="formGroup.controls.color"
+    />
     <fin-input
       class="col-6"
       label="finCore.features.shared.icon"
@@ -23,9 +35,17 @@
       [iconSuffix]="formGroup.controls.icon.value"
       [iconSuffixColor]="formGroup.controls.color.value"
     />
-    <fin-input class="col-6" label="finCore.features.menus.keyWord" [formControl]="formGroup.controls.keyWords" />
-    <fin-select class="col-3" label="finCore.features.menus.position" [formControl]="formGroup.controls.position"
-                [options]="selectOptions" />
+    <fin-input
+      class="col-6"
+      label="finCore.features.menus.keyWord"
+      [formControl]="formGroup.controls.keyWords"
+    />
+    <fin-select
+      class="col-3"
+      label="finCore.features.menus.position"
+      [formControl]="formGroup.controls.position"
+      [options]="selectOptions"
+    />
     <fin-toggle-switch
       class="col-3"
       label="finCore.features.menus.onlyForAdmin"
