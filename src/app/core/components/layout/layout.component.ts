@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { NotificationWebsocketService } from '../../services/notifications/notification-websocket.service';
 import { FinSideModalComponent } from './side-modal/fin-side-modal.component';
+import { PortfolioDisclaimerBannerComponent } from '../../../shared/components/portfolio-disclaimer-banner/portfolio-disclaimer-banner.component';
 
 @Component({
   selector: 'fin-layout',
@@ -18,6 +19,7 @@ import { FinSideModalComponent } from './side-modal/fin-side-modal.component';
     HeaderComponent,
     SideNavComponent,
     FinSideModalComponent,
+    PortfolioDisclaimerBannerComponent,
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
