@@ -1,10 +1,13 @@
+import { ErrorMessagesMap } from '../../rxjs-operators/handle-fin-back-http-error';
+
 export enum CreditChargeDeleteErrorCode {
-  CreditChargeNotFound = 'CreditChargeNotFound',
+  CreditChargeNotFound = 0,
 }
 
-export const CreditChargeDeleteErrorCodeMessages: Record<
-  CreditChargeDeleteErrorCode,
-  string
-> = {
-  [CreditChargeDeleteErrorCode.CreditChargeNotFound]: 'Credit charge not found',
-};
+export const CreditChargeDeleteErrorCodeMessages: ErrorMessagesMap<CreditChargeDeleteErrorCode> =
+  new Map([
+    [
+      CreditChargeDeleteErrorCode.CreditChargeNotFound,
+      { message: 'Credit charge not found' },
+    ],
+  ]);

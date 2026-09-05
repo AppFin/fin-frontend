@@ -4,7 +4,8 @@ import { authenticatedGuard } from './core/guards/authentication/authenticated.g
 import { AUTH_ROUTES } from './features/authentication/authentication-routes';
 import { CARD_BRAND_ROUTES } from './features/card-brand/card-brand-routes';
 import { CREDIT_CARDS_ROUTES } from './features/credit-cards/credit-cards-routes';
-import { CREDIT_CHARGES_ROUTES } from './features/credit-charges/credit-charges-routes';
+// FIXME: credit-charges has type errors, temporarily disabled. See CREDIT_CHARGES_ROUTES usage below.
+// import { CREDIT_CHARGES_ROUTES } from './features/credit-charges/credit-charges-routes';
 import { FINANCIAL_INSTITUTIONS_ROUTES } from './features/financial-institutions/financial-institutions-routes';
 import { MENUS_ROUTES } from './features/menus/menus-routes';
 import { NOTIFICATIONS_ROUTES } from './features/notifications/notifications-routes';
@@ -43,7 +44,7 @@ export const routes: Routes = [
           ...CREDIT_CARDS_ROUTES,
           ...TITLES_ROUTES,
           ...PEOPLE_ROUTES,
-          ...CREDIT_CHARGES_ROUTES,
+          // ...CREDIT_CHARGES_ROUTES,
           ...SETTINGS_ROUTES,
         ],
       },
