@@ -300,6 +300,10 @@ export const EnI18n: ITranslate = {
       unpinnedMenus: 'Unpinned menus',
       xNotifications: '{{notificationCount}} notification(s)',
     },
+    portfolioDisclaimer: {
+      text: 'This is an unfinished personal portfolio project, not affiliated with any company or brand it may reference. Please do not use your real name, email, or password. To avoid storing personal data, all non-admin accounts and their data are automatically deleted every 24 hours.',
+      title: 'Personal portfolio project',
+    },
     sharedComponents: {
       grid: {
         noData: 'No items to view',

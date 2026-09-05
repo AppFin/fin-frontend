@@ -306,6 +306,10 @@ export const EsI18n: ITranslate = {
       unpinnedMenus: 'Menús no fijados',
       xNotifications: '{{notificationCount}} notificación(es)',
     },
+    portfolioDisclaimer: {
+      text: 'Este es un proyecto personal de portafolio inacabado, sin relación con ninguna empresa o marca que pueda mencionar. No utilices tu nombre, email o contraseña reales. Para evitar el almacenamiento de datos personales, todas las cuentas que no son de administrador y sus datos se eliminan automáticamente cada 24 horas.',
+      title: 'Proyecto personal de portafolio',
+    },
     sharedComponents: {
       grid: {
         noData: 'Ningún elemento para visualizar',

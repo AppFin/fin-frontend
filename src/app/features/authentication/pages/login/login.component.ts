@@ -21,6 +21,7 @@ import {
   ExternalLoginProvider,
 } from '../../../../core/services/authentication/auth.service';
 import { LoginInput } from '../../../../core/models/authentication/login-input';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +38,8 @@ import { LoginInput } from '../../../../core/models/authentication/login-input';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
+  protected readonly features = environment.features;
+
   public readonly form = new FormGroup<LoginInputForm>({
     password: new FormControl('', [
       Validators.required,

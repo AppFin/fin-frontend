@@ -3,6 +3,7 @@ import {
   Component,
   HostListener,
   inject,
+  OnInit,
   signal,
 } from '@angular/core';
 import { FinTextComponent } from '../../../../shared/components/generics/text/fin-text.component';
@@ -15,9 +16,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { FinButtonComponent } from '../../../../shared/components/generics/button/fin-button.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/authentication/auth.service';
 import { SendResetPasswordEmailForm } from '../../models/send-reset-password-email-form';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'fin-send-reset-password-email',
@@ -33,7 +35,7 @@ import { SendResetPasswordEmailForm } from '../../models/send-reset-password-ema
   styleUrl: './send-reset-password-email.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SendResetPasswordEmailComponent {
+export class SendResetPasswordEmailComponent implements OnInit {
   public readonly emailSent = signal(false);
   public readonly sendingEmail = signal(false);
 
@@ -45,6 +47,12 @@ export class SendResetPasswordEmailComponent {
   });
 
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
+  public ngOnInit(): void {
+    if (!environment.features.passwordResetEnabled)
+      this.router.navigate(['/authentication/login']);
+  }
 
   @HostListener('keydown.enter', ['$event'])
   public onEnterKeydown(event: KeyboardEvent): void {

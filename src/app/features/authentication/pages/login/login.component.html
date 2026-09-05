@@ -35,13 +35,15 @@
       width="300px"
     />
 
-    <div class="forget-password-container">
-      <fin-text
-        text="finCore.auth.pages.login.forgetPassword"
-        routerLink="/authentication/send-reset-email"
-        type="info"
-      />
-    </div>
+    @if (features.passwordResetEnabled) {
+      <div class="forget-password-container">
+        <fin-text
+          text="finCore.auth.pages.login.forgetPassword"
+          routerLink="/authentication/send-reset-email"
+          type="info"
+        />
+      </div>
+    }
   </form>
 
   <div class="actions">
@@ -52,14 +54,16 @@
       [spinner]="loading()"
     />
 
-    <fin-button
-      variant="outlined"
-      text="finCore.auth.pages.login.loginWithGoogle"
-      icon="google"
-      iconType="image"
-      [disabled]="loading()"
-      (onClick)="loginWithExternalProvider('Google')"
-    />
+    @if (features.googleLoginEnabled) {
+      <fin-button
+        variant="outlined"
+        text="finCore.auth.pages.login.loginWithGoogle"
+        icon="google"
+        iconType="image"
+        [disabled]="loading()"
+        (onClick)="loginWithExternalProvider('Google')"
+      />
+    }
   </div>
   <div class="footer">
     <fin-text

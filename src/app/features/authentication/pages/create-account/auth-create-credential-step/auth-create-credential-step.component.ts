@@ -28,6 +28,7 @@ import { UserCreateService } from '../../../services/user-create.service';
 import { interval, map, takeWhile } from 'rxjs';
 import { TimerFomatterPipe } from '../../../../../shared/pipes/timer-formatter/timer-fomatter.pipe';
 import { UserCreationStatedDto } from '../../../models/user-creation-stated-dto';
+import { UserStartCreateOutput } from '../../../models/user-start-create-output';
 
 type ConfirmationCodeForm = {
   confirmationCode: FormControl<string>;
@@ -84,7 +85,11 @@ export class AuthCreateCredentialStepComponent implements OnInit {
       const input = this.credentialForm.getRawValue();
       const result = await this.userCreateService.start(input);
 
-      if (!!result) {
+      if (!!result && result.confirmationCode) {
+        // Portfolio demo mode: the backend returns the code directly since no
+        // real email is sent, so the confirmation step is validated silently.
+        await this.autoConfirmEmail(result);
+      } else if (!!result) {
         this.startResendEmailTimer(result.sentEmailDateTime);
         this.creationToken.set(result.creationToken);
       } else {
@@ -112,6 +117,25 @@ export class AuthCreateCredentialStepComponent implements OnInit {
       }
     }
     this.loadingButton.set(false);
+  }
+
+  private async autoConfirmEmail(result: UserStartCreateOutput): Promise<void> {
+    const validated = await this.userCreateService.validEmail(
+      result.creationToken,
+      result.confirmationCode!
+    );
+
+    if (!validated) {
+      this.credentialForm.enable();
+      return;
+    }
+
+    const credentials = this.credentialForm.getRawValue();
+    this.creationStarted.emit({
+      creationToken: result.creationToken,
+      email: credentials.email,
+      password: credentials.password,
+    });
   }
 
   public async resendEmail(): Promise<void> {

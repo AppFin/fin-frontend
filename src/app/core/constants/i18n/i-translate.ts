@@ -294,6 +294,10 @@ export interface ITranslate extends TranslationObject {
       unpinnedMenus: string;
       xNotifications: string;
     };
+    portfolioDisclaimer: {
+      text: string;
+      title: string;
+    };
     sharedComponents: {
       grid: {
         noData: string;

@@ -25,6 +25,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/authentication/auth.service';
 import { ResetPasswordInputForm } from '../../models/reset-password-form';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'fin-reset-password',
@@ -55,6 +56,12 @@ export class ResetPasswordComponent implements OnInit {
 
   public ngOnInit(): void {
     this.createForm();
+
+    if (!environment.features.passwordResetEnabled) {
+      this.router.navigate(['/authentication/login']);
+      return;
+    }
+
     this.setSubs();
     this.getAndValidToken();
   }

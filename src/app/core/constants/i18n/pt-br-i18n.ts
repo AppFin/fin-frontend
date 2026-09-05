@@ -301,6 +301,10 @@ export const PtBrI18n: ITranslate = {
       unpinnedMenus: 'Menus não fixados',
       xNotifications: '{{notificationCount}} notificação(ões)',
     },
+    portfolioDisclaimer: {
+      text: 'Este é um projeto pessoal de portfólio inacabado, sem relação com nenhuma empresa ou marca que ele possa referenciar. Não utilize seu nome, email ou senha reais. Para evitar o armazenamento de dados pessoais, todas as contas que não são de administrador e seus dados são apagados automaticamente a cada 24 horas.',
+      title: 'Projeto pessoal de portfólio',
+    },
     sharedComponents: {
       grid: {
         noData: 'Nenhum item para visualizar',
