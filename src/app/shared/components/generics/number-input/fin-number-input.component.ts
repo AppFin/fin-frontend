@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FinInputComponent } from './fin-input.component';
+import { FinInputComponent } from '../input/fin-input.component';
 
 @Component({
   selector: 'fin-number-input',
@@ -28,7 +28,7 @@ import { FinInputComponent } from './fin-input.component';
 export class FinNumberInputComponent {
   @Input() public formControl: FormControl<number | null>;
 
-  public readonly label = input<string>();
+  public readonly label = input('');
   public readonly readonly = input(false);
   public readonly customErrorText = input<string>();
   public readonly helpText = input<string>('');
