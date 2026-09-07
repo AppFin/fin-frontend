@@ -2,10 +2,17 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
+  overflow-y: auto;
   padding-top: 25px;
   width: 100vw;
+  box-sizing: border-box;
+  gap: 12px;
+}
+
+fin-portfolio-disclaimer-banner {
+  width: 100%;
 }
 
 div.auth-container {
@@ -60,5 +67,19 @@ fin-text {
 @media (width <= 800px) {
   div.auth-container {
     width: 85vw;
+  }
+}
+
+@media (width <= 600px) {
+  :host {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  div.auth-container {
+    height: auto;
+    min-height: 70vh;
+    width: 100%;
+    padding-bottom: 2.5rem;
   }
 }
