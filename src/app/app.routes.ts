@@ -30,6 +30,11 @@ export const routes: Routes = [
           ),
         children: [
           {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'titles',
+          },
+          {
             path: 'admin',
             canActivate: [adminGuard],
             children: [
