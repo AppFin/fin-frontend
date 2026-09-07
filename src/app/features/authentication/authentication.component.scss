@@ -44,13 +44,6 @@ div.auth-container {
   }
 }
 
-fin-text {
-  bottom: 0.5rem;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-}
-
 @media (width <= 1650px) {
   div.auth-container {
     height: 80vh;
